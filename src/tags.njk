@@ -1,8 +1,8 @@
 {% extends "layout.njk" %}
 
 {% block css %}
-<link rel="stylesheet" type="text/css" href="/css/page.css">
-<link rel="stylesheet" type="text/css" href="/css/post.css">
+<link rel="stylesheet" type="text/css" href="{{ pathPos.join(siteConfig.rootDir, "css/page.css") }}">
+<link rel="stylesheet" type="text/css" href="{{ pathPos.join(siteConfig.rootDir, "css/post.css") }}">
 {% endblock %}
 
 {% block title %}{{ __(title) }} | {{ siteConfig.title }}{% if siteConfig.subtitle %} - {{ siteConfig.subtitle }}{% endif %}{% endblock %}
@@ -25,7 +25,7 @@
       </h2>
       <div class="tags-cloud">
         {% for tag in tags %}
-        <a href="{{ tag.docPath }}">{{ tag.name }}</a>
+        <a href="{{ pathPos.join(siteConfig.rootDir, tag.docPath) }}">{{ tag.name }}</a>
         {% endfor %}
       </div>
     </main>

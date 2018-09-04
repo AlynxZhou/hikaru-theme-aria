@@ -1,7 +1,7 @@
 {% block author %}
 <div class="info sidebar-item" id="info">
   {% if themeConfig.avatar %}
-  <img class="author-avatar" src="{{ themeConfig.avatar }}" alt="{{ siteConfig.author }}">
+  <img class="author-avatar" src="{{ pathPos.join(siteConfig.rootDir, themeConfig.avatar) }}" alt="{{ siteConfig.author }}">
   {% endif %}
   <h1 class="author-name">{{ siteConfig.author }}</h1>
   <h2 class="author-description">{{ siteConfig.description }}</h2>

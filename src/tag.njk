@@ -1,8 +1,8 @@
 {% extends "layout.njk" %}
 
 {% block css %}
-<link rel="stylesheet" type="text/css" href="/css/page.css">
-<link rel="stylesheet" type="text/css" href="/css/post.css">
+<link rel="stylesheet" type="text/css" href="{{ pathPos.join(siteConfig.rootDir, "css/page.css") }}">
+<link rel="stylesheet" type="text/css" href="{{ pathPos.join(siteConfig.rootDir, "css/post.css") }}">
 {% endblock %}
 
 {% block title %}{{ __(title) }}: {{ name }} | {{ siteConfig.title }}{% if siteConfig.subtitle %} - {{ siteConfig.subtitle }}{% endif %}{% endblock %}
@@ -14,26 +14,44 @@
   <article class="article post card{% if themeConfig.animate %} animate{% endif %}" itemscope itemtype="http://schema.org/Article">
     <header id="post-header" class="post-header">
       <h1 class="post-title-simple" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="{{ post.docPath }}" itemprop="url">{{ post.title }}</a>
+        <a class="post-title-link post-title-link-external" href="{{ pathPos.join(siteConfig.rootDir, post.docPath) }}" itemprop="url">{{ post.title }}</a>
       </h1>
       {% if post.date %}
       <span class="post-date">
-        <time title="post-date" itemprop="dateCreated datePublished" datetime="{{ post.date }}">{{ post.date.getMonth() + "-" + post.date.getDate() }}</time>
+        <time title="post-date" itemprop="dateCreated datePublished" datetime="{{ moment(post.date).format() }}">{{ moment(post.date).format("MM-DD") }}</time>
       </span>
       {% endif %}
     </header>
   </article>
   {% endfor %}
-  {# {% if page.prev or page.next %}
+  {% if pageArray %}
   <nav class="pagination">
-    {{
-      paginator({
-        prev_text: "<i class=\"fas fa-angle-left\" aria-label=\"" + __("accessibility.prev_page") + "\"></i>",
-        next_text: "<i class=\"fas fa-angle-right\" aria-label=\"" + __("accessibility.next_page") + "\"></i>",
-        mid_size: 1
-      })
-    }}
+    {% if pageIndex !== 0 %}
+    <a class="extend prev" href="{{ pathPos.join(siteConfig.rootDir, pageArray[pageIndex - 1].docPath) }}"><i class="fas fa-angle-left" aria-label="{{ __("accessibility.prev_page") }}"></i></a>
+    {% endif %}
+    {% if pageIndex > 2 %}
+    <a class="page-number" href="{{ pathPos.join(siteConfig.rootDir, pageArray[0].docPath) }}">1</a>
+    <span class="space">…</span>
+    <a class="page-number" href="{{ pathPos.join(siteConfig.rootDir, pageArray[pageIndex - 1].docPath) }}">{{ pageIndex }}</a>
+    {% else %}
+    {% for page in pageArray.slice(0, pageIndex) %}
+    <a class="page-number" href="{{ pathPos.join(siteConfig.rootDir, page.docPath) }}">{{ page.pageIndex + 1 }}</a>
+    {% endfor %}
+    {% endif %}
+    <span class="page-number current">{{ pageIndex + 1 }}</span>
+    {% if pageIndex < pageArray.length - 1 - 2 %}
+    <a class="page-number" href="{{ pathPos.join(siteConfig.rootDir, pageArray[pageIndex + 1].docPath) }}">{{ pageIndex + 2 }}</a>
+    <span class="space">…</span>
+    <a class="page-number" href="{{ pathPos.join(siteConfig.rootDir, pageArray[pageArray.length - 1].docPath) }}">{{ pageArray.length }}</a>
+    {% else %}
+    {% for page in pageArray.slice(pageIndex + 1, pageArray.length) %}
+    <a class="page-number" href="{{ pathPos.join(siteConfig.rootDir, page.docPath) }}">{{ page.pageIndex + 1 }}</a>
+    {% endfor %}
+    {% endif %}
+    {% if pageIndex !== pageArray.length - 1 %}
+    <a class="extend next" href="{{ pathPos.join(siteConfig.rootDir, pageArray[pageIndex + 1].docPath) }}"><i class="fas fa-angle-right" aria-label="{{ __("accessibility.next_page") }}"></i></a>
+    {% endif %}
   </nav>
-  {% endif %} #}
+  {% endif %}
 </div>
 {% endblock %}
