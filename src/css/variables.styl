@@ -1,0 +1,120 @@
+$grey-lighter = #eee;
+$grey-light = #ddd;
+$grey = #ccc;
+$grey-dark = #999;
+$grey-dim = #666;
+$grey-deep = #444;
+$black-light = #33363b;
+$black-dim = #252525;
+$black-deep = #222;
+$black-dark = #26272b;
+$pink = #f8f8f8;
+$orange = #fc6423;
+$red-lighter = #f8d7da;
+$red-light = #f5c6cb;
+$red = #ff2a2a;
+$red-dark = #721c24;
+$green-lighter = #d4edda;
+$green-light = #c3e6cb;
+$green = #37cf38;
+$green-dark = #155724;
+$blue-lighter = #cce5ff;
+$blue-light = #b8daff;
+$blue-bright = #cbeafb;
+$blue = #33aaef;
+$blue-deep = #3366ee;
+$blue-dark = #004085;
+
+$color-font = $black-dark;
+$color-quote = $grey-dim;
+$color-selection-background = $blue-bright;
+$color-selection-font = $black-deep;
+$color-background = $grey;
+$color-link = $grey-dim;
+$color-link-hover = $blue-deep;
+$color-header-font = $grey-lighter;
+$color-header-background = $black-light;
+$color-title = $grey-lighter;
+$color-nav-link = $grey-light;
+$color-nav-background = $black-light;
+$color-nav-hover = $black-dim;
+$color-nav-link-hover = white;
+$color-nav-current-background = $black-deep;
+$color-main-background = $grey-lighter;
+$color-card-background = white;
+$color-sidebar-background = $grey-light;
+$color-footer-background = $black-light;
+$color-footer-font = $grey-lighter;
+$color-footer-link = $grey-light;
+$color-footer-link-hover = white;
+$color-search-font = white;
+$color-search-background = $blue-deep;
+$color-button-font = white;
+$color-button-background = $grey-dark;
+$color-button-border = $grey-light;
+$color-button-rss-background = $red;
+$color-button-rss-border = $red-light;
+$color-button-reward-background = $red;
+$color-button-reward-border = $red-light;
+$color-button-commentjs-background = $red;
+$color-button-commentjs-border = $red-light;
+$color-button-tag-first-background = $red;
+$color-button-tag-first-border = $red-light;
+$color-button-tag-second-background = $green;
+$color-button-tag-second-border = $green-light;
+$color-button-tag-third-background = $blue;
+$color-button-tag-third-border = $blue-light;
+$color-author-name = $black-dark;
+$color-author-description = $grey-deep;
+$color-code-font = $orange;
+$color-code-background = $pink;
+$color-alert-red = $red-dark;
+$color-alert-red-background = $red-lighter;
+$color-alert-red-border = $red-light;
+$color-alert-green = $green-dark;
+$color-alert-green-background = $green-lighter;
+$color-alert-green-border = $green-light;
+$color-alert-blue = $blue-dark;
+$color-alert-blue-background = $blue-lighter;
+$color-alert-blue-border = $blue-light;
+$color-table-border = $grey-light;
+$color-table-head-border = $grey-dark;
+$color-table-head-background = white;
+$color-table-odd-row-background = $grey-lighter;
+$color-table-even-row-background = white;
+$color-reward-font = $grey-deep;
+
+$font-sans = Roboto, "Noto Sans", "Noto Sans CJK", Helvetica, Arial, sans-serif;
+$font-serif = "Roboto Slab", "Noto Serif", "Noto Serif CJK", Georgia, "Times New Roman", serif;
+$font-mono = Monaco, Menlo, "Roboto Mono", Consolas, monospace;
+// $font-all inherits $font-sans and $font-serif, other fonts inherit $font-all.
+$font-all = $font-sans, $font-serif;
+if (getThemeConfig("custom_font.enable") && getThemeConfig("custom_font.all")) {
+  $font-all = getThemeConfig("custom_font.all"), $font-all;
+}
+$font-title = $font-all;
+if (getThemeConfig("custom_font.enable") && getThemeConfig("custom_font.title")) {
+  $font-title = getThemeConfig("custom_font.title"), $font-title;
+}
+$font-subtitle = $font-all;
+if (getThemeConfig("custom_font.enable") && getThemeConfig("custom_font.subtitle")) {
+  $font-subtitle = getThemeConfig("custom_font.subtitle"), $font-subtitle;
+}
+$font-main = $font-all;
+if (getThemeConfig("custom_font.enable") && getThemeConfig("custom_font.main")) {
+  $font-main = getThemeConfig("custom_font.main"), $font-main;
+}
+// $font-code inherits $font-mono and $font-all;
+$font-code = $font-mono;
+$font-code = $font-code, $font-all;
+if (getThemeConfig("custom_font.enable") && getThemeConfig("custom_font.code")) {
+  $font-code = getThemeConfig("custom_font.code"), $font-code;
+}
+$font-size = 16px;
+
+$corner-radius = 0.3em
+$search-height = 3em;
+$search-padding-top = 0.5em;
+$container-max-width = 80em;
+$media-footer-header-nav-fold-width = 40em;
+$media-main-fold-width = 60em;

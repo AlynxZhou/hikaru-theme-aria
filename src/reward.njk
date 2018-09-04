@@ -1,0 +1,26 @@
+{% block reward %}
+<div class="reward" id="reward">
+  <p>{{ themeConfig.reward.comment }}</p>
+  <button id="reward-button" class="button" disable="enable">{{ __("reward.button") }}</button>
+  <div id="qr" class="qr" style="display: none;" aria-hidden="true">
+    {% if themeConfig.reward.wechatpay_qrcode %}
+    <div id="wechat">
+      <img id="wechat_qr" src="{{ themeConfig.reward.wechatpay_qrcode }}" alt="{{ __("reward.wechatpay") }}"/>
+      <span>{{ __("reward.wechatpay") }}</span>
+    </div>
+    {% endif %}
+    {% if themeConfig.reward.alipay_qrcode %}
+    <div id="alipay">
+      <img id="alipay_qr" src="{{ themeConfig.reward.alipay_qrcode }}" alt="{{ __("reward.alipay") }}"/>
+      <span>{{ __("reward.alipay") }}</span>
+    </div>
+    {% endif %}
+    {% if themeConfig.reward.bitcoin_qrcode %}
+    <div id="bitcoin">
+      <img id="bitcoin_qr" src="{{ themeConfig.reward.bitcoin_qrcode }}" alt="{{ __("reward.bitcoin") }}"/>
+      <span>{{ __("reward.bitcoin") }}</span>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

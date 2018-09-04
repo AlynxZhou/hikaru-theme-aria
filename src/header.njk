@@ -1,0 +1,25 @@
+{% block header %}
+<header id="header" class="header"{% if themeConfig.color %} style="background: {{ themeConfig.color }};"{% endif %}>
+  <div class="container">
+    <div class="header-container">
+      <div class="header-title">
+        <h1 class="title"><a href="/">{{ siteConfig.title }}</a></h1>
+        <h2 class="subtitle">{{ siteConfig.subtitle }}</h2>
+      </div>
+      {% if themeConfig.logo %}
+      <div class="logo">
+        <img src="{{ themeConfig.logo }}" alt="logo">
+      </div>
+      {% endif %}
+    </div>
+    <nav id="nav" class="nav">
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="{{ __("accessibility.nav_toggle") }}"></i></a>
+      <ul id="menu" role="menubar" aria-hidden="false">
+        {% for k, v in themeConfig.menu %}
+        <li role="menuitem"><a href="{{ v }}"{% if docPath === v %} class="current"{% endif %}>{{ __(k) }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </div>
+</header>
+{% endblock %}

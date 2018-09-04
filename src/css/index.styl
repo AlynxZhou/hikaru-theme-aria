@@ -1,0 +1,293 @@
+@import "variables";
+@import "header";
+@import "nav";
+@import "main";
+@import "footer";
+@import "nib";
+html, body, .container {
+  height: 100%;
+}
+::selection {
+  color: $color-selection-font;
+  background: $color-selection-background;
+}
+::-moz-selection {
+  color: $color-selection-font;
+  background: $color-selection-background;
+}
+::-webkit-scrollbar {
+  width: 0.4em;
+  height: 0.4em;
+}
+::-webkit-scrollbar-track {
+  background: 0 0;
+}
+::-webkit-scrollbar-thumb {
+  background: #999;
+  border-radius: 0.25em;
+  &:hover {
+    background: #666;
+  }
+}
+::-webkit-scrollbar-corner {
+  background: #535353;
+}
+::-webkit-scrollbar-resizer {
+  background: #FF6E00;
+}
+body {
+  color: $color-font;
+  background: $color-background;
+  font: $font-size $font-all
+  word-wrap: break-word;
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+}
+main {
+  flex: 1 0 auto;
+}
+header, footer {
+  flex: none;
+}
+.container {
+  padding: 0;
+  max-width: $container-max-width;
+  width: 100%;
+  margin: 0 auto;
+}
+ol, ul {
+  padding-left: 2em;
+}
+a {
+  position: relative;
+  color: $color-link;
+  text-decoration: none;
+  border-bottom: 0.05em dotted $color-link;
+  transition: 0.3s ease-in-out;
+  &:hover {
+    color: $color-link-hover;
+    border-bottom: 0.05em solid $color-link-hover;
+  }
+  &:active {
+    top: 0.1em;
+  }
+}
+a.gallery-item, a.img-link {
+  border-bottom: none;
+  display: block;
+  margin: 1em 0 0 0;
+  text-align: center;
+  img {
+    transition: 0.3s ease-in-out;
+    border: 0.15em solid $color-background;
+  }
+  &:hover {
+    border-bottom: none;
+    img {
+      box-shadow: 0 0 1em 0.5em rgba(0, 0, 0, 0.19);
+    }
+  }
+}
+.caption {
+  color: $color-quote;
+  display: block;
+  text-align: center;
+  margin: 0 0 1em 0;
+}
+a.button, button.button {
+  position: relative;
+  transition: 0.3s ease-in-out;
+  text-decoration: none;
+  border-radius: $corner-radius;
+  transform-origin: 50%;
+  border-bottom: none;
+  box-sizing: border-box;
+  color: $color-button-font;
+  background: $color-button-background;
+  border: 0.1em solid $color-button-border;
+  &:hover {
+    box-shadow: 0 0 1em 0.5em rgba(0, 0, 0, 0.19);
+  }
+  &:active {
+    top: 0.1em;
+  }
+}
+img {
+  width: 90%;
+  text-align: center;
+}
+hr {
+  height: 0.3em;
+  border: none;
+  margin: 1.5em 0;
+  width: 100%;
+  box-sizing: content-box;
+  background: repeating-linear-gradient(-45deg, #ccc, #ccc 0.25em, transparent 0.25em, transparent 0.5em);
+}
+article table {
+  margin: 1em auto;
+  border-spacing: 0;
+  border-collapse: collapse;
+  thead tr {
+    background: $color-table-head-background;
+    th {
+      padding: 0.4em 0.7em;
+      border: 0.1em solid $color-table-head-border;
+    }
+  }
+  tbody tr {
+    background: $color-table-odd-row-background;
+    td {
+      padding: 0.4em 0.7em;
+      border: 0.1em solid $color-table-border;
+      &:nth-child(2n) {
+        background: white;
+      }
+    }
+    &:nth-child(2n) {
+      background: $color-table-even-row-background;
+      td {
+        padding: 0.4em 0.7em;
+        border: 0.1em solid $color-table-border;
+        &:nth-child(2n) {
+          background: $grey-lighter;
+        }
+      }
+    }
+  }
+}
+code {
+  margin: 0.05em 0.05em;
+  color: $color-code-font;
+  padding: 0.125em 0.25em;
+  overflow: auto;
+  word-wrap: break-word;
+  border-radius: $corner-radius;
+  font-family: $font-code;
+  // Use a single font here makes line-height wrong.
+  font-size: $font-size;
+  background: $color-code-background;
+  -webkit-font-feature-settings: "liga" 0; /* No variation */
+  -moz-font-feature-settings: "liga=0"; /* Firefox 4.0 to 14.0 */
+  -moz-font-feature-settings: "liga" 0; /* Firefox 15.0 onwards */
+  -moz-font-feature-settings: "liga" 0; /* Firefox 15.0 onwards explicitly set feature values */
+  font-feature-settings: "liga" 0; /* No variation */
+}
+figure {
+  overflow: auto;
+  border-radius: $corner-radius;
+  padding: 0.5em;
+  margin: 1em 0;
+  -webkit-font-feature-settings: "liga" 0; /* No variation */
+  -moz-font-feature-settings: "liga=0"; /* Firefox 4.0 to 14.0 */
+  -moz-font-feature-settings: "liga" 0; /* Firefox 15.0 onwards */
+  -moz-font-feature-settings: "liga" 0; /* Firefox 15.0 onwards explicitly set feature values */
+  font-feature-settings: "liga" 0; /* No variation */
+  table {
+    margin: 0;
+    tbody tr {
+      background: transparent;
+      td {
+        border: none;
+        &:nth-child(2n) {
+          background: transparent;
+        }
+        &.gutter {
+          text-align: right;
+          padding-right: 0.5em;
+          border-right: 0.1em dotted $color-background;
+        }
+        pre {
+          font-family: $font-code;
+          font-size: $font-size;
+          line-height: 1.5em;
+          padding: 0;
+          margin: 0;
+          code.text {
+            padding-left: 0.5em;
+          }
+        }
+      }
+    }
+  }
+}
+blockquote {
+  margin: 1em 0;
+  word-wrap: break-word;
+  padding: 0 1em;
+  border-left: 0.25em solid $color-background;
+  color: $color-quote;
+  p {
+    color: $color-quote;
+    padding: 0;
+    margin: 0;
+  }
+}
+.centerquote {
+  margin: 1em 0;
+  padding: 0.5em 1em;
+  border-left: none;
+  border-top: 0.2em solid $color-background;
+  border-bottom: 0.2em solid $color-background;
+  text-align: center;
+  color: $color-quote;
+  word-wrap: break-word;
+  p, div {
+    text-align: center;
+  }
+}
+.alert-red, .alert-green, .alert-blue {
+  text-align: center;
+  margin: 1em 0;
+  padding: 0.5em;
+  border-radius: $corner-radius;
+}
+.alert-red {
+  color: $color-alert-red;
+  border: 0.1em solid $color-alert-red-border;
+  background-color: $color-alert-red-background;
+}
+.alert-green {
+  color: $color-alert-green;
+  border: 0.1em solid $color-alert-green-border;
+  background-color: $color-alert-green-background;
+}
+.alert-blue {
+  color: $color-alert-blue;
+  border: 0.1em solid $color-alert-blue-border;
+  background-color: $color-alert-blue-background;
+}
+.card {
+  display: block;
+  background: $color-card-background;
+  transition: 0.2s ease-in-out;
+  box-sizing: border-box;
+  border-radius: $corner-radius;
+  padding: 0.5em 1em;
+  margin: 0.5em;
+  &:hover {
+    box-shadow: 0 0 1em 0.5em rgba(0, 0, 0, 0.19);
+  }
+}
+.svg-inline--fa {
+  margin: 0 0.2em;
+}
+if (getThemeConfig("animate")) {
+  .animate {
+    animation: 0.3s flip forwards;
+    opacity: 0;
+    transform-origin: 50%;
+    transform: rotateX(180deg);
+    @keyframes flip {
+      0% {
+        opacity: 0;
+        transform: rotateX(180deg);
+      }
+      100% {
+        opacity: 1;
+        transform: rotateX(0);
+      }
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{% extends "layout.njk" %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+{% endblock %}
+
+{% block title %}{{ __(title) }} | {{ siteConfig.title }}{% if siteConfig.subtitle %} - {{ siteConfig.subtitle }}{% endif %}{% endblock %}
+
+{% block content %}
+<div id="categories" class="categories page">
+  <article class="article post card{% if themeConfig.animate %} animate{% endif %}">
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">{{ __(title) }}</h1>
+    </header>
+    <main class="post-main">
+      <h2 class="page-counter">
+        {% if categories.length > 1 %}
+        {{ _p("categorycount.more", categories.length) }}
+        {% elif site.categories.length === 1 %}
+        {{ _p("categorycount.one", categories.length) }}
+        {% else %}
+        {{ __("categorycount.none") }}
+        {% endif %}
+      </h2>
+      <div class="categories-list">
+        {% macro listCategory(cates) %}
+        {% for cate in cates %}
+        <ul>
+          <li>
+            <a href="{{ cate.docPath }}">cate.name</a>
+            {{- listCategory(cate.subs) -}}
+          </li>
+        </ul>
+        {% endfor %}
+        {% endmacro %}
+        {{ listCategory(categories) }}
+      </div>
+    </main>
+    <footer class="post-footer"></footer>
+  </article>
+</div>
+{% endblock %}

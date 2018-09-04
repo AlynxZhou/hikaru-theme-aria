@@ -1,0 +1,35 @@
+{% extends "layout.njk" %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+{% endblock %}
+
+{% block title %}{{ __(title) }} | {{ siteConfig.title }}{% if siteConfig.subtitle %} - {{ siteConfig.subtitle }}{% endif %}{% endblock %}
+
+{% block content %}
+<div id="tags" class="tags page">
+  <article class="article post card{% if themeConfig.animate %} animate{% endif %}">
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">{{ __(title) }}</h1>
+    </header>
+    <main class="post-main">
+      <h2 class="page-counter">
+        {% if tags.length > 1 %}
+        {{ _p("tagcount.more", tags.length) }}
+        {% elif tags.length === 1 %}
+        {{ _p("tagcount.one", tags.length) }}
+        {% else %}
+        {{ __("tagcount.none") }}
+        {% endif %}
+      </h2>
+      <div class="tags-cloud">
+        {% for tag in tags %}
+        <a href="{{ tag.docPath }}">{{ tag.name }}</a>
+        {% endfor %}
+      </div>
+    </main>
+    <footer class="post-footer"></footer>
+  </article>
+</div>
+{% endblock %}

@@ -1,0 +1,80 @@
+@import "variables";
+@import "nib";
+.footer {
+  background: $color-footer-background;
+  color: $color-footer-font;
+  margin-top: 1.5em;
+  .footer-container {
+    width: auto;
+    word-wrap: break-word;
+    line-height: 2em;
+    padding: 1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: nowrap;
+    .footer-left {
+      flex: 1 0 auto;
+      text-align: left;
+      width: 50%;
+    }
+    .footer-right {
+      flex: 1 0 auto;
+      text-align: right;
+      width: 50%;
+      .custom-info {
+        width: 100%;
+        word-wrap: break-word;
+      }
+    }
+  }
+  a {
+    position: relative;
+    color: $color-footer-link;
+    text-decoration: none;
+    border-bottom: 0.05em dotted $color-footer-link;
+    transition: 0.3s ease-in-out;
+    &:hover {
+      color: $color-footer-link-hover;
+      border-bottom: 0.05em solid $color-footer-link-hover;
+    }
+    &:active {
+      top: 0.1em;
+    }
+  }
+  .back-to-top {
+    display: block;
+    text-align: center;
+    button {
+      border: none;
+      outline: 0;
+      background: $color-background;
+      color: $color-link;
+      overflow: hidden;
+      display: inline-block;
+      margin: 0 auto;
+      padding: 0 0.7em;
+      cursor: pointer;
+      border-radius: bottom $corner-radius;
+      font-size: 2em;
+      &:hover {
+        color: $color-link-hover;
+      }
+    }
+  }
+  @media (max-width: $media-footer-header-nav-fold-width) {
+    .footer-container {
+      flex-direction: column-reverse;
+      align-items: stretch;
+      .footer-left {
+        text-align: center;
+        width: auto;
+      }
+      .footer-right {
+        text-align: center;
+        width: auto;
+      }
+    }
+  }
+}

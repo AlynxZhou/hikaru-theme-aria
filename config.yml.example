@@ -1,0 +1,156 @@
+# If a option has many sub-options, and it's optional, then give it a `enable` sub-option. If not optional, don't use `enable`.
+
+menu:
+  home: /
+  archives: /archives/
+  # categories: /categories/
+  # tags: /tags/
+  # about: /about/
+
+# Transform your image to those favicons in https://realfavicongenerator.net/.
+favicon:
+  apple_touch_icon: favicons/apple-touch-icon.png
+  android_chrome_large: favicons/android-chrome-192x192.png
+  medium: favicons/favicon-32x32.png
+  small: favicons/favicon-16x16.png
+  safari_pinned_tab: favicons/safari-pinned-tab.svg
+  android_manifest: favicons/site.webmanifest
+  ms_browserconfig: favicons/browserconfig.xml
+  fallback: favicons/favicon.ico
+
+# Must be an array.
+keywords:
+  - Life
+  - ARIA
+  - Hexo
+
+# https://creativecommons.org/licenses/
+# by | by-sa | by-nd | by-nc | by-nc-sa | by-nc-nd
+creative_commons:
+
+# Available: atom-one-dark | atom-one-light | solarized-dark | solarized-light
+highlight: atom-one-dark
+
+# Custom info in footer.
+custom_info: 托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+
+# Select all your webfont in a CDN like Google Fonts, and then copy `href` property in the `<link>` tag, like `link: //fonts.googleapis.com/css?family=Lato|Roboto+Condensed|Skranji|Ubuntu|Ubuntu+Mono`.
+# Then set different fonts to different parts here.
+custom_font:
+  enable: false
+  link:
+  all:
+  title:
+  subtitle:
+  main:
+  code:
+
+avatar: images/avatar.png
+
+logo: images/logo.png
+
+# Theme color.
+# Need quote to prevent `#` from comment.
+color: "#33363b"
+
+google_verification:
+
+since:
+
+search: true
+
+# `left`, `right`, `false`
+sidebar: left
+
+# Animation in Home, Archive, Category and Tag.
+animate: false
+
+busuanzi: true
+
+# If you want ARIA generate excerpt, set it to the length you want. If you don't, leave it blank.
+# Recomend to place `<!--more-->` to where you want to stop excerpt in content instead of use this option.
+# Example: `auto_excerpt: 200`, use first 200 chars in post content as excerpt.
+auto_excerpt:
+
+# If you want to use MathJax, first fill a CDN link like `cdn: https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-MML-AM_CHTML`, then set `enable: true`.
+# And set front-matter `mathjax: true` to the page you want to use it.
+# You can also set `global: true` here to load MathJax in all pages.
+# But it's not recommended because MathJax sources are too large, that's why ARIA doesn't contain them and ask for CDN.
+mathjax:
+  enable: false
+  global:
+  cdn:
+
+# Note: `fontawesome` is fontawesome-all. `scrollspy` and `util` are from bootstrap. `busuanzi` is `busuanzi.pure.mini.js`.
+# If you don't know what you are doing, don't change it.
+lib_cdn:
+  enable: false
+  jquery:
+  fontawesome:
+  scrollspy:
+  util:
+  lightgallery:
+    js:
+    css:
+  lg_fullscreen:
+  lg_hash:
+  lg_pager:
+  lg_thumbnail:
+  lg_zoom:
+  busuanzi:
+  atom-one-dark:
+  atom-one-light:
+  solarized-dark:
+  solarized-light:
+  normalize:
+  search:
+  marked:
+  timeago:
+  commentjs:
+    js:
+    css:
+
+social:
+  enable: true
+  links:
+    - name: E-Mail
+      link: mailto:youremail@youremailhost
+      icon: <i class="fas fa-envelope"></i>
+    - name: GitHub
+      link: https://github.com/
+      icon: <i class="fab fa-github"></i>
+    - name: Weibo
+      link: https://weibo.com/
+      icon: <i class="fab fa-weibo"></i>
+
+blogroll:
+  enable: true
+  links:
+    - name: GitHub
+      link: https://github.com/
+      icon: <i class="fas fa-link"></i>
+    - name: MDN
+      link: https://developer.mozilla.org/
+      icon: <i class="fas fa-link"></i>
+    - name: Nunjucks
+      link: https://mozilla.github.io/nunjucks/
+      icon: <i class="fas fa-link"></i>
+
+# `comment.commentjs.type`: Choose between `github` and `oschina`.
+comment:
+  enable: false
+  disqus_shortname:
+  commentjs:
+    enable: false
+    type:
+    user:
+    repo:
+    client_id:
+    client_secret:
+
+reward:
+  enable: false
+  comment: 坚持原创技术分享，您的支持是我前进的动力！
+  # wechatpay_qrcode: images/WeChatPay.png
+  # alipay_qrcode: images/AliPay.png
+  # bitcoin_qrcode: images/BitCoin.png

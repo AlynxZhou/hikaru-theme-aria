@@ -1,0 +1,53 @@
+{% extends "layout.njk" %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+{% endblock %}
+
+{% block title %}{{ __(title) }} | {{ siteConfig.title }}{% if siteConfig.subtitle %} - {{ siteConfig.subtitle }}{% endif %}{% endblock %}
+
+{% block content %}
+<div id="archives" class="archives page">
+  <h1 class="page-title">{{ __(title) }}</h1>
+  <h2 class="page-counter">
+    {% if posts.length > 1 %}
+    {{ _p("postcount.more", posts.length) }}
+    {% elif posts.length === 1 %}
+    {{ _p("postcount.one", posts.length) }}
+    {% else %}
+    {{ __("postcount.none") }}
+    {% endif %}
+  </h2>
+  {% set year = 1970 %}
+  {% for post in posts %}
+  {% if post.date.getFullYear() !== year %}
+  {% set year = post.date.getFullYear() %}
+  <h2 class="page-title">{{ year }}</h1>
+  {% endif %}
+  <article class="article post card{% if themeConfig.animate %} animate{% endif %}" itemscope itemtype="http://schema.org/Article">
+    <header id="post-header" class="post-header">
+      <h1 class="post-title-simple" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="{{ post.docPath }}" itemprop="url">{{ post.title }}</a>
+      </h1>
+      {% if post.date %}
+      <span class="post-date">
+        <time title="post-date" itemprop="dateCreated datePublished" datetime="{{ post.date }}">{{ post.date.getMonth() + "-" + post.date.getDate() }}</time>
+      </span>
+      {% endif %}
+    </header>
+  </article>
+  {% endfor %}
+  {# {% if page.prev or page.next %}
+  <nav class="pagination">
+    {{
+      paginator({
+        prev_text: "<i class=\"fas fa-angle-left\" aria-label=\"" + __("accessibility.prev_page") + "\"></i>",
+        next_text: "<i class=\"fas fa-angle-right\" aria-label=\"" + __("accessibility.next_page") + "\"></i>",
+        mid_size: 1
+      })
+    }}
+  </nav>
+  {% endif %} #}
+</div>
+{% endblock %}

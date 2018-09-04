@@ -1,0 +1,41 @@
+{% if page.layout === "index" or page.title === "index" %}
+{% include "index.njk" %}
+{% elif page.layout === "archive" or page.title === "archive" %}
+{% include "archive.njk" %}
+{% elif page.layout === "categories" or page.title === "categories" %}
+{% include "categories.njk" %}
+{% elif page.layout === "category" or page.title === "category" %}
+{% include "category.njk" %}
+{% elif page.layout === "tags" or page.title === "tags" %}
+{% include "tags.njk" %}
+{% elif page.layout === "tag" or page.title === "tag" %}
+{% include "tag.njk" %}
+{% else %}
+{% extends "layout.njk" %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="/css/page.css">
+<link rel="stylesheet" type="text/css" href="/css/post.css">
+{% endblock %}
+
+{% block title %}{{ __(title) }} | {{ siteConfig.title }}{% if siteConfig.subtitle %} - {{ siteConfig.subtitle }}{% endif %}{% endblock %}
+
+{% block content %}
+<div id="page" class="page">
+  <article class="article post card{% if themeConfig.animate %} animate{% endif %}">
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">
+        <span>{{ __(title) }}</span>
+      </h1>
+    </header>
+    <main class="post-main">
+      {{ content }}
+    </main>
+    <footer class="post-footer"></footer>
+  </article>
+  {% if themeConfig.comment.enable %}
+  {% include "comment.njk" %}
+  {% endif %}
+</div>
+{% endblock %}
+{% endif %}

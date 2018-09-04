@@ -1,0 +1,84 @@
+@import "variables";
+@import "nib";
+@import "info";
+.sidebar {
+  background: $color-sidebar-background;
+  flex: 1 0 auto;
+  width: 25%;
+  padding: 0;
+  word-wrap: break-word;
+  .search {
+    height: $search-height - $search-padding-top;
+    display: block;
+    text-align: center;
+    background: $color-search-background;
+    color: $color-search-font;
+    padding-top: $search-padding-top;
+    input {
+      width: 70%;
+      height: 1.8em;
+      border: none;
+      border-bottom: 0.1em dotted $color-search-font;
+      background: $color-search-background;
+      color: $color-search-font;
+      transition: 0.3s ease-in-out;
+      &:focus {
+        outline: none;
+        border-bottom: 0.1em solid $color-search-font;
+      }
+      &::placeholder {
+        color: $color-search-font;
+        opacity: 0.7;
+      }
+    }
+  }
+  .search-result-box {
+    background: $color-card-background;
+    word-wrap: break-word;
+    transition: 0.3s ease-in-out;
+    .search-result-list {
+      margin-top: 0;
+      padding: 1em 1em 1em 2em;
+    }
+    &:hover {
+      box-shadow: 0 0.5em 1em 0.5em rgba(0, 0, 0, 0.19);
+    }
+  }
+  .sidebar-item {
+    margin: 1em;
+  }
+  .sidebar-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    padding-bottom: 1em;
+  }
+  .post-toc .toc-link.active {
+    color: $color-link-hover;
+    border-bottom: 0.05em solid $color-link-hover;
+  }
+  // Replace hr color in index.styl.
+  hr {
+    background: repeating-linear-gradient(-45deg, #fff, #fff 0.25em, transparent 0.25em, transparent 0.5em);
+  }
+  @media (max-width: $media-main-fold-width) {
+    width: 100%;
+    .sidebar-item {
+      text-align: center;
+      ul {
+        padding: 0;
+        li {
+          display: inline-block;
+          margin: 0.5em 1em;
+        }
+      }
+      .toc {
+        text-align: left;
+        display: inline-block;
+      }
+    }
+    .sidebar-sticky {
+      position: static;
+    }
+  }
+}

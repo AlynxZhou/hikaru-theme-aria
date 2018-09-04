@@ -1,0 +1,54 @@
+home: 首頁
+archive: 歸檔
+archives: 歸檔
+category: 分類
+categories: 分類
+tag: 標籤
+tags: 標籤
+about: 關於
+
+search: 搜索
+
+toc: 文章目錄
+sociallink: 社交鏈接
+blogroll: 友情鏈接
+
+# readmore: 閱讀全文
+
+reward:
+  button: 打賞
+  wechatpay: 微信支付
+  alipay: 支付寶
+  bitcoin: 比特幣
+
+postcount:
+  none: 你還沒有文章，現在寫一篇吧！
+  one: 你已經寫了 %d 篇文章，積少成多，再接再厲！
+  more: 你已經寫了 %d 篇文章！
+
+tagcount:
+  none: 你還沒有標籤，現在創建一個吧！
+  one: 你已經創建了 %d 個標籤，積少成多，再接再厲！
+  more: 你已經創建了 %d 個標籤！
+
+categorycount:
+  none: 你還沒有分類，現在創建一個吧！
+  one: 你已經創建了 %d 個分類，積少成多，再接再厲！
+  more: 你已經創建了 %d 個分類！
+
+commentjs:
+  none: 這個頁面還沒有評論，現在就驅評論吧！
+  comment: 去評論
+
+poweredby: 由 %s 強力驅動
+theme: 主題 %s
+
+
+accessibility:
+  prev_page: 上一頁
+  next_page: 下一頁
+  back_to_top: 回到頂部
+  nav_toggle: 切換導航欄
+  site_pv: 站點訪問量
+  site_uv: 站點用戶數
+  page_pv: 頁面訪問量

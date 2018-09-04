@@ -1,0 +1,76 @@
+@import "variables";
+@import "nib";
+@import "reward";
+.post {
+  .post-header {
+    text-align: center;
+    .post-title-simple {
+      margin: 0;
+    }
+    .post-title .post-title-link {
+      display: inline-block;
+      position: relative;
+      text-decoration: none;
+      border-bottom: none;
+      color: $color-font;
+      &::after {
+        content: " ";
+        position: absolute;
+        width: 100%;
+        height: 0.1em;
+        bottom: 0;
+        left: 0;
+        background: $color-font;
+        visibility: hidden;
+        transform: scaleX(0);
+        transition: 0.3s ease-in-out;
+      }
+      &:hover {
+        &::after {
+          visibility: visible;
+          transform: scaleX(1);
+        }
+      }
+      &:active {
+        top: 0.1em;
+      }
+    }
+    .post-meta span {
+      margin: 0 0.1em;
+    }
+  }
+  .post-main {
+    a.headerlink {
+      border: none;
+      &:hover {
+        border: none;
+      }
+      &:active {
+        top: 0;
+      }
+      &::before {
+        content: "#";
+        margin-right: 0.3em;
+      }
+    }
+  }
+  .post-footer {
+    text-align: center;
+    .post-tags .post-tag {
+      margin: 0.5em;
+      display: inline-block;
+      background: $color-button-tag-first-background;
+      border: 0.1em solid $color-button-tag-first-border;
+      padding: 0.15em;
+      line-height: 1.2em;
+      &:nth-child(2n) {
+        background: $color-button-tag-second-background;
+        border: 0.1em solid $color-button-tag-second-border;
+      }
+      &:nth-child(3n) {
+        background: $color-button-tag-third-background;
+        border: 0.1em solid $color-button-tag-third-border;
+      }
+    }
+  }
+}

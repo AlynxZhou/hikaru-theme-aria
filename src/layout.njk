@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    {% if themeConfig.color %}
+    <meta name="theme-color" content="{{ themeConfig.color }}">
+    <meta name="msapplication-TileColor" content="{{ themeConfig.color }}">
+    {% endif %}
+    {% if themeConfig.google_verification %}
+    <meta name="google-site-verification" content="{{ themeConfig.google_verification }}">
+    {% endif %}
+    {% if page.keywords %}
+    <meta name="keywords" content="{{ page.keywords.join(", ") }}">
+    {% elif themeConfig.keywords %}
+    <meta name="keywords" content="{{ themeConfig.keywords.join(", ") }}">
+    {% endif %}
+    {% if themeConfig.favicon.apple_touch_icon %}
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ themeConfig.favicon.apple_touch_icon }}">
+    {% endif %}
+    {% if themeConfig.favicon.android_chrome_large %}
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ themeConfig.favicon.android_chrome_large }}">
+    {% endif %}
+    {% if themeConfig.favicon.medium %}
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ themeConfig.favicon.medium }}">
+    {% endif %}
+    {% if themeConfig.favicon.small %}
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ themeConfig.favicon.small }}">
+    {% endif %}
+    {% if themeConfig.favicon.safari_pinned_tab %}
+    <link rel="mask-icon" href="{{ themeConfig.favicon.safari_pinned_tab }}" color="{{ themeConfig.color }}">
+    {% endif %}
+    {% if themeConfig.favicon.android_manifest %}
+    <link rel="manifest" href="{{ themeConfig.favicon.android_manifest }}">
+    {% endif %}
+    {% if themeConfig.favicon.ms_browserconfig %}
+    <meta name="msapplication-config" content="{{ themeConfig.favicon.ms_browserconfig }}">
+    {% endif %}
+    {# {% if siteConfig.feed.path %}
+    <link rel="alternate" href="{{ siteConfig.feed.path }}" title="{{ siteConfig.title }}" type="application/atom+xml" />
+    {% endif %} #}
+    {% if themeConfig.favicon.fallback %}
+    <link rel="shortcut icon" type="image/x-icon" href="{{ themeConfig.favicon.fallback }}">
+    {% endif %}
+    {% if themeConfig.custom_font.enable and themeConfig.custom_font.link %}
+    <link rel="stylesheet" type="text/css" href="{{ themeConfig.custom_font.link }}">
+    {% endif %}
+    <link rel="stylesheet" type="text/css" href="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.normalize %}{{ themeConfig.lib_cdn.normalize }}{% else %}/css/normalize.css{% endif %}">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    {% if themeConfig.sidebar !== false %}
+    <link rel="stylesheet" type="text/css" href="/css/sidebar.css">
+    {% endif %}
+    {% block css %}{% endblock %}
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <link rel="stylesheet" type="text/css" href="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn[themeConfig.highlight] %}{{ themeConfig.lib_cdn[themeConfig.highlight] }}{% else %}{{ "/css/" + themeConfig.highlight + ".css" }}{% endif %}">
+    <link rel="stylesheet" type="text/css" href="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.lightgallery.css %}{{ themeConfig.lib_cdn.lightgallery.css }}{% else %}/css/lightgallery.min.css{% endif %}">
+    <script type="text/javascript" src="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.jquery %}{{ themeConfig.lib_cdn.jquery }}{% else %}/js/jquery.min.js{% endif %}"></script>
+    <script defer type="text/javascript" src="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.util %}{{ themeConfig.lib_cdn.util }}{% else %}/js/util.js{% endif %}"></script>
+    <script defer type="text/javascript" src="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.scrollspy %}{{ themeConfig.lib_cdn.scrollspy }}{% else %}/js/scrollspy.js{% endif %}"></script>
+    <script defer type="text/javascript" src="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.fontawesome %}{{ themeConfig.lib_cdn.fontawesome }}{% else %}/js/fontawesome-all.min.js{% endif %}"></script>
+    <script defer type="text/javascript" src="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.lightgallery.js %}{{ themeConfig.lib_cdn.lightgallery.js }}{% else %}/js/lightgallery.min.js{% endif %}"></script>
+    <script defer type="text/javascript" src="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.lg_fullscreen %}{{ themeConfig.lib_cdn.lg_fullscreen }}{% else %}/js/lg-fullscreen.min.js{% endif %}"></script>
+    <script defer type="text/javascript" src="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.lg_hash %}{{ themeConfig.lib_cdn.lg_hash }}{% else %}/js/lg-hash.min.js{% endif %}"></script>
+    <script defer type="text/javascript" src="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.lg_pager %}{{ themeConfig.lib_cdn.lg_pager }}{% else %}/js/lg-pager.min.js{% endif %}"></script>
+    <script defer type="text/javascript" src="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.lg_thumbnail %}{{ themeConfig.lib_cdn.lg_thumbnail }}{% else %}/js/lg-thumbnail.min.js{% endif %}"></script>
+    <script defer type="text/javascript" src="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.lg_zoom %}{{ themeConfig.lib_cdn.lg_zoom }}{% else %}/js/lg-zoom.min.js{% endif %}"></script>
+    {% if themeConfig.busuanzi %}
+    <script defer src="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.busuanzi %}{{ themeConfig.lib_cdn.busuanzi }}{% else %}/js/busuanzi.pure.mini.js{% endif %}"></script>
+    {% endif %}
+    {% if themeConfig.search %}
+    <script defer type="text/javascript" src="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.search %}{{ themeConfig.lib_cdn.search }}{% else %}/js/search.js{% endif %}"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      var searchPath = "{{ siteConfig.search.path }}";
+      if (searchPath.length === 0) {
+        searchPath = "search.json";
+      }
+      var path = "{{ siteConfig.root }}" + searchPath;
+      searchFunc(path, "search-input", "search-result");
+    });
+    </script>
+    {% endif %}
+    {% if themeConfig.mathjax.cdn and themeConfig.mathjax.enable %}
+    {% if themeConfig.mathjax.global or page.mathjax %}
+    <script defer type="text/javascript" src="{{ themeConfig.mathjax.cdn }}"></script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ .$","$, .\\(","\\)  ],
+        processEscapes: true,
+        skipTags: ["script", "noscript", "style", "textarea", "pre", "code"]
+      }
+    });
+    </script>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += " has-jax";
+      }
+    });
+    </script>
+    {% endif %}
+    {% endif %}
+    <script defer type="text/javascript" src="/js/index.js"></script>
+    {% block js %}{% endblock %}
+    <script defer type="text/javascript" src="/js/custom.js"></script>
+    <title>{% block title %}{% endblock %}</title>
+  </head>
+  <body itemscope itemtype="http://schema.org/WebPage" lang="{{ page.lang or page.language or siteConfig.language }}"  data-spy="scroll" data-target=".list-group">
+    {% include "header.njk" %}
+    <main id="main" class="main">
+      <div class="container">
+        <div class="main-container">
+          <div class="content">
+            {% block content %}{% endblock %}
+          </div>
+          {# Sidebar can be `left`, `right` or `false`. #}
+          {% if themeConfig.sidebar !== false %}
+          {% include "sidebar.njk" %}
+          {% endif %}
+        </div>
+      </div>
+    </main>
+    {% include "footer.njk" %}
+  </body>
+</html>

@@ -1,0 +1,32 @@
+@import "variables"
+@import "nib";
+.reward {
+  margin: 1em auto;
+  width: 90%;
+  text-align: center;
+  color: $color-reward-font;
+  .qr {
+    text-align: center;
+    div {
+      padding: 0.5em;
+      display: inline-block;
+      img {
+        width: 10em;
+        display: inline-block;
+      }
+      span {
+        display: block;
+      }
+    }
+  }
+  .button {
+    cursor: pointer;
+    border: none;
+    outline: 0;
+    padding: 0em 0.5em;
+    margin: 0.5em 0;
+    background: $color-button-reward-background;
+    border: 0.1em solid $color-button-reward-border;
+    line-height: 2em;
+  }
+}

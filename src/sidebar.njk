@@ -1,0 +1,58 @@
+{% block sidebar %}
+<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+  {% if themeConfig.search %}
+  <div class="search">
+    <div class="form-group">
+      <i class="fas fa-search"></i><input type="search" id="search-input" name="q" results="0" placeholder="{{ __("search") }}" class="form-control"/>
+    </div>
+  </div>
+  <div class="search-result-box" id="search-result"></div>
+  {% endif %}
+  {% include "info.njk" %}
+  <div class="sidebar-sticky">
+    {% if page.content %}
+    {% if toc.length > 0 %}
+    <hr>
+    <div class="post-toc sidebar-item" id="toc-div"{% if post.encrypt %} style="display: none;"{% endif %}>
+      <div><i class="fas fa-list-ol"></i>{{ __("toc") }}</div>
+      <div class="post-toc-content">
+        {% macro listToc(toc) %}
+        {% for h in toc %}
+        <ol>
+          <li>
+            <a href="#{{ h.id }}">{{ h.text }}</a>
+            {{- listToc(h.subs) -}}
+          </li>
+        </ol>
+        {% endfor %}
+        {% endmacro %}
+        {{ listToc(toc) }}
+      </div>
+    </div>
+    {% endif %}
+    {% endif %}
+    {% if themeConfig.social.enable %}
+    <hr>
+    <div class="social-link sidebar-item">
+      <div><i class="far fa-address-card"></i>{{ __("sociallink") }}</p></div>
+      <ul>
+        {% for e in themeConfig.social.links %}
+        <li>{% if e.icon %}{{ e.icon }}{% endif %}<a href="{{ e.link }}" target="_blank">{{ e.name }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+    {% if themeConfig.blogroll.enable %}
+    <hr>
+    <div class="blogroll sidebar-item">
+      <div><i class="fas fa-link"></i>{{ __("blogroll")}}</div>
+      <ul>
+        {% for e in themeConfig.blogroll.links %}
+        <li>{% if e.icon %}{{ e.icon }}{% endif %}<a href="{{ e.link }}" target="_blank">{{ e.name }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+  </div>
+</aside>
+{% endblock %}

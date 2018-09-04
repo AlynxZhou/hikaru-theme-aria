@@ -1,0 +1,37 @@
+@import "variables";
+@import "nib";
+.main {
+  font: $font-size $font-main;
+  margin-top: 0 - $search-height;
+  .main-container {
+    width: auto;
+    background: $color-main-background;
+    box-sizing: border-box;
+    // 0.5em is the offset for nav shadow.
+    box-shadow: 0 0.5em 1em 0.5em rgba(0, 0, 0, 0.19);
+    border-radius: bottom $corner-radius;
+    display: flex;
+    if (getThemeConfig("sidebar") == "left") {
+      flex-direction: row-reverse;
+    } else if (getThemeConfig("sidebar") == "right") {
+      flex-direction: row;
+    }
+    justify-content: space-between;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    padding: 0;
+    .content {
+      flex: 1 0 auto;
+      // Keep this or it will expand!
+      width: 75%;
+    }
+  }
+  @media (max-width: $media-main-fold-width) {
+    .main-container {
+      flex-direction: column;
+      .content {
+        width: 100%;
+      }
+    }
+  }
+}
