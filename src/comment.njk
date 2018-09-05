@@ -6,8 +6,8 @@
   <div id="disqus_thread" class="disqus_thread"></div>
   <script type="text/javascript">
   var disqus_config = function () {
-    this.page.url = "{{ pathPos.join(siteConfig.rootDir, page.docPath) }}";
-    this.page.identifier = "{{ pathPos.join(siteConfig.rootDir, page.docPath) }}";
+    this.page.url = "{{ pathPx.join(siteConfig.rootDir, page.docPath) }}";
+    this.page.identifier = "{{ pathPx.join(siteConfig.rootDir, page.docPath) }}";
   };
   (function() {
     var d = document, s = d.createElement("script");
@@ -18,11 +18,11 @@
   </script>
   {% elif themeConfig.comment.commentjs.enable %}
   <div class="commentjs" id="comment-thread"></div>
-  <link rel="stylesheet" href="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.commentjs.css %}{{ themeConfig.lib_cdn.commentjs.css }}{% else %}{{ pathPos.join(siteConfig.rootDir, "css/commentjs.css") }}{% endif %}">
-  <script defer type="text/javascript" src="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.marked %}{{ themeConfig.lib_cdn.marked }}{% else %}{{ pathPos.join(siteConfig.rootDir, "js/marked.min.js") }}{% endif %}"></script>
-  <script defer type="text/javascript" src="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.timeago %}{{ themeConfig.lib_cdn.timeago }}{% else %}{{ pathPos.join(siteConfig.rootDir, "js/timeago.min.js") }}{% endif %}"></script>
-  <script defer type="text/javascript" src="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.highlight %}{{ themeConfig.lib_cdn.highlight }}{% else %}{{ pathPos.join(siteConfig.rootDir, "js/highlight.min.js" }}{% endif %}"></script>
-  <script defer type="text/javascript" src="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.commentjs.js %}{{ themeConfig.lib_cdn.commentjs.js }}{% else %}{{ pathPos.join(siteConfig.rootDir, "js/commentjs.js") }}{% endif %}"></script>
+  <link rel="stylesheet" href="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.commentjs.css %}{{ themeConfig.lib_cdn.commentjs.css }}{% else %}{{ pathPx.join(siteConfig.rootDir, "css/commentjs.css") }}{% endif %}">
+  <script defer type="text/javascript" src="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.marked %}{{ themeConfig.lib_cdn.marked }}{% else %}{{ pathPx.join(siteConfig.rootDir, "js/marked.min.js") }}{% endif %}"></script>
+  <script defer type="text/javascript" src="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.timeago %}{{ themeConfig.lib_cdn.timeago }}{% else %}{{ pathPx.join(siteConfig.rootDir, "js/timeago.min.js") }}{% endif %}"></script>
+  <script defer type="text/javascript" src="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.highlight %}{{ themeConfig.lib_cdn.highlight }}{% else %}{{ pathPx.join(siteConfig.rootDir, "js/highlight.min.js") }}{% endif %}"></script>
+  <script defer type="text/javascript" src="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.commentjs.js %}{{ themeConfig.lib_cdn.commentjs.js }}{% else %}{{ pathPx.join(siteConfig.rootDir, "js/commentjs.js") }}{% endif %}"></script>
   <script type="text/javascript">
   $(document).ready(function () {
     getComments({

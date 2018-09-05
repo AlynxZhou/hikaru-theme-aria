@@ -47,7 +47,7 @@
     {% if themeConfig.blogroll.enable %}
     <hr>
     <div class="blogroll sidebar-item">
-      <div><i class="fas fa-link"></i>{{ __("blogroll")}}</div>
+      <div><i class="fas fa-link"></i>{{ __("blogroll") }}</div>
       <ul>
         {% for e in themeConfig.blogroll.links %}
         <li>{% if e.icon %}{{ e.icon }}{% endif %}<a href="{{ e.link }}" target="_blank">{{ e.name }}</a></li>

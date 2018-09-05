@@ -1,8 +1,8 @@
 {% extends "layout.njk" %}
 
 {% block css %}
-<link rel="stylesheet" type="text/css" href="{{ pathPos.join(siteConfig.rootDir, "css/page.css") }}">
-<link rel="stylesheet" type="text/css" href="{{ pathPos.join(siteConfig.rootDir, "css/post.css") }}">
+<link rel="stylesheet" type="text/css" href="{{ pathPx.join(siteConfig.rootDir, "css/page.css") }}">
+<link rel="stylesheet" type="text/css" href="{{ pathPx.join(siteConfig.rootDir, "css/post.css") }}">
 {% endblock %}
 
 {% block title %}{{ __(title) }} | {{ siteConfig.title }}{% if siteConfig.subtitle %} - {{ siteConfig.subtitle }}{% endif %}{% endblock %}
@@ -15,17 +15,17 @@
     </header>
     <main class="post-main">
       <h2 class="page-counter">
-        {% if tags.length > 1 %}
-        {{ _p("tagcount.more", tags.length) }}
+        {% if site.tagsLength > 1 %}
+        {{ _p("tagcount.more", site.tagsLength) }}
         {% elif tags.length === 1 %}
-        {{ _p("tagcount.one", tags.length) }}
+        {{ _p("tagcount.one", site.tagsLength) }}
         {% else %}
         {{ __("tagcount.none") }}
         {% endif %}
       </h2>
       <div class="tags-cloud">
         {% for tag in tags %}
-        <a href="{{ pathPos.join(siteConfig.rootDir, tag.docPath) }}">{{ tag.name }}</a>
+        <a href="{{ pathPx.join(siteConfig.rootDir, tag.docPath) }}">{{ tag.name }}</a>
         {% endfor %}
       </div>
     </main>
