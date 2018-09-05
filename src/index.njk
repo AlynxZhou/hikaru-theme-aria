@@ -44,7 +44,7 @@
         </span>
         {% endif %}
         {% if post.comment !== false and themeConfig.comment.enable %}
-        {% if themeConfig.comment.disqus_shortname %}
+        {% if themeConfig.comment.disqusShortName %}
         {% if post.categories or post.date %}
         <span class="post-meta-divider divider">|</span>
         {% endif %}
@@ -60,8 +60,8 @@
       {{ post.excerpt }}
       {% elif post.description %}
       {{ post.description }}
-      {% elif themeConfig.auto_excerpt %}
-      {{ post.content.substring(0, themeConfig.auto_excerpt) }}
+      {% elif themeConfig.autoExcerpt %}
+      {{ post.content.substring(0, themeConfig.autoExcerpt) }}
       {% else %}
       {{ post.content }}
       {% endif %}

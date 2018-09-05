@@ -2,20 +2,20 @@
 
 menu:
   home: /
-  archives: /archives/
-  # categories: /categories/
-  # tags: /tags/
-  # about: /about/
+  archives: archives/
+  # categories: categories/
+  # tags: tags/
+  # about: about/
 
 # Transform your image to those favicons in https://realfavicongenerator.net/.
 favicon:
-  apple_touch_icon: favicons/apple-touch-icon.png
-  android_chrome_large: favicons/android-chrome-192x192.png
+  appleTouchIcon: favicons/apple-touch-icon.png
+  androidChromeLarge: favicons/android-chrome-192x192.png
   medium: favicons/favicon-32x32.png
   small: favicons/favicon-16x16.png
-  safari_pinned_tab: favicons/safari-pinned-tab.svg
-  android_manifest: favicons/site.webmanifest
-  ms_browserconfig: favicons/browserconfig.xml
+  safariPinnedTab: favicons/safari-pinned-tab.svg
+  androidManifest: favicons/site.webmanifest
+  msBrowserConfig: favicons/browserconfig.xml
   fallback: favicons/favicon.ico
 
 # Must be an array.
@@ -26,17 +26,17 @@ keywords:
 
 # https://creativecommons.org/licenses/
 # by | by-sa | by-nd | by-nc | by-nc-sa | by-nc-nd
-creative_commons:
+creativeCommons:
 
 # Available: atom-one-dark | atom-one-light | solarized-dark | solarized-light
 highlight: atom-one-dark
 
 # Custom info in footer.
-custom_info: 托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+customInfo: 托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
 
 # Select all your webfont in a CDN like Google Fonts, and then copy `href` property in the `<link>` tag, like `link: //fonts.googleapis.com/css?family=Lato|Roboto+Condensed|Skranji|Ubuntu|Ubuntu+Mono`.
 # Then set different fonts to different parts here.
-custom_font:
+customFont:
   enable: false
   link:
   all:
@@ -53,7 +53,7 @@ logo: images/logo.png
 # Need quote to prevent `#` from comment.
 color: "#33363b"
 
-google_verification:
+googleVerification:
 
 since:
 
@@ -69,8 +69,8 @@ busuanzi: true
 
 # If you want ARIA generate excerpt, set it to the length you want. If you don't, leave it blank.
 # Recomend to place `<!--more-->` to where you want to stop excerpt in content instead of use this option.
-# Example: `auto_excerpt: 200`, use first 200 chars in post content as excerpt.
-auto_excerpt:
+# Example: `autoExcerpt: 200`, use first 200 chars in post content as excerpt.
+autoExcerpt:
 
 # If you want to use MathJax, first fill a CDN link like `cdn: https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.3/latest.js?config=TeX-MML-AM_CHTML`, then set `enable: true`.
 # And set front-matter `mathjax: true` to the page you want to use it.
@@ -83,7 +83,7 @@ mathjax:
 
 # Note: `fontawesome` is fontawesome-all. `scrollspy` and `util` are from bootstrap. `busuanzi` is `busuanzi.pure.mini.js`.
 # If you don't know what you are doing, don't change it.
-lib_cdn:
+libCdn:
   enable: false
   jquery:
   fontawesome:
@@ -139,18 +139,18 @@ blogroll:
 # `comment.commentjs.type`: Choose between `github` and `oschina`.
 comment:
   enable: false
-  disqus_shortname:
+  disqusShortName:
   commentjs:
     enable: false
     type:
     user:
     repo:
-    client_id:
-    client_secret:
+    clientId:
+    clientSecret:
 
 reward:
   enable: false
   comment: 坚持原创技术分享，您的支持是我前进的动力！
-  # wechatpay_qrcode: images/WeChatPay.png
-  # alipay_qrcode: images/AliPay.png
-  # bitcoin_qrcode: images/BitCoin.png
+  # weChatPayQrCode: images/WeChatPay.png
+  # aliPayQrCode: images/AliPay.png
+  # bitCoinQrCode: images/BitCoin.png

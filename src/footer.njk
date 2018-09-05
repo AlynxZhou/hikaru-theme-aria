@@ -7,7 +7,7 @@
     <div class="footer-container">
       <div class="footer-left">
         <div class="copyright">
-          <span class="author">{{ siteConfig.author }}</span><span class="years" id="years"><i class="far fa-copyright"></i><span>{% if themeConfig.since %}{{ themeConfig.since }}{% endif %}</span></span>{% if themeConfig.creative_commons %}<span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/{{ themeConfig.creative_commons }}/4.0/" target="_blank">{{ themeConfig.creative_commons.toUpperCase() }} 4.0</a></span>{% endif %}
+          <span class="author">{{ siteConfig.author }}</span><span class="years" id="years"><i class="far fa-copyright"></i><span>{% if themeConfig.since %}{{ themeConfig.since }}{% endif %}</span></span>{% if themeConfig.creativeCommons %}<span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/{{ themeConfig.creativeCommons }}/4.0/" target="_blank">{{ themeConfig.creativeCommons.toUpperCase() }} 4.0</a></span>{% endif %}
         </div>
         {% if themeConfig.busuanzi %}
         <div class="busuanzi">
@@ -17,8 +17,8 @@
       </div>
       <div class="footer-right">
         <div class="custom-info">
-          {% if themeConfig.custom_info %}
-          {{ themeConfig.custom_info }}
+          {% if themeConfig.customInfo %}
+          {{ themeConfig.customInfo }}
           {% endif %}
         </div>
         <div class="powered-by">

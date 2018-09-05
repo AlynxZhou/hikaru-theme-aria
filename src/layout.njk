@@ -8,19 +8,19 @@
     <meta name="theme-color" content="{{ themeConfig.color }}">
     <meta name="msapplication-TileColor" content="{{ themeConfig.color }}">
     {% endif %}
-    {% if themeConfig.google_verification %}
-    <meta name="google-site-verification" content="{{ themeConfig.google_verification }}">
+    {% if themeConfig.googleVerification %}
+    <meta name="google-site-verification" content="{{ themeConfig.googleVerification }}">
     {% endif %}
     {% if page.keywords %}
     <meta name="keywords" content="{{ page.keywords.join(", ") }}">
     {% elif themeConfig.keywords %}
     <meta name="keywords" content="{{ themeConfig.keywords.join(", ") }}">
     {% endif %}
-    {% if themeConfig.favicon.apple_touch_icon %}
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ pathPx.join(siteConfig.rootDir, themeConfig.favicon.apple_touch_icon) }}">
+    {% if themeConfig.favicon.appleTouchIcon %}
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ pathPx.join(siteConfig.rootDir, themeConfig.favicon.appleTouchIcon) }}">
     {% endif %}
-    {% if themeConfig.favicon.android_chrome_large %}
-    <link rel="icon" type="image/png" sizes="192x192" href="{{ pathPx.join(siteConfig.rootDir, themeConfig.favicon.android_chrome_large) }}">
+    {% if themeConfig.favicon.androidChromeLarge %}
+    <link rel="icon" type="image/png" sizes="192x192" href="{{ pathPx.join(siteConfig.rootDir, themeConfig.favicon.androidChromeLarge) }}">
     {% endif %}
     {% if themeConfig.favicon.medium %}
     <link rel="icon" type="image/png" sizes="32x32" href="{{ pathPx.join(siteConfig.rootDir, themeConfig.favicon.medium) }}">
@@ -28,14 +28,14 @@
     {% if themeConfig.favicon.small %}
     <link rel="icon" type="image/png" sizes="16x16" href="{{ pathPx.join(siteConfig.rootDir, themeConfig.favicon.small) }}">
     {% endif %}
-    {% if themeConfig.favicon.safari_pinned_tab %}
-    <link rel="mask-icon" href="{{ pathPx.join(siteConfig.rootDir, themeConfig.favicon.safari_pinned_tab) }}" color="{{ themeConfig.color }}">
+    {% if themeConfig.favicon.safariPinnedTab %}
+    <link rel="mask-icon" href="{{ pathPx.join(siteConfig.rootDir, themeConfig.favicon.safariPinnedTab) }}" color="{{ themeConfig.color }}">
     {% endif %}
-    {% if themeConfig.favicon.android_manifest %}
-    <link rel="manifest" href="{{ pathPx.join(siteConfig.rootDir, themeConfig.favicon.android_manifest) }}">
+    {% if themeConfig.favicon.androidManifest %}
+    <link rel="manifest" href="{{ pathPx.join(siteConfig.rootDir, themeConfig.favicon.androidManifest) }}">
     {% endif %}
-    {% if themeConfig.favicon.ms_browserconfig %}
-    <meta name="msapplication-config" content="{{ pathPx.join(siteConfig.rootDir, themeConfig.favicon.ms_browserconfig) }}">
+    {% if themeConfig.favicon.msBrowserConfig %}
+    <meta name="msapplication-config" content="{{ pathPx.join(siteConfig.rootDir, themeConfig.favicon.msBrowserConfig) }}">
     {% endif %}
     {% if themeConfig.favicon.fallback %}
     <link rel="shortcut icon" type="image/x-icon" href="{{ pathPx.join(siteConfig.rootDir, themeConfig.favicon.fallback) }}">
@@ -43,33 +43,33 @@
     {% if siteConfig.feed.enable %}
     <link rel="alternate" href="{{ siteConfig.feed.path }}" title="{{ siteConfig.title }}" type="application/atom+xml" />
     {% endif %}
-    {% if themeConfig.custom_font.enable and themeConfig.custom_font.link %}
-    <link rel="stylesheet" type="text/css" href="{{ themeConfig.custom_font.link }}">
+    {% if themeConfig.customFont.enable and themeConfig.customFont.link %}
+    <link rel="stylesheet" type="text/css" href="{{ themeConfig.customFont.link }}">
     {% endif %}
-    <link rel="stylesheet" type="text/css" href="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.normalize %}{{ themeConfig.lib_cdn.normalize }}{% else %}{{ pathPx.join(siteConfig.rootDir, "css/normalize.css") }}{% endif %}">
+    <link rel="stylesheet" type="text/css" href="{% if themeConfig.libCdn.enable and themeConfig.libCdn.normalize %}{{ themeConfig.libCdn.normalize }}{% else %}{{ pathPx.join(siteConfig.rootDir, "css/normalize.css") }}{% endif %}">
     <link rel="stylesheet" type="text/css" href="{{ pathPx.join(siteConfig.rootDir, "css/index.css") }}">
     {% if themeConfig.sidebar !== false %}
     <link rel="stylesheet" type="text/css" href="{{ pathPx.join(siteConfig.rootDir, "css/sidebar.css") }}">
     {% endif %}
     {% block css %}{% endblock %}
     <link rel="stylesheet" type="text/css" href="{{ pathPx.join(siteConfig.rootDir, "css/custom.css") }}">
-    <link rel="stylesheet" type="text/css" href="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn[themeConfig.highlight] %}{{ themeConfig.lib_cdn[themeConfig.highlight] }}{% else %}{{ pathPx.join(siteConfig.rootDir, "css/" + themeConfig.highlight + ".css") }}{% endif %}">
-    <link rel="stylesheet" type="text/css" href="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.lightgallery.css %}{{ themeConfig.lib_cdn.lightgallery.css }}{% else %}{{ pathPx.join(siteConfig.rootDir, "css/lightgallery.min.css") }}{% endif %}">
-    <script type="text/javascript" src="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.jquery %}{{ themeConfig.lib_cdn.jquery }}{% else %}{{ pathPx.join(siteConfig.rootDir, "js/jquery.min.js") }}{% endif %}"></script>
-    <script defer type="text/javascript" src="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.util %}{{ themeConfig.lib_cdn.util }}{% else %}{{ pathPx.join(siteConfig.rootDir, "js/util.js") }}{% endif %}"></script>
-    <script defer type="text/javascript" src="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.scrollspy %}{{ themeConfig.lib_cdn.scrollspy }}{% else %}{{ pathPx.join(siteConfig.rootDir, "js/scrollspy.js") }}{% endif %}"></script>
-    <script defer type="text/javascript" src="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.fontawesome %}{{ themeConfig.lib_cdn.fontawesome }}{% else %}{{ pathPx.join(siteConfig.rootDir, "js/fontawesome-all.min.js") }}{% endif %}"></script>
-    <script defer type="text/javascript" src="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.lightgallery.js %}{{ themeConfig.lib_cdn.lightgallery.js }}{% else %}{{ pathPx.join(siteConfig.rootDir, "js/lightgallery.min.js") }}{% endif %}"></script>
-    <script defer type="text/javascript" src="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.lg_fullscreen %}{{ themeConfig.lib_cdn.lg_fullscreen }}{% else %}{{ pathPx.join(siteConfig.rootDir, "js/lg-fullscreen.min.js") }}{% endif %}"></script>
-    <script defer type="text/javascript" src="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.lg_hash %}{{ themeConfig.lib_cdn.lg_hash }}{% else %}{{ pathPx.join(siteConfig.rootDir, "js/lg-hash.min.js") }}{% endif %}"></script>
-    <script defer type="text/javascript" src="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.lg_pager %}{{ themeConfig.lib_cdn.lg_pager }}{% else %}{{ pathPx.join(siteConfig.rootDir, "js/lg-pager.min.js") }}{% endif %}"></script>
-    <script defer type="text/javascript" src="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.lg_thumbnail %}{{ themeConfig.lib_cdn.lg_thumbnail }}{% else %}{{ pathPx.join(siteConfig.rootDir, "js/lg-thumbnail.min.js") }}{% endif %}"></script>
-    <script defer type="text/javascript" src="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.lg_zoom %}{{ themeConfig.lib_cdn.lg_zoom }}{% else %}{{ pathPx.join(siteConfig.rootDir, "js/lg-zoom.min.js") }}{% endif %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% if themeConfig.libCdn.enable and themeConfig.libCdn[themeConfig.highlight] %}{{ themeConfig.libCdn[themeConfig.highlight] }}{% else %}{{ pathPx.join(siteConfig.rootDir, "css/" + themeConfig.highlight + ".css") }}{% endif %}">
+    <link rel="stylesheet" type="text/css" href="{% if themeConfig.libCdn.enable and themeConfig.libCdn.lightgallery.css %}{{ themeConfig.libCdn.lightgallery.css }}{% else %}{{ pathPx.join(siteConfig.rootDir, "css/lightgallery.min.css") }}{% endif %}">
+    <script type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.jquery %}{{ themeConfig.libCdn.jquery }}{% else %}{{ pathPx.join(siteConfig.rootDir, "js/jquery.min.js") }}{% endif %}"></script>
+    <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.util %}{{ themeConfig.libCdn.util }}{% else %}{{ pathPx.join(siteConfig.rootDir, "js/util.js") }}{% endif %}"></script>
+    <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.scrollspy %}{{ themeConfig.libCdn.scrollspy }}{% else %}{{ pathPx.join(siteConfig.rootDir, "js/scrollspy.js") }}{% endif %}"></script>
+    <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.fontawesome %}{{ themeConfig.libCdn.fontawesome }}{% else %}{{ pathPx.join(siteConfig.rootDir, "js/fontawesome-all.min.js") }}{% endif %}"></script>
+    <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.lightgallery.js %}{{ themeConfig.libCdn.lightgallery.js }}{% else %}{{ pathPx.join(siteConfig.rootDir, "js/lightgallery.min.js") }}{% endif %}"></script>
+    <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.lg_fullscreen %}{{ themeConfig.libCdn.lg_fullscreen }}{% else %}{{ pathPx.join(siteConfig.rootDir, "js/lg-fullscreen.min.js") }}{% endif %}"></script>
+    <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.lg_hash %}{{ themeConfig.libCdn.lg_hash }}{% else %}{{ pathPx.join(siteConfig.rootDir, "js/lg-hash.min.js") }}{% endif %}"></script>
+    <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.lg_pager %}{{ themeConfig.libCdn.lg_pager }}{% else %}{{ pathPx.join(siteConfig.rootDir, "js/lg-pager.min.js") }}{% endif %}"></script>
+    <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.lg_thumbnail %}{{ themeConfig.libCdn.lg_thumbnail }}{% else %}{{ pathPx.join(siteConfig.rootDir, "js/lg-thumbnail.min.js") }}{% endif %}"></script>
+    <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.lg_zoom %}{{ themeConfig.libCdn.lg_zoom }}{% else %}{{ pathPx.join(siteConfig.rootDir, "js/lg-zoom.min.js") }}{% endif %}"></script>
     {% if themeConfig.busuanzi %}
-    <script defer src="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.busuanzi %}{{ themeConfig.lib_cdn.busuanzi }}{% else %}{{ pathPx.join(siteConfig.rootDir, "js/busuanzi.pure.mini.js") }}{% endif %}"></script>
+    <script defer src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.busuanzi %}{{ themeConfig.libCdn.busuanzi }}{% else %}{{ pathPx.join(siteConfig.rootDir, "js/busuanzi.pure.mini.js") }}{% endif %}"></script>
     {% endif %}
     {% if themeConfig.search %}
-    <script defer type="text/javascript" src="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.search %}{{ themeConfig.lib_cdn.search }}{% else %}{{ pathPx.join(siteConfig.rootDir, "js/search.js") }}{% endif %}"></script>
+    <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.search %}{{ themeConfig.libCdn.search }}{% else %}{{ pathPx.join(siteConfig.rootDir, "js/search.js") }}{% endif %}"></script>
     <script type="text/javascript">
     $(document).ready(function () {
       var searchPath = "{{ pathPx.join(siteConfig.rootDir, siteConfig.search.path) }}";

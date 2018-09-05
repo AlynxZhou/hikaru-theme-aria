@@ -3,21 +3,21 @@
   <p>{{ themeConfig.reward.comment }}</p>
   <button id="reward-button" class="button" disable="enable">{{ __("reward.button") }}</button>
   <div id="qr" class="qr" style="display: none;" aria-hidden="true">
-    {% if themeConfig.reward.wechatpay_qrcode %}
+    {% if themeConfig.reward.weChatPayQrCode %}
     <div id="wechat">
-      <img id="wechat_qr" src="{{ pathPx.join(siteConfig.rootDir, themeConfig.reward.wechatpay_qrcode) }}" alt="{{ __("reward.wechatpay") }}"/>
+      <img id="wechat_qr" src="{{ pathPx.join(siteConfig.rootDir, themeConfig.reward.weChatPayQrCode) }}" alt="{{ __("reward.wechatpay") }}"/>
       <span>{{ __("reward.wechatpay") }}</span>
     </div>
     {% endif %}
-    {% if themeConfig.reward.alipay_qrcode %}
+    {% if themeConfig.reward.aliPayQrCode %}
     <div id="alipay">
-      <img id="alipay_qr" src="{{ pathPx.join(siteConfig.rootDir, themeConfig.reward.alipay_qrcode) }}" alt="{{ __("reward.alipay") }}"/>
+      <img id="alipay_qr" src="{{ pathPx.join(siteConfig.rootDir, themeConfig.reward.aliPayQrCode) }}" alt="{{ __("reward.alipay") }}"/>
       <span>{{ __("reward.alipay") }}</span>
     </div>
     {% endif %}
-    {% if themeConfig.reward.bitcoin_qrcode %}
+    {% if themeConfig.reward.bitCoinQrCode %}
     <div id="bitcoin">
-      <img id="bitcoin_qr" src="{{ pathPx.join(siteConfig.rootDir, themeConfig.reward.bitcoin_qrcode) }}" alt="{{ __("reward.bitcoin") }}"/>
+      <img id="bitcoin_qr" src="{{ pathPx.join(siteConfig.rootDir, themeConfig.reward.bitCoinQrCode) }}" alt="{{ __("reward.bitcoin") }}"/>
       <span>{{ __("reward.bitcoin") }}</span>
     </div>
     {% endif %}

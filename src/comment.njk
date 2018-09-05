@@ -1,8 +1,8 @@
 {% block comment %}
 {% if comment !== false %}
 <div class="comments" id="comments">
-  {% if themeConfig.comment.disqus_shortname %}
-  <script defer id="dsq-count-scr" src="//{{ themeConfig.comment.disqus_shortname }}.disqus.com/count.js"></script>
+  {% if themeConfig.comment.disqusShortName %}
+  <script defer id="dsq-count-scr" src="//{{ themeConfig.comment.disqusShortName }}.disqus.com/count.js"></script>
   <div id="disqus_thread" class="disqus_thread"></div>
   <script type="text/javascript">
   var disqus_config = function () {
@@ -11,26 +11,26 @@
   };
   (function() {
     var d = document, s = d.createElement("script");
-    s.src = "https://{{ themeConfig.comment.disqus_shortname }}.disqus.com/embed.js";
+    s.src = "https://{{ themeConfig.comment.disqusShortName }}.disqus.com/embed.js";
     s.setAttribute("data-timestamp", +new Date());
     (d.head || d.body).appendChild(s);
   })();
   </script>
   {% elif themeConfig.comment.commentjs.enable %}
   <div class="commentjs" id="comment-thread"></div>
-  <link rel="stylesheet" href="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.commentjs.css %}{{ themeConfig.lib_cdn.commentjs.css }}{% else %}{{ pathPx.join(siteConfig.rootDir, "css/commentjs.css") }}{% endif %}">
-  <script defer type="text/javascript" src="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.marked %}{{ themeConfig.lib_cdn.marked }}{% else %}{{ pathPx.join(siteConfig.rootDir, "js/marked.min.js") }}{% endif %}"></script>
-  <script defer type="text/javascript" src="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.timeago %}{{ themeConfig.lib_cdn.timeago }}{% else %}{{ pathPx.join(siteConfig.rootDir, "js/timeago.min.js") }}{% endif %}"></script>
-  <script defer type="text/javascript" src="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.highlight %}{{ themeConfig.lib_cdn.highlight }}{% else %}{{ pathPx.join(siteConfig.rootDir, "js/highlight.min.js") }}{% endif %}"></script>
-  <script defer type="text/javascript" src="{% if themeConfig.lib_cdn.enable and themeConfig.lib_cdn.commentjs.js %}{{ themeConfig.lib_cdn.commentjs.js }}{% else %}{{ pathPx.join(siteConfig.rootDir, "js/commentjs.js") }}{% endif %}"></script>
+  <link rel="stylesheet" href="{% if themeConfig.libCdn.enable and themeConfig.libCdn.commentjs.css %}{{ themeConfig.libCdn.commentjs.css }}{% else %}{{ pathPx.join(siteConfig.rootDir, "css/commentjs.css") }}{% endif %}">
+  <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.marked %}{{ themeConfig.libCdn.marked }}{% else %}{{ pathPx.join(siteConfig.rootDir, "js/marked.min.js") }}{% endif %}"></script>
+  <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.timeago %}{{ themeConfig.libCdn.timeago }}{% else %}{{ pathPx.join(siteConfig.rootDir, "js/timeago.min.js") }}{% endif %}"></script>
+  <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.highlight %}{{ themeConfig.libCdn.highlight }}{% else %}{{ pathPx.join(siteConfig.rootDir, "js/highlight.min.js") }}{% endif %}"></script>
+  <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.commentjs.js %}{{ themeConfig.libCdn.commentjs.js }}{% else %}{{ pathPx.join(siteConfig.rootDir, "js/commentjs.js") }}{% endif %}"></script>
   <script type="text/javascript">
   $(document).ready(function () {
     getComments({
       "type": "{{ themeConfig.comment.commentjs.type }}",
       "user": "{{ themeConfig.comment.commentjs.user }}",
       "repo": "{{ themeConfig.comment.commentjs.repo }}",
-      "client_id": "{{ themeConfig.comment.commentjs.client_id }}",
-      "client_secret": "{{ themeConfig.comment.commentjs.client_secret }}",
+      "clientId": "{{ themeConfig.comment.commentjs.clientId }}",
+      "clientSecret": "{{ themeConfig.comment.commentjs.clientSecret }}",
       "no_comment": "{{ __("commentjs.none") }}",
       "go_to_comment": "{{ __("commentjs.comment") }}",
       "issue_title": "{{ __(title) }}",
