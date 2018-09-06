@@ -1,7 +1,7 @@
 {% block author %}
 <div class="info sidebar-item" id="info">
   {% if themeConfig.avatar %}
-  <img class="author-avatar" src="{{ pathPx.join(siteConfig.rootDir, themeConfig.avatar) }}" alt="{{ siteConfig.author }}">
+  <img class="author-avatar" src="{{ getAbsPath(themeConfig.avatar) }}" alt="{{ siteConfig.author }}">
   {% endif %}
   <h1 class="author-name">{{ siteConfig.author }}</h1>
   <h2 class="author-description">{{ siteConfig.description }}</h2>
@@ -9,7 +9,7 @@
     {% if themeConfig.menu.archives %}
     <div class="archives-count">
       <div class="site-count-title">{{ __("archives") }}</div>
-      <div><a href="{{ pathPx.join(siteConfig.rootDir, themeConfig.menu.archives) }}">{{ site.posts.length }}</a></div>
+      <div><a href="{{ getAbsPath(themeConfig.menu.archives) }}">{{ site.posts.length }}</a></div>
     </div>
     {% endif %}
     {% if themeConfig.menu.categories %}
@@ -18,7 +18,7 @@
     {% endif %}
     <div class="categories-count">
       <div class="site-count-title">{{ __("categories") }}</div>
-      <div><a href="{{ pathPx.join(siteConfig.rootDir, themeConfig.menu.categories) }}">{{ site.categoriesLength }}</a></div>
+      <div><a href="{{ getAbsPath(themeConfig.menu.categories) }}">{{ site.categoriesLength }}</a></div>
     </div>
     {% endif %}
     {% if themeConfig.menu.tags %}
@@ -27,13 +27,13 @@
     {% endif %}
     <div class="tags-count">
       <div class="site-count-title">{{ __("tags") }}</div>
-      <div><a href="{{ pathPx.join(siteConfig.rootDir, themeConfig.menu.tags) }}">{{ site.tagsLength }}</a></div>
+      <div><a href="{{ getAbsPath(themeConfig.menu.tags) }}">{{ site.tagsLength }}</a></div>
     </div>
     {% endif %}
   </div>
   {% if siteConfig.feed.enable %}
   <div class="rss">
-    <a class="rss-link button sidebar-item" href="{{ siteConfig.feed.path }}"><i class="fas fa-rss"></i>RSS</a>
+    <a class="rss-link button sidebar-item" href="{{ getAbsPath(siteConfig.feed.path) }}"><i class="fas fa-rss"></i>RSS</a>
   </div>
   {% endif %}
 </div>

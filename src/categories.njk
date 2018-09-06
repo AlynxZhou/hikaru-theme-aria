@@ -1,8 +1,8 @@
 {% extends "layout.njk" %}
 
 {% block css %}
-<link rel="stylesheet" type="text/css" href="{{ pathPx.join(siteConfig.rootDir, "css/page.css") }}">
-<link rel="stylesheet" type="text/css" href="{{ pathPx.join(siteConfig.rootDir, "css/post.css") }}">
+<link rel="stylesheet" type="text/css" href="{{ getAbsPath("css/page.css") }}">
+<link rel="stylesheet" type="text/css" href="{{ getAbsPath("css/post.css") }}">
 {% endblock %}
 
 {% block title %}{{ __(title) }} | {{ siteConfig.title }}{% if siteConfig.subtitle %} - {{ siteConfig.subtitle }}{% endif %}{% endblock %}
@@ -16,9 +16,9 @@
     <main class="post-main">
       <h2 class="page-counter">
         {% if site.categoriesLength > 1 %}
-        {{ _p("categorycount.more", site.categoriesLength) }}
+        {{ __("categorycount.more", site.categoriesLength) }}
         {% elif site.categories.length === 1 %}
-        {{ _p("categorycount.one", site.categoriesLength) }}
+        {{ __("categorycount.one", site.categoriesLength) }}
         {% else %}
         {{ __("categorycount.none") }}
         {% endif %}
@@ -28,7 +28,7 @@
         <ul>
         {% for cate in cates %}
           <li>
-            <a href="{{ pathPx.join(siteConfig.rootDir, cate.docPath) }}">{{ cate.name }}</a>
+            <a href="{{ getAbsPath(cate.docPath) }}">{{ cate.name }}</a>
             {% if cate.subs.length > 0 %}
             {{ listCategory(cate.subs) }}
             {% endif %}

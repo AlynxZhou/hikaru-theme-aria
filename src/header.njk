@@ -8,7 +8,7 @@
       </div>
       {% if themeConfig.logo %}
       <div class="logo">
-        <img src="{{ pathPx.join(siteConfig.rootDir, themeConfig.logo) }}" alt="logo">
+        <img src="{{ getAbsPath(themeConfig.logo) }}" alt="logo">
       </div>
       {% endif %}
     </div>
@@ -16,7 +16,7 @@
       <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="{{ __("accessibility.nav_toggle") }}"></i></a>
       <ul id="menu" role="menubar" aria-hidden="false">
         {% for k, v in themeConfig.menu %}
-        <li role="menuitem"><a href="{{ pathPx.join(siteConfig.rootDir, v) }}"{% if pathPx.join(siteConfig.rootDir, pathPx.dirname(docPath), pathPx.sep) === pathPx.join(siteConfig.rootDir, v) %} class="current"{% endif %}>{{ __(k) }}</a></li>
+        <li role="menuitem"><a href="{{ getAbsPath(v) }}"{% if isCurrentPath(v) %} class="current"{% endif %}>{{ __(k) }}</a></li>
         {% endfor %}
       </ul>
     </nav>
