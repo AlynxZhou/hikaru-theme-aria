@@ -38,7 +38,7 @@
     <a class="page-number" href="{{ getAbsPath(page.docPath) }}">{{ page.pageIndex + 1 }}</a>
     {% endfor %}
     {% endif %}
-    <span class="page-number current">{{ pageIndex + 1 }}</span>
+    <a class="page-number current" href="{{ getAbsPath(docPath) }}">{{ pageIndex + 1 }}</a>
     {% if pageIndex < pageArray.length - 1 - 2 %}
     <a class="page-number" href="{{ getAbsPath(pageArray[pageIndex + 1].docPath) }}">{{ pageIndex + 2 }}</a>
     <span class="space">…</span>
