@@ -1,11 +1,16 @@
 # If a option has many sub-options, and it's optional, then give it a `enable` sub-option. If not optional, don't use `enable`.
 
 menu:
-  home: /
-  archives: archives/
-  # categories: categories/
-  # tags: tags/
-  # about: about/
+  - name: home
+    link: /
+  - name: archives
+    link: archives/
+  - name: categories
+    link: categories/
+  - name: tags
+    link: tags/
+  # - name: about
+  #   link: about/
 
 # Transform your image to those favicons in https://realfavicongenerator.net/.
 favicon:
@@ -85,18 +90,18 @@ mathjax:
 # If you don't know what you are doing, don't change it.
 libCdn:
   enable: false
-  jquery:
-  fontawesome:
-  scrollspy:
+  jQuery:
+  fontAwesome:
+  scrollSpy:
   util:
-  lightgallery:
+  lightGallery:
     js:
     css:
-  lg_fullscreen:
-  lg_hash:
-  lg_pager:
-  lg_thumbnail:
-  lg_zoom:
+  lgFullscreen:
+  lgHash:
+  lgPager:
+  lgThumbnail:
+  lgZoom:
   busuanzi:
   atom-one-dark:
   atom-one-light:
@@ -105,7 +110,7 @@ libCdn:
   normalize:
   search:
   marked:
-  timeago:
+  timeAgo:
   commentjs:
     js:
     css:

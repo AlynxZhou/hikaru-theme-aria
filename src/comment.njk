@@ -20,7 +20,7 @@
   <div class="commentjs" id="comment-thread"></div>
   <link rel="stylesheet" href="{% if themeConfig.libCdn.enable and themeConfig.libCdn.commentjs.css %}{{ themeConfig.libCdn.commentjs.css }}{% else %}{{ getAbsPath("css/commentjs.css") }}{% endif %}">
   <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.marked %}{{ themeConfig.libCdn.marked }}{% else %}{{ getAbsPath("js/marked.min.js") }}{% endif %}"></script>
-  <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.timeago %}{{ themeConfig.libCdn.timeago }}{% else %}{{ getAbsPath("js/timeago.min.js") }}{% endif %}"></script>
+  <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.timeAgo %}{{ themeConfig.libCdn.timeAgo }}{% else %}{{ getAbsPath("js/timeago.min.js") }}{% endif %}"></script>
   <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.highlight %}{{ themeConfig.libCdn.highlight }}{% else %}{{ getAbsPath("js/highlight.min.js") }}{% endif %}"></script>
   <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.commentjs.js %}{{ themeConfig.libCdn.commentjs.js }}{% else %}{{ getAbsPath("js/commentjs.js") }}{% endif %}"></script>
   <script type="text/javascript">

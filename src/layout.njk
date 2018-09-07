@@ -54,17 +54,17 @@
     {% block css %}{% endblock %}
     <link rel="stylesheet" type="text/css" href="{{ getAbsPath("css/custom.css") }}">
     <link rel="stylesheet" type="text/css" href="{% if themeConfig.libCdn.enable and themeConfig.libCdn[themeConfig.highlight] %}{{ themeConfig.libCdn[themeConfig.highlight] }}{% else %}{{ getAbsPath("css/" + themeConfig.highlight + ".css") }}{% endif %}">
-    <link rel="stylesheet" type="text/css" href="{% if themeConfig.libCdn.enable and themeConfig.libCdn.lightgallery.css %}{{ themeConfig.libCdn.lightgallery.css }}{% else %}{{ getAbsPath("css/lightgallery.min.css") }}{% endif %}">
-    <script type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.jquery %}{{ themeConfig.libCdn.jquery }}{% else %}{{ getAbsPath("js/jquery.min.js") }}{% endif %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% if themeConfig.libCdn.enable and themeConfig.libCdn.lightGallery.css %}{{ themeConfig.libCdn.lightGallery.css }}{% else %}{{ getAbsPath("css/lightgallery.min.css") }}{% endif %}">
+    <script type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.jQuery %}{{ themeConfig.libCdn.jQuery }}{% else %}{{ getAbsPath("js/jquery.min.js") }}{% endif %}"></script>
     <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.util %}{{ themeConfig.libCdn.util }}{% else %}{{ getAbsPath("js/util.js") }}{% endif %}"></script>
-    <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.scrollspy %}{{ themeConfig.libCdn.scrollspy }}{% else %}{{ getAbsPath("js/scrollspy.js") }}{% endif %}"></script>
-    <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.fontawesome %}{{ themeConfig.libCdn.fontawesome }}{% else %}{{ getAbsPath("js/fontawesome-all.min.js") }}{% endif %}"></script>
-    <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.lightgallery.js %}{{ themeConfig.libCdn.lightgallery.js }}{% else %}{{ getAbsPath("js/lightgallery.min.js") }}{% endif %}"></script>
-    <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.lg_fullscreen %}{{ themeConfig.libCdn.lg_fullscreen }}{% else %}{{ getAbsPath("js/lg-fullscreen.min.js") }}{% endif %}"></script>
-    <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.lg_hash %}{{ themeConfig.libCdn.lg_hash }}{% else %}{{ getAbsPath("js/lg-hash.min.js") }}{% endif %}"></script>
-    <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.lg_pager %}{{ themeConfig.libCdn.lg_pager }}{% else %}{{ getAbsPath("js/lg-pager.min.js") }}{% endif %}"></script>
-    <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.lg_thumbnail %}{{ themeConfig.libCdn.lg_thumbnail }}{% else %}{{ getAbsPath("js/lg-thumbnail.min.js") }}{% endif %}"></script>
-    <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.lg_zoom %}{{ themeConfig.libCdn.lg_zoom }}{% else %}{{ getAbsPath("js/lg-zoom.min.js") }}{% endif %}"></script>
+    <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.scrollSpy %}{{ themeConfig.libCdn.scrollSpy }}{% else %}{{ getAbsPath("js/scrollspy.js") }}{% endif %}"></script>
+    <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.fontAwesome %}{{ themeConfig.libCdn.fontAwesome }}{% else %}{{ getAbsPath("js/fontawesome-all.min.js") }}{% endif %}"></script>
+    <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.lightGallery.js %}{{ themeConfig.libCdn.lightGallery.js }}{% else %}{{ getAbsPath("js/lightgallery.min.js") }}{% endif %}"></script>
+    <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.lgFullscreen %}{{ themeConfig.libCdn.lgFullscreen }}{% else %}{{ getAbsPath("js/lg-fullscreen.min.js") }}{% endif %}"></script>
+    <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.lgHash %}{{ themeConfig.libCdn.lgHash }}{% else %}{{ getAbsPath("js/lg-hash.min.js") }}{% endif %}"></script>
+    <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.lgPager %}{{ themeConfig.libCdn.lgPager }}{% else %}{{ getAbsPath("js/lg-pager.min.js") }}{% endif %}"></script>
+    <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.lgThumbnail %}{{ themeConfig.libCdn.lgThumbnail }}{% else %}{{ getAbsPath("js/lg-thumbnail.min.js") }}{% endif %}"></script>
+    <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.lgZoom %}{{ themeConfig.libCdn.lgZoom }}{% else %}{{ getAbsPath("js/lg-zoom.min.js") }}{% endif %}"></script>
     {% if themeConfig.busuanzi %}
     <script defer src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.busuanzi %}{{ themeConfig.libCdn.busuanzi }}{% else %}{{ getAbsPath("js/busuanzi.pure.mini.js") }}{% endif %}"></script>
     {% endif %}

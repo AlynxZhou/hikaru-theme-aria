@@ -12,7 +12,7 @@
   {% for post in posts %}
   <article class="article post card{% if themeConfig.animate %} animate{% endif %}" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="{{ siteConfig.url }}{{ getAbsPath(post.docPath) }}">
+      <link itemprop="mainEntityOfPage" href="{{ getUrl(post.docPath) }}">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="{{ siteConfig.author }}">
         <meta itemprop="description" content="{{ siteConfig.description }}">

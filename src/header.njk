@@ -15,8 +15,8 @@
     <nav id="nav" class="nav">
       <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="{{ __("accessibility.nav_toggle") }}"></i></a>
       <ul id="menu" role="menubar" aria-hidden="false">
-        {% for k, v in themeConfig.menu %}
-        <li role="menuitem"><a href="{{ getAbsPath(v) }}"{% if isCurrentPath(v) %} class="current"{% endif %}>{{ __(k) }}</a></li>
+        {% for e in themeConfig.menu %}
+        <li role="menuitem"><a href="{{ getAbsPath(e.link) }}"{% if isCurrentPath(e.link) %} class="current"{% endif %}>{{ __(e.name) }}</a></li>
         {% endfor %}
       </ul>
     </nav>
