@@ -25,11 +25,11 @@
     });
 
     var current = new Date().getFullYear().toString();
-    var since = $("#years span").text()
+    var since = $("#years-text").text()
     if (since.length === 0) {
-      $("#years span").text(current);
+      $("#years-text").text(current);
     } else if (since !== current) {
-      $("#years span").text(since + " - " + current);
+      $("#years-text").text(since + " - " + current);
     }
 
     // (40em - 0.6em) * 16px
