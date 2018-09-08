@@ -13,12 +13,12 @@
     <div class="post-block">
       <link itemprop="mainEntityOfPage" href="{{ getUrl(docPath) }}">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-       <meta itemprop="name" content="{{ siteConfig.author }}">
-       <meta itemprop="description" content="{{ siteConfig.description }}">
-       <meta itemprop="image" content="{{ getAbsPath(themeConfig.avatar) }}">
+        <meta itemprop="name" content="{{ siteConfig.author }}">
+        <meta itemprop="description" content="{{ siteConfig.description }}">
+        <meta itemprop="image" content="{{ getAbsPath(themeConfig.avatar) }}">
       </span>
       <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-       <meta itemprop="name" content="{{ siteConfig.title }}">
+        <meta itemprop="name" content="{{ siteConfig.title }}">
       </span>
     </div>
     <header class="post-header">
@@ -58,9 +58,9 @@
     <footer class="post-footer">
       {% if tags and tags.length %}
       <div class="post-tags">
-        {% for tag in tags %}
+        {% for tag in tags -%}
         <a class="post-tag button" href="{{ getAbsPath(tag.docPath) }}" rel="tag"><i class="fas fa-tag"></i>{{ tag.name }}</a>
-        {% endfor %}
+        {%- endfor %}
       </div>
       {% endif %}
     </footer>

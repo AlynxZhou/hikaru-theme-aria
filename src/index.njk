@@ -69,9 +69,9 @@
     <footer class="post-footer">
       {% if post.tags and post.tags.length %}
       <div class="post-tags">
-        {% for tag in post.tags %}
+        {% for tag in post.tags -%}
         <a class="post-tag button" href="{{ getAbsPath(tag.docPath) }}" rel="tag"><i class="fas fa-tag"></i>{{ tag.name }}</a>
-        {% endfor %}
+        {%- endfor %}
       </div>
       {% endif %}
     </footer>
