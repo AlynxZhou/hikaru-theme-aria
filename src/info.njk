@@ -6,30 +6,24 @@
   <h1 class="author-name">{{ siteConfig.author }}</h1>
   <h2 class="author-description">{{ siteConfig.description }}</h2>
   <div class="site-count">
-    {% if themeConfig.menu.archives %}
-    <div class="archives-count">
+    {% for e in themeConfig.menu %}
+    {% if e.name === "archives" %}
+    <div class="archives-count count-block">
       <div class="site-count-title">{{ __("archives") }}</div>
-      <div><a href="{{ getAbsPath(themeConfig.menu.archives) }}">{{ site.posts.length }}</a></div>
+      <div><a href="{{ getAbsPath(e.link) }}">{{ site.posts.length }}</a></div>
     </div>
-    {% endif %}
-    {% if themeConfig.menu.categories %}
-    {% if themeConfig.menu.archives %}
-    <span class="site-count-divider divider">|</span>
-    {% endif %}
-    <div class="categories-count">
+    {% elif e.name === "categories" %}
+    <div class="categories-count count-block">
       <div class="site-count-title">{{ __("categories") }}</div>
-      <div><a href="{{ getAbsPath(themeConfig.menu.categories) }}">{{ site.categoriesLength }}</a></div>
+      <div><a href="{{ getAbsPath(e.link) }}">{{ site.categoriesLength }}</a></div>
     </div>
-    {% endif %}
-    {% if themeConfig.menu.tags %}
-    {% if themeConfig.menu.categories or themeConfig.menu.archives %}
-    <span class="site-count-divider divider">|</span>
-    {% endif %}
-    <div class="tags-count">
+    {% elif e.name === "tags" %}
+    <div class="tags-count count-block">
       <div class="site-count-title">{{ __("tags") }}</div>
-      <div><a href="{{ getAbsPath(themeConfig.menu.tags) }}">{{ site.tagsLength }}</a></div>
+      <div><a href="{{ getAbsPath(e.link) }}">{{ site.tagsLength }}</a></div>
     </div>
     {% endif %}
+    {% endfor %}
   </div>
   {% if siteConfig.feed.enable %}
   <div class="rss">
