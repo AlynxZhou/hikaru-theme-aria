@@ -29,7 +29,7 @@
       <div class="post-meta">
         {% if post.date %}
         <span class="post-date meta-block">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="{{ moment(post.date).format() }}">{{ moment(post.date).format("YYYY-MM-DD hh:mm:ss") }}</time></span>
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="{{ moment(post.date).format() }}">{{ moment(post.date).format("YYYY-MM-DD HH:mm:ss") }}</time></span>
         </span>
         {% endif %}
         {% if post.categories and post.categories.length %}
