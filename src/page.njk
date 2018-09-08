@@ -23,10 +23,26 @@
 {% block content %}
 <div id="page" class="page">
   <article class="article post card{% if themeConfig.animate %} animate{% endif %}">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="{{ getUrl(docPath) }}">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="{{ siteConfig.author }}">
+        <meta itemprop="description" content="{{ siteConfig.description }}">
+        <meta itemprop="image" content="{{ getAbsPath(themeConfig.avatar) }}">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="{{ siteConfig.title }}">
+      </span>
+    </div>
     <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">
-        <span>{{ __(title) }}</span>
-      </h1>
+      <h1 class="post-title" itemprop="name headline">{{ __(title) }}</h1>
+      <div class="post-meta">
+        {% if date %}
+        <span class="post-date meta-block">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="{{ moment(date).format() }}">{{ moment(date).format("YYYY-MM-DD hh:mm:ss") }}</time></span>
+        </span>
+        {% endif %}
+      </div>
     </header>
     <main class="post-main">
       {{ content }}

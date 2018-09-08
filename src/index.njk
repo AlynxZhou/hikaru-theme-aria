@@ -28,15 +28,12 @@
       </h1>
       <div class="post-meta">
         {% if post.date %}
-        <span class="post-date">
+        <span class="post-date meta-block">
           <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="{{ moment(post.date).format() }}">{{ moment(post.date).format("YYYY-MM-DD hh:mm:ss") }}</time></span>
         </span>
         {% endif %}
         {% if post.categories and post.categories.length %}
-        {% if post.date %}
-        <span class="post-meta-divider divider">|</span>
-        {% endif %}
-        <span class="post-categories">
+        <span class="post-categories meta-block">
           {# About `-`: https://mozilla.github.io/nunjucks/cn/templating.html#part-861ece9d8e5ce60c #}
           {% for cat in post.categories -%}
           {% if loop.first %}<i class="far fa-folder-open"></i>{% else %}<i class="fas fa-angle-right"></i>{% endif %}<span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="{{ getAbsPath(cat.docPath) }}" itemprop="url" rel="index"><span itemprop="name">{{ cat.name }}</span></a></span>
@@ -45,10 +42,7 @@
         {% endif %}
         {% if post.comment !== false and themeConfig.comment.enable %}
         {% if themeConfig.comment.disqusShortName %}
-        {% if post.categories or post.date %}
-        <span class="post-meta-divider divider">|</span>
-        {% endif %}
-        <span class="post-comment-count">
+        <span class="post-comment-count meta-block">
           <i class="far fa-comments"></i><span><a href="{{ getAbsPath(post.docPath) }}#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="{{ getAbsPath(post.docPath) }}" itemprop="commentCount"></span></a></span>
         </span>
         {% endif %}
