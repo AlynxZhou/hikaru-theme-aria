@@ -178,7 +178,12 @@ pre code {
   margin: 0;
   padding: 0;
 }
-figure {
+figure.highlight {
+  display: flex;
+  flex-direction: row;
+  flex-warp: nowarp;
+  justify-content: flex-start;
+  align-items: flex-start;
   overflow: auto;
   border-radius: $corner-radius;
   padding: 0.5em;
@@ -188,34 +193,26 @@ figure {
   -moz-font-feature-settings: "liga" 0; /* Firefox 15.0 onwards */
   -moz-font-feature-settings: "liga" 0; /* Firefox 15.0 onwards explicitly set feature values */
   font-feature-settings: "liga" 0; /* No variation */
-  table {
+  pre {
+    font-family: $font-code;
+    font-size: $font-size;
+    line-height: 1.5em;
     margin: 0;
-    tbody tr {
+    &.gutter {
+      flex: 0 0 auto;
+      text-align: right;
+      padding-right: 0.5em;
+      border-right: 0.05em dotted $color-background;
+    }
+    &.code {
+      flex: 1 1 auto;
+      text-align: left;
+      padding-left: 0.5em;
+      border-left: 0.05em dotted $color-background;
+    }
+    code {
+      color: inherit;
       background: transparent;
-      td {
-        border: none;
-        &:nth-child(2n) {
-          background: transparent;
-        }
-        &.gutter {
-          text-align: right;
-          padding-right: 0.5em;
-          border-right: 0.1em dotted $color-background;
-        }
-        pre {
-          font-family: $font-code;
-          font-size: $font-size;
-          line-height: 1.5em;
-          padding: 0;
-          margin: 0;
-          code {
-            margin: 0;
-            padding: 0
-            color: inherit;
-            background: transparent;
-          }
-        }
-      }
     }
   }
 }
