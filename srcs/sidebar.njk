@@ -20,7 +20,7 @@
         <ol {% if level === 1 %}class="list-group toc"{% endif %}>
         {% for h in toc %}
           <li>
-            <a class="list-group-item toc-link" href="#{{ h.id }}">{{ h.text }}</a>
+            <a class="list-group-item toc-link" href="{{ getAbsPath(h.docPath) }}">{{ h.text }}</a>
             {% if h.subs.length > 0 %}
             {{ listToc(h.subs, level + 1) }}
             {% endif %}
