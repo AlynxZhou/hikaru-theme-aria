@@ -28,7 +28,7 @@
         <ul>
         {% for cate in cates %}
           <li>
-            <a href="{{ getAbsPath(cate.docPath) }}">{{ cate.name }}</a>
+            <a href="{{ getAbsPath(cate.docPath) }}">{{ cate.name }}</a> <span>{{ cate.posts.length }}</span>
             {% if cate.subs.length > 0 %}
             {{ listCategory(cate.subs) }}
             {% endif %}
