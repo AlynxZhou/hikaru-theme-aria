@@ -5,19 +5,19 @@
   <div id="qr" class="qr" style="display: none;" aria-hidden="true">
     {% if themeConfig.reward.weChatPayQrCode %}
     <div id="wechat">
-      <img id="wechat_qr" src="{{ getAbsPath(themeConfig.reward.weChatPayQrCode) }}" alt="{{ __("reward.wechatpay") }}"/>
+      <img id="wechat_qr" src="{{ getPath(themeConfig.reward.weChatPayQrCode) }}" alt="{{ __("reward.wechatpay") }}"/>
       <span>{{ __("reward.wechatpay") }}</span>
     </div>
     {% endif %}
     {% if themeConfig.reward.aliPayQrCode %}
     <div id="alipay">
-      <img id="alipay_qr" src="{{ getAbsPath(themeConfig.reward.aliPayQrCode) }}" alt="{{ __("reward.alipay") }}"/>
+      <img id="alipay_qr" src="{{ getPath(themeConfig.reward.aliPayQrCode) }}" alt="{{ __("reward.alipay") }}"/>
       <span>{{ __("reward.alipay") }}</span>
     </div>
     {% endif %}
     {% if themeConfig.reward.bitCoinQrCode %}
     <div id="bitcoin">
-      <img id="bitcoin_qr" src="{{ getAbsPath(themeConfig.reward.bitCoinQrCode) }}" alt="{{ __("reward.bitcoin") }}"/>
+      <img id="bitcoin_qr" src="{{ getPath(themeConfig.reward.bitCoinQrCode) }}" alt="{{ __("reward.bitcoin") }}"/>
       <span>{{ __("reward.bitcoin") }}</span>
     </div>
     {% endif %}

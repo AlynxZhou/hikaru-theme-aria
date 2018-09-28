@@ -155,7 +155,7 @@ comment:
     type:
     user:
     repo:
-    clientId:
+    clientID:
     clientSecret:
 
 reward:

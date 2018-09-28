@@ -1,8 +1,8 @@
 {% extends "layout.njk" %}
 
 {% block css %}
-<link rel="stylesheet" type="text/css" href="{{ getAbsPath("css/page.css") }}">
-<link rel="stylesheet" type="text/css" href="{{ getAbsPath("css/post.css") }}">
+<link rel="stylesheet" type="text/css" href="{{ getPath("css/page.css") }}">
+<link rel="stylesheet" type="text/css" href="{{ getPath("css/post.css") }}">
 {% endblock %}
 
 {% block title %}{{ title }} | {{ siteConfig.title }}{% if siteConfig.subtitle %} - {{ siteConfig.subtitle }}{% endif %}{% endblock %}
@@ -11,11 +11,11 @@
 <div id="post" class="page">
   <article class="article post card{% if themeConfig.animate %} animate{% endif %}" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="{{ getUrl(docPath) }}">
+      <link itemprop="mainEntityOfPage" href="{{ getURL(docPath) }}">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="{{ siteConfig.author }}">
         <meta itemprop="description" content="{{ siteConfig.description }}">
-        <meta itemprop="image" content="{{ getAbsPath(themeConfig.avatar) }}">
+        <meta itemprop="image" content="{{ getPath(themeConfig.avatar) }}">
       </span>
       <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
         <meta itemprop="name" content="{{ siteConfig.title }}">
@@ -26,14 +26,14 @@
       <div class="post-meta">
         {% if date %}
         <span class="post-date meta-block">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="{{ moment(date).format() }}">{{ moment(date).format("YYYY-MM-DD HH:mm:ss") }}</time></span>
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="{{ date.toISOString() }}">{{ moment(date).format("YYYY-MM-DD HH:mm:ss") }}</time></span>
         </span>
         {% endif %}
         {% if categories and categories.length %}
         <span class="post-categories meta-block">
           {# About `-`: https://mozilla.github.io/nunjucks/cn/templating.html#part-861ece9d8e5ce60c #}
           {% for cat in categories -%}
-          {% if loop.first %}<i class="far fa-folder-open"></i>{% else %}<i class="fas fa-angle-right"></i>{% endif %}<span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="{{ getAbsPath(cat.docPath) }}" itemprop="url" rel="index"><span itemprop="name">{{ cat.name }}</span></a></span>
+          {% if loop.first %}<i class="far fa-folder-open"></i>{% else %}<i class="fas fa-angle-right"></i>{% endif %}<span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="{{ getPath(cat.docPath) }}" itemprop="url" rel="index"><span itemprop="name">{{ cat.name }}</span></a></span>
           {%- endfor %}
         </span>
         {% endif %}
@@ -43,7 +43,7 @@
         <span class="post-meta-divider divider">|</span>
         {% endif %}
         <span class="post-comment-count">
-          <i class="far fa-comments"></i><span><a href="{{ getAbsPath(docPath) }}#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="{{ getAbsPath(docPath) }}" itemprop="commentCount"></span></a></span>
+          <i class="far fa-comments"></i><span><a href="{{ getPath(docPath) }}#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="{{ getPath(docPath) }}" itemprop="commentCount"></span></a></span>
         </span>
         {% endif %}
         {% endif %}
@@ -56,7 +56,7 @@
       {% if tags and tags.length %}
       <div class="post-tags">
         {% for tag in tags -%}
-        <a class="post-tag button" href="{{ getAbsPath(tag.docPath) }}" rel="tag"><i class="fas fa-tag"></i>{{ tag.name }}</a>
+        <a class="post-tag button" href="{{ getPath(tag.docPath) }}" rel="tag"><i class="fas fa-tag"></i>{{ tag.name }}</a>
         {%- endfor %}
       </div>
       {% endif %}
@@ -69,12 +69,12 @@
   <nav class="page-nav">
     <div class="page-nav-next page-nav-item">
       {% if next %}
-      <a href="{{ getAbsPath(next.docPath) }}" rel="next" title="{{ next.title }}"><i class="fas fa-angle-left"></i><span class="nav-title">{{ next.title }}</span></a>
+      <a href="{{ getPath(next.docPath) }}" rel="next" title="{{ next.title }}"><i class="fas fa-angle-left"></i><span class="nav-title">{{ next.title }}</span></a>
       {% endif %}
     </div>
     <div class="page-nav-prev page-nav-item">
       {% if page.prev %}
-      <a href="{{ getAbsPath(prev.docPath) }}" rel="prev" title="{{ prev.title }}"><span class="nav-title">{{ prev.title }}</span><i class="fas fa-angle-right"></i></a>
+      <a href="{{ getPath(prev.docPath) }}" rel="prev" title="{{ prev.title }}"><span class="nav-title">{{ prev.title }}</span><i class="fas fa-angle-right"></i></a>
       {% endif %}
     </div>
   </nav>

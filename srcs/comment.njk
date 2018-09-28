@@ -6,8 +6,8 @@
   <div id="disqus_thread" class="disqus_thread"></div>
   <script type="text/javascript">
   var disqus_config = function () {
-    this.page.url = "{{ getAbsPath(page.docPath) }}";
-    this.page.identifier = "{{ getAbsPath(page.docPath) }}";
+    this.page.url = "{{ getPath(page.docPath) }}";
+    this.page.identifier = "{{ getPath(page.docPath) }}";
   };
   (function() {
     var d = document, s = d.createElement("script");
@@ -18,18 +18,18 @@
   </script>
   {% elif themeConfig.comment.commentjs.enable %}
   <div class="commentjs" id="comment-thread"></div>
-  <link rel="stylesheet" href="{% if themeConfig.libCdn.enable and themeConfig.libCdn.commentjs.css %}{{ themeConfig.libCdn.commentjs.css }}{% else %}{{ getAbsPath("css/commentjs.css") }}{% endif %}">
-  <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.marked %}{{ themeConfig.libCdn.marked }}{% else %}{{ getAbsPath("js/marked.min.js") }}{% endif %}"></script>
-  <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.timeAgo %}{{ themeConfig.libCdn.timeAgo }}{% else %}{{ getAbsPath("js/timeago.min.js") }}{% endif %}"></script>
-  <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.highlight %}{{ themeConfig.libCdn.highlight }}{% else %}{{ getAbsPath("js/highlight.min.js") }}{% endif %}"></script>
-  <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.commentjs.js %}{{ themeConfig.libCdn.commentjs.js }}{% else %}{{ getAbsPath("js/commentjs.js") }}{% endif %}"></script>
+  <link rel="stylesheet" href="{% if themeConfig.libCdn.enable and themeConfig.libCdn.commentjs.css %}{{ themeConfig.libCdn.commentjs.css }}{% else %}{{ getPath("css/commentjs.css") }}{% endif %}">
+  <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.marked %}{{ themeConfig.libCdn.marked }}{% else %}{{ getPath("js/marked.min.js") }}{% endif %}"></script>
+  <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.timeAgo %}{{ themeConfig.libCdn.timeAgo }}{% else %}{{ getPath("js/timeago.min.js") }}{% endif %}"></script>
+  <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.highlight %}{{ themeConfig.libCdn.highlight }}{% else %}{{ getPath("js/highlight.min.js") }}{% endif %}"></script>
+  <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.commentjs.js %}{{ themeConfig.libCdn.commentjs.js }}{% else %}{{ getPath("js/commentjs.js") }}{% endif %}"></script>
   <script type="text/javascript">
   $(document).ready(function () {
     getComments({
       "type": "{{ themeConfig.comment.commentjs.type }}",
       "user": "{{ themeConfig.comment.commentjs.user }}",
       "repo": "{{ themeConfig.comment.commentjs.repo }}",
-      "clientId": "{{ themeConfig.comment.commentjs.clientId }}",
+      "clientID": "{{ themeConfig.comment.commentjs.clientID }}",
       "clientSecret": "{{ themeConfig.comment.commentjs.clientSecret }}",
       "no_comment": "{{ __("commentjs.none") }}",
       "go_to_comment": "{{ __("commentjs.comment") }}",

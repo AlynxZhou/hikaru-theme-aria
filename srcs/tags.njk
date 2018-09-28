@@ -1,8 +1,8 @@
 {% extends "layout.njk" %}
 
 {% block css %}
-<link rel="stylesheet" type="text/css" href="{{ getAbsPath("css/page.css") }}">
-<link rel="stylesheet" type="text/css" href="{{ getAbsPath("css/post.css") }}">
+<link rel="stylesheet" type="text/css" href="{{ getPath("css/page.css") }}">
+<link rel="stylesheet" type="text/css" href="{{ getPath("css/post.css") }}">
 {% endblock %}
 
 {% block title %}{{ __(title) }} | {{ siteConfig.title }}{% if siteConfig.subtitle %} - {{ siteConfig.subtitle }}{% endif %}{% endblock %}
@@ -25,7 +25,7 @@
       </h2>
       <div class="tags-cloud">
         {% for tag in tags %}
-        <a href="{{ getAbsPath(tag.docPath) }}" style="font-size: {{ range(0.8, 2.5, 0.1) | random }}em;">{{ tag.name }}</a>
+        <a href="{{ getPath(tag.docPath) }}" style="font-size: {{ range(0.8, 2.5, 0.1) | random }}em;">{{ tag.name }}</a>
         {% endfor %}
       </div>
     </main>

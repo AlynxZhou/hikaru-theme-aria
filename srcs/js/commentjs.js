@@ -19,7 +19,7 @@
 
 'use strict';
 
-var type, username, repo, clientId, clientSecret, no_comment, go_to_comment, btn_class, comments_target, recent_comments_target, loading_target;
+var type, username, repo, clientID, clientSecret, no_comment, go_to_comment, btn_class, comments_target, recent_comments_target, loading_target;
 var github_addr = "https://github.com/";
 var github_api_addr = "https://api.github.com/repos/";
 var oschina_addr = "http://git.oschina.net/";
@@ -57,7 +57,7 @@ var _getComment = function _getComment(params, callback) {
         dataType: 'json',
         cache: false,
         crossDomain: true,
-        data: clientId && clientSecret ? "clientId=" + clientId + "&clientSecret=" + clientSecret : '',
+        data: clientID && clientSecret ? "clientID=" + clientID + "&clientSecret=" + clientSecret : '',
         success: function success(page_comments) {
             if (!page_comments || page_comments.length <= 0) {
                 callback && typeof callback === "function" && callback(comments);
@@ -92,7 +92,7 @@ var _getCommentsUrl = function _getCommentsUrl(params, callback) {
         dataType: 'json',
         cache: false,
         crossDomain: true,
-        data: clientId && clientSecret ? "clientId=" + clientId + "&clientSecret=" + clientSecret : '',
+        data: clientID && clientSecret ? "clientID=" + clientID + "&clientSecret=" + clientSecret : '',
         success: function success(issues) {
             if (!issues || issues.length <= 0) {
                 callback && typeof callback === "function" && callback("", "");
@@ -136,7 +136,7 @@ var _getIssueByUrl = function _getIssueByUrl(issue_url, callback) {
         dataType: 'json',
         cache: false,
         crossDomain: true,
-        data: clientId && clientSecret ? "clientId=" + clientId + "&clientSecret=" + clientSecret : '',
+        data: clientID && clientSecret ? "clientID=" + clientID + "&clientSecret=" + clientSecret : '',
         success: function success(issues) {
             if (!issues || issues.length <= 0) {
                 callback && typeof callback === "function" && callback();
@@ -276,7 +276,7 @@ var _getRecentIssues = function _getRecentIssues(params, callback) {
         dataType: 'json',
         cache: false,
         crossDomain: true,
-        data: clientId && clientSecret ? "clientId=" + clientId + "&clientSecret=" + clientSecret : '',
+        data: clientID && clientSecret ? "clientID=" + clientID + "&clientSecret=" + clientSecret : '',
         success: function success(issues) {
             if (issues.length > count) {
                 if (navigator.userAgent.indexOf("MSIE") != -1 || navigator.userAgent.indexOf("Edge") != -1 || !!document.documentMode == true) {
@@ -305,7 +305,7 @@ var _getRecentComments = function _getRecentComments(params, callback) {
         dataType: 'json',
         cache: false,
         crossDomain: true,
-        data: clientId && clientSecret ? "clientId=" + clientId + "&clientSecret=" + clientSecret : '',
+        data: clientID && clientSecret ? "clientID=" + clientID + "&clientSecret=" + clientSecret : '',
         success: function success(comments) {
             if (comments.length > count) {
                 if (navigator.userAgent.indexOf("MSIE") != -1 || navigator.userAgent.indexOf("Edge") != -1 || !!document.documentMode == true) {
@@ -331,7 +331,7 @@ var getRecentCommentsList = function getRecentCommentsList(params) {
     type = params.type;
     user = params.user;
     repo = params.repo;
-    clientId = params.clientId;
+    clientID = params.clientID;
     clientSecret = params.clientSecret;
     count = params.count;
     recent_comments_target = params.recent_comments_target;
@@ -361,7 +361,7 @@ var getComments = function getComments(params) {
     type = params.type;
     user = params.user;
     repo = params.repo;
-    clientId = params.clientId;
+    clientID = params.clientID;
     clientSecret = params.clientSecret;
     no_comment = params.no_comment;
     go_to_comment = params.go_to_comment;

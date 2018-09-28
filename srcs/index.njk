@@ -1,8 +1,8 @@
 {% extends "layout.njk" %}
 
 {% block css %}
-<link rel="stylesheet" type="text/css" href="{{ getAbsPath("css/page.css") }}">
-<link rel="stylesheet" type="text/css" href="{{ getAbsPath("css/post.css") }}">
+<link rel="stylesheet" type="text/css" href="{{ getPath("css/page.css") }}">
+<link rel="stylesheet" type="text/css" href="{{ getPath("css/post.css") }}">
 {% endblock %}
 
 {% block title %}{{ siteConfig.title }}{% if siteConfig.subtitle %} - {{ siteConfig.subtitle }}{% endif %}{% endblock %}
@@ -12,11 +12,11 @@
   {% for post in posts %}
   <article class="article post card{% if themeConfig.animate %} animate{% endif %}" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="{{ getUrl(post.docPath) }}">
+      <link itemprop="mainEntityOfPage" href="{{ getURL(post.docPath) }}">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
         <meta itemprop="name" content="{{ siteConfig.author }}">
         <meta itemprop="description" content="{{ siteConfig.description }}">
-        <meta itemprop="image" content="{{ getAbsPath(themeConfig.avatar) }}">
+        <meta itemprop="image" content="{{ getPath(themeConfig.avatar) }}">
       </span>
       <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
         <meta itemprop="name" content="{{ siteConfig.title }}">
@@ -24,26 +24,26 @@
     </div>
     <header class="post-header">
       <h1 class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="{{ getAbsPath(post.docPath) }}" itemprop="url">{{ post.title }}</a>
+        <a class="post-title-link post-title-link-external" href="{{ getPath(post.docPath) }}" itemprop="url">{{ post.title }}</a>
       </h1>
       <div class="post-meta">
         {% if post.date %}
         <span class="post-date meta-block">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="{{ moment(post.date).format() }}">{{ moment(post.date).format("YYYY-MM-DD HH:mm:ss") }}</time></span>
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="{{ post.date.toISOString() }}">{{ moment(post.date).format("YYYY-MM-DD HH:mm:ss") }}</time></span>
         </span>
         {% endif %}
         {% if post.categories and post.categories.length %}
         <span class="post-categories meta-block">
           {# About `-`: https://mozilla.github.io/nunjucks/cn/templating.html#part-861ece9d8e5ce60c #}
           {% for cat in post.categories -%}
-          {% if loop.first %}<i class="far fa-folder-open"></i>{% else %}<i class="fas fa-angle-right"></i>{% endif %}<span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="{{ getAbsPath(cat.docPath) }}" itemprop="url" rel="index"><span itemprop="name">{{ cat.name }}</span></a></span>
+          {% if loop.first %}<i class="far fa-folder-open"></i>{% else %}<i class="fas fa-angle-right"></i>{% endif %}<span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="{{ getPath(cat.docPath) }}" itemprop="url" rel="index"><span itemprop="name">{{ cat.name }}</span></a></span>
           {%- endfor %}
         </span>
         {% endif %}
         {% if post.comment !== false and themeConfig.comment.enable %}
         {% if themeConfig.comment.disqusShortName %}
         <span class="post-comment-count meta-block">
-          <i class="far fa-comments"></i><span><a href="{{ getAbsPath(post.docPath) }}#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="{{ getAbsPath(post.docPath) }}" itemprop="commentCount"></span></a></span>
+          <i class="far fa-comments"></i><span><a href="{{ getPath(post.docPath) }}#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="{{ getPath(post.docPath) }}" itemprop="commentCount"></span></a></span>
         </span>
         {% endif %}
         {% endif %}
@@ -64,7 +64,7 @@
       {% if post.tags and post.tags.length %}
       <div class="post-tags">
         {% for tag in post.tags -%}
-        <a class="post-tag button" href="{{ getAbsPath(tag.docPath) }}" rel="tag"><i class="fas fa-tag"></i>{{ tag.name }}</a>
+        <a class="post-tag button" href="{{ getPath(tag.docPath) }}" rel="tag"><i class="fas fa-tag"></i>{{ tag.name }}</a>
         {%- endfor %}
       </div>
       {% endif %}
@@ -74,29 +74,29 @@
   {% if pageArray %}
   <nav class="pagination">
     {% if pageIndex !== 0 %}
-    <a class="extend prev" href="{{ getAbsPath(pageArray[pageIndex - 1].docPath) }}"><i class="fas fa-angle-left" aria-label="{{ __("accessibility.prev_page") }}"></i></a>
+    <a class="extend prev" href="{{ getPath(pageArray[pageIndex - 1].docPath) }}"><i class="fas fa-angle-left" aria-label="{{ __("accessibility.prev_page") }}"></i></a>
     {% endif %}
     {% if pageIndex > 2 %}
-    <a class="page-number" href="{{ getAbsPath(pageArray[0].docPath) }}">1</a>
+    <a class="page-number" href="{{ getPath(pageArray[0].docPath) }}">1</a>
     <span class="space">…</span>
-    <a class="page-number" href="{{ getAbsPath(pageArray[pageIndex - 1].docPath) }}">{{ pageIndex }}</a>
+    <a class="page-number" href="{{ getPath(pageArray[pageIndex - 1].docPath) }}">{{ pageIndex }}</a>
     {% else %}
     {% for page in pageArray.slice(0, pageIndex) %}
-    <a class="page-number" href="{{ getAbsPath(page.docPath) }}">{{ page.pageIndex + 1 }}</a>
+    <a class="page-number" href="{{ getPath(page.docPath) }}">{{ page.pageIndex + 1 }}</a>
     {% endfor %}
     {% endif %}
-    <a class="page-number current" href="{{ getAbsPath(docPath) }}">{{ pageIndex + 1 }}</a>
+    <a class="page-number current" href="{{ getPath(docPath) }}">{{ pageIndex + 1 }}</a>
     {% if pageIndex < pageArray.length - 1 - 2 %}
-    <a class="page-number" href="{{ getAbsPath(pageArray[pageIndex + 1].docPath) }}">{{ pageIndex + 2 }}</a>
+    <a class="page-number" href="{{ getPath(pageArray[pageIndex + 1].docPath) }}">{{ pageIndex + 2 }}</a>
     <span class="space">…</span>
-    <a class="page-number" href="{{ getAbsPath(pageArray[pageArray.length - 1].docPath) }}">{{ pageArray.length }}</a>
+    <a class="page-number" href="{{ getPath(pageArray[pageArray.length - 1].docPath) }}">{{ pageArray.length }}</a>
     {% else %}
     {% for page in pageArray.slice(pageIndex + 1, pageArray.length) %}
-    <a class="page-number" href="{{ getAbsPath(page.docPath) }}">{{ page.pageIndex + 1 }}</a>
+    <a class="page-number" href="{{ getPath(page.docPath) }}">{{ page.pageIndex + 1 }}</a>
     {% endfor %}
     {% endif %}
     {% if pageIndex !== pageArray.length - 1 %}
-    <a class="extend next" href="{{ getAbsPath(pageArray[pageIndex + 1].docPath) }}"><i class="fas fa-angle-right" aria-label="{{ __("accessibility.next_page") }}"></i></a>
+    <a class="extend next" href="{{ getPath(pageArray[pageIndex + 1].docPath) }}"><i class="fas fa-angle-right" aria-label="{{ __("accessibility.next_page") }}"></i></a>
     {% endif %}
   </nav>
   {% endif %}

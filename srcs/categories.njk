@@ -1,8 +1,8 @@
 {% extends "layout.njk" %}
 
 {% block css %}
-<link rel="stylesheet" type="text/css" href="{{ getAbsPath("css/page.css") }}">
-<link rel="stylesheet" type="text/css" href="{{ getAbsPath("css/post.css") }}">
+<link rel="stylesheet" type="text/css" href="{{ getPath("css/page.css") }}">
+<link rel="stylesheet" type="text/css" href="{{ getPath("css/post.css") }}">
 {% endblock %}
 
 {% block title %}{{ __(title) }} | {{ siteConfig.title }}{% if siteConfig.subtitle %} - {{ siteConfig.subtitle }}{% endif %}{% endblock %}
@@ -28,7 +28,7 @@
         <ul>
         {% for cate in cates %}
           <li>
-            <a href="{{ getAbsPath(cate.docPath) }}">{{ cate.name }}</a> <span>{{ cate.posts.length }}</span>
+            <a href="{{ getPath(cate.docPath) }}">{{ cate.name }}</a> <span>{{ cate.posts.length }}</span>
             {% if cate.subs.length > 0 %}
             {{ listCategory(cate.subs) }}
             {% endif %}
