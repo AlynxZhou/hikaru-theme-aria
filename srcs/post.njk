@@ -62,10 +62,7 @@
       {% endif %}
     </footer>
   </article>
-  {% if themeConfig.reward.enable %}
-  {% include "reward.njk" %}
-  {% endif %}
-  {% if page.prev or page.next %}
+  {% if prev or next %}
   <nav class="page-nav">
     <div class="page-nav-next page-nav-item">
       {% if next %}
@@ -73,11 +70,14 @@
       {% endif %}
     </div>
     <div class="page-nav-prev page-nav-item">
-      {% if page.prev %}
+      {% if prev %}
       <a href="{{ getPath(prev.docPath) }}" rel="prev" title="{{ prev.title }}"><span class="nav-title">{{ prev.title }}</span><i class="fas fa-angle-right"></i></a>
       {% endif %}
     </div>
   </nav>
+  {% if themeConfig.reward.enable %}
+  {% include "reward.njk" %}
+  {% endif %}
   {% endif %}
   {% if themeConfig.comment.enable %}
   {% include "comment.njk" %}
