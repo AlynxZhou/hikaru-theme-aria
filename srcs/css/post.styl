@@ -54,23 +54,31 @@
       }
     }
   }
+  .post-tag {
+    display: inline-block;
+    background: $color-button-tag-first-background;
+    border: 0.1em solid $color-button-tag-first-border;
+    padding: 0.15em;
+    line-height: 1.2em;
+    &:nth-child(2n) {
+      background: $color-button-tag-second-background;
+      border: 0.1em solid $color-button-tag-second-border;
+    }
+    &:nth-child(3n) {
+      background: $color-button-tag-third-background;
+      border: 0.1em solid $color-button-tag-third-border;
+    }
+  }
   .post-footer {
     text-align: center;
     .post-tags .post-tag {
       margin: 0.5em;
-      display: inline-block;
-      background: $color-button-tag-first-background;
-      border: 0.1em solid $color-button-tag-first-border;
-      padding: 0.15em;
-      line-height: 1.2em;
-      &:nth-child(2n) {
-        background: $color-button-tag-second-background;
-        border: 0.1em solid $color-button-tag-second-border;
-      }
-      &:nth-child(3n) {
-        background: $color-button-tag-third-background;
-        border: 0.1em solid $color-button-tag-third-border;
-      }
+    }
+  }
+  .tags-cloud {
+    text-align: center;
+    .post-tag {
+      margin: 0.1em 0.5em;
     }
   }
 }
