@@ -1,4 +1,4 @@
-hikaru-theme-aria
+ARIA
 =================
 
 A Hikaru theme inspired by Kalafina's song ARIA.
