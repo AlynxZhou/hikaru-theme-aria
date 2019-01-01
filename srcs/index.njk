@@ -27,9 +27,9 @@
         <a class="post-title-link post-title-link-external" href="{{ getPath(post.docPath) }}" itemprop="url">{{ post.title }}</a>
       </h1>
       <div class="post-meta">
-        {% if post.date %}
+        {% if post["createdTime"] %}
         <span class="post-date meta-block">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="{{ post.date.toISOString() }}">{{ moment(post.date).format("YYYY-MM-DD HH:mm:ss") }}</time></span>
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="{{ post["createdTime"].toISOString() }}">{{ post["createdMoment"].tz(themeConfig["zone"] or post["zone"]).format("YYYY-MM-DD ddd HH:mm:ss z") }}</time></span>
         </span>
         {% endif %}
         {% if post.categories and post.categories.length %}

@@ -104,6 +104,16 @@ $ cp themes/aria/config.yml.example themes/aria/config.yml
 
 Following needs to be changed in **theme's** `config.yml` in ARIA's dir, not all config needs customization, you just change what you need：
 
+# Zone Settings
+
+Different posts may use different timezone as their local time, if you don't want they show in different timezone but want display in a single timezone (with converting), uncomment this option and set a zone:
+
+```yaml
+zone: Asia/Shanghai
+```
+
+But you should consider of different different zone of posts first, just keep this option as a comment to make this.
+
 ### Menu Settings
 
 You should already have `srcs/categories/index.md` and `srcs/tags/index.md` when you creating your site with Hikaru, if not, create them and set front matter `layout: categories` or `layout: tags`, and set them like following:

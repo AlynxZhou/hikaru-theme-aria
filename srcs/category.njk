@@ -16,9 +16,9 @@
       <h1 class="post-title-simple" itemprop="name headline">
         <a class="post-title-link post-title-link-external" href="{{ getPath(post.docPath) }}" itemprop="url">{{ post.title }}</a>
       </h1>
-      {% if post.date %}
+      {% if post["createdTime"] %}
       <span class="post-date">
-        <time title="post-date" itemprop="dateCreated datePublished" datetime="{{ post.date.toISOString() }}">{{ moment(post.date).format("MM-DD") }}</time>
+        <time title="post-date" itemprop="dateCreated datePublished" datetime="{{ post["createdTime"].toISOString() }}">{{ post["createdMoment"].tz(themeConfig["zone"] or post["zone"]).format("MM-DD") }}</time>
       </span>
       {% endif %}
     </header>

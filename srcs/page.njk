@@ -37,10 +37,17 @@
     <header class="post-header">
       <h1 class="post-title" itemprop="name headline">{{ __(title) }}</h1>
       <div class="post-meta">
-        {% if date %}
+        {% if createdTime %}
         <span class="post-date meta-block">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="{{ date.toISOString() }}">{{ moment(date).format("YYYY-MM-DD HH:mm:ss") }}</time></span>
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="{{ createdTime.toISOString() }}">{{ createdMoment.tz(themeConfig["zone"] or zone).format("YYYY-MM-DD ddd HH:mm:ss z") }}</time></span>
         </span>
+        {% endif %}
+        {% if comment !== false and themeConfig.comment.enable %}
+        {% if themeConfig.comment.disqusShortName %}
+        <span class="post-comment-count meta-block">
+          <i class="far fa-comments"></i><span><a href="{{ getPath(post.docPath) }}#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="{{ getPath(post.docPath) }}" itemprop="commentCount"></span></a></span>
+        </span>
+        {% endif %}
         {% endif %}
       </div>
     </header>
