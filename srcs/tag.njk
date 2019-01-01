@@ -18,7 +18,7 @@
       </h1>
       {% if post["createdTime"] %}
       <span class="post-date">
-        <time title="post-date" itemprop="dateCreated datePublished" datetime="{{ post["createdTime"].toISOString() }}">{{ createdMoment.tz(themeConfig["zone"] or zone).format("MM-DD") }}</time>
+        <time title="post-date" itemprop="dateCreated datePublished" datetime="{{ post["createdTime"].toISOString() }}">{{ post["createdMoment"].tz(themeConfig["zone"] or post["zone"]).format("MM-DD") }}</time>
       </span>
       {% endif %}
     </header>
