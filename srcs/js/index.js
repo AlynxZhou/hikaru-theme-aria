@@ -62,23 +62,23 @@
       }
     });
 
-    $(".post img").each(function (i) {
-      if ($(this).parent().prop("tagName") !== "A") {
-        if (this.alt) {
-          $(this).after("<span class=\"caption\">" + this.alt + "</span>");
-        } else if (this.title) {
+    $(".post img").each(function (i, e) {
+      if ($(e).parent().prop("tagName") !== "A") {
+        if (e.alt) {
+          $(e).after("<span class=\"caption\">" + e.alt + "</span>");
+        } else if (e.title) {
           // Hexo asset_img tag generates title instead of alt.
-          $(this).after("<span class=\"caption\">" + this.title + "</span>");
+          $(e).after("<span class=\"caption\">" + e.title + "</span>");
         }
-          $(this).wrap("<a href=\"" + this.src + "\" class=\"gallery-item\"></a>");
+          $(e).wrap("<a href=\"" + e.src + "\" class=\"gallery-item\"></a>");
       } else {
         // If img is already a link, ignore it.
-        $(this).parent().addClass("img-link");
+        $(e).parent().addClass("img-link");
       }
     });
     if (typeof lightGallery != "undefined") {
-      $(".post").each(function (i, entry) {
-        lightGallery(entry, {"selector": ".gallery-item"});
+      $(".post").each(function (i, e) {
+        lightGallery(e, {"selector": ".gallery-item"});
       });
     }
   });
