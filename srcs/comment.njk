@@ -1,5 +1,5 @@
 {% block comment %}
-{% if comment !== false %}
+{% if comment or true %}
 <div class="comments" id="comments">
   {% if themeConfig.comment.disqusShortName %}
   <script defer id="dsq-count-scr" src="//{{ themeConfig.comment.disqusShortName }}.disqus.com/count.js"></script>
