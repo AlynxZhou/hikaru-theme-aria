@@ -42,5 +42,8 @@ $(document).ready(function () {
     </main>
     <footer class="post-footer"></footer>
   </article>
+  {% if themeConfig.comment.enable %}
+  {% include "comment.njk" %}
+  {% endif %}
 </div>
 {% endblock %}

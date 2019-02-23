@@ -67,5 +67,8 @@
     {% endif %}
   </nav>
   {% endif %}
+  {% if themeConfig.comment.enable %}
+  {% include "comment.njk" %}
+  {% endif %}
 </div>
 {% endblock %}
