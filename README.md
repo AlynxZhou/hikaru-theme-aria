@@ -249,6 +249,8 @@ If you enable more than one comment services, only the one shows in front of the
 
 Set `enable` of `reward` to `true` to use it, then set your comment in `comment`, and set QRCode of WeChat Pay, AliPay, BitCoin like avatar. Leave blank to disable a QRCode.
 
+Add `reward: false` to disable reward in some pages.
+
 ### Auto Excerpt
 
 If you want to generate post excerpt at homepage automatically, you can use this. For example, `autoExcerpt: 200` will use first 200 chars (HTML doc) as excerpt. However, if you want to get a better look, it is recommended to **place a `<!--more-->` tag to where you want, words before this tag will be used as except**.
