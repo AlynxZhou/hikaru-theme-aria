@@ -243,9 +243,9 @@ First set `comment` to `enable: true` to enable comment in all pages (except Hom
 
 If you use commentjs, first set `enable` to `true`, then set `type` according to your host service between `github` and `oschina`, `user` is your user name of the host, `repo` is your repo name, `clientID` and `clientSecret` needs you go to [github](https://github.com/settings/applications/new) or [oschina](https://git.oschina.net/oauth/applications/new) to create an application, and copy your token.
 
-If you use valine, read its docs and fill options `apiID`, `apiKey`, set `enable` to `true` and custom other options.
+If you use Valine, read its docs and fill options `apiID`, `apiKey`, set `enable` to `true` and custom other options.
 
-If you enable more than one comment services, only the one shows in front of the queue will be shown (queue: Disqus, commentjs, valine).
+If you enable more than one comment services, only the one shows in front of the queue will be shown (queue: Disqus, commentjs, Valine).
 
 ### Reward
 
