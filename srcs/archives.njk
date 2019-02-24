@@ -67,6 +67,9 @@
     {% endif %}
   </nav>
   {% endif %}
+  {% if themeConfig.reward.enable %}
+  {% include "reward.njk" %}
+  {% endif %}
   {% if themeConfig.comment.enable %}
   {% include "comment.njk" %}
   {% endif %}

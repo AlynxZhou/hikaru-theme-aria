@@ -42,6 +42,9 @@ $(document).ready(function () {
     </main>
     <footer class="post-footer"></footer>
   </article>
+  {% if themeConfig.reward.enable %}
+  {% include "reward.njk" %}
+  {% endif %}
   {% if themeConfig.comment.enable %}
   {% include "comment.njk" %}
   {% endif %}
