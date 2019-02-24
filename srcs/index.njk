@@ -74,7 +74,7 @@
   {% if pageArray %}
   <nav class="pagination">
     {% if pageIndex !== 0 %}
-    <a class="extend prev" href="{{ getPath(pageArray[pageIndex - 1].docPath) }}"><i class="fas fa-angle-left" aria-label="{{ __("accessibility.prev_page") }}"></i></a>
+    <a class="extend prev" href="{{ getPath(pageArray[pageIndex - 1].docPath) }}"><i class="fas fa-angle-left" aria-label="{{ __("accessibility.prevPage") }}"></i></a>
     {% endif %}
     {% if pageIndex > 2 %}
     <a class="page-number" href="{{ getPath(pageArray[0].docPath) }}">1</a>
@@ -96,7 +96,7 @@
     {% endfor %}
     {% endif %}
     {% if pageIndex !== pageArray.length - 1 %}
-    <a class="extend next" href="{{ getPath(pageArray[pageIndex + 1].docPath) }}"><i class="fas fa-angle-right" aria-label="{{ __("accessibility.next_page") }}"></i></a>
+    <a class="extend next" href="{{ getPath(pageArray[pageIndex + 1].docPath) }}"><i class="fas fa-angle-right" aria-label="{{ __("accessibility.nextPage") }}"></i></a>
     {% endif %}
   </nav>
   {% endif %}
@@ -104,6 +104,10 @@
   {% include "reward.njk" %}
   {% endif %}
   {% if themeConfig.comment.enable %}
+  {% if themeConfig.comment.disqusShortName %}
+  {# Load disqus comment count for every posts in index. #}
+  <script defer id="dsq-count-scr" src="//{{ themeConfig.comment.disqusShortName }}.disqus.com/count.js"></script>
+  {% endif %}
   {% include "comment.njk" %}
   {% endif %}
 </div>

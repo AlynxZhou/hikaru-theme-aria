@@ -27,11 +27,11 @@ $(document).ready(function () {
     <main class="post-main">
       <h2 class="page-counter">
         {% if site.tagsLength > 1 %}
-        {{ __("tagcount.more", site.tagsLength) }}
+        {{ __("tagCount.more", site.tagsLength) }}
         {% elif tags.length === 1 %}
-        {{ __("tagcount.one", site.tagsLength) }}
+        {{ __("tagCount.one", site.tagsLength) }}
         {% else %}
-        {{ __("tagcount.none") }}
+        {{ __("tagCount.none") }}
         {% endif %}
       </h2>
       <div class="tags-cloud">

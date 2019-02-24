@@ -16,11 +16,11 @@
     <main class="post-main">
       <h2 class="page-counter">
         {% if site.categoriesLength > 1 %}
-        {{ __("categorycount.more", site.categoriesLength) }}
+        {{ __("categoryCount.more", site.categoriesLength) }}
         {% elif site.categories.length === 1 %}
-        {{ __("categorycount.one", site.categoriesLength) }}
+        {{ __("categoryCount.one", site.categoriesLength) }}
         {% else %}
-        {{ __("categorycount.none") }}
+        {{ __("categoryCount.none") }}
         {% endif %}
       </h2>
       <div class="categories-list">

@@ -13,7 +13,7 @@
       {% endif %}
     </div>
     <nav id="nav" class="nav">
-      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="{{ __("accessibility.nav_toggle") }}"></i></a>
+      <a id="nav-toggle" class="nav-toggle" aria-hidden="true"><i class="fas fa-bars" aria-label="{{ __("accessibility.navToggle") }}"></i></a>
       <ul id="menu" role="menubar" aria-hidden="false">
         {% for e in themeConfig.menu %}
         <li role="menuitem"><a href="{{ getPath(e.link) }}"{% if isCurrentPath(e.link) %} class="current"{% endif %}>{% if e.icon %}{{ e.icon }}{% endif %}<span class="menu-text">{{ __(e.name) }}</span></a></li>

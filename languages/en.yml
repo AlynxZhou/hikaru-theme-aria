@@ -11,28 +11,28 @@ about: About
 search: Search
 
 toc: Table of Contents
-sociallink: Social Links
+socialLink: Social Links
 blogroll: Blogroll
 
 # readmore: Read More
 
 reward:
   button: Reward
-  wechatpay: WechatPay
-  alipay: AliPay
-  bitcoin: BitCoin
+  weChatPay: WechatPay
+  aliPay: AliPay
+  bitCoin: BitCoin
 
-postcount:
+postCount:
   none: You have no post, write now!
   one: You have %d post, keep on!
   more: You have %d posts!
 
-tagcount:
+tagCount:
   none: You have no tag, create now！
   one: You have %d tag, keep on!
   more: You have %d tags!
 
-categorycount:
+categoryCount:
   none: You have no category, create now!
   one: You have %d category, keep on!
   more: You have %d categories!
@@ -41,14 +41,17 @@ commentjs:
   none: This page has no comment, go to comment now!
   comment: Go to Comment
 
-poweredby: Proudly Powered by %s
+valine:
+  placeholder: Write your comment here...
+
+poweredBy: Proudly Powered by %s
 theme: Theme is %s
 
 accessibility:
-  prev_page: Previous Page
-  next_page: Next Page
-  back_to_top: Back to Top
-  nav_toggle: Toggle Navbar
-  site_pv: Site Visit Count
-  site_uv: Site User Count
-  page_pv: Page Click Count
+  prevPage: Previous Page
+  nextPage: Next Page
+  backToTop: Back to Top
+  navToggle: Toggle Navbar
+  sitePV: Site Visit Count
+  siteUV: Site User Count
+  pagePV: Page Click Count

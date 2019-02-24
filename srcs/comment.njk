@@ -18,11 +18,11 @@
   </script>
   {% elif themeConfig.comment.commentjs.enable %}
   <div class="commentjs" id="comment-thread"></div>
-  <link rel="stylesheet" href="{% if themeConfig.libCdn.enable and themeConfig.libCdn.commentjs.css %}{{ themeConfig.libCdn.commentjs.css }}{% else %}{{ getPath("css/commentjs.css") }}{% endif %}">
-  <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.marked %}{{ themeConfig.libCdn.marked }}{% else %}{{ getPath("js/marked.min.js") }}{% endif %}"></script>
-  <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.timeAgo %}{{ themeConfig.libCdn.timeAgo }}{% else %}{{ getPath("js/timeago.min.js") }}{% endif %}"></script>
-  <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.highlight %}{{ themeConfig.libCdn.highlight }}{% else %}{{ getPath("js/highlight.min.js") }}{% endif %}"></script>
-  <script defer type="text/javascript" src="{% if themeConfig.libCdn.enable and themeConfig.libCdn.commentjs.js %}{{ themeConfig.libCdn.commentjs.js }}{% else %}{{ getPath("js/commentjs.js") }}{% endif %}"></script>
+  <link rel="stylesheet" href="{% if themeConfig.libCDN.enable and themeConfig.libCDN.commentjs.css %}{{ themeConfig.libCDN.commentjs.css }}{% else %}{{ getPath("css/commentjs.css") }}{% endif %}">
+  <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.marked %}{{ themeConfig.libCDN.marked }}{% else %}{{ getPath("js/marked.min.js") }}{% endif %}"></script>
+  <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.timeAgo %}{{ themeConfig.libCDN.timeAgo }}{% else %}{{ getPath("js/timeago.min.js") }}{% endif %}"></script>
+  <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.highlight %}{{ themeConfig.libCDN.highlight }}{% else %}{{ getPath("js/highlight.min.js") }}{% endif %}"></script>
+  <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.commentjs.js %}{{ themeConfig.libCDN.commentjs.js }}{% else %}{{ getPath("js/commentjs.js") }}{% endif %}"></script>
   <script type="text/javascript">
   $(document).ready(function () {
     getComments({
@@ -52,6 +52,29 @@
     }
     window.addEventListener("DOMContentLoaded", mark, false);
     window.addEventListener("load", mark, false);
+  });
+  </script>
+  {% elif themeConfig.comment.valine.enable %}
+  <div id="vcomments" class="vcomments"></div>
+  <script defer src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.avMin %}{{ themeConfig.libCDN.avMin }}{% else %}{{ getPath("js/av-min.js") }}{% endif %}"></script>
+  <script defer src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.valine %}{{ themeConfig.libCDN.valine }}{% else %}{{ getPath("js/valine.min.js") }}{% endif %}"></script>
+  <script type="text/javascript">
+  $(document).ready(function () {
+    new Valine({
+      "el": "#vcomments",
+      "appId": "{{ themeConfig.comment.valine.appID }}",
+      "appKey": "{{ themeConfig.comment.valine.appKey }}",
+      "verify": "{{ themeConfig.comment.valine.verify }}",
+      "notify": "{{ themeConfig.comment.valine.notify }}",
+      "avatar": "{{ themeConfig.comment.valine.avatar }}",
+      "meta": {{ themeConfig.comment.valine.meta }},
+      "pageSize": {{ themeConfig.comment.valine.pageSize }},
+      "lang": "{{ themeConfig.comment.valine.lang }}",
+      "visitor": "{{ themeConfig.comment.valine.visitor }}",
+      "highlight": "{{ themeConfig.comment.valine.highlight }}",
+      "placeholder": "{{ __("valine.placeholder") }}",
+      "avatarForce": "{{ themeConfig.comment.valine.avatarForce }}"
+    });
   });
   </script>
   {% endif %}

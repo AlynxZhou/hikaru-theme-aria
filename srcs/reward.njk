@@ -1,25 +1,25 @@
 {% block reward %}
 {% if reward !== false %}
 <div class="reward" id="reward">
-  <p>{{ themeConfig.reward.comment }}</p>
+  <p>{{ themeConfig.reward.message }}</p>
   <button id="reward-button" class="button" disable="enable"><i class="fas fa-donate"></i>{{ __("reward.button") }}</button>
   <div id="qr" class="qr" style="display: none;" aria-hidden="true">
-    {% if themeConfig.reward.weChatPayQrCode %}
-    <div id="wechat">
-      <img id="wechat_qr" src="{{ getPath(themeConfig.reward.weChatPayQrCode) }}" alt="{{ __("reward.wechatpay") }}"/>
-      <span>{{ __("reward.wechatpay") }}</span>
+    {% if themeConfig.reward.weChatPayQRCode %}
+    <div id="wechatpay">
+      <img id="wechatpay-qr" src="{{ getPath(themeConfig.reward.weChatPayQRCode) }}" alt="{{ __("reward.weChatPay") }}"/>
+      <span>{{ __("reward.weChatPay") }}</span>
     </div>
     {% endif %}
-    {% if themeConfig.reward.aliPayQrCode %}
+    {% if themeConfig.reward.aliPayQRCode %}
     <div id="alipay">
-      <img id="alipay_qr" src="{{ getPath(themeConfig.reward.aliPayQrCode) }}" alt="{{ __("reward.alipay") }}"/>
-      <span>{{ __("reward.alipay") }}</span>
+      <img id="alipay-qr" src="{{ getPath(themeConfig.reward.aliPayQRCode) }}" alt="{{ __("reward.aliPay") }}"/>
+      <span>{{ __("reward.aliPay") }}</span>
     </div>
     {% endif %}
-    {% if themeConfig.reward.bitCoinQrCode %}
+    {% if themeConfig.reward.bitCoinQRCode %}
     <div id="bitcoin">
-      <img id="bitcoin_qr" src="{{ getPath(themeConfig.reward.bitCoinQrCode) }}" alt="{{ __("reward.bitcoin") }}"/>
-      <span>{{ __("reward.bitcoin") }}</span>
+      <img id="bitcoin-qr" src="{{ getPath(themeConfig.reward.bitCoinQRCode) }}" alt="{{ __("reward.bitCoin") }}"/>
+      <span>{{ __("reward.bitCoin") }}</span>
     </div>
     {% endif %}
   </div>

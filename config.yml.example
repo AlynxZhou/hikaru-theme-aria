@@ -97,7 +97,7 @@ mathjax:
 
 # Note: `fontawesome` is fontawesome-all. `scrollspy` and `util` are from bootstrap. `busuanzi` is `busuanzi.pure.mini.js`.
 # If you don't know what you are doing, don't change it.
-libCdn:
+libCDN:
   enable: false
   jQuery:
   fontAwesome:
@@ -123,6 +123,8 @@ libCdn:
   commentjs:
     js:
     css:
+  avMin:
+  valine:
 
 social:
   enable: true
@@ -161,10 +163,23 @@ comment:
     repo:
     clientID:
     clientSecret:
+  valine:
+    enable: false
+    appID:
+    appKey:
+    verify: false
+    notify: false
+    avatar: mm
+    meta: "[\"nick\", \"mail\", \"link\"]"
+    pageSize: 10
+    lang: zh-cn
+    visitor: false
+    highlight: true
+    avatarForce: false
 
 reward:
   enable: false
-  comment: 坚持原创技术分享，您的支持是我前进的动力！
-  # weChatPayQrCode: images/WeChatPay.png
-  # aliPayQrCode: images/AliPay.png
-  # bitCoinQrCode: images/BitCoin.png
+  message: 坚持原创技术分享，您的支持是我前进的动力！
+  # weChatPayQRCode: images/WeChatPay.png
+  # aliPayQRCode: images/AliPay.png
+  # bitCoinQRCode: images/BitCoin.png

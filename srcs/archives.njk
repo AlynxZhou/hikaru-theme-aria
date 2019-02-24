@@ -12,11 +12,11 @@
   <h1 class="page-title">{{ __(title) }}</h1>
   <h2 class="page-counter">
     {% if site.posts.length > 1 %}
-    {{ __("postcount.more", site.posts.length) }}
+    {{ __("postCount.more", site.posts.length) }}
     {% elif posts.length === 1 %}
-    {{ __("postcount.one", site.posts.length) }}
+    {{ __("postCount.one", site.posts.length) }}
     {% else %}
-    {{ __("postcount.none") }}
+    {{ __("postCount.none") }}
     {% endif %}
   </h2>
   {% set year = "1970" %}
@@ -41,7 +41,7 @@
   {% if pageArray %}
   <nav class="pagination">
     {% if pageIndex !== 0 %}
-    <a class="extend prev" href="{{ getPath(pageArray[pageIndex - 1].docPath) }}"><i class="fas fa-angle-left" aria-label="{{ __("accessibility.prev_page") }}"></i></a>
+    <a class="extend prev" href="{{ getPath(pageArray[pageIndex - 1].docPath) }}"><i class="fas fa-angle-left" aria-label="{{ __("accessibility.prevPage") }}"></i></a>
     {% endif %}
     {% if pageIndex > 2 %}
     <a class="page-number" href="{{ getPath(pageArray[0].docPath) }}">1</a>
@@ -63,7 +63,7 @@
     {% endfor %}
     {% endif %}
     {% if pageIndex !== pageArray.length - 1 %}
-    <a class="extend next" href="{{ getPath(pageArray[pageIndex + 1].docPath) }}"><i class="fas fa-angle-right" aria-label="{{ __("accessibility.next_page") }}"></i></a>
+    <a class="extend next" href="{{ getPath(pageArray[pageIndex + 1].docPath) }}"><i class="fas fa-angle-right" aria-label="{{ __("accessibility.nextPage") }}"></i></a>
     {% endif %}
   </nav>
   {% endif %}
