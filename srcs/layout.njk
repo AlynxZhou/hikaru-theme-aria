@@ -57,6 +57,7 @@
     <link rel="stylesheet" type="text/css" href="{% if themeConfig.libCDN.enable and themeConfig.libCDN.lightGallery.css %}{{ themeConfig.libCDN.lightGallery.css }}{% else %}{{ getPath("css/lightgallery.min.css") }}{% endif %}">
     <script type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.jQuery %}{{ themeConfig.libCDN.jQuery }}{% else %}{{ getPath("js/jquery.min.js") }}{% endif %}"></script>
     <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.util %}{{ themeConfig.libCDN.util }}{% else %}{{ getPath("js/util.js") }}{% endif %}"></script>
+    <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.clipboard %}{{ themeConfig.libCDN.clipboard }}{% else %}{{ getPath("js/clipboard.min.js") }}{% endif %}"></script>
     <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.scrollSpy %}{{ themeConfig.libCDN.scrollSpy }}{% else %}{{ getPath("js/scrollspy.js") }}{% endif %}"></script>
     <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.fontAwesome %}{{ themeConfig.libCDN.fontAwesome }}{% else %}{{ getPath("js/fontawesome-all.min.js") }}{% endif %}"></script>
     <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.lightGallery.js %}{{ themeConfig.libCDN.lightGallery.js }}{% else %}{{ getPath("js/lightgallery.min.js") }}{% endif %}"></script>
@@ -103,6 +104,26 @@
     {% endif %}
     {% endif %}
     <script defer type="text/javascript" src="{{ getPath("js/index.js") }}"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+      $(".post pre.code code").each(function (i, e) {
+        $(e).before("<button class=\"copy button\">{{ __("clipboard.copy") }}</button>")
+      });
+      var cb = new ClipboardJS("button.copy", {
+        "target": function (trigger) {
+            return trigger.nextElementSibling;
+        }
+      });
+      cb.on("success", function (e) {
+        e.clearSelection();
+        var trigger = e.trigger;
+        trigger.innerHTML = "{{ __("clipboard.copied") }}";
+        setTimeout(function () {
+          trigger.innerHTML = "{{ __("clipboard.copy") }}";
+        }, 1500);
+      });
+    });
+    </script>
     {% block js %}{% endblock %}
     <script defer type="text/javascript" src="{{ getPath("js/custom.js") }}"></script>
     <title>{% block title %}{% endblock %}</title>
