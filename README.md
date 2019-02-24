@@ -10,7 +10,7 @@ Live Demo: [喵's StackHarbor](https://sh.alynx.xyz/)
 
 - Elegant responsive double column layout with css animation.
 
-- Comment system (currently supprt [Disqus](https://disqus.com/) and [commentjs](https://github.com/wzpan/comment.js)).
+- Comment system (currently supprt [Disqus](https://disqus.com/), [commentjs](https://github.com/wzpan/comment.js) and [Valine](https://valine.js.org/)).
 
 - Busuanzi counting.
 
