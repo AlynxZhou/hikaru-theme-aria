@@ -125,6 +125,7 @@ libCDN:
     css:
   avMin:
   valine:
+  clipboard:
 
 social:
   enable: true

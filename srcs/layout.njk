@@ -106,20 +106,26 @@
     <script defer type="text/javascript" src="{{ getPath("js/index.js") }}"></script>
     <script type="text/javascript">
     $(document).ready(function () {
-      $(".post pre.code code").each(function (i, e) {
+      $(".post pre code figure.highlight").each(function (i, e) {
         $(e).before("<button class=\"copy button\">{{ __("clipboard.copy") }}</button>")
       });
       var cb = new ClipboardJS("button.copy", {
         "target": function (trigger) {
-            return trigger.nextElementSibling;
+            // Get target element by DOM API.
+            // nextElementSibling is figure,highlight, lastChild is pre.code.
+            return trigger.nextElementSibling.lastChild;
         }
       });
       cb.on("success", function (e) {
         e.clearSelection();
         var trigger = e.trigger;
+        // Change button text as a user tip.
         trigger.innerHTML = "{{ __("clipboard.copied") }}";
+        $(trigger).addClass("copied");
+        // Change button text back;
         setTimeout(function () {
           trigger.innerHTML = "{{ __("clipboard.copy") }}";
+          $(trigger).removeClass("copied");
         }, 1500);
       });
     });

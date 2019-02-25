@@ -178,6 +178,13 @@ code {
 pre code {
   margin: 0;
   padding: 0;
+  button.copy {
+    transition: 0.2s ease-in-out;
+    &.copied {
+      background: $color-button-copied-background;
+      border: 0.1em solid $color-button-copied-border;
+    }
+  }
 }
 figure.highlight {
   display: flex;
@@ -188,7 +195,7 @@ figure.highlight {
   overflow: auto;
   border-radius: $corner-radius;
   padding: 0.5em;
-  margin: 1em 0;
+  margin: 0.5em 0;
   -webkit-font-feature-settings: "liga" 0; /* No variation */
   -moz-font-feature-settings: "liga=0"; /* Firefox 4.0 to 14.0 */
   -moz-font-feature-settings: "liga" 0; /* Firefox 15.0 onwards */
@@ -203,28 +210,15 @@ figure.highlight {
       flex: 0 0 auto;
       text-align: right;
       padding: 0 0.5em;
-      border-right: 0.05em dotted $color-background;
+      // Only show border of gutter, so when user choose no gutter in config,
+      // there is no border for code.
+      border-right: 0.1em dotted $color-background;
     }
     &.code {
       position: relative;
       flex: 1 1 auto;
       text-align: left;
       padding: 0 0.5em;
-      border-left: 0.05em dotted $color-background;
-      button.copy {
-        position: absolute;
-        top: 0.1em;
-        right: 0.1em;
-        visibility: hidden;
-        opacity: 0;
-        transition: 0.2s ease-in-out;
-      }
-      &:hover {
-        button.copy {
-          opacity: 1;
-          visibility: visible;
-        }
-      }
     }
     code {
       color: inherit;
