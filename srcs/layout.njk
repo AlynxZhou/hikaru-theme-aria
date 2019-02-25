@@ -107,7 +107,7 @@
     <script type="text/javascript">
     $(document).ready(function () {
       $(".post pre code figure.highlight").each(function (i, e) {
-        $(e).before("<button class=\"copy button\">{{ __("clipboard.copy") }}</button>")
+        $(e).before("<button class=\"copy button\">{{ __("clipboard.copy") }}</button>");
       });
       var cb = new ClipboardJS("button.copy", {
         "target": function (trigger) {
