@@ -1,5 +1,5 @@
 {% block sidebar %}
-<aside class="sidebar" id="sidebar" style="background: url(/images/background.png);">
+<aside class="sidebar" id="sidebar" style="background: url({{ getPath("images/background.png") }});">
   {% if themeConfig.search %}
   <div class="search">
     <div class="form-group">
