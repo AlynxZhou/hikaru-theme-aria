@@ -9,7 +9,6 @@ tags: 標籤
 about: 關於
 
 search: 搜索
-
 toc: 文章目錄
 socialLink: 社交鏈接
 blogroll: 友情鏈接
@@ -21,7 +20,7 @@ clipboard:
   copied: 已複製
 
 reward:
-  button: 打賞
+  reward: 打賞
   weChatPay: 微信支付
   aliPay: 支付寶
   bitCoin: 比特幣

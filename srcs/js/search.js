@@ -143,6 +143,8 @@ function buildHighlightedContent(prop, mergedSliceArray) {
 function onInput(input, resultContent, datas) {
   resultContent.innerHTML = "";
   if (input.value.trim().length <= 0) {
+    resultContent.innerHTML = "";
+    resultContent.style.display = "none";
     return;
   }
   var keywords = input.value.trim().split(/[\s-\+]+/);
@@ -155,6 +157,8 @@ function onInput(input, resultContent, datas) {
   }
   var matchedDataProps = buildSortedMatchedDataProps(datas, keywords);
   if (matchedDataProps.length === 0) {
+    resultContent.innerHTML = "";
+    resultContent.style.display = "none";
     return;
   }
   li.push("<ul class=\"search-result-list\">");
@@ -174,6 +178,7 @@ function onInput(input, resultContent, datas) {
   }
   li.push("</ul>");
   resultContent.innerHTML = li.join("");
+  resultContent.style.display = "block";
 }
 
 function ajax(url, callback) {

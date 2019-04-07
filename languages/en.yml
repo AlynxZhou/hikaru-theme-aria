@@ -9,7 +9,6 @@ tags: Tags
 about: About
 
 search: Search
-
 toc: Table of Contents
 socialLink: Social Links
 blogroll: Blogroll
@@ -21,7 +20,7 @@ clipboard:
   copied: Copied
 
 reward:
-  button: Reward
+  reward: Reward
   weChatPay: WechatPay
   aliPay: AliPay
   bitCoin: BitCoin
