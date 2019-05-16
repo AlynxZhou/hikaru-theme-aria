@@ -55,7 +55,7 @@
       {% elif post.description %}
       {{ post.description }}
       {% elif themeConfig.autoExcerpt %}
-      {{ post.content.substring(0, themeConfig.autoExcerpt) }}
+      <p>{{ (post.content | striptags).substring(0, themeConfig.autoExcerpt) }}…</p>
       {% else %}
       {{ post.content }}
       {% endif %}

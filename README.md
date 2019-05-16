@@ -255,7 +255,7 @@ Add `reward: false` to disable reward in some pages.
 
 ### Auto Excerpt
 
-If you want to generate post excerpt at homepage automatically, you can use this. For example, `autoExcerpt: 200` will use first 200 chars (HTML doc) as excerpt. However, if you want to get a better look, it is recommended to **place a `<!--more-->` tag to where you want, words before this tag will be used as except**.
+If you want to generate post excerpt at homepage automatically, you can use this. For example, `autoExcerpt: 200` will use first 200 chars (without HTML tags) as excerpt. However, if you want to get a better look, it is recommended to **place a `<!--more-->` tag to where you want, words before this tag will be used as except**.
 
 ### Custom Fonts
 
