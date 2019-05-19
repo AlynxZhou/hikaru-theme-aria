@@ -16,24 +16,25 @@ html, body, .container {
   background: $color-selection-background;
 }
 ::-webkit-scrollbar {
-  width: 0.4em;
-  height: 0.4em;
+  width: 0.5em;
+  height: 0.5em;
+  background: $color-scrollbar-background;
 }
 ::-webkit-scrollbar-track {
   background: 0 0;
 }
 ::-webkit-scrollbar-thumb {
-  background: #999;
+  background: $color-scrollbar;
   border-radius: 0.25em;
   &:hover {
-    background: #666;
+    background: $color-scrollbar-hover;
   }
 }
 ::-webkit-scrollbar-corner {
-  background: #535353;
+  background: $color-scrollbar-corner;
 }
 ::-webkit-scrollbar-resizer {
-  background: #FF6E00;
+  background: $color-scrollbar-resizer;
 }
 body {
   color: $color-font;
@@ -61,13 +62,13 @@ ol, ul {
 }
 a {
   position: relative;
-  color: $color-link;
+  color: $color-link-font;
   text-decoration: none;
-  border-bottom: 0.05em dotted $color-link;
+  border-bottom: 0.05em dotted $color-link-font;
   transition: 0.3s ease-in-out;
   &:hover {
-    color: $color-link-hover;
-    border-bottom: 0.05em solid $color-link-hover;
+    color: $color-link-hover-font;
+    border-bottom: 0.05em solid $color-link-hover-font;
   }
   &:active {
     top: 0.1em;
@@ -90,7 +91,7 @@ a.gallery-item, a.img-link {
   }
 }
 .caption {
-  color: $color-quote;
+  color: $color-quote-font;
   display: block;
   text-align: center;
   margin: 0 0 1em 0;
@@ -186,8 +187,8 @@ pre code {
   justify-content: space-between;
   align-items: center;
   border-radius: top $corner-radius;
-  color: $color-code-titlebar;
-  background: $color-code-border;
+  color: $color-code-titlebar-font;
+  background: $color-code-titlebar-background;
   padding: 0.25em 0.5em;
   .titlebar-left {
     flex: 0 0 auto;
@@ -205,15 +206,15 @@ pre code {
     padding: 0 0.25em;
   }
   a.copy {
-    color: $color-link-copy;
+    color: $color-link-copy-font;
     border-bottom: none;
     transition: 0.2s ease-in-out;
     &:hover {
-      color: $color-link-copy-hover;
+      color: $color-link-copy-hover-font;
       border-bottom: none;
     }
     &.copied {
-      color: $color-link-copy-hover;
+      color: $color-link-copy-hover-font;
     }
   }
   button.button-dot {
@@ -226,13 +227,13 @@ pre code {
     height: 1em;
   }
   .dot-close {
-    background: $color-button-dot-close;
+    background: $color-button-dot-close-background;
   }
   .dot-maximize {
-    background: $color-button-dot-maximize;
+    background: $color-button-dot-maximize-background;
   }
   .dot-minimize {
-    background: $color-button-dot-minimize;
+    background: $color-button-dot-minimize-background;
   }
 }
 figure.highlight {
@@ -242,6 +243,9 @@ figure.highlight {
   justify-content: flex-start;
   align-items: flex-start;
   overflow: auto;
+  border-left: 0.1em solid $color-code-border;
+  border-bottom: 0.1em solid $color-code-border;
+  border-right: 0.1em solid $color-code-border;
   padding: 0.5em;
   margin: 0 0 0.5em 0;
   -webkit-font-feature-settings: "liga" 0; /* No variation */
@@ -279,10 +283,10 @@ blockquote {
   word-wrap: break-word;
   padding: 0 1em;
   border-left: 0.25em solid $color-background;
-  color: $color-quote;
+  color: $color-quote-font;
   p {
     white-space: pre-wrap;
-    color: $color-quote;
+    color: $color-quote-font;
     padding: 0;
     margin: 0;
   }
@@ -294,7 +298,7 @@ blockquote {
   border-top: 0.2em solid $color-background;
   border-bottom: 0.2em solid $color-background;
   text-align: center;
-  color: $color-quote;
+  color: $color-quote-font;
   word-wrap: break-word;
   p, div {
     text-align: center;
@@ -307,17 +311,17 @@ blockquote {
   border-radius: $corner-radius;
 }
 .alert-red {
-  color: $color-alert-red;
+  color: $color-alert-red-font;
   border: 0.1em solid $color-alert-red-border;
   background-color: $color-alert-red-background;
 }
 .alert-green {
-  color: $color-alert-green;
+  color: $color-alert-green-font;
   border: 0.1em solid $color-alert-green-border;
   background-color: $color-alert-green-background;
 }
 .alert-blue {
-  color: $color-alert-blue;
+  color: $color-alert-blue-font;
   border: 0.1em solid $color-alert-blue-border;
   background-color: $color-alert-blue-background;
 }
