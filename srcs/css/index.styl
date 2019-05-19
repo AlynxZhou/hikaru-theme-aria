@@ -178,12 +178,61 @@ code {
 pre code {
   margin: 0;
   padding: 0;
-  button.copy {
+}
+.code-titlebar {
+  display: flex;
+  flex-direction: row;
+  flex-warp: nowarp;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: top $corner-radius;
+  color: $color-code-titlebar;
+  background: $color-code-border;
+  padding: 0.25em 0.5em;
+  .titlebar-left {
+    flex: 0 0 auto;
+    text-align: left;
+    padding: 0 0.25em;
+  }
+  .titlebar-center {
+    flex: 1 0 auto;
+    text-align: center;
+    padding: 0 0.25em;
+  }
+  .titlebar-right {
+    flex: 0 0 auto;
+    text-align: right;
+    padding: 0 0.25em;
+  }
+  a.copy {
+    color: $color-link-copy;
+    border-bottom: none;
     transition: 0.2s ease-in-out;
-    &.copied {
-      background: $color-button-copied-background;
-      border: 0.1em solid $color-button-copied-border;
+    &:hover {
+      color: $color-link-copy-hover;
+      border-bottom: none;
     }
+    &.copied {
+      color: $color-link-copy-hover;
+    }
+  }
+  button.button-dot {
+    text-decoration: none;
+    border: none;
+    padding: 0;
+    margin: 0.25em;
+    border-radius: 50%;
+    width: 1em;
+    height: 1em;
+  }
+  .dot-close {
+    background: $color-button-dot-close;
+  }
+  .dot-maximize {
+    background: $color-button-dot-maximize;
+  }
+  .dot-minimize {
+    background: $color-button-dot-minimize;
   }
 }
 figure.highlight {
@@ -193,9 +242,9 @@ figure.highlight {
   justify-content: flex-start;
   align-items: flex-start;
   overflow: auto;
-  border-radius: $corner-radius;
+  border-radius: bottom $corner-radius;
   padding: 0.5em;
-  margin: 0.5em 0;
+  margin: 0 0 0.5em 0;
   -webkit-font-feature-settings: "liga" 0; /* No variation */
   -moz-font-feature-settings: "liga=0"; /* Firefox 4.0 to 14.0 */
   -moz-font-feature-settings: "liga" 0; /* Firefox 15.0 onwards */

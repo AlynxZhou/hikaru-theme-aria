@@ -15,9 +15,11 @@ blogroll: Blogroll
 
 # readmore: Read More
 
-clipboard:
-  copy: Copy
-  copied: Copied
+code: Code
+
+# clipboard:
+#   copy: Copy
+#   copied: Copied
 
 reward:
   reward: Reward
