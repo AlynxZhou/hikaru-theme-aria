@@ -35,7 +35,7 @@ $(document).ready(function () {
         {% endif %}
       </h2>
       <div class="tags-cloud">
-        {% for tag in tags %}
+        {% for tag in site.tags %}
         <a class="post-tag button" href="{{ getPath(tag.docPath) }}" rel="tag"><i class="fas fa-tag"></i>{{ tag.name }}</a>
         {% endfor %}
       </div>
