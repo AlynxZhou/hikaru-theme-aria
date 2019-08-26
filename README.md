@@ -4,7 +4,7 @@ ARIA
 A Hikaru theme inspired by Kalafina's song ARIA.
 ------------------------------------------------
 
-Live Demo: [喵's StackHarbor](https://sh.alynx.xyz/)
+Live Demo: [喵's StackHarbor](https://sh.alynx.moe/)
 
 # Feature
 
@@ -46,7 +46,7 @@ $ git submodule add https://github.com/AlynxZhou/hikaru-theme-aria themes/aria
 
 ## Edit Site Config
 
-Following needs to be changed in your **site's** `config.yml`.
+Following needs to be changed in your `siteConfig.yml`.
 
 ### Change Theme to `aria`
 
@@ -94,15 +94,15 @@ highlight:
 
 ## Copy ARIA's Config
 
-Copy `config.yml.example` to `config.yml`:
+Copy theme config to your site dir:
 
 ```
-$ cp themes/aria/config.yml.example themes/aria/config.yml
+$ cp themes/aria/themeConfig.yml themeConfig.yml
 ```
 
 ## Edit Theme Config
 
-Following needs to be changed in **theme's** `config.yml` in ARIA's dir, not all config needs customization, you just change what you need：
+Following needs to be changed in `themeConfig.yml`, not all config needs customization, you just change what you need：
 
 # Zone Settings
 
@@ -316,7 +316,7 @@ If you use custom CSS or JavaScript, please use Git to commit them first. You ca
 
 Then use `git pull` to get the newest commit, if there is a conflict, merge it manually.
 
-Don't forget to compare `config.yml` and `config.yml.example`, then apply changes in example to your own config manually.
+Don't forget to compare `themeConfig.yml` in site's dir and theme's dir, then apply changes in example to your `themeConfig.yml` in site's dir manually.
 
 # License
 
