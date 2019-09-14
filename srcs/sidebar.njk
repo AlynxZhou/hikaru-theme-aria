@@ -39,7 +39,7 @@
       <div><i class="far fa-address-card"></i>{{ __("socialLink") }}</p></div>
       <ul>
         {% for e in themeConfig.social.links %}
-        <li>{% if e.icon %}{{ e.icon }}{% endif %}<a href="{{ e.link }}" target="_blank">{{ e.name }}</a></li>
+        <li>{% if e.icon %}{{ e.icon }}{% endif %}<a href="{{ e.link }}" target="_blank" rel="noreferrer noopener">{{ e.name }}</a></li>
         {% endfor %}
       </ul>
     </div>
@@ -50,7 +50,7 @@
       <div><i class="fas fa-user-friends"></i>{{ __("blogroll") }}</div>
       <ul>
         {% for e in themeConfig.blogroll.links %}
-        <li>{% if e.icon %}{{ e.icon }}{% endif %}<a href="{{ e.link }}" target="_blank">{{ e.name }}</a></li>
+        <li>{% if e.icon %}{{ e.icon }}{% endif %}<a href="{{ e.link }}" target="_blank" rel="noreferrer noopener">{{ e.name }}</a></li>
         {% endfor %}
       </ul>
     </div>

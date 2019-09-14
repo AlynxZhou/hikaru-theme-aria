@@ -7,7 +7,7 @@
     <div class="footer-container">
       <div class="footer-left">
         <div class="copyright">
-          <span class="author"><i class="far fa-edit"></i>{{ siteConfig.author }}</span><span class="years"><i class="far fa-copyright"></i><span id="years-text">{% if themeConfig.since %}{{ themeConfig.since }}{% endif %}</span></span>{% if themeConfig.creativeCommons %}<span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/{{ themeConfig.creativeCommons }}/4.0/" target="_blank">{{ themeConfig.creativeCommons.toUpperCase() }} 4.0</a></span>{% endif %}
+          <span class="author"><i class="far fa-edit"></i>{{ siteConfig.author }}</span><span class="years"><i class="far fa-copyright"></i><span id="years-text">{% if themeConfig.since %}{{ themeConfig.since }}{% endif %}</span></span>{% if themeConfig.creativeCommons %}<span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/{{ themeConfig.creativeCommons }}/4.0/" target="_blank" rel="noreferrer noopener">{{ themeConfig.creativeCommons.toUpperCase() }} 4.0</a></span>{% endif %}
         </div>
         {% if themeConfig.busuanzi %}
         <div class="busuanzi">
@@ -22,7 +22,7 @@
           {% endif %}
         </div>
         <div class="powered-by">
-          {{ __("poweredBy", "<a href=\"https://github.com/AlynxZhou/hikaru/\" target=\"_blank\">Hikaru</a>") }}<i class="fab fa-node-js"></i>{{ __("theme", "<a href=\"https://github.com/AlynxZhou/hikaru-theme-aria/\" target=\"_blank\">ARIA</a>") }}
+          {{ __("poweredBy", "<a href=\"https://github.com/AlynxZhou/hikaru/\" target=\"_blank\" rel=\"noreferrer noopener\">Hikaru</a>") }}<i class="fab fa-node-js"></i>{{ __("theme", "<a href=\"https://github.com/AlynxZhou/hikaru-theme-aria/\" target=\"_blank\" rel=\"noreferrer noopener\">ARIA</a>") }}
         </div>
       </div>
     </div>
