@@ -46,7 +46,7 @@ creativeCommons:
 highlight: atom-one-dark
 
 # Custom info in footer.
-customInfo: 托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank">GitHub Pages</a>
+customInfo: 托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank" rel="noreferrer noopener">GitHub Pages</a>
 
 # Select all your webfont in a CDN like Google Fonts, and then copy `href` property in the `<link>` tag, like `link: //fonts.googleapis.com/css?family=Lato|Roboto+Condensed|Skranji|Ubuntu|Ubuntu+Mono`.
 # Then set different fonts to different parts here.
