@@ -73,18 +73,6 @@
     {% if themeConfig.busuanzi %}
     <script defer src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.busuanzi %}{{ themeConfig.libCDN.busuanzi }}{% else %}{{ getPath("js/busuanzi.pure.mini.js") }}{% endif %}"></script>
     {% endif %}
-    {% if themeConfig.search %}
-    <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.search %}{{ themeConfig.libCDN.search }}{% else %}{{ getPath("js/search.js") }}{% endif %}"></script>
-    <script type="text/javascript">
-    $(document).ready(function () {
-      var searchPath = "{{ getPath(siteConfig.search.path) }}";
-      if ("{{ siteConfig.search.path }}".length === 0) {
-        searchPath = "{{ getPath("search.json") }}";
-      }
-      searchFunc(searchPath, "search-input", "search-result");
-    });
-    </script>
-    {% endif %}
     {% if themeConfig.mathjax.cdn and themeConfig.mathjax.enable %}
     {% if themeConfig.mathjax.global or page.mathjax %}
     <script defer type="text/javascript" src="{{ themeConfig.mathjax.cdn }}"></script>

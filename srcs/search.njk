@@ -1,0 +1,52 @@
+{% extends "layout.njk" %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{{ getPath("css/page.css") }}">
+<link rel="stylesheet" type="text/css" href="{{ getPath("css/post.css") }}">
+{% endblock %}
+
+{% block js %}
+{% if themeConfig.search %}
+<script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.search %}{{ themeConfig.libCDN.search }}{% else %}{{ getPath("js/search.js") }}{% endif %}"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+  var searchPath = "{{ getPath(siteConfig.search.path) }}";
+  if ("{{ siteConfig.search.path }}".length === 0) {
+    searchPath = "{{ getPath("search.json") }}";
+  }
+  loadSearch(searchPath, window.location.search, "search-result");
+});
+</script>
+{% endif %}
+{% endblock %}
+
+{% block title %}{{ __(title) }} | {{ siteConfig.title }}{% if siteConfig.subtitle %} - {{ siteConfig.subtitle }}{% endif %}{% endblock %}
+
+{% block content %}
+<div id="page" class="page">
+  <article class="article post card{% if themeConfig.animate %} animate{% endif %}">
+    <div class="post-block">
+      <link itemprop="mainEntityOfPage" href="{{ getURL(docPath) }}">
+      <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <meta itemprop="name" content="{{ siteConfig.author }}">
+        <meta itemprop="description" content="{{ siteConfig.description }}">
+        <meta itemprop="image" content="{{ getPath(themeConfig.avatar) }}">
+      </span>
+      <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+        <meta itemprop="name" content="{{ siteConfig.title }}">
+      </span>
+    </div>
+    <header class="post-header">
+      <h1 class="post-title" itemprop="name headline">{{ __(title) }}</h1>
+      <div class="post-meta">
+        {# There should be no time for search result page. #}
+      </div>
+    </header>
+    <main class="post-main">
+      <div class="search-result" id="search-result"></div>
+    </main>
+    <footer class="post-footer"></footer>
+  </article>
+  {# There should be no comment and reward for search result page. #}
+</div>
+{% endblock %}

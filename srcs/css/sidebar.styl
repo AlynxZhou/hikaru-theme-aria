@@ -14,7 +14,7 @@
     background: $color-search-background;
     color: $color-search-font;
     padding-top: $search-padding-top;
-    input {
+    .search-input {
       width: 70%;
       height: 1.8em;
       border: none;
@@ -31,17 +31,25 @@
         opacity: 0.7;
       }
     }
-  }
-  .search-result-box {
-    background: $color-card-background;
-    word-wrap: break-word;
-    transition: 0.3s ease-in-out;
-    .search-result-list {
-      margin-top: 0;
-      padding: 1em 1em 1em 2em;
-    }
-    &:hover {
-      box-shadow: 0 0.5em 1em 0.5em rgba(0, 0, 0, 0.19);
+    .search-submit {
+      position: relative;
+      color: $color-search-font;
+      text-decoration: none;
+      border-bottom: none;
+      box-sizing: border-box;
+      background: transparent;
+      border: none;
+      &:hover {
+        outline: none;
+      }
+      &:active {
+        top: 0;
+        left: 0;
+        outline: none;
+      }
+      &:focus {
+        outline: none;
+      }
     }
   }
   .sidebar-item {

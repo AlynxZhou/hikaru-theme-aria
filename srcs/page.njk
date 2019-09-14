@@ -10,6 +10,8 @@
 {% include "tags.njk" %}
 {% elif page.layout === "tag" or page.title === "tag" %}
 {% include "tag.njk" %}
+{% elif page.layout === "search" or page.title === "search" %}
+{% include "search.njk" %}
 {% else %}
 {% extends "layout.njk" %}
 
