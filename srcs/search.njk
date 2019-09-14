@@ -3,6 +3,7 @@
 {% block css %}
 <link rel="stylesheet" type="text/css" href="{{ getPath("css/page.css") }}">
 <link rel="stylesheet" type="text/css" href="{{ getPath("css/post.css") }}">
+<link rel="stylesheet" type="text/css" href="{{ getPath("css/spinkit.css") }}">
 {% endblock %}
 
 {% block js %}
@@ -43,7 +44,15 @@ $(document).ready(function () {
       </div>
     </header>
     <main class="post-main">
-      <div class="search-result" id="search-result"></div>
+      <div class="search-result" id="search-result">
+        <div class="sk-wave" id="sk-wave">
+          <div class="sk-rect sk-rect1"></div>
+          <div class="sk-rect sk-rect2"></div>
+          <div class="sk-rect sk-rect3"></div>
+          <div class="sk-rect sk-rect4"></div>
+          <div class="sk-rect sk-rect5"></div>
+        </div>
+      </div>
     </main>
     <footer class="post-footer"></footer>
   </article>
