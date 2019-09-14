@@ -17,9 +17,9 @@ blogroll: 友情鏈接
 
 code: 代碼
 
-# clipboard:
-#   copy: 複製
-#   copied: 已複製
+clipboard:
+  copy: 拷貝
+  copied: 已拷貝
 
 reward:
   reward: 打賞

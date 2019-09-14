@@ -124,4 +124,3 @@ var Util = function ($) {
   setTransitionEndSupport();
   return Util;
 }($);
-//# sourceMappingURL=util.js.map

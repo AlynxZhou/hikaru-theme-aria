@@ -56,10 +56,10 @@ themeDir: aria
 
 ### Language Settings
 
-Available values are `zh_CN`, `zh_HK`, `zh_TW` and `en`. `default` is an alias of `en`.
+Available values are `zh-Hans`, `zh-Hant-HK`, `zh-Hant-TW` and `en`. `default` is an alias of `en`.
 
 ```yaml
-language: zh_CN
+language: zh-Hans
 ```
 
 ### Search Settings

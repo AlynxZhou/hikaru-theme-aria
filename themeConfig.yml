@@ -59,9 +59,9 @@ customFont:
   main:
   code:
 
-avatar: images/avatar.png
+avatar: images/avatar.webp
 
-logo: images/logo.png
+logo: images/logo.webp
 
 # Theme color.
 # Need quote to prevent `#` from comment.

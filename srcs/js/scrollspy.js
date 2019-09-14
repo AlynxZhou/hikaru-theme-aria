@@ -314,4 +314,3 @@ var ScrollSpy = function ($) {
 
   return ScrollSpy;
 }($);
-//# sourceMappingURL=scrollspy.js.map

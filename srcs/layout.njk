@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ page.lang or page.language or siteConfig.language }}">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=10">
     {% if themeConfig.color %}
     <meta name="theme-color" content="{{ themeConfig.color }}">
     <meta name="msapplication-TileColor" content="{{ themeConfig.color }}">
@@ -15,6 +15,9 @@
     <meta name="keywords" content="{{ page.keywords.join(", ") }}">
     {% elif themeConfig.keywords %}
     <meta name="keywords" content="{{ themeConfig.keywords.join(", ") }}">
+    {% endif %}
+    {% if siteConfig.description %}
+    <meta name="description" content="{{ siteConfig.description }}">
     {% endif %}
     {% if themeConfig.favicon.appleTouchIcon %}
     <link rel="apple-touch-icon" sizes="180x180" href="{{ getPath(themeConfig.favicon.appleTouchIcon) }}">
@@ -55,6 +58,7 @@
     <link rel="stylesheet" type="text/css" href="{{ getPath("css/custom.css") }}">
     <link rel="stylesheet" type="text/css" href="{% if themeConfig.libCDN.enable and themeConfig.libCDN[themeConfig.highlight] %}{{ themeConfig.libCDN[themeConfig.highlight] }}{% else %}{{ getPath("css/" + themeConfig.highlight + ".css") }}{% endif %}">
     <link rel="stylesheet" type="text/css" href="{% if themeConfig.libCDN.enable and themeConfig.libCDN.lightGallery.css %}{{ themeConfig.libCDN.lightGallery.css }}{% else %}{{ getPath("css/lightgallery.min.css") }}{% endif %}">
+    <!-- You should not set `defer` to jQuery because other scripts dependents it! -->
     <script type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.jQuery %}{{ themeConfig.libCDN.jQuery }}{% else %}{{ getPath("js/jquery.min.js") }}{% endif %}"></script>
     <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.util %}{{ themeConfig.libCDN.util }}{% else %}{{ getPath("js/util.js") }}{% endif %}"></script>
     <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.clipboard %}{{ themeConfig.libCDN.clipboard }}{% else %}{{ getPath("js/clipboard.min.js") }}{% endif %}"></script>
@@ -111,15 +115,15 @@
         $(e).before([
           "<div class=\"code-titlebar\">",
             "<div class=\"titlebar-left\">",
-              "<a class=\"copy\"><i class=\"far fa-copy\"></i></a>",
+              "<a class=\"copy\" aria-label=\"{{ __("clipboard.copy") }}\"><i class=\"far fa-copy\"></i></a>",
             "</div>",
             "<div class=\"titlebar-center\">",
               lang.length ? lang.toUpperCase() : "{{ __("code") }}",
             "</div>",
             "<div class=\"titlebar-right\">",
-              "<button class=\"button-dot dot-minimize\"></button>",
-              "<button class=\"button-dot dot-maximize\"></button>",
-              "<button class=\"button-dot dot-close\"></button>",
+              "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+              "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+              "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
             "</div>",
           "</div>"
         ].join(""));
@@ -151,7 +155,7 @@
     <script defer type="text/javascript" src="{{ getPath("js/custom.js") }}"></script>
     <title>{% block title %}{% endblock %}</title>
   </head>
-  <body itemscope itemtype="http://schema.org/WebPage" lang="{{ page.lang or page.language or siteConfig.language }}" data-spy="scroll" data-target=".list-group">
+  <body itemscope itemtype="http://schema.org/WebPage" data-spy="scroll" data-target=".list-group">
     {% include "header.njk" %}
     <main id="main" class="main">
       <div class="container">

@@ -17,9 +17,9 @@ blogroll: Blogroll
 
 code: Code
 
-# clipboard:
-#   copy: Copy
-#   copied: Copied
+clipboard:
+  copy: Copy
+  copied: Copied
 
 reward:
   reward: Reward
