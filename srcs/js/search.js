@@ -19,6 +19,9 @@ var MAX_DISPLAY_SLICES = 10;
 // Calculate how many keywords a page contains.
 function findKeywords(keywords, prop) {
   for (var i = 0; i < keywords.length; ++i) {
+    if (keywords[i].length <= 0) {
+      continue;
+    }
     var indexContent = prop["dataContent"].toLowerCase().indexOf(keywords[i].toLowerCase());
     // Find all keyword indices.
     while (indexContent >= 0) {
@@ -145,7 +148,11 @@ function searchResult(queryString, data) {
   if (!urlParams.has("q")) {
     return "";
   }
-  var keywords = urlParams.get('q').split(/[\s-\+]+/);
+  var query = urlParams.get('q').trim();
+  if (query.length <= 0) {
+    return "";
+  }
+  var keywords = query.split(/[\s-\+]+/);
   var li = [];
   if (keywords.length > MAX_KEYWORDS) {
     keywords = keywords.slice(0, MAX_KEYWORDS);
