@@ -1,4 +1,7 @@
 "use strict";
+// If some init functions are used for library which is always enabled,
+// and does not depend on templating,
+// init function should be written here.
 (function ($) {
   $(document).ready(function () {
     // To top button.
@@ -29,7 +32,7 @@
     if (since.length === 0) {
       $("#years-text").text(current);
     } else if (since !== current) {
-      $("#years-text").text(since + " - " + current);
+      $("#years-text").text([since, " - ", current].join(""));
     }
 
     // (40em - 0.6em) * 16px
@@ -65,12 +68,16 @@
     $(".post img").each(function (i, e) {
       if ($(e).parent().prop("tagName") !== "A") {
         if (e.alt) {
-          $(e).after("<span class=\"caption\">" + e.alt + "</span>");
+          $(e).after(["<span class=\"caption\">", e.alt, "</span>"].join(""));
         } else if (e.title) {
           // Hexo asset_img tag generates title instead of alt.
-          $(e).after("<span class=\"caption\">" + e.title + "</span>");
+          $(e).after(
+            ["<span class=\"caption\">", e.title, "</span>"].join("")
+          );
         }
-          $(e).wrap("<a href=\"" + e.src + "\" class=\"gallery-item\"></a>");
+          $(e).wrap(
+            ["<a href=\"", e.src, "\" class=\"gallery-item\"></a>"].join("")
+          );
       } else {
         // If img is already a link, ignore it.
         $(e).parent().addClass("img-link");

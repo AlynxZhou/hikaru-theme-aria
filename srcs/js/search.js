@@ -1,6 +1,6 @@
 /*
- * A local search script for [hikaru-generator-search](https://github.com/AlynxZhou/hikaru-generator-search/)
- * CopyLeft (C) 2015-2018
+ * A local search script for [hikaru-generator-search](https://github.com/AlynxZhou/hikaru-generator-search/).
+ * CopyLeft (C) 2015-2019
  * Joseph Pan <http://github.com/wzpan>
  * Shuhao Mao <http://github.com/maoshuhao>
  * Edited by MOxFIVE <http://github.com/MOxFIVE>
@@ -19,128 +19,166 @@ var MAX_DISPLAY_SLICES = 10;
 // Calculate how many keywords a page contains.
 function findKeywords(keywords, prop) {
   for (var i = 0; i < keywords.length; ++i) {
-    if (keywords[i].length <= 0) {
+    var keyword = keywords[i].toLowerCase();
+    if (keyword.length <= 0) {
       continue;
     }
-    var indexContent = prop["dataContent"].toLowerCase().indexOf(keywords[i].toLowerCase());
+    var indexContent = prop["dataContent"].toLowerCase().indexOf(keyword);
     // Find all keyword indices.
     while (indexContent >= 0) {
-      prop["matchedContentKeywords"].push({
-        "keyword": prop["dataContent"].substring(indexContent, indexContent + keywords[i].length),
+      // Save original content because keyword is case insensitive.
+      prop["contentKeywords"].push({
+        "keyword": prop["dataContent"].substring(
+          indexContent, indexContent + keyword.length
+        ),
         "index": indexContent
       });
-      indexContent = prop["dataContent"].toLowerCase().indexOf(keywords[i].toLowerCase(), indexContent + keywords[i].length);
+      indexContent = prop["dataContent"].toLowerCase().indexOf(
+        keyword, indexContent + keyword.length
+      );
     }
-    var indexTitle = prop["dataTitle"].toLowerCase().indexOf(keywords[i].toLowerCase());
+    var indexTitle = prop["dataTitle"].toLowerCase().indexOf(keyword);
     while (indexTitle >= 0) {
-      prop["matchedTitleKeywords"].push({
-        "keyword": prop["dataTitle"].substring(indexTitle, indexTitle + keywords[i].length),
+      prop["titleKeywords"].push({
+        "keyword": prop["dataTitle"].substring(
+          indexTitle, indexTitle + keyword.length
+        ),
         "index": indexTitle
       });
-      indexTitle = prop["dataTitle"].toLowerCase().indexOf(keywords[i].toLowerCase(), indexTitle + keywords[i].length);
+      indexTitle = prop["dataTitle"].toLowerCase().indexOf(
+        keyword, indexTitle + keyword.length
+      );
     }
   }
 }
 
-function buildSortedMatchedDataProps(data, keywords) {
-  var matchedDataProps = [];
+function buildSortedDataProps(data, keywords) {
+  var dataProps = [];
   for (var i = 0; i < data.length; ++i) {
+    // We don't search HTML tags so strip it.
     var prop = {
-      "matchedContentKeywords": [],
-      "matchedTitleKeywords": [],
+      "contentKeywords": [],
+      "titleKeywords": [],
       "dataTitle": data[i]["title"].trim(),
-      "dataContent": data[i]["content"].trim().replace(/<[^>]+>/g, ""),
+      "dataContent": data[i]["content"].trim().replace(/<\/?[^>]+>/gi, ""),
       "dataURL": data[i]["url"]
     };
     // Only match articles with valid titles and contents.
     if (prop["dataTitle"].length + prop["dataContent"].length > 0) {
       findKeywords(keywords, prop);
     }
-    if (prop["matchedContentKeywords"].length + prop["matchedTitleKeywords"].length > 0) {
-      matchedDataProps.push(prop);
+    if (prop["contentKeywords"].length + prop["titleKeywords"].length > 0) {
+      dataProps.push(prop);
     }
   }
   // The more keywords a page contains, the higher this page ranks.
-  matchedDataProps.sort(function (a, b) {
-    return -((a["matchedContentKeywords"].length + a["matchedTitleKeywords"].length) - (b["matchedContentKeywords"].length + b["matchedTitleKeywords"].length));
+  dataProps.sort(function (a, b) {
+    return -(
+      (a["contentKeywords"].length + a["titleKeywords"].length) -
+      (b["contentKeywords"].length + b["titleKeywords"].length)
+    );
   });
-  return matchedDataProps;
+  return dataProps;
 }
 
-function buildSortedSliceArray(prop) {
-  var sliceArray = [];
+function buildSortedSlices(prop) {
+  var slices = [];
   // Sorting slice array is hard so sort index array instead.
-  prop["matchedContentKeywords"].sort(function (a, b) {
+  prop["contentKeywords"].sort(function (a, b) {
     return a["index"] - b["index"]
   });
   // Get content slice position.
-  for (var i = 0; i < prop["matchedContentKeywords"].length && i < MAX_DISPLAY_SLICES; ++i) {
-    var start = prop["matchedContentKeywords"][i]["index"] - SUBSTRING_OFFSET;
-    var end = prop["matchedContentKeywords"][i]["index"] + prop["matchedContentKeywords"][i]["keyword"].length + SUBSTRING_OFFSET;
-    if (start < 0) {
-      start = 0;
-    }
+  for (
+    var i = 0;
+    i < prop["contentKeywords"].length && i < MAX_DISPLAY_SLICES;
+    ++i
+  ) {
+    var start = prop["contentKeywords"][i]["index"] - SUBSTRING_OFFSET;
+    var end = prop["contentKeywords"][i]["index"] +
+              prop["contentKeywords"][i]["keyword"].length +
+              SUBSTRING_OFFSET;
+    start = Math.max(start, 0);
     if (start === 0) {
-      end = SUBSTRING_OFFSET + prop["matchedContentKeywords"][i]["keyword"].length + SUBSTRING_OFFSET;
+      end = SUBSTRING_OFFSET +
+            prop["contentKeywords"][i]["keyword"].length +
+            SUBSTRING_OFFSET;
     }
-    if (end > prop["dataContent"].length) {
-      end = prop["dataContent"].length;
-    }
-    sliceArray.push({ "start": start, "end": end });
+    end = Math.min(end, prop["dataContent"].length);
+    slices.push({"start": start, "end": end});
   }
-  return sliceArray;
+  return slices;
 }
 
-function mergeSliceArray(sliceArray) {
-  var mergedSliceArray = [];
-  if (sliceArray.length === 0) {
-    return mergedSliceArray;
+function mergeSlices(slices) {
+  var mergedSlices = [];
+  if (slices.length === 0) {
+    return mergedSlices;
   }
-  mergedSliceArray.push(sliceArray[0])
-  for (var i = 1; i < sliceArray.length; ++i) {
+  mergedSlices.push(slices[0])
+  for (var i = 1; i < slices.length; ++i) {
     // If two slice have common part, merge them.
-    if (mergedSliceArray[mergedSliceArray.length - 1]["end"] >= sliceArray[i]["start"]) {
-      if (sliceArray[i]["end"] > mergedSliceArray[mergedSliceArray.length - 1]["end"]) {
-        mergedSliceArray[mergedSliceArray.length - 1]["end"] = sliceArray[i]["end"];
+    if (mergedSlices[mergedSlices.length - 1]["end"] >= slices[i]["start"]) {
+      if (slices[i]["end"] > mergedSlices[mergedSlices.length - 1]["end"]) {
+        mergedSlices[mergedSlices.length - 1]["end"] = slices[i]["end"];
       }
     } else {
-      mergedSliceArray.push(sliceArray[i]);
+      mergedSlices.push(slices[i]);
     }
   }
-  return mergedSliceArray;
+  return mergedSlices;
 }
 
 function buildHighlightedTitle(prop) {
   var matchedTitle = prop["dataTitle"];
-  var reArray = [];
-  for (var i = 0; i < prop["matchedTitleKeywords"].length; ++i) {
-    if (prop["matchedTitleKeywords"][i]["keyword"].length > 0) {
-      reArray.push(prop["matchedTitleKeywords"][i]["keyword"])
+  var regexKeywords = [];
+  for (var i = 0; i < prop["titleKeywords"].length; ++i) {
+    if (prop["titleKeywords"][i]["keyword"].length > 0) {
+      regexKeywords.push(prop["titleKeywords"][i]["keyword"])
     }
   }
   // Replace all in one time to prevent it from matching <strong> tag.
-  var re = new RegExp(reArray.join("|"), "gi");
+  var regex = new RegExp(regexKeywords.join("|"), "gi");
   // `$&` is the matched part of RegExp.
-  matchedTitle = matchedTitle.replace(re, "<strong class=\"search-keyword\">$&</strong>");
+  matchedTitle = matchedTitle.replace(
+    regex, "<strong class=\"search-keyword\">$&</strong>"
+  );
   return matchedTitle;
 }
 
-function buildHighlightedContent(prop, mergedSliceArray) {
-  var matchedContentArray = [];
-  for (var i = 0; i < mergedSliceArray.length; ++i) {
-    matchedContentArray.push(prop["dataContent"].substring(mergedSliceArray[i]["start"], mergedSliceArray[i]["end"]));
+function buildHighlightedContent(prop, mergedSlices) {
+  var matchedContents = [];
+  for (var i = 0; i < mergedSlices.length; ++i) {
+    matchedContents.push(prop["dataContent"].substring(
+      mergedSlices[i]["start"], mergedSlices[i]["end"]
+    ));
   }
-  var reArray = [];
-  for (var i = 0; i < prop["matchedContentKeywords"].length; ++i) {
-    if (prop["matchedContentKeywords"][i]["keyword"].length > 0) {
-      reArray.push(prop["matchedContentKeywords"][i]["keyword"]);
+  var regexKeywords = [];
+  for (var i = 0; i < prop["contentKeywords"].length; ++i) {
+    if (prop["contentKeywords"][i]["keyword"].length > 0) {
+      regexKeywords.push(prop["contentKeywords"][i]["keyword"]);
     }
   }
-  var re = new RegExp(reArray.join("|"), "gi");
-  for (var i = 0; i < matchedContentArray.length; i++) {
-    matchedContentArray[i] = matchedContentArray[i].replace(re, "<strong class=\"search-keyword\">$&</strong>");
+  var regex = new RegExp(regexKeywords.join("|"), "gi");
+  for (var i = 0; i < matchedContents.length; i++) {
+    matchedContents[i] = matchedContents[i].replace(
+      regex, "<strong class=\"search-keyword\">$&</strong>"
+    );
   }
-  return matchedContentArray.join("...");
+  return matchedContents.join("…");
+}
+
+// Keywords are all strings so this function works.
+function fastUniqKeywords(array) {
+  var seen = {};
+  var result = [];
+  var j = 0;
+  for (var i = 0; i < array.length; i++) {
+    if (seen[array[i]] !== true) {
+      seen[array[i]] = true;
+      result[j++] = array[i];
+    }
+  }
+  return result;
 }
 
 function searchResult(queryString, data) {
@@ -152,7 +190,7 @@ function searchResult(queryString, data) {
   if (query.length <= 0) {
     return "";
   }
-  var keywords = query.split(/[\s-\+]+/);
+  var keywords = fastUniqKeywords(query.split(/[\s-\+]+/));
   var li = [];
   if (keywords.length > MAX_KEYWORDS) {
     keywords = keywords.slice(0, MAX_KEYWORDS);
@@ -160,23 +198,23 @@ function searchResult(queryString, data) {
     li.push(MAX_KEYWORDS);
     li.push(" are sliced.</span>");
   }
-  var matchedDataProps = buildSortedMatchedDataProps(data, keywords);
-  if (matchedDataProps.length === 0) {
+  var dataProps = buildSortedDataProps(data, keywords);
+  if (dataProps.length === 0) {
     return "";
   }
   li.push("<ul class=\"search-result-list\">");
-  for (var i = 0; i < matchedDataProps.length; ++i) {
-    // Show search results
+  for (var i = 0; i < dataProps.length; ++i) {
+    // Show search results.
     li.push("<li><a href=\"")
-    li.push(matchedDataProps[i]["dataURL"]);
+    li.push(dataProps[i]["dataURL"]);
     li.push("\" class=\"search-result-title\">");
-    li.push(buildHighlightedTitle(matchedDataProps[i]));
+    li.push(buildHighlightedTitle(dataProps[i]));
     li.push("</a>");
     li.push("<p class=\"search-result-content\">...");
-    var sliceArray = buildSortedSliceArray(matchedDataProps[i])
-    var mergedSliceArray = mergeSliceArray(sliceArray);
+    var slices = buildSortedSlices(dataProps[i])
+    var mergedSlices = mergeSlices(slices);
     // Highlight keyword.
-    li.push(buildHighlightedContent(matchedDataProps[i], mergedSliceArray));
+    li.push(buildHighlightedContent(dataProps[i], mergedSlices));
     li.push("...</p>");
   }
   li.push("</ul>");
@@ -218,16 +256,18 @@ var loadSearch = function (path, queryString, containerId) {
       for (var i = 0; i < entries.length; i++) {
         data.push({
           "title": entries[i].getElementsByTagName("title")[0].innerHTML || "",
-          "content": entries[i].getElementsByTagName("content")[0].innerHTML || "",
+          "content": entries[i].getElementsByTagName("content")[0].innerHTML ||
+                     "",
           "url": entries[i].getElementsByTagName("url")[0].innerHTML || ""
         });
       }
     } else {
       var xhrJSON = JSON.parse(xhr.response);
       for (var i = 0; i < xhrJSON.length; i++) {
+         // Hexo Generator Search does not fill a key when a page is blank.
         data.push({
           "title": xhrJSON[i]["title"] || "",
-          "content": xhrJSON[i]["content"] || "", // Hexo Generator Search does not fill a key when a page is blank.
+          "content": xhrJSON[i]["content"] || "",
           "url": xhrJSON[i]["url"] || ""
         });
       }
