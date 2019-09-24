@@ -103,7 +103,7 @@
         $(e).before([
           "<div class=\"code-titlebar\">",
             "<div class=\"titlebar-left\">",
-              "<a class=\"copy\" aria-label=\"{{ __("clipboard.copy") }}\"><i class=\"far fa-copy\"></i></a>",
+              "<button class=\"copy\" aria-label=\"{{ __("clipboard.copy") }}\"><i class=\"far fa-copy\"></i></button>",
             "</div>",
             "<div class=\"titlebar-center\">",
               lang.length ? lang.toUpperCase() : "{{ __("code") }}",
@@ -117,7 +117,7 @@
         ].join(""));
         // $(e).before("<button class=\"copy button\">{{ __("clipboard.copy") }}</button>");
       });
-      var cb = new ClipboardJS("a.copy", {
+      var cb = new ClipboardJS("button.copy", {
         "target": function (trigger) {
             // Get target element by DOM API.
             // trigger.parentNode.parentNode is code-titlebar.
