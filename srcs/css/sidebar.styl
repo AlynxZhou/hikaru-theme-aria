@@ -32,12 +32,16 @@
     }
     .search-submit {
       position: relative;
+      transition: 0.3s ease-in-out;
       color: $color-search-font;
       text-decoration: none;
       border-bottom: none;
       box-sizing: border-box;
       background: transparent;
       border: none;
+      &:hover {
+        color: $color-search-hover-font;
+      }
       &:active {
         top: 0;
         left: 0;
