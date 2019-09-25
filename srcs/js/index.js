@@ -66,20 +66,17 @@
     });
 
     $(".post img").each(function (i, e) {
+      // If an image works as link, don't attach light gallary to it.
       if ($(e).parent().prop("tagName") !== "A") {
-        if (e.alt) {
-          $(e).after(["<span class=\"caption\">", e.alt, "</span>"].join(""));
-        } else if (e.title) {
-          // Hexo asset_img tag generates title instead of alt.
+        if (e.title) {
           $(e).after(
             ["<span class=\"caption\">", e.title, "</span>"].join("")
           );
         }
-          $(e).wrap(
-            ["<a href=\"", e.src, "\" class=\"gallery-item\"></a>"].join("")
-          );
+        $(e).wrap(
+          ["<a href=\"", e.src, "\" class=\"gallery-item\"></a>"].join("")
+        );
       } else {
-        // If img is already a link, ignore it.
         $(e).parent().addClass("img-link");
       }
     });
