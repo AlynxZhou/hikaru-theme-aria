@@ -52,35 +52,6 @@ function findKeywords(keywords, prop) {
   }
 }
 
-function buildSortedDataProps(data, keywords) {
-  var dataProps = [];
-  for (var i = 0; i < data.length; ++i) {
-    // We don't search HTML tags so strip it.
-    var prop = {
-      "contentKeywords": [],
-      "titleKeywords": [],
-      "dataTitle": data[i]["title"].trim(),
-      "dataContent": data[i]["content"].trim().replace(/<\/?[^>]+>/gi, ""),
-      "dataURL": data[i]["url"]
-    };
-    // Only match articles with valid titles and contents.
-    if (prop["dataTitle"].length + prop["dataContent"].length > 0) {
-      findKeywords(keywords, prop);
-    }
-    if (prop["contentKeywords"].length + prop["titleKeywords"].length > 0) {
-      dataProps.push(prop);
-    }
-  }
-  // The more keywords a page contains, the higher this page ranks.
-  dataProps.sort(function (a, b) {
-    return -(
-      (a["contentKeywords"].length + a["titleKeywords"].length) -
-      (b["contentKeywords"].length + b["titleKeywords"].length)
-    );
-  });
-  return dataProps;
-}
-
 function buildSortedSlices(prop) {
   var slices = [];
   // Sorting slice array is hard so sort index array instead.
@@ -167,6 +138,45 @@ function buildHighlightedContent(prop, mergedSlices) {
   return matchedContents.join("…");
 }
 
+function buildDataProps(data, keywords) {
+  var dataProps = [];
+  for (var i = 0; i < data.length; ++i) {
+    // We don't search HTML tags so strip it.
+    var prop = {
+      "contentKeywords": [],
+      "titleKeywords": [],
+      "dataTitle": (data[i]["title"] || "").trim(),
+      "highlightedTitle": null,
+      "dataContent": (data[i]["content"] || "").trim().replace(
+        /<\/?[^>]+>/gi, ""
+      ),
+      "highlightedContent": null,
+      "dataURL": data[i]["url"] || ""
+    };
+    // Only match articles with valid titles and contents.
+    if (prop["dataTitle"].length + prop["dataContent"].length > 0) {
+      findKeywords(keywords, prop);
+    }
+    if (prop["contentKeywords"].length + prop["titleKeywords"].length > 0) {
+      prop["highlightedTitle"] = buildHighlightedTitle(prop);
+      var mergedSlices = mergeSlices(buildSortedSlices(prop));
+      prop["highlightedContent"] = buildHighlightedContent(prop, mergedSlices);
+      dataProps.push(prop);
+    }
+  }
+  return dataProps;
+}
+
+// The more keywords a page contains, the higher this page ranks.
+function sortDataProps(dataProps) {
+  dataProps.sort(function (a, b) {
+    return -(
+      (a["contentKeywords"].length + a["titleKeywords"].length) -
+      (b["contentKeywords"].length + b["titleKeywords"].length)
+    );
+  });
+}
+
 // Keywords are all strings so this function works.
 function fastUniqKeywords(array) {
   var seen = {};
@@ -181,99 +191,97 @@ function fastUniqKeywords(array) {
   return result;
 }
 
-function searchResult(queryString, data) {
+function parseKeywords(queryString) {
   var urlParams = new URLSearchParams(window.location.search);
   if (!urlParams.has("q")) {
-    return "";
+    return [];
   }
   var query = urlParams.get('q').trim();
   if (query.length <= 0) {
-    return "";
+    return [];
   }
-  var keywords = fastUniqKeywords(query.split(/[\s-\+]+/));
-  var li = [];
-  if (keywords.length > MAX_KEYWORDS) {
-    keywords = keywords.slice(0, MAX_KEYWORDS);
-    li.push("<span>Keywords more than ");
-    li.push(MAX_KEYWORDS);
-    li.push(" are sliced.</span>");
-  }
-  var dataProps = buildSortedDataProps(data, keywords);
-  if (dataProps.length === 0) {
-    return "";
-  }
-  li.push("<ul class=\"search-result-list\">");
-  for (var i = 0; i < dataProps.length; ++i) {
-    // Show search results.
-    li.push("<li><a href=\"")
-    li.push(dataProps[i]["dataURL"]);
-    li.push("\" class=\"search-result-title\">");
-    li.push(buildHighlightedTitle(dataProps[i]));
-    li.push("</a>");
-    li.push("<p class=\"search-result-content\">...");
-    var slices = buildSortedSlices(dataProps[i])
-    var mergedSlices = mergeSlices(slices);
-    // Highlight keyword.
-    li.push(buildHighlightedContent(dataProps[i], mergedSlices));
-    li.push("...</p>");
-  }
-  li.push("</ul>");
-  return li.join("");
+  return fastUniqKeywords(query.split(/[\s-\+]+/));
 }
 
-function ajax(url, callback) {
-  var xhr = null;
-  if (window.XMLHttpRequest) {
-    xhr = new XMLHttpRequest();
-  } else if (window.ActiveXObject) {
-    xhr = new ActiveXObject("Microsoft.XMLHTTP");
+function renderDataProps(dataProps) {
+  var res = [];
+  for (var i = 0; i < dataProps.length; ++i) {
+    res.push("<li><a href=\"")
+    res.push(dataProps[i]["dataURL"]);
+    res.push("\" class=\"search-result-title\">");
+    res.push(dataProps[i]["highlightedTitle"]);
+    res.push("</a>");
+    res.push("<p class=\"search-result-content\">…");
+    res.push(dataProps[i]["highlightedContent"]);
+    res.push("…</p>");
   }
-  if (xhr == null) {
-    console.error("Your broswer does not support XMLHttpRequest!");
+  return res;
+}
+
+function fetchJSON(path, callback) {
+  if (window.fetch != null) {
+    fetch(path).then(function (response) {
+      return response.json();
+    }).then(callback);
+  } else {
+    var xhr = null;
+    if (window.XMLHttpRequest) {
+      xhr = new XMLHttpRequest();
+    } else if (window.ActiveXObject) {
+      xhr = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    if (xhr == null) {
+      console.error("Your broswer does not support XMLHttpRequest!");
+      return;
+    }
+    xhr.onreadystatechange = function () {
+      // 4 is ready.
+      if (xhr.readyState !== 4) {
+        return;
+      }
+      if (xhr.status !== 200) {
+        console.error("XMLHttpRequest failed!");
+        return;
+      }
+      callback(JSON.parse(xhr.response));
+    };
+    xhr.open("GET", path, true);
+    xhr.send(null);
+  }
+}
+
+var loadSearch = function (paths, queryString, containerID) {
+  var resultContainer = document.getElementById(containerID);
+  resultContainer.style.display = "block";
+  var header = [];
+  var dataProps = [];
+  var footer = [];
+  var keywords = parseKeywords(queryString);
+  if (keywords.length === 0) {
+    resultContainer.innerHTML = "";
     return;
   }
-  xhr.onreadystatechange = function () {
-    // 4 is ready.
-    if (xhr.readyState !== 4) {
-      return;
-    }
-    if (xhr.status !== 200) {
-      console.error("XMLHttpRequest failed!");
-      return;
-    }
-    callback(xhr);
-  };
-  xhr.open("GET", url, true);
-  xhr.send(null);
-}
-
-var loadSearch = function (path, queryString, containerId) {
-  ajax(path, function (xhr) {
-    var data = [];
-    if (xhr.responseXML) {
-      var xmlDoc = xhr.responseXML;
-      var entries = xmlDoc.getElementsByTagName("entry");
-      for (var i = 0; i < entries.length; i++) {
-        data.push({
-          "title": entries[i].getElementsByTagName("title")[0].innerHTML || "",
-          "content": entries[i].getElementsByTagName("content")[0].innerHTML ||
-                     "",
-          "url": entries[i].getElementsByTagName("url")[0].innerHTML || ""
-        });
+  if (keywords.length > MAX_KEYWORDS) {
+    keywords = keywords.slice(0, MAX_KEYWORDS);
+    header.push("<span>Keywords more than ");
+    header.push(MAX_KEYWORDS);
+    header.push(" are sliced.</span>");
+  }
+  header.push("<ul class=\"search-result-list\">");
+  footer.push("</ul>");
+  paths.forEach(function (path) {
+    fetchJSON(path, function (json) {
+      var data = null;
+      if (json instanceof Array) {
+        data = json;
+      } else {
+        data = json["data"];
       }
-    } else {
-      var xhrJSON = JSON.parse(xhr.response);
-      for (var i = 0; i < xhrJSON.length; i++) {
-         // Hexo Generator Search does not fill a key when a page is blank.
-        data.push({
-          "title": xhrJSON[i]["title"] || "",
-          "content": xhrJSON[i]["content"] || "",
-          "url": xhrJSON[i]["url"] || ""
-        });
-      }
-    }
-    var resultContainer = document.getElementById(containerId);
-    resultContainer.style.display = "block";
-    resultContainer.innerHTML = searchResult(queryString, data);
+      dataProps = dataProps.concat(buildDataProps(data, keywords));
+      sortDataProps(dataProps);
+      resultContainer.innerHTML = header.concat(
+        renderDataProps(dataProps)
+      ).concat(footer).join("");
+    });
   });
 }
