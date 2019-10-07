@@ -278,12 +278,12 @@ customFont:
 
 Markdown will be compiled to HTML, and you can write HTML in a valid Markdown file. In order to help you organize your article better, here are some internal custom style class that you can use while writing.
 
-### Centerquote
+### Center Quote
 
-Just add `.centerquote` class to your HTML code, you will get a center-aligned quote with top and bottom border. Recommended for `<blockquote></blockquote>` tag:
+Just add `.center-quote` class to your HTML code, you will get a center-aligned quote with top and bottom border. Recommended for `<blockquote></blockquote>` tag:
 
 ```HTML
-<blockquote class="centerquote">Centerquote Example</blockquote>
+<blockquote class="center-quote">Centerquote Example</blockquote>
 ```
 
 It looks like:
