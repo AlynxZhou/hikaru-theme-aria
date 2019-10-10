@@ -8,6 +8,7 @@
       margin: 0;
     }
     .post-title .post-title-link {
+      // Use inline-block because it is not supposed to hold the whole line.
       display: inline-block;
       position: relative;
       text-decoration: none;
@@ -36,11 +37,15 @@
       }
     }
     .post-meta span.meta-block {
-      margin: 0 0.1em;
+      display: block;
+      margin: 0.5em;
     }
   }
   .post-main {
-    a.headerlink {
+    img {
+      max-width: 90%;
+    }
+    a.header-link, a.headerlink {
       border: none;
       &:hover {
         border: none;
