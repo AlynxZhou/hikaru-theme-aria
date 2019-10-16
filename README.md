@@ -28,6 +28,43 @@ Live Demo: [喵's StackHarbor](https://sh.alynx.moe/)
 
 - ARIA uses [FlexBox layout](https://developer.mozilla.org/en-US/docs/Web/CSS/flex) to place elements, and Internet Explorer before version 9 has no way to support it. So if you use IE, upgrade to IE 11 or later, or use a modern browser like [Google Chrome](https://www.google.com/chrome/) or [Mozilla Firefox](https://www.mozilla.org/en-US/firefox/). Or if you know how to fallback FlexBox in elder IE, please send PRs, thanks.
 
+# Coding Style
+
+You don't need to keep 80-chars a line in templates and style files, you should keep them in good structure.
+
+## Stylus
+
+They should look like CSS, don't remove `{`, `}` and `;`.
+
+Use 2-spaces indent.
+
+## Nunjucks
+
+Nunjucks tags should not be indented, which means they should be in the same level as their inner HTML. Consider them as HTML comment.
+
+Use 2-spaces indent.
+
+## JavaScript
+
+JavaScript inside scripts tags shoule have a 2-spaces indent to it's parent `<script>` tag.
+
+Most JavaScript code should use jQuery's `$(document).ready()`.
+
+Consider not to use ES6, most of those functions can be written in ES5.
+
+Use 2-spaces indent.
+
+## YAML
+
+Use camelCase.
+
+Don't use inline array and object.
+
+If you need an array to iterate, don't use object with it's key and value, use array of objects.
+
+Use 2-spaces indent.
+
+
 # Usage
 
 ## Clone This Repo
