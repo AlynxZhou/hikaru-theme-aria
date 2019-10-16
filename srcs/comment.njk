@@ -5,16 +5,16 @@
   <script defer id="dsq-count-scr" src="//{{ themeConfig.comment.disqusShortName }}.disqus.com/count.js"></script>
   <div id="disqus_thread" class="disqus_thread"></div>
   <script type="text/javascript">
-  var disqus_config = function () {
-    this.page.url = "{{ getPath(page.docPath) }}";
-    this.page.identifier = "{{ getPath(page.docPath) }}";
-  };
-  (function() {
-    var d = document, s = d.createElement("script");
-    s.src = "https://{{ themeConfig.comment.disqusShortName }}.disqus.com/embed.js";
-    s.setAttribute("data-timestamp", +new Date());
-    (d.head || d.body).appendChild(s);
-  })();
+    var disqus_config = function () {
+      this.page.url = "{{ getPath(page.docPath) }}";
+      this.page.identifier = "{{ getPath(page.docPath) }}";
+    };
+    (function() {
+      var d = document, s = d.createElement("script");
+      s.src = "https://{{ themeConfig.comment.disqusShortName }}.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
   </script>
   {% elif themeConfig.comment.commentjs.enable %}
   <div class="commentjs" id="comment-thread"></div>
@@ -24,58 +24,58 @@
   <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.highlight %}{{ themeConfig.libCDN.highlight }}{% else %}{{ getPath("js/highlight.min.js") }}{% endif %}"></script>
   <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.commentjs.js %}{{ themeConfig.libCDN.commentjs.js }}{% else %}{{ getPath("js/commentjs.js") }}{% endif %}"></script>
   <script type="text/javascript">
-  $(document).ready(function () {
-    getComments({
-      "type": "{{ themeConfig.comment.commentjs.type }}",
-      "user": "{{ themeConfig.comment.commentjs.user }}",
-      "repo": "{{ themeConfig.comment.commentjs.repo }}",
-      "clientID": "{{ themeConfig.comment.commentjs.clientID }}",
-      "clientSecret": "{{ themeConfig.comment.commentjs.clientSecret }}",
-      "no_comment": "{{ __("commentjs.none") }}",
-      "go_to_comment": "{{ __("commentjs.comment") }}",
-      "issue_title": "{{ __(title) }}",
-      "btn_class": "button",
-      "comments_target": "#comment-thread"
-    });
-    marked.setOptions({
-      "highlight": function (code, lang) {
-        return hljs.highlightAuto(code).value;
-      }
-    });
-    function mark() {
-      var markdowns = document.getElementsByClassName("markdown");
-      for (var i = 0; i < markdowns.length; ++i){
-        if (markdowns[i].innerHTML) {
-          markdowns[i].innerHTML = marked(markdowns[i].innerHTML);
+    $(document).ready(function () {
+      getComments({
+        "type": "{{ themeConfig.comment.commentjs.type }}",
+        "user": "{{ themeConfig.comment.commentjs.user }}",
+        "repo": "{{ themeConfig.comment.commentjs.repo }}",
+        "clientID": "{{ themeConfig.comment.commentjs.clientID }}",
+        "clientSecret": "{{ themeConfig.comment.commentjs.clientSecret }}",
+        "no_comment": "{{ __("commentjs.none") }}",
+        "go_to_comment": "{{ __("commentjs.comment") }}",
+        "issue_title": "{{ __(title) }}",
+        "btn_class": "button",
+        "comments_target": "#comment-thread"
+      });
+      marked.setOptions({
+        "highlight": function (code, lang) {
+          return hljs.highlightAuto(code).value;
+        }
+      });
+      function mark() {
+        var markdowns = document.getElementsByClassName("markdown");
+        for (var i = 0; i < markdowns.length; ++i){
+          if (markdowns[i].innerHTML) {
+            markdowns[i].innerHTML = marked(markdowns[i].innerHTML);
+          }
         }
       }
-    }
-    window.addEventListener("DOMContentLoaded", mark, false);
-    window.addEventListener("load", mark, false);
-  });
+      window.addEventListener("DOMContentLoaded", mark, false);
+      window.addEventListener("load", mark, false);
+    });
   </script>
   {% elif themeConfig.comment.valine.enable %}
   <div id="vcomments" class="vcomments"></div>
   <script defer src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.avMin %}{{ themeConfig.libCDN.avMin }}{% else %}{{ getPath("js/av-min.js") }}{% endif %}"></script>
   <script defer src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.valine %}{{ themeConfig.libCDN.valine }}{% else %}{{ getPath("js/valine.min.js") }}{% endif %}"></script>
   <script type="text/javascript">
-  $(document).ready(function () {
-    new Valine({
-      "el": "#vcomments",
-      "appId": "{{ themeConfig.comment.valine.appID }}",
-      "appKey": "{{ themeConfig.comment.valine.appKey }}",
-      "verify": "{{ themeConfig.comment.valine.verify }}",
-      "notify": "{{ themeConfig.comment.valine.notify }}",
-      "avatar": "{{ themeConfig.comment.valine.avatar }}",
-      "meta": {{ themeConfig.comment.valine.meta }},
-      "pageSize": {{ themeConfig.comment.valine.pageSize }},
-      "lang": "{{ themeConfig.comment.valine.lang }}",
-      "visitor": "{{ themeConfig.comment.valine.visitor }}",
-      "highlight": "{{ themeConfig.comment.valine.highlight }}",
-      "placeholder": "{{ __("valine.placeholder") }}",
-      "avatarForce": "{{ themeConfig.comment.valine.avatarForce }}"
+    $(document).ready(function () {
+      new Valine({
+        "el": "#vcomments",
+        "appId": "{{ themeConfig.comment.valine.appID }}",
+        "appKey": "{{ themeConfig.comment.valine.appKey }}",
+        "verify": "{{ themeConfig.comment.valine.verify }}",
+        "notify": "{{ themeConfig.comment.valine.notify }}",
+        "avatar": "{{ themeConfig.comment.valine.avatar }}",
+        "meta": {{ themeConfig.comment.valine.meta }},
+        "pageSize": {{ themeConfig.comment.valine.pageSize }},
+        "lang": "{{ themeConfig.comment.valine.lang }}",
+        "visitor": "{{ themeConfig.comment.valine.visitor }}",
+        "highlight": "{{ themeConfig.comment.valine.highlight }}",
+        "placeholder": "{{ __("valine.placeholder") }}",
+        "avatarForce": "{{ themeConfig.comment.valine.avatarForce }}"
+      });
     });
-  });
   </script>
   {% endif %}
 </div>

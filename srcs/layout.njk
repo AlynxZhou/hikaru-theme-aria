@@ -77,67 +77,67 @@
     {% if themeConfig.mathjax.global or page.mathjax %}
     <script defer type="text/javascript" src="{{ themeConfig.mathjax.cdn }}"></script>
     <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-      tex2jax: {
-        inlineMath: [["$", "$"], ["\\(", "\\)"]],
-        processEscapes: true,
-        skipTags: ["script", "noscript", "style", "textarea", "pre", "code"]
-      }
-    });
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [["$", "$"], ["\\(", "\\)"]],
+          processEscapes: true,
+          skipTags: ["script", "noscript", "style", "textarea", "pre", "code"]
+        }
+      });
     </script>
     <script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-      var all = MathJax.Hub.getAllJax(), i;
-      for (i=0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += " has-jax";
-      }
-    });
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += " has-jax";
+        }
+      });
     </script>
     {% endif %}
     {% endif %}
     <script defer type="text/javascript" src="{{ getPath("js/index.js") }}"></script>
     <script type="text/javascript">
-    $(document).ready(function () {
-      $(".post pre code figure.highlight").each(function (i, e) {
-        var lang = e.parentNode.className;
-        $(e).before([
-          "<div class=\"code-titlebar\">",
-            "<div class=\"titlebar-left\">",
-              "<button class=\"copy\" aria-label=\"{{ __("clipboard.copy") }}\"><i class=\"far fa-copy\"></i></button>",
-            "</div>",
-            "<div class=\"titlebar-center\">",
-              lang.length ? lang.toUpperCase() : "{{ __("code") }}",
-            "</div>",
-            "<div class=\"titlebar-right\">",
-              "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
-              "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
-              "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
-            "</div>",
-          "</div>"
-        ].join(""));
-        // $(e).before("<button class=\"copy button\">{{ __("clipboard.copy") }}</button>");
+      $(document).ready(function () {
+        $(".post pre code figure.highlight").each(function (i, e) {
+          var lang = e.parentNode.className;
+          $(e).before([
+            "<div class=\"code-titlebar\">",
+              "<div class=\"titlebar-left\">",
+                "<button class=\"copy\" aria-label=\"{{ __("clipboard.copy") }}\"><i class=\"far fa-copy\"></i></button>",
+              "</div>",
+              "<div class=\"titlebar-center\">",
+                lang.length ? lang.toUpperCase() : "{{ __("code") }}",
+              "</div>",
+              "<div class=\"titlebar-right\">",
+                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+              "</div>",
+            "</div>"
+          ].join(""));
+          // $(e).before("<button class=\"copy button\">{{ __("clipboard.copy") }}</button>");
+        });
+        var cb = new ClipboardJS("button.copy", {
+          "target": function (trigger) {
+              // Get target element by DOM API.
+              // trigger.parentNode.parentNode is code-titlebar.
+              // nextElementSibling is figure.highlight, lastChild is pre.code.
+              return trigger.parentNode.parentNode.nextElementSibling.lastChild;
+          }
+        });
+        cb.on("success", function (e) {
+          e.clearSelection();
+          var trigger = e.trigger;
+          // Change button text as a user tip.
+          trigger.innerHTML = "<i class=\"far fa-check-square\"></i>";
+          $(trigger).addClass("copied");
+          // Change button text back;
+          setTimeout(function () {
+            trigger.innerHTML = "<i class=\"far fa-copy\"></i>";
+            $(trigger).removeClass("copied");
+          }, 1500);
+        });
       });
-      var cb = new ClipboardJS("button.copy", {
-        "target": function (trigger) {
-            // Get target element by DOM API.
-            // trigger.parentNode.parentNode is code-titlebar.
-            // nextElementSibling is figure.highlight, lastChild is pre.code.
-            return trigger.parentNode.parentNode.nextElementSibling.lastChild;
-        }
-      });
-      cb.on("success", function (e) {
-        e.clearSelection();
-        var trigger = e.trigger;
-        // Change button text as a user tip.
-        trigger.innerHTML = "<i class=\"far fa-check-square\"></i>";
-        $(trigger).addClass("copied");
-        // Change button text back;
-        setTimeout(function () {
-          trigger.innerHTML = "<i class=\"far fa-copy\"></i>";
-          $(trigger).removeClass("copied");
-        }, 1500);
-      });
-    });
     </script>
     {% block js %}{% endblock %}
     <script defer type="text/javascript" src="{{ getPath("js/custom.js") }}"></script>

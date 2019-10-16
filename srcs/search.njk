@@ -10,14 +10,14 @@
 {% if themeConfig.search %}
 <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.search %}{{ themeConfig.libCDN.search }}{% else %}{{ getPath("js/search.js") }}{% endif %}"></script>
 <script type="text/javascript">
-$(document).ready(function () {
-  {% if isArray(siteConfig.search.path) %}
-  var searchPaths = [{% for p in siteConfig.search.path %}"{{ getPath(p) }}"{% if not loop.last %}, {% endif %}{% endfor %}];
-  {% else %}
-  var searchPaths = ["{{ getPath(siteConfig.search.path) }}"];
-  {% endif %}
-  loadSearch(searchPaths, window.location.search, "search-result");
-});
+  $(document).ready(function () {
+    {% if isArray(siteConfig.search.path) %}
+    var searchPaths = [{% for p in siteConfig.search.path %}"{{ getPath(p) }}"{% if not loop.last %}, {% endif %}{% endfor %}];
+    {% else %}
+    var searchPaths = ["{{ getPath(siteConfig.search.path) }}"];
+    {% endif %}
+    loadSearch(searchPaths, window.location.search, "search-result");
+  });
 </script>
 {% endif %}
 {% endblock %}
