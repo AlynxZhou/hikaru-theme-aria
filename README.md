@@ -16,7 +16,7 @@ Live Demo: [喵's StackHarbor](https://sh.alynx.moe/)
 
 - Hikaru local search support.
 
-- Multi-languages support (currently zh_CN, zh_HK, zh_TW and en, PR welcome).
+- Multi-languages support (currently `zh-Hans`, `zh-Hant-HK`, `zh-Hant-TW` and `en`, PR welcome).
 
 - Image display powered by [Lightgallery](https://sachinchoolur.github.io/lightgallery.js/).
 
@@ -63,7 +63,6 @@ Don't use inline array and object.
 If you need an array to iterate, don't use object with it's key and value, use array of objects.
 
 Use 2-spaces indent.
-
 
 # Usage
 
