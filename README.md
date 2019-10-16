@@ -1,5 +1,5 @@
 ARIA
-=================
+====
 
 A Hikaru theme inspired by Kalafina's song ARIA.
 ------------------------------------------------
@@ -32,6 +32,8 @@ Live Demo: [喵's StackHarbor](https://sh.alynx.moe/)
 
 You don't need to keep 80-chars a line in templates and style files, you should keep them in good structure.
 
+Don't forget to add space after English puctuation.
+
 ## Stylus
 
 They should look like CSS, don't remove `{`, `}` and `;`.
@@ -51,6 +53,14 @@ JavaScript inside scripts tags shoule have a 2-spaces indent to it's parent `<sc
 Most JavaScript code should use jQuery's `$(document).ready()`.
 
 Consider not to use ES6, most of those functions can be written in ES5.
+
+Prefer to use `Array.join()` instead of `+` to concat strings.
+
+Prefer to use `"` and escaping instead of `'`.
+
+Don't remove `;`.
+
+Write functions like `function name(arg1, arg2) {}`, keep space after `function`, `,` and before `{`, but not after function name.
 
 Use 2-spaces indent.
 
