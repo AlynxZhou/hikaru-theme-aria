@@ -21,8 +21,8 @@
   </h2>
   {% set year = "1970" %}
   {% for post in posts %}
-  {% if post["createdMoment"].tz(themeConfig["zone"] or post["zone"]).format("YYYY") !== year %}
-  {% set year = post["createdMoment"].tz(themeConfig["zone"] or post["zone"]).format("YYYY") %}
+  {% if post.createdMoment.format("YYYY") !== year %}
+  {% set year = post.createdMoment.format("YYYY") %}
   <h2 class="page-title">{{ year }}</h1>
   {% endif %}
   <article class="article post card{% if themeConfig.animate %} animate{% endif %}" itemscope itemtype="http://schema.org/Article">
@@ -30,9 +30,9 @@
       <h1 class="post-title-simple" itemprop="name headline">
         <a class="post-title-link post-title-link-external" href="{{ getPath(post.docPath) }}" itemprop="url">{{ post.title }}</a>
       </h1>
-      {% if post["createdTime"] %}
+      {% if post.createdDate %}
       <span class="post-date">
-        <time title="post-date" itemprop="dateCreated datePublished" datetime="{{ post["createdTime"].toISOString() }}">{{ post["createdMoment"].tz(themeConfig["zone"] or post["zone"]).format("MM-DD") }}</time>
+        <time title="post-date" itemprop="dateCreated datePublished" datetime="{{ post.createdDate.toISOString() }}">{{ post.createdMoment.format("MM-DD") }}</time>
       </span>
       {% endif %}
     </header>

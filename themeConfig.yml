@@ -1,9 +1,5 @@
 # If a option has many sub-options, and it's optional, then give it a `enable` sub-option. If not optional, don't use `enable`.
 
-# If you want to transpose all time of your posts to this timezone, you can uncomment it.
-# Else just comment it, and each posts' zone will be used independently.
-# zone: Asia/Shanghai
-
 menu:
   - name: home
     link: /
