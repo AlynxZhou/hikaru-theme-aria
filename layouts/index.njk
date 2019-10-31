@@ -101,14 +101,14 @@
   </nav>
   {% endif %}
   {% if themeConfig.reward.enable %}
-  {% include "reward.njk" %}
+  {% include "includes/reward.njk" %}
   {% endif %}
   {% if themeConfig.comment.enable %}
   {% if themeConfig.comment.disqusShortName %}
   {# Load disqus comment count for every posts in index. #}
   <script defer id="dsq-count-scr" src="//{{ themeConfig.comment.disqusShortName }}.disqus.com/count.js"></script>
   {% endif %}
-  {% include "comment.njk" %}
+  {% include "includes/comment.njk" %}
   {% endif %}
 </div>
 {% endblock %}

@@ -5,26 +5,12 @@
 <link rel="stylesheet" type="text/css" href="{{ getPath("css/post.css") }}">
 {% endblock %}
 
-{% block title %}{{ __(title) }} | {{ siteConfig.title }}{% if siteConfig.subtitle %} - {{ siteConfig.subtitle }}{% endif %}{% endblock %}
+{% block title %}{{ __(title) }}: {{ name }} | {{ siteConfig.title }}{% if siteConfig.subtitle %} - {{ siteConfig.subtitle }}{% endif %}{% endblock %}
 
 {% block content %}
-<div id="archives" class="archives page">
-  <h1 class="page-title">{{ __(title) }}</h1>
-  <h2 class="page-counter">
-    {% if site.posts.length > 1 %}
-    {{ __("postCount.more", site.posts.length) }}
-    {% elif posts.length === 1 %}
-    {{ __("postCount.one", site.posts.length) }}
-    {% else %}
-    {{ __("postCount.none") }}
-    {% endif %}
-  </h2>
-  {% set year = "1970" %}
+<div id="category" class="category page">
+  <h1 class="page-title">{{ name }}</h1>
   {% for post in posts %}
-  {% if post.createdMoment.format("YYYY") !== year %}
-  {% set year = post.createdMoment.format("YYYY") %}
-  <h2 class="page-title">{{ year }}</h1>
-  {% endif %}
   <article class="article post card{% if themeConfig.animate %} animate{% endif %}" itemscope itemtype="http://schema.org/Article">
     <header id="post-header" class="post-header">
       <h1 class="post-title-simple" itemprop="name headline">
@@ -68,10 +54,10 @@
   </nav>
   {% endif %}
   {% if themeConfig.reward.enable %}
-  {% include "reward.njk" %}
+  {% include "includes/reward.njk" %}
   {% endif %}
   {% if themeConfig.comment.enable %}
-  {% include "comment.njk" %}
+  {% include "includes/comment.njk" %}
   {% endif %}
 </div>
 {% endblock %}

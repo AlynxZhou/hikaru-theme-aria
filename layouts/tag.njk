@@ -8,7 +8,7 @@
 {% block title %}{{ __(title) }}: {{ name }} | {{ siteConfig.title }}{% if siteConfig.subtitle %} - {{ siteConfig.subtitle }}{% endif %}{% endblock %}
 
 {% block content %}
-<div id="category" class="category page">
+<div id="tag" class="tag page">
   <h1 class="page-title">{{ name }}</h1>
   {% for post in posts %}
   <article class="article post card{% if themeConfig.animate %} animate{% endif %}" itemscope itemtype="http://schema.org/Article">
@@ -54,10 +54,10 @@
   </nav>
   {% endif %}
   {% if themeConfig.reward.enable %}
-  {% include "reward.njk" %}
+  {% include "includes/reward.njk" %}
   {% endif %}
   {% if themeConfig.comment.enable %}
-  {% include "comment.njk" %}
+  {% include "includes/comment.njk" %}
   {% endif %}
 </div>
 {% endblock %}

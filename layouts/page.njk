@@ -1,17 +1,17 @@
 {% if page.layout === "index" or page.title === "index" %}
-{% include "index.njk" %}
+{% include "includes/index.njk" %}
 {% elif page.layout === "archive" or page.title === "archive" %}
-{% include "archive.njk" %}
+{% include "includes/archive.njk" %}
 {% elif page.layout === "categories" or page.title === "categories" %}
-{% include "categories.njk" %}
+{% include "includes/categories.njk" %}
 {% elif page.layout === "category" or page.title === "category" %}
-{% include "category.njk" %}
+{% include "includes/category.njk" %}
 {% elif page.layout === "tags" or page.title === "tags" %}
-{% include "tags.njk" %}
+{% include "includes/tags.njk" %}
 {% elif page.layout === "tag" or page.title === "tag" %}
-{% include "tag.njk" %}
+{% include "includes/tag.njk" %}
 {% elif page.layout === "search" or page.title === "search" %}
-{% include "search.njk" %}
+{% include "includes/search.njk" %}
 {% else %}
 {% extends "layout.njk" %}
 
@@ -59,10 +59,10 @@
     <footer class="post-footer"></footer>
   </article>
   {% if themeConfig.reward.enable %}
-  {% include "reward.njk" %}
+  {% include "includes/reward.njk" %}
   {% endif %}
   {% if themeConfig.comment.enable %}
-  {% include "comment.njk" %}
+  {% include "includes/comment.njk" %}
   {% endif %}
 </div>
 {% endblock %}

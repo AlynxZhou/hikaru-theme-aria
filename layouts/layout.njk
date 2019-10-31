@@ -144,7 +144,7 @@
     <title>{% block title %}{% endblock %}</title>
   </head>
   <body itemscope itemtype="http://schema.org/WebPage" data-spy="scroll" data-target=".list-group">
-    {% include "header.njk" %}
+    {% include "includes/header.njk" %}
     <main id="main" class="main">
       <div class="container">
         <div class="main-container">
@@ -153,12 +153,12 @@
           </div>
           {# Sidebar can be `left`, `right` or `false`. #}
           {% if themeConfig.sidebar !== false %}
-          {% include "sidebar.njk" %}
+          {% include "includes/sidebar.njk" %}
           {% endif %}
         </div>
       </div>
     </main>
-    {% include "footer.njk" %}
+    {% include "includes/footer.njk" %}
   </body>
 </html>
 <!-- Page built by Hikaru v{{ getVersion() }} at {{ moment.tz(momenttz.guess()).format("YYYY-MM-DD ddd HH:mm:ss z") }}. -->

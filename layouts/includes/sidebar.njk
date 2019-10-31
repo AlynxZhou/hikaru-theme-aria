@@ -7,7 +7,38 @@
     </form>
   </div>
   {% endif %}
-  {% include "info.njk" %}
+  <div class="info sidebar-item" id="info">
+    {% if themeConfig.avatar %}
+    <img class="author-avatar" src="{{ getPath(themeConfig.avatar) }}" alt="{{ siteConfig.author }}">
+    {% endif %}
+    <h1 class="author-name">{{ siteConfig.author }}</h1>
+    <h2 class="author-description">{{ siteConfig.description }}</h2>
+    <div class="site-count">
+      {% for e in themeConfig.menu %}
+      {% if e.name === "archives" %}
+      <div class="archives-count count-block">
+        <div class="site-count-title">{{ __("archives") }}</div>
+        <div><a href="{{ getPath(e.link) }}">{{ site.posts.length }}</a></div>
+      </div>
+      {% elif e.name === "categories" %}
+      <div class="categories-count count-block">
+        <div class="site-count-title">{{ __("categories") }}</div>
+        <div><a href="{{ getPath(e.link) }}">{{ site.categoriesLength }}</a></div>
+      </div>
+      {% elif e.name === "tags" %}
+      <div class="tags-count count-block">
+        <div class="site-count-title">{{ __("tags") }}</div>
+        <div><a href="{{ getPath(e.link) }}">{{ site.tagsLength }}</a></div>
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+    {% if siteConfig.feed.enable %}
+    <div class="rss">
+      <a class="rss-link button sidebar-item" href="{{ getPath(siteConfig.feed.path) }}"><i class="fas fa-rss"></i>RSS</a>
+    </div>
+    {% endif %}
+  </div>
   <div class="sidebar-sticky">
     {% if content %}
     {% if toc.length > 0 %}

@@ -5,47 +5,48 @@
 <link rel="stylesheet" type="text/css" href="{{ getPath("css/post.css") }}">
 {% endblock %}
 
+{% block js %}
+<script type="text/javascript">
+  $(document).ready(function () {
+    var fontSizes = ["1", "1.1", "1.2", "1.3", "1.4", "1.5", "1.6", "1.7", "1.8", "1.9", "2", "2.1", "2.2", "2.3", "2.4", "2.5"];
+    $(".tags-cloud .post-tag").each(function (i, e) {
+      $(e).css("font-size", fontSizes[Math.floor(Math.random() * fontSizes.length)] + "em");
+    })
+  });
+</script>
+{% endblock %}
+
 {% block title %}{{ __(title) }} | {{ siteConfig.title }}{% if siteConfig.subtitle %} - {{ siteConfig.subtitle }}{% endif %}{% endblock %}
 
 {% block content %}
-<div id="categories" class="categories page">
+<div id="tags" class="tags page">
   <article class="article post card{% if themeConfig.animate %} animate{% endif %}">
     <header class="post-header">
       <h1 class="post-title" itemprop="name headline">{{ __(title) }}</h1>
     </header>
     <main class="post-main">
       <h2 class="page-counter">
-        {% if site.categoriesLength > 1 %}
-        {{ __("categoryCount.more", site.categoriesLength) }}
-        {% elif site.categories.length === 1 %}
-        {{ __("categoryCount.one", site.categoriesLength) }}
+        {% if site.tagsLength > 1 %}
+        {{ __("tagCount.more", site.tagsLength) }}
+        {% elif tags.length === 1 %}
+        {{ __("tagCount.one", site.tagsLength) }}
         {% else %}
-        {{ __("categoryCount.none") }}
+        {{ __("tagCount.none") }}
         {% endif %}
       </h2>
-      <div class="categories-list">
-        {% macro listCategory(cates) %}
-        <ul>
-        {% for cate in cates %}
-          <li>
-            <a href="{{ getPath(cate.docPath) }}">{{ cate.name }}</a> <span>{{ cate.posts.length }}</span>
-            {% if cate.subs.length > 0 %}
-            {{ listCategory(cate.subs) }}
-            {% endif %}
-          </li>
+      <div class="tags-cloud">
+        {% for tag in site.tags %}
+        <a class="post-tag button" href="{{ getPath(tag.docPath) }}" rel="tag"><i class="fas fa-tag"></i>{{ tag.name }}</a>
         {% endfor %}
-        </ul>
-        {% endmacro %}
-        {{ listCategory(site.categories) }}
       </div>
     </main>
     <footer class="post-footer"></footer>
   </article>
   {% if themeConfig.reward.enable %}
-  {% include "reward.njk" %}
+  {% include "includes/reward.njk" %}
   {% endif %}
   {% if themeConfig.comment.enable %}
-  {% include "comment.njk" %}
+  {% include "includes/comment.njk" %}
   {% endif %}
 </div>
 {% endblock %}
