@@ -53,8 +53,8 @@ header, footer {
 }
 .container {
   padding: 0;
-  max-width: $container-max-width;
-  width: 100%;
+  // max-width: $container-max-width;
+  width: 75%;
   margin: 0 auto;
 }
 ol, ul {
@@ -362,3 +362,8 @@ if (getThemeConfig("animate")) {
     }
   }
 }
+@media (max-width: $media-container-expand-width) {
+   .container {
+     width: 100%;
+   }
+ }
