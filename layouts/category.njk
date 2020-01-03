@@ -24,35 +24,7 @@
     </header>
   </article>
   {% endfor %}
-  {% if pageArray %}
-  <nav class="pagination">
-    {% if pageIndex !== 0 %}
-    <a class="extend prev" href="{{ getPath(pageArray[pageIndex - 1].docPath) }}" aria-label="{{ __("accessibility.prevPage") }}"><i class="fas fa-angle-left"></i></a>
-    {% endif %}
-    {% if pageIndex > 2 %}
-    <a class="page-number" href="{{ getPath(pageArray[0].docPath) }}">1</a>
-    <span class="space">…</span>
-    <a class="page-number" href="{{ getPath(pageArray[pageIndex - 1].docPath) }}">{{ pageIndex }}</a>
-    {% else %}
-    {% for page in pageArray.slice(0, pageIndex) %}
-    <a class="page-number" href="{{ getPath(page.docPath) }}">{{ page.pageIndex + 1 }}</a>
-    {% endfor %}
-    {% endif %}
-    <a class="page-number current" href="{{ getPath(docPath) }}">{{ pageIndex + 1 }}</a>
-    {% if pageIndex < pageArray.length - 1 - 2 %}
-    <a class="page-number" href="{{ getPath(pageArray[pageIndex + 1].docPath) }}">{{ pageIndex + 2 }}</a>
-    <span class="space">…</span>
-    <a class="page-number" href="{{ getPath(pageArray[pageArray.length - 1].docPath) }}">{{ pageArray.length }}</a>
-    {% else %}
-    {% for page in pageArray.slice(pageIndex + 1, pageArray.length) %}
-    <a class="page-number" href="{{ getPath(page.docPath) }}">{{ page.pageIndex + 1 }}</a>
-    {% endfor %}
-    {% endif %}
-    {% if pageIndex !== pageArray.length - 1 %}
-    <a class="extend next" href="{{ getPath(pageArray[pageIndex + 1].docPath) }}" aria-label="{{ __("accessibility.nextPage") }}"><i class="fas fa-angle-right"></i></a>
-    {% endif %}
-  </nav>
-  {% endif %}
+  {% include "includes/pagination.njk" %}
   {% if themeConfig.reward.enable %}
   {% include "includes/reward.njk" %}
   {% endif %}
