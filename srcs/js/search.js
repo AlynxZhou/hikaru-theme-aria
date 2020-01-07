@@ -13,8 +13,14 @@ var MAX_DISPLAY_SLICES = 10;
 function fetchJSON(path, callback) {
   if (window.fetch != null) {
     fetch(path).then(function (response) {
-      return response.json();
-    }).then(callback);
+      if (response.status !== 200) {
+        callback(new Error(response.status), null);
+        return;
+      }
+      response.json().then(function (json) {
+        callback(null, json);
+      });
+    });
   } else {
     var xhr = null;
     if (window.XMLHttpRequest) {
@@ -32,10 +38,10 @@ function fetchJSON(path, callback) {
         return;
       }
       if (xhr.status !== 200) {
-        console.error("XMLHttpRequest failed!");
+        callback(new Error(xhr.status), null);
         return;
       }
-      callback(JSON.parse(xhr.response));
+      callback(null, JSON.parse(xhr.response));
     };
     xhr.open("GET", path, true);
     xhr.send(null);
@@ -254,14 +260,14 @@ var loadSearch = function (opts) {
     return;
   }
   opts["noResultText"] = opts["noResultText"] || ""
-  var resultContainer = document.getElementById(opts["containerID"]);
-  resultContainer.style.display = "block";
+  var container = document.getElementById(opts["containerID"]);
+  container.style.display = "block";
   var header = [];
   var dataProps = [];
   var footer = [];
   var keywords = parseKeywords(opts["queryString"]);
   if (keywords.length === 0) {
-    resultContainer.innerHTML = opts["noResultText"];
+    container.innerHTML = opts["noResultText"];
     return;
   }
   if (keywords.length > MAX_KEYWORDS) {
@@ -272,8 +278,16 @@ var loadSearch = function (opts) {
   }
   header.push("<ul class=\"search-result-list\">");
   footer.push("</ul>");
+  var hasErr = null;
   opts["paths"].forEach(function (path) {
-    fetchJSON(path, function (json) {
+    fetchJSON(path, function (err, json) {
+      if (err != null) {
+        hasErr = err;
+        if (opts["failText"] != null) {
+          container.innerHTML = opts["failText"] + container.innerHTML;
+        }
+        return;
+      }
       var data = null;
       if (Array.isArray(json)) {
         data = json;
@@ -282,9 +296,12 @@ var loadSearch = function (opts) {
       }
       dataProps = dataProps.concat(buildDataProps(data, keywords));
       sortDataProps(dataProps);
-      resultContainer.innerHTML = dataProps.length === 0
+      container.innerHTML = dataProps.length === 0
         ? opts["noResultText"]
         : header.concat(renderDataProps(dataProps)).concat(footer).join("");
+      if (hasErr != null && opts["failText"] != null) {
+        container.innerHTML = opts["failText"] + container.innerHTML;
+      }
     });
   });
 }

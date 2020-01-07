@@ -44,11 +44,13 @@ categoryCount:
 
 searchResult:
   none: 未找到符合要求的搜索結果
+  fail: 部分數據獲取失敗，請刷新頁面以重新搜索。
 
 comment:
   none: 這個頁面還沒有評論，現在就去評論吧！
   send: 去評論
   read: 閱讀評論
+  fail: 你可能達到了 API 請求頻率上限，請等待一段時間再刷新。
 
 valine:
   placeholder: 在這裏說點什麼……

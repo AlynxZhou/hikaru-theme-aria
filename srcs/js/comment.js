@@ -14,7 +14,7 @@ function buildIssuesURL(user, repo) {
     "repos",
     user,
     repo,
-    "issues"
+    "issues?state=open"
   ].join("/");
 }
 
@@ -34,8 +34,14 @@ function buildNewIssueURL(user, repo, title) {
 function fetchJSON(path, callback) {
   if (window.fetch != null) {
     fetch(path).then(function (response) {
-      return response.json();
-    }).then(callback);
+      if (response.status !== 200) {
+        callback(new Error(response.status), null);
+        return;
+      }
+      response.json().then(function (json) {
+        callback(null, json);
+      });
+    });
   } else {
     var xhr = null;
     if (window.XMLHttpRequest) {
@@ -53,10 +59,10 @@ function fetchJSON(path, callback) {
         return;
       }
       if (xhr.status !== 200) {
-        console.error("XMLHttpRequest failed!");
+        callback(new Error(xhr.status), null);
         return;
       }
-      callback(JSON.parse(xhr.response));
+      callback(null, JSON.parse(xhr.response));
     };
     xhr.open("GET", path, true);
     xhr.send(null);
@@ -64,7 +70,16 @@ function fetchJSON(path, callback) {
 }
 
 function getIssues(path, callback) {
-  fetchJSON(path, callback);
+  fetchJSON(path, function (err, issues) {
+    if (err != null) {
+      callback(err, null);
+      return;
+    }
+    // Remove pull requests, only show issues.
+    callback(null, issues.filter(function (issue) {
+      return issue["pull_request"] == null;
+    }))
+  });
 }
 
 function findIssueByTitle(issues, title, callback) {
@@ -79,11 +94,15 @@ function findIssueByTitle(issues, title, callback) {
 
 function getComments(issue, callback) {
   if (issue == null) {
-    callback([]);
+    // Not a network error, just means no comment.
+    callback(null, []);
     return;
   }
-  fetchJSON(issue["comments_url"], function (comments) {
-    callback([issue].concat(comments));
+  fetchJSON(issue["comments_url"], function (err, comments) {
+    if (err != null) {
+      callback(err, null);
+    }
+    callback(null, [issue].concat(comments));
   });
 }
 
@@ -160,10 +179,34 @@ var loadComment = function (opts) {
       opts["sendButtonText"] == null) {
     return;
   }
-  getIssues(buildIssuesURL(opts["user"], opts["repo"]), function (issues) {
+  var container = document.getElementById(opts["containerID"]);
+  getIssues(buildIssuesURL(opts["user"], opts["repo"]), function (err, issues) {
+    if (err != null) {
+      if (opts["failText"] != null) {
+        container.innerHTML = [
+          "<div class=\"comment-fail\" id=\"comment-fail\">",
+          err.message,
+          ": ",
+          opts["failText"],
+          "</div>"
+        ].join("");
+      }
+      return;
+    }
     findIssueByTitle(issues, opts["title"], function (issue) {
-      getComments(issue, function (comments) {
-        var container = document.getElementById(opts["containerID"]);
+      getComments(issue, function (err, comments) {
+        if (err != null) {
+          if (opts["failText"] != null) {
+            container.innerHTML = [
+              "<div class=\"comment-fail\" id=\"comment-fail\">",
+              err.message,
+              ": ",
+              opts["failText"],
+              "</div>"
+            ].join("");
+          }
+          return;
+        }
         container.style.display = "block";
         container.innerHTML = renderComments(comments, opts);
       });
@@ -178,8 +221,11 @@ var loadCommentCount = function (opts) {
   if (opts["containerClass"] == null) {
     return;
   }
-  getIssues(buildIssuesURL(opts["user"], opts["repo"]), function (issues) {
-    var containers = document.getElementsByClassName(opts["containerClass"]);
+  var containers = document.getElementsByClassName(opts["containerClass"]);
+  getIssues(buildIssuesURL(opts["user"], opts["repo"]), function (err, issues) {
+    if (err != null) {
+      return;
+    }
     for (var i = 0; i < containers.length; ++i) {
       var title = containers[i].getAttribute("data-comment-identifier");
       if (title == null) {

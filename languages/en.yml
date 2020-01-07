@@ -44,11 +44,13 @@ categoryCount:
 
 searchResult:
   none: No result found.
+  fail: Failed to get some data, please refresh to search again.
 
 comment:
   none: This page has no comment, go to comment now!
   send: Go to Comment
   read: Read Comments
+  fail: You may reached API rate limit, please wait for some time before refresh.
 
 valine:
   placeholder: Write your comment here...

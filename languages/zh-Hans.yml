@@ -44,11 +44,13 @@ categoryCount:
 
 searchResult:
   none: 未找到符合要求的搜索结果。
+  fail: 部分数据获取失败，请刷新页面以重新搜索。
 
 comment:
   none: 这个页面还没有评论，现在就去评论吧！
   send: 去评论
   read: 阅读评论
+  fail: 你可能达到了 API 请求频率上限，请等待一段时间再刷新。
 
 valine:
   placeholder: 在这里说点什么……
