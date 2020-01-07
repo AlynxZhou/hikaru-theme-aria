@@ -49,7 +49,7 @@
         <span class="post-comment-count meta-block">
           <i class="far fa-comments"></i><span><a href="{{ getPath(docPath) }}#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="{{ getPath(docPath) }}" itemprop="commentCount"></span></a></span>
         </span>
-        {% elif themeConfig.comment.builtin.enable %}
+        {% elif themeConfig.comment.issue.enable %}
         <span class="post-comment-count meta-block">
           <i class="far fa-comments"></i><span><a href="{{ getPath(docPath) }}#comment-results" itemprop="discussionUrl"><span class="post-comment-count comment-count" data-comment-identifier="{{ __(title) }}" itemprop="commentCount">{{ __("comment.read") }}</span></a></span>
         </span>

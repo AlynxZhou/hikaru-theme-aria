@@ -10,7 +10,7 @@ Live Demo: [喵's StackHarbor](https://sh.alynx.moe/)
 
 - Elegant responsive double column layout with css animation.
 
-- Comment system (currently supprt [Disqus](https://disqus.com/), [commentjs](https://github.com/wzpan/comment.js) and [Valine](https://valine.js.org/)).
+- Comment system (currently supprt [Disqus](https://disqus.com/), a builtin GitHub issue based comment and [Valine](https://valine.js.org/)).
 
 - Busuanzi counting.
 
@@ -287,11 +287,11 @@ Get icons in [Font Awesome](https://fontawesome.com/).
 
 First set `comment` to `enable: true` to enable comment in all pages (except Home, Archives, Categories, Tags), then fill your Disqus Shortname. If you want to disable comment in some pages, add front-matter `comment: false` (`comment` NOT `comments`!).
 
-If you use commentjs, first set `enable` to `true`, then set `type` according to your host service between `github` and `oschina`, `user` is your user name of the host, `repo` is your repo name, `clientID` and `clientSecret` needs you go to [github](https://github.com/settings/applications/new) or [oschina](https://git.oschina.net/oauth/applications/new) to create an application, and copy your token.
+If you use builtin GitHub issue based comment, first set `enable` to `true`, `user` is your GitHub user name, `repo` is your GitHub repo name. This script only read issues from GitHub API, and has no data forward that may lose your info, it is safe.
 
 If you use Valine, read its docs and fill options `apiID`, `apiKey`, set `enable` to `true` and custom other options.
 
-If you enable more than one comment services, only the one shows in front of the queue will be shown (queue: Disqus, commentjs, Valine).
+If you enable more than one comment services, only the one shows in front of the queue will be shown (queue: Disqus, builtin comment, Valine).
 
 ### Reward
 

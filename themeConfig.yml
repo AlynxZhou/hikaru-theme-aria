@@ -149,7 +149,7 @@ blogroll:
 comment:
   enable: false
   disqusShortName:
-  builtin:
+  issue:
     enable: false
     user:
     repo:

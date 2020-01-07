@@ -17,13 +17,13 @@
     })();
   </script>
   {% endif %}
-  {% elif themeConfig.comment.builtin.enable %}
+  {% elif themeConfig.comment.issue.enable %}
   <script defer type="text/javascript" src="{{ getPath("js/comment.js") }}"></script>
   <script type="text/javascript">
     $(document).ready(function () {
       loadCommentCount({
-        "user": "{{ themeConfig.comment.builtin.user }}",
-        "repo": "{{ themeConfig.comment.builtin.repo }}",
+        "user": "{{ themeConfig.comment.issue.user }}",
+        "repo": "{{ themeConfig.comment.issue.repo }}",
         "containerClass": "comment-count"
       })
     });
@@ -48,8 +48,8 @@
         }
       });
       loadComment({
-        "user": "{{ themeConfig.comment.builtin.user }}",
-        "repo": "{{ themeConfig.comment.builtin.repo }}",
+        "user": "{{ themeConfig.comment.issue.user }}",
+        "repo": "{{ themeConfig.comment.issue.repo }}",
         "sendButtonText": "{{ __("comment.send") }}",
         "noCommentText": "{{ __("comment.none") }}",
         "title": "{{ __(title) }}",
