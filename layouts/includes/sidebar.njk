@@ -66,7 +66,7 @@
     {% if themeConfig.social.enable %}
     <hr>
     <div class="social-link sidebar-item">
-      <div><i class="far fa-address-card"></i>{{ __("socialLink") }}</p></div>
+      <div><i class="far fa-address-card"></i>{{ __("socialLink") }}</div>
       <ul>
         {% for e in themeConfig.social.links %}
         <li>{% if e.icon %}{{ e.icon }}{% endif %}<a href="{{ e.link }}" target="_blank" rel="noreferrer noopener">{{ e.name }}</a></li>

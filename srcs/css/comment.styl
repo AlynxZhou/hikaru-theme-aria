@@ -8,7 +8,7 @@
   }
   if (getThemeConfig("comment.issue.enable")) {
     .comment-results {
-      margin: 1em;
+      padding: 1em;
       .comments-header {
         padding: 0.5em;
         text-align: center;
@@ -19,13 +19,15 @@
           display: flex;
           flex-direction: row;
           flex-wrap: nowrap;
+          justify-content: stretch;
+          align-items: start;
           margin: 1em 0;
           .comment-avatar-container {
-            margin: 0 1em 0 0;
+            flex: 1 1 auto;
+            width: 10%;
             .comment-avatar {
-              width: 3em;
-              height: 3em;
-              border: 0.3em solid white;
+              width: 70%;
+              border: 0.1em solid white;
               border-radius: 50%;
               transition: 1s ease-in-out;
               &:hover {
@@ -35,12 +37,14 @@
             }
           }
           .comment-body-container {
-            width: 100%;
+            flex: 9 9 auto;
+            width: 90%;
             border-radius: $corner-radius;
             transition: 1s ease-in-out;
             .comment-info {
               padding: 0.5em;
               background: $color-comment-info-background;
+              overflow: auto;
               .comment-info-author {
                 margin: 0 0.5em;
                 position: relative;
@@ -71,6 +75,14 @@
             .comment-content {
               padding: 0.5em 1em;
               background: $color-comment-content-background;
+              pre {
+                overflow: auto;
+                padding: 0.5em;
+                background: $color-code-background;
+                code {
+                  background: transparent;
+                }
+              }
             }
             &:hover {
               box-shadow: 0 0 1em 0.5em rgba(0, 0, 0, 0.19);

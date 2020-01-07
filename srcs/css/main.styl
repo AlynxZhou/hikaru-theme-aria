@@ -16,13 +16,12 @@
     } else if (getThemeConfig("sidebar") == "right") {
       flex-direction: row;
     }
-    justify-content: space-between;
+    justify-content: stretch;
     align-items: stretch;
     flex-wrap: nowrap;
     padding: 0;
     .content {
-      flex: 1 0 auto;
-      // Keep this or it will expand!
+      flex: 3 3 auto;
       width: 75%;
     }
   }
