@@ -115,10 +115,7 @@ libCDN:
   normalize:
   search:
   marked:
-  timeAgo:
-  commentjs:
-    js:
-    css:
+  spinkit:
   avMin:
   valine:
   clipboard:
@@ -149,17 +146,13 @@ blogroll:
       link: https://mozilla.github.io/nunjucks/
       icon: <i class="fas fa-link"></i>
 
-# `comment.commentjs.type`: Choose between `github` and `oschina`.
 comment:
   enable: false
   disqusShortName:
-  commentjs:
+  builtin:
     enable: false
-    type:
     user:
     repo:
-    clientID:
-    clientSecret:
   valine:
     enable: false
     appID:

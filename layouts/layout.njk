@@ -58,6 +58,7 @@
     <link rel="stylesheet" type="text/css" href="{{ getPath("css/custom.css") }}">
     <link rel="stylesheet" type="text/css" href="{% if themeConfig.libCDN.enable and themeConfig.libCDN[themeConfig.highlight] %}{{ themeConfig.libCDN[themeConfig.highlight] }}{% else %}{{ getPath("css/" + themeConfig.highlight + ".css") }}{% endif %}">
     <link rel="stylesheet" type="text/css" href="{% if themeConfig.libCDN.enable and themeConfig.libCDN.lightGallery.css %}{{ themeConfig.libCDN.lightGallery.css }}{% else %}{{ getPath("css/lightgallery.min.css") }}{% endif %}">
+    <link rel="stylesheet" type="text/css" href="{% if themeConfig.libCDN.enable and themeConfig.libCDN.spinkit %}{{ themeConfig.libCDN.spinkit }}{% else %}{{ getPath("css/spinkit.css") }}{% endif %}">
     <!-- You should not set `defer` to jQuery because other scripts dependents it! -->
     <script type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.jQuery %}{{ themeConfig.libCDN.jQuery }}{% else %}{{ getPath("js/jquery.min.js") }}{% endif %}"></script>
     <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.util %}{{ themeConfig.libCDN.util }}{% else %}{{ getPath("js/util.js") }}{% endif %}"></script>

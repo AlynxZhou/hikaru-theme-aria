@@ -1,8 +1,8 @@
 {% block comment %}
-{% if comment !== false %}
 <div class="comments" id="comments">
   {% if themeConfig.comment.disqusShortName %}
   <script defer id="dsq-count-scr" src="//{{ themeConfig.comment.disqusShortName }}.disqus.com/count.js"></script>
+  {% if comment !== false %}
   <div id="disqus_thread" class="disqus_thread"></div>
   <script type="text/javascript">
     var disqus_config = function () {
@@ -16,45 +16,50 @@
       (d.head || d.body).appendChild(s);
     })();
   </script>
-  {% elif themeConfig.comment.commentjs.enable %}
-  <div class="commentjs" id="comment-thread"></div>
-  <link rel="stylesheet" href="{% if themeConfig.libCDN.enable and themeConfig.libCDN.commentjs.css %}{{ themeConfig.libCDN.commentjs.css }}{% else %}{{ getPath("css/commentjs.css") }}{% endif %}">
-  <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.marked %}{{ themeConfig.libCDN.marked }}{% else %}{{ getPath("js/marked.min.js") }}{% endif %}"></script>
-  <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.timeAgo %}{{ themeConfig.libCDN.timeAgo }}{% else %}{{ getPath("js/timeago.min.js") }}{% endif %}"></script>
-  <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.highlight %}{{ themeConfig.libCDN.highlight }}{% else %}{{ getPath("js/highlight.min.js") }}{% endif %}"></script>
-  <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.commentjs.js %}{{ themeConfig.libCDN.commentjs.js }}{% else %}{{ getPath("js/commentjs.js") }}{% endif %}"></script>
+  {% endif %}
+  {% elif themeConfig.comment.builtin.enable %}
+  <script defer type="text/javascript" src="{{ getPath("js/comment.js") }}"></script>
   <script type="text/javascript">
     $(document).ready(function () {
-      getComments({
-        "type": "{{ themeConfig.comment.commentjs.type }}",
-        "user": "{{ themeConfig.comment.commentjs.user }}",
-        "repo": "{{ themeConfig.comment.commentjs.repo }}",
-        "clientID": "{{ themeConfig.comment.commentjs.clientID }}",
-        "clientSecret": "{{ themeConfig.comment.commentjs.clientSecret }}",
-        "no_comment": "{{ __("commentjs.none") }}",
-        "go_to_comment": "{{ __("commentjs.comment") }}",
-        "issue_title": "{{ __(title) }}",
-        "btn_class": "button",
-        "comments_target": "#comment-thread"
-      });
+      loadCommentCount({
+        "user": "{{ themeConfig.comment.builtin.user }}",
+        "repo": "{{ themeConfig.comment.builtin.repo }}",
+        "containerClass": "comment-count"
+      })
+    });
+  </script>
+  {% if comment !== false %}
+  <div class="comment-results" id="comment-results">
+    <div class="sk-wave" id="sk-wave">
+      <div class="sk-rect sk-rect1"></div>
+      <div class="sk-rect sk-rect2"></div>
+      <div class="sk-rect sk-rect3"></div>
+      <div class="sk-rect sk-rect4"></div>
+      <div class="sk-rect sk-rect5"></div>
+    </div>
+  </div>
+  <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.marked %}{{ themeConfig.libCDN.marked }}{% else %}{{ getPath("js/marked.min.js") }}{% endif %}"></script>
+  <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.highlight %}{{ themeConfig.libCDN.highlight }}{% else %}{{ getPath("js/highlight.min.js") }}{% endif %}"></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
       marked.setOptions({
         "highlight": function (code, lang) {
           return hljs.highlightAuto(code).value;
         }
       });
-      function mark() {
-        var markdowns = document.getElementsByClassName("markdown");
-        for (var i = 0; i < markdowns.length; ++i){
-          if (markdowns[i].innerHTML) {
-            markdowns[i].innerHTML = marked(markdowns[i].innerHTML);
-          }
-        }
-      }
-      window.addEventListener("DOMContentLoaded", mark, false);
-      window.addEventListener("load", mark, false);
+      loadComment({
+        "user": "{{ themeConfig.comment.builtin.user }}",
+        "repo": "{{ themeConfig.comment.builtin.repo }}",
+        "sendButtonText": "{{ __("comment.send") }}",
+        "noCommentText": "{{ __("comment.none") }}",
+        "title": "{{ __(title) }}",
+        "containerID": "comment-results"
+      });
     });
   </script>
+  {% endif %}
   {% elif themeConfig.comment.valine.enable %}
+  {% if comment !== false %}
   <div id="vcomments" class="vcomments"></div>
   <script defer src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.avMin %}{{ themeConfig.libCDN.avMin }}{% else %}{{ getPath("js/av-min.js") }}{% endif %}"></script>
   <script defer src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.valine %}{{ themeConfig.libCDN.valine }}{% else %}{{ getPath("js/valine.min.js") }}{% endif %}"></script>
@@ -78,6 +83,6 @@
     });
   </script>
   {% endif %}
+  {% endif %}
 </div>
-{% endif %}
 {% endblock %}

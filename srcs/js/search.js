@@ -1,13 +1,7 @@
 /*
  * A local search script for [hikaru-generator-search](https://github.com/AlynxZhou/hikaru-generator-search/).
- * CopyLeft (C) 2015-2019
- * Joseph Pan <http://github.com/wzpan>
- * Shuhao Mao <http://github.com/maoshuhao>
- * Edited by MOxFIVE <http://github.com/MOxFIVE>
- * Rewrited by AlynxZhou <https://alynx.xyz/>
- *   Cleaned: Use native JavaScript instead of jQuery. Split functions.
- *   Fixed: Mark all keywords found in content and title.
- *   Optimized: Sort result by the number of keyword found.
+ * CopyLeft (C) 2020
+ * AlynxZhou <alynx.zhou@gmail.com> (https://alynx.moe/)
  */
 
 "use strict";

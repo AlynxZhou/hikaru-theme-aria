@@ -42,9 +42,10 @@ categoryCount:
   one: You have %d category, keep on!
   more: You have %d categories!
 
-commentjs:
+comment:
   none: This page has no comment, go to comment now!
-  comment: Go to Comment
+  send: Go to Comment
+  read: Read Comments
 
 valine:
   placeholder: Write your comment here...

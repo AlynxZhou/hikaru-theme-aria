@@ -42,9 +42,10 @@ categoryCount:
   one: 你已經創建了 %d 個分類，積少成多，再接再厲！
   more: 你已經創建了 %d 個分類！
 
-commentjs:
+comment:
   none: 這個頁面還沒有評論，現在就驅評論吧！
-  comment: 去評論
+  send: 去評論
+  read: 閱讀評論
 
 valine:
   placeholder: 在這裏說點什麼……

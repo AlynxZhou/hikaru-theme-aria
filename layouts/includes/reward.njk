@@ -1,7 +1,9 @@
 {% block reward %}
 {% if reward !== false %}
 <div class="reward" id="reward">
-  <p>{{ themeConfig.reward.message }}</p>
+  <div class="reward-info" id="reward-info">
+    <span>{{ themeConfig.reward.message }}</span>
+  </div>
   <button id="reward-button" class="button" disable="enable"><i class="fas fa-donate"></i>{{ __("reward.reward") }}</button>
   <div id="qr" class="qr" style="display: none;" aria-hidden="true">
     {% if themeConfig.reward.weChatPayQRCode %}
