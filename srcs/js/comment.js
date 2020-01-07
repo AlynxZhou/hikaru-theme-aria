@@ -83,8 +83,8 @@ function getComments(issue, callback) {
     return;
   }
   fetchJSON(issue["comments_url"], function (comments) {
-    callback([issue].concat(comments))
-  })
+    callback([issue].concat(comments));
+  });
 }
 
 function renderComment(comment) {
@@ -99,12 +99,16 @@ function renderComment(comment) {
     "</div>",
     "<div class=\"comment-body-container\">",
     "<div class=\"comment-info\">",
-    "<a class=\"comment-info-author\" target=\"_blank\" ref=\"noreferrer noopener\" href=\"",
+    "<a class=\"comment-info-author\" ",
+    "target=\"_blank\" ref=\"noreferrer noopener\" href=\"",
     comment["user"]["html_url"],
     "\">",
     comment["user"]["login"],
     "</a>",
-    comment["author_association"] === "NONE" ? "" : ("<span class=\"comment-info-association\">" + comment["author_association"] + "</span>"),
+    comment["author_association"] === "NONE"
+      ? ""
+      : ("<span class=\"comment-info-association\">" +
+         comment["author_association"] + "</span>"),
     "<span class=\"comment-info-date\">",
     new Date(comment["updated_at"]).toString(),
     "</span>",
@@ -114,20 +118,25 @@ function renderComment(comment) {
     "</div>",
     "</div>",
     "</div>"
-  ].join('');
+  ].join("");
 }
 
 function renderComments(comments, opts) {
   var header = [
     "<header class=\"comments-header\" id=\"comments-header\">",
-     comments.length !== 0 || opts["noCommentText"] == null ? "" : ("<span class=\"no-comment\">" + opts["noCommentText"] + "</span>"),
+    comments.length !== 0 || opts["noCommentText"] == null
+      ? ""
+      : ("<span class=\"no-comment\">" + opts["noCommentText"] + "</span>"),
     "</header>"
   ];
   var main = ["<main class=\"comments-main\" id=\"comments-main\">"];
   var footer = [
     "<footer class=\"comments-footer\" id=\"comments-footer\">",
-    "<a class=\"comments-button comments-send button\" id=\"comments-send\" target=\"_blank\" ref=\"noreferrer noopener\" href=\"",
-    comments.length === 0 ? buildNewIssueURL(opts["user"], opts["repo"], opts["title"]) : (comments[0]["html_url"] + "#new_comment_field"),
+    "<a class=\"comments-button comments-send button\" id=\"comments-send\" ",
+    "target=\"_blank\" ref=\"noreferrer noopener\" href=\"",
+    comments.length === 0
+      ? buildNewIssueURL(opts["user"], opts["repo"], opts["title"])
+      : (comments[0]["html_url"] + "#new_comment_field"),
     "\">",
     opts["sendButtonText"],
     "</a>",
@@ -177,6 +186,7 @@ var loadCommentCount = function (opts) {
         continue;
       }
       findIssueByTitle(issues, title, function (issue) {
+        // Total Length = Number of Comments + One Issue Body.
         containers[i].innerHTML = issue == null ? 0 : issue["comments"] + 1;
       });
     }
