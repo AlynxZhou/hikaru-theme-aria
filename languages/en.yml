@@ -42,6 +42,9 @@ categoryCount:
   one: You have %d category, keep on!
   more: You have %d categories!
 
+searchResult:
+  none: No result found.
+
 comment:
   none: This page has no comment, go to comment now!
   send: Go to Comment

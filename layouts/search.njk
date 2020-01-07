@@ -15,7 +15,12 @@
     {% else %}
     var searchPaths = ["{{ getPath(siteConfig.search.path) }}"];
     {% endif %}
-    loadSearch(searchPaths, window.location.search, "search-result");
+    loadSearch({
+      "paths": searchPaths,
+      "queryString": window.location.search,
+      "containerID": "search-result",
+      "noResultText": "{{ __("searchResult.none") }}"
+    });
   });
 </script>
 {% endif %}

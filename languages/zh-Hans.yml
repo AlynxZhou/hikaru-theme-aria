@@ -42,6 +42,9 @@ categoryCount:
   one: 你已经创建了 %d 个分类，积少成多，再接再厉！
   more: 你已经创建了 %d 个分类！
 
+searchResult:
+  none: 未找到符合要求的搜索结果。
+
 comment:
   none: 这个页面还没有评论，现在就去评论吧！
   send: 去评论

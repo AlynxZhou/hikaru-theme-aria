@@ -42,8 +42,11 @@ categoryCount:
   one: 你已經創建了 %d 個分類，積少成多，再接再厲！
   more: 你已經創建了 %d 個分類！
 
+searchResult:
+  none: 未找到符合要求的搜索結果
+
 comment:
-  none: 這個頁面還沒有評論，現在就驅評論吧！
+  none: 這個頁面還沒有評論，現在就去評論吧！
   send: 去評論
   read: 閱讀評論
 
