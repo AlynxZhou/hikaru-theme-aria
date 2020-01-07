@@ -47,10 +47,10 @@
             transition: 1s ease-in-out;
             .comment-info {
               padding: 0.5em;
+              color: $color-comment-info-font;
               background: $color-comment-info-background;
               overflow: auto;
-              .comment-info-author {
-                margin: 0 0.5em;
+              a {
                 position: relative;
                 color: $color-comment-info-link-font;
                 text-decoration: none;
@@ -64,9 +64,11 @@
                   top: 0.1em;
                 }
               }
+              .comment-info-author {
+                margin: 0 0.5em;
+              }
               .comment-info-date {
                 margin: 0 0.5em;
-                color: $color-comment-info-font;
               }
               .comment-info-association {
                 margin: 0 0.5em;
@@ -74,6 +76,11 @@
                 border: 0.05em solid $color-comment-info-font;
                 border-radius: $corner-radius;
                 color: $color-comment-info-font;
+              }
+              .comment-info-link {
+                &::before {
+                  content: "#";
+                }
               }
             }
             .comment-content {
