@@ -1,14 +1,25 @@
 "use strict";
-// If some init functions are used for library which is always enabled,
-// and does not depend on templating,
-// init function should be written here.
 var documentReady = function (callback) {
   document.readyState !== "loading"
     ? callback()
     : document.addEventListener("DOMContentLoaded", callback);
 };
 
-function slideUp(target, duration) {
+var createElementFromString = function (string) {
+  var e = document.createElement("div");
+  e.innerHTML = string;
+  return e.firstElementChild;
+};
+
+var elementsEach = function (elements, callback) {
+  return Array.prototype.forEach.call(elements, callback);
+};
+
+var elementBefore = function (element, before) {
+  element.insertAdjacentElement("afterend", before);
+};
+
+var slideUp = function (target, duration) {
   duration = duration || 400;
   target.style.transitionProperty = "height, margin, padding";
   target.style.transitionDuration = duration + "ms";
@@ -32,9 +43,9 @@ function slideUp(target, duration) {
     target.style.removeProperty("transition-duration");
     target.style.removeProperty("transition-property");
   }, duration);
-}
+};
 
-function slideDown(target, duration) {
+var slideDown = function (target, duration) {
   duration = duration || 400;
   target.style.removeProperty("display");
   var display = window.getComputedStyle(target).display;
@@ -64,16 +75,20 @@ function slideDown(target, duration) {
     target.style.removeProperty("transition-duration");
     target.style.removeProperty("transition-property");
   }, duration);
-}
+};
 
-function slideToggle(target, duration) {
+var slideToggle = function (target, duration) {
   duration = duration || 400;
   return window.getComputedStyle(target).display === "none"
     ? slideDown(target, duration)
     : slideUp(target, duration);
-}
+};
 
 documentReady(function () {
+  // If some init functions are used for library which is always enabled,
+  // and does not depend on templating,
+  // init function should be written here.
+
   var rewardButton = document.getElementById("reward-button");
   if (rewardButton != null) {
     rewardButton.onclick = function () {
@@ -103,7 +118,7 @@ documentReady(function () {
 
   // (40em - 0.6em) * 16px
   // 40 is total size and 0.4 is scroll bar size.
-  // jQuery won"t calculate scroll bar size. But CSS will.
+  // Don't forget calculate scroll bar size.
   var minWidth = Math.round((40 - 0.4) * 16);
   // Auto hide main nav menus in small screen.
   if (window.innerWidth <= minWidth) {
@@ -137,34 +152,32 @@ documentReady(function () {
     }
   }
 
-  Array.prototype.forEach.call(
-    document.querySelectorAll(".post img"),
-    function (e, i) {
-      // If an image works as link, don"t attach light gallary to it.
-      if (e.parentNode.tagName !== "A") {
-        if (e.title) {
-          e.insertAdjacentElement(
-            "afterend",
-            ["<span class=\"caption\">", e.title, "</span>"].join("")
-          );
-        }
-        var a = document.createElement("a");
-        a.href = e.src;
-        a.className = "gallery-item";
-        e.insertAdjacentElement("afterend", a);
-        a.appendChild(e);
-      } else {
-        e.parentNode.classList.add("img-link");
+  elementsEach(document.querySelectorAll(".post img"), function (e, i) {
+    // If an image works as link, don"t attach light gallary to it.
+    if (e.parentNode.tagName !== "A") {
+      if (e.title) {
+        elementBefore(e, createElementFromString(
+          ["<span class=\"caption\">", e.title, "</span>"].join("")
+        ));
       }
+      var a = document.createElement("a");
+      a.href = e.src;
+      a.className = "gallery-item";
+      elementBefore(e, a);
+      a.appendChild(e);
+    } else {
+      e.parentNode.classList.add("img-link");
     }
-  );
+  });
 
   if (typeof lightGallery !== "undefined") {
-    Array.prototype.forEach.call(
-      document.querySelectorAll(".post"),
-      function (e, i) {
-        lightGallery(e, {"selector": ".gallery-item"});
-      }
-    );
+    elementsEach(document.querySelectorAll(".post"), function (e, i) {
+      lightGallery(e, {"selector": ".gallery-item"});
+    });
   }
+
+  loadScrollSpy({
+    "headerSelector": ".post-main h1, h2, h3, h4, h5, h6",
+    "tocSelector": ".toc"
+  });
 });

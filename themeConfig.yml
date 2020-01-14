@@ -91,14 +91,11 @@ mathjax:
   global:
   cdn:
 
-# Note: `fontawesome` is fontawesome-all. `scrollspy` and `util` are from bootstrap. `busuanzi` is `busuanzi.pure.mini.js`.
+# Note: `fontawesome` is fontawesome-all. `busuanzi` is `busuanzi.pure.mini.js`.
 # If you don't know what you are doing, don't change it.
 libCDN:
   enable: false
-  jQuery:
   fontAwesome:
-  scrollSpy:
-  util:
   lightGallery:
     js:
     css:
@@ -113,7 +110,6 @@ libCDN:
   solarized-dark:
   solarized-light:
   normalize:
-  search:
   marked:
   spinkit:
   avMin:

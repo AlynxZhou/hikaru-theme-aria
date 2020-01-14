@@ -50,7 +50,7 @@ Use 2-spaces indent.
 
 JavaScript inside scripts tags shoule have a 2-spaces indent to it's parent `<script>` tag.
 
-Most JavaScript code should use jQuery's `$(document).ready()`.
+Most JavaScript code should inside `index.js`'s `documentReady()`.
 
 Consider not to use ES6, most of those functions can be written in ES5.
 

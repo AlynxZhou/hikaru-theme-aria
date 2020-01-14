@@ -216,7 +216,7 @@ var loadComment = function (opts) {
       });
     });
   });
-}
+};
 
 var loadCommentCount = function (opts) {
   if (opts == null) {
@@ -241,4 +241,4 @@ var loadCommentCount = function (opts) {
       });
     }
   });
-}
+};

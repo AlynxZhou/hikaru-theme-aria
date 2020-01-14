@@ -304,4 +304,4 @@ var loadSearch = function (opts) {
       }
     });
   });
-}
+};

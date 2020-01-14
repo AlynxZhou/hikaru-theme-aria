@@ -20,12 +20,12 @@
   {% elif themeConfig.comment.issue.enable %}
   <script defer type="text/javascript" src="{{ getPath("js/comment.js") }}"></script>
   <script type="text/javascript">
-    $(document).ready(function () {
+    documentReady(function () {
       loadCommentCount({
         "user": "{{ themeConfig.comment.issue.user }}",
         "repo": "{{ themeConfig.comment.issue.repo }}",
         "containerClass": "comment-count"
-      })
+      });
     });
   </script>
   {% if comment !== false %}
@@ -41,7 +41,7 @@
   <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.marked %}{{ themeConfig.libCDN.marked }}{% else %}{{ getPath("js/marked.min.js") }}{% endif %}"></script>
   <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.highlight %}{{ themeConfig.libCDN.highlight }}{% else %}{{ getPath("js/highlight.min.js") }}{% endif %}"></script>
   <script type="text/javascript">
-    $(document).ready(function () {
+    documentReady(function () {
       marked.setOptions({
         "highlight": function (code, lang) {
           return hljs.highlightAuto(code).value;
@@ -65,7 +65,7 @@
   <script defer src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.avMin %}{{ themeConfig.libCDN.avMin }}{% else %}{{ getPath("js/av-min.js") }}{% endif %}"></script>
   <script defer src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.valine %}{{ themeConfig.libCDN.valine }}{% else %}{{ getPath("js/valine.min.js") }}{% endif %}"></script>
   <script type="text/javascript">
-    $(document).ready(function () {
+    documentReady(function () {
       new Valine({
         "el": "#vcomments",
         "appId": "{{ themeConfig.comment.valine.appID }}",

@@ -59,17 +59,17 @@
     <link rel="stylesheet" type="text/css" href="{% if themeConfig.libCDN.enable and themeConfig.libCDN[themeConfig.highlight] %}{{ themeConfig.libCDN[themeConfig.highlight] }}{% else %}{{ getPath("css/" + themeConfig.highlight + ".css") }}{% endif %}">
     <link rel="stylesheet" type="text/css" href="{% if themeConfig.libCDN.enable and themeConfig.libCDN.lightGallery.css %}{{ themeConfig.libCDN.lightGallery.css }}{% else %}{{ getPath("css/lightgallery.min.css") }}{% endif %}">
     <link rel="stylesheet" type="text/css" href="{% if themeConfig.libCDN.enable and themeConfig.libCDN.spinkit %}{{ themeConfig.libCDN.spinkit }}{% else %}{{ getPath("css/spinkit.css") }}{% endif %}">
-    <!-- You should not set `defer` to jQuery because other scripts dependents it! -->
+    {# You should not set `defer` to `index.js` because other scripts depends it for `documentReady()`! #}
     <script type="text/javascript" src="{{ getPath("js/index.js") }}"></script>
-    <script type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.jQuery %}{{ themeConfig.libCDN.jQuery }}{% else %}{{ getPath("js/jquery.min.js") }}{% endif %}"></script>
-    <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.clipboard %}{{ themeConfig.libCDN.clipboard }}{% else %}{{ getPath("js/clipboard.min.js") }}{% endif %}"></script>
-    <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.fontAwesome %}{{ themeConfig.libCDN.fontAwesome }}{% else %}{{ getPath("js/fontawesome-all.min.js") }}{% endif %}"></script>
+    <script defer type="text/javascript" src="{{ getPath("js/scrollspy.js") }}"></script>
     <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.lightGallery.js %}{{ themeConfig.libCDN.lightGallery.js }}{% else %}{{ getPath("js/lightgallery.min.js") }}{% endif %}"></script>
     <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.lgFullscreen %}{{ themeConfig.libCDN.lgFullscreen }}{% else %}{{ getPath("js/lg-fullscreen.min.js") }}{% endif %}"></script>
     <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.lgHash %}{{ themeConfig.libCDN.lgHash }}{% else %}{{ getPath("js/lg-hash.min.js") }}{% endif %}"></script>
     <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.lgPager %}{{ themeConfig.libCDN.lgPager }}{% else %}{{ getPath("js/lg-pager.min.js") }}{% endif %}"></script>
     <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.lgThumbnail %}{{ themeConfig.libCDN.lgThumbnail }}{% else %}{{ getPath("js/lg-thumbnail.min.js") }}{% endif %}"></script>
     <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.lgZoom %}{{ themeConfig.libCDN.lgZoom }}{% else %}{{ getPath("js/lg-zoom.min.js") }}{% endif %}"></script>
+    <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.clipboard %}{{ themeConfig.libCDN.clipboard }}{% else %}{{ getPath("js/clipboard.min.js") }}{% endif %}"></script>
+    <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.fontAwesome %}{{ themeConfig.libCDN.fontAwesome }}{% else %}{{ getPath("js/fontawesome-all.min.js") }}{% endif %}"></script>
     {% if themeConfig.busuanzi %}
     <script defer src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.busuanzi %}{{ themeConfig.libCDN.busuanzi }}{% else %}{{ getPath("js/busuanzi.pure.mini.js") }}{% endif %}"></script>
     {% endif %}
@@ -78,53 +78,46 @@
     <script defer type="text/javascript" src="{{ themeConfig.mathjax.cdn }}"></script>
     <script type="text/x-mathjax-config">
       MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [["$", "$"], ["\\(", "\\)"]],
-          processEscapes: true,
-          skipTags: ["script", "noscript", "style", "textarea", "pre", "code"]
+        "tex2jax": {
+          "inlineMath": [["$", "$"], ["\\(", "\\)"]],
+          "processEscapes": true,
+          "skipTags": ["script", "noscript", "style", "textarea", "pre", "code"]
         }
       });
     </script>
     <script type="text/x-mathjax-config">
       MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i) {
           all[i].SourceElement().parentNode.className += " has-jax";
         }
       });
     </script>
     {% endif %}
     {% endif %}
-    <script defer type="text/javascript" src="{{ getPath("js/scrollspy.js") }}"></script>
     <script type="text/javascript">
       documentReady(function () {
-        loadScrollSpy({
-          "headerSelector": ".post-main h1, h2, h3, h4, h5, h6",
-          "tocSelector": ".toc"
-        });
-      });
-    </script>
-    <script type="text/javascript">
-      $(document).ready(function () {
-        $(".post pre code figure.highlight").each(function (i, e) {
-          var lang = e.parentNode.className;
-          $(e).before([
-            "<div class=\"code-titlebar\">",
-              "<div class=\"titlebar-left\">",
-                "<button class=\"copy\" aria-label=\"{{ __("clipboard.copy") }}\"><i class=\"far fa-copy\"></i></button>",
-              "</div>",
-              "<div class=\"titlebar-center\">",
-                lang.length ? lang.toUpperCase() : "{{ __("code") }}",
-              "</div>",
-              "<div class=\"titlebar-right\">",
-                "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
-                "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
-                "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
-              "</div>",
-            "</div>"
-          ].join(""));
-          // $(e).before("<button class=\"copy button\">{{ __("clipboard.copy") }}</button>");
-        });
+        elementsEach(
+          document.querySelectorAll(".post pre code figure.highlight"),
+          function (e, i) {
+            var lang = e.parentNode.className;
+            e.insertAdjacentElement("beforebegin", createElementFromString([
+              "<div class=\"code-titlebar\">",
+                "<div class=\"titlebar-left\">",
+                  "<button class=\"copy\" aria-label=\"{{ __("clipboard.copy") }}\"><i class=\"far fa-copy\"></i></button>",
+                "</div>",
+                "<div class=\"titlebar-center\">",
+                  lang.length ? lang.toUpperCase() : "{{ __("code") }}",
+                "</div>",
+                "<div class=\"titlebar-right\">",
+                  "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+                  "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+                  "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+                "</div>",
+              "</div>"
+            ].join("")));
+          }
+        );
         var cb = new ClipboardJS("button.copy", {
           "target": function (trigger) {
               // Get target element by DOM API.
@@ -138,11 +131,11 @@
           var trigger = e.trigger;
           // Change button text as a user tip.
           trigger.innerHTML = "<i class=\"far fa-check-square\"></i>";
-          $(trigger).addClass("copied");
+          trigger.classList.add("copied");
           // Change button text back;
           setTimeout(function () {
             trigger.innerHTML = "<i class=\"far fa-copy\"></i>";
-            $(trigger).removeClass("copied");
+            trigger.classList.remove("copied");
           }, 1500);
         });
       });
