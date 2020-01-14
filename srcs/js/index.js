@@ -177,7 +177,8 @@ documentReady(function () {
   }
 
   loadScrollSpy({
-    "headerSelector": ".post-main h1, h2, h3, h4, h5, h6",
-    "tocSelector": ".toc"
+    "containerID": "scrollspy-container",
+    "targetID": "scrollspy-target",
+    "headerSelector": "h1, h2, h3, h4, h5, h6"
   });
 });

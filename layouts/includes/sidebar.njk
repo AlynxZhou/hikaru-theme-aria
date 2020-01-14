@@ -43,23 +43,21 @@
     {% if content %}
     {% if toc.length > 0 %}
     <hr>
-    <div class="post-toc sidebar-item" id="toc-div"{% if encrypt %} style="display: none;"{% endif %}>
+    <div class="post-toc sidebar-item">
       <div><i class="fas fa-list-ol"></i>{{ __("toc") }}</div>
-      <div class="post-toc-content">
-        {% macro listToc(toc, level = 1) %}
-        <ol {% if level === 1 %}class="list-group toc"{% endif %}>
-        {% for h in toc %}
-          <li>
-            <a class="list-group-item toc-link" href="{{ h.archor }}">{{ h.text }}</a>
-            {% if h.subs.length > 0 %}
-            {{ listToc(h.subs, level + 1) }}
-            {% endif %}
-          </li>
-        {% endfor %}
-        </ol>
-        {% endmacro %}
-        {{ listToc(toc) }}
-      </div>
+      {% macro listToc(toc, level = 1) %}
+      <ol {% if level === 1 %}class="toc" id="scrollspy-target"{% endif %}>
+      {% for h in toc %}
+        <li>
+          <a class="list-group-item toc-link" href="{{ h.archor }}">{{ h.text }}</a>
+          {% if h.subs.length > 0 %}
+          {{ listToc(h.subs, level + 1) }}
+          {% endif %}
+        </li>
+      {% endfor %}
+      </ol>
+      {% endmacro %}
+      {{ listToc(toc) }}
     </div>
     {% endif %}
     {% endif %}

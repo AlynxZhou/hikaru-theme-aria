@@ -27,7 +27,7 @@
     <header class="post-header">
       <h1 class="post-title" itemprop="name headline">{{ __(title) }}</h1>
     </header>
-    <main class="post-main">
+    <main class="post-main" id="scrollspy-container">
       <h2 class="page-counter">
         {% if site.tagsLength > 1 %}
         {{ __("tagCount.more", site.tagsLength) }}
