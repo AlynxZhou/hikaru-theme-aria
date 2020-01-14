@@ -25,8 +25,8 @@ var loadScrollSpy = function (opts) {
     var position = document.documentElement.scrollTop ||
       document.body.scrollTop;
     headers.forEach(function (e, i) {
-      // e is higher then current position,
-      // and e is last, or e's next is lower then current position.
+      // e is higher than current position,
+      // and e is last, or e's next is lower than current position.
       if (e.offsetTop <= position &&
           (i === headers.length - 1 || headers[i + 1].offsetTop > position)) {
         var oldActive = target.querySelector(".active");
