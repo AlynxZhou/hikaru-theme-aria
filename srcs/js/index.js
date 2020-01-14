@@ -2,11 +2,11 @@
 // If some init functions are used for library which is always enabled,
 // and does not depend on templating,
 // init function should be written here.
-function documentReady(callback) {
-  document.readyState !== 'loading'
+var documentReady = function (callback) {
+  document.readyState !== "loading"
     ? callback()
-    : document.addEventListener('DOMContentLoaded', callback);
-}
+    : document.addEventListener("DOMContentLoaded", callback);
+};
 
 function slideUp(target, duration) {
   duration = duration || 400;
@@ -144,14 +144,14 @@ documentReady(function () {
       if (e.parentNode.tagName !== "A") {
         if (e.title) {
           e.insertAdjacentElement(
-            'afterend',
+            "afterend",
             ["<span class=\"caption\">", e.title, "</span>"].join("")
           );
         }
-        var a = document.createElement('a');
+        var a = document.createElement("a");
         a.href = e.src;
         a.className = "gallery-item";
-        e.insertAdjacentElement('afterend', a);
+        e.insertAdjacentElement("afterend", a);
         a.appendChild(e);
       } else {
         e.parentNode.classList.add("img-link");
