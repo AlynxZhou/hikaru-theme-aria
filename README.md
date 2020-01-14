@@ -150,16 +150,6 @@ $ cp themes/aria/themeConfig.yml themeConfig.yml
 
 Following needs to be changed in `themeConfig.yml`, not all config needs customization, you just change what you need：
 
-# Zone Settings
-
-Different posts may use different timezone as their local time, if you don't want they show in different timezone but want display in a single timezone (with converting), uncomment this option and set a zone:
-
-```yaml
-zone: Asia/Shanghai
-```
-
-But you should consider of different different zone of posts first, just keep this option as a comment to make this.
-
 ### Menu Settings
 
 You should already have `srcs/categories/index.md` and `srcs/tags/index.md` when you creating your site with Hikaru, if not, create them and set front matter `layout: categories` or `layout: tags`, and set them like following:
@@ -245,7 +235,7 @@ If you want to disable Busuanzi, set `busuanzi` to `false`, or it will display `
 
 ### Library CDN
 
-You can use CDN with ARIA's internal lib. First set `libCdn` to `enable: true`, then add CDN link to the library. If you don't know what you are doing, just skip it.
+You can use CDN with ARIA's internal lib. First set `libCDN` to `enable: true`, then add CDN link to the library. If you don't know what you are doing, just skip it.
 
 ### Social Links
 
