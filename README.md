@@ -281,7 +281,7 @@ If you use builtin GitHub issue based comment, first set `enable` to `true`, `us
 
 If you use Valine, read its docs and fill options `apiID`, `apiKey`, set `enable` to `true` and custom other options.
 
-If you enable more than one comment services, only the one shows in front of the queue will be shown (queue: Disqus, builtin comment, Valine).
+If you enable more than one comment services, only the one shows in front of the queue will be shown (queue: builtin comment, Disqus, Valine).
 
 ### Reward
 

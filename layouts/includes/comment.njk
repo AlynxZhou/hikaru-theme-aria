@@ -1,23 +1,6 @@
 {% block comment %}
-<div class="comments" id="comments">
-  {% if themeConfig.comment.disqusShortName %}
-  <script defer id="dsq-count-scr" src="//{{ themeConfig.comment.disqusShortName }}.disqus.com/count.js"></script>
-  {% if comment !== false %}
-  <div id="disqus_thread" class="disqus_thread"></div>
-  <script type="text/javascript">
-    var disqus_config = function () {
-      this.page.url = "{{ getPath(page.docPath) }}";
-      this.page.identifier = "{{ getPath(page.docPath) }}";
-    };
-    (function() {
-      var d = document, s = d.createElement("script");
-      s.src = "https://{{ themeConfig.comment.disqusShortName }}.disqus.com/embed.js";
-      s.setAttribute("data-timestamp", +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  </script>
-  {% endif %}
-  {% elif themeConfig.comment.issue.enable %}
+<div class="comment" id="comment">
+  {% if themeConfig.comment.issue.enable %}
   <script defer type="text/javascript" src="{{ getPath("js/comment.js") }}"></script>
   <script type="text/javascript">
     documentReady(function () {
@@ -57,6 +40,23 @@
         "containerID": "comment-results"
       });
     });
+  </script>
+  {% endif %}
+  {% elif themeConfig.comment.disqusShortName %}
+  <script defer id="dsq-count-scr" src="//{{ themeConfig.comment.disqusShortName }}.disqus.com/count.js"></script>
+  {% if comment !== false %}
+  <div id="disqus_thread" class="disqus_thread"></div>
+  <script type="text/javascript">
+    var disqus_config = function () {
+      this.page.url = "{{ getPath(page.docPath) }}";
+      this.page.identifier = "{{ getPath(page.docPath) }}";
+    };
+    (function() {
+      var d = document, s = d.createElement("script");
+      s.src = "https://{{ themeConfig.comment.disqusShortName }}.disqus.com/embed.js";
+      s.setAttribute("data-timestamp", +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
   </script>
   {% endif %}
   {% elif themeConfig.comment.valine.enable %}

@@ -144,11 +144,11 @@ blogroll:
 
 comment:
   enable: false
-  disqusShortName:
   issue:
     enable: false
     user:
     repo:
+  disqusShortName:
   valine:
     enable: false
     appID:

@@ -149,13 +149,13 @@ function renderComments(comments, opts) {
     "<header class=\"comments-header\" id=\"comments-header\">",
     comments.length !== 0 || opts["noCommentText"] == null
       ? ""
-      : ("<span class=\"no-comment\">" + opts["noCommentText"] + "</span>"),
+      : ("<span class=\"comment-none\">" + opts["noCommentText"] + "</span>"),
     "</header>"
   ];
   var main = ["<main class=\"comments-main\" id=\"comments-main\">"];
   var footer = [
     "<footer class=\"comments-footer\" id=\"comments-footer\">",
-    "<a class=\"comments-button comments-send button\" id=\"comments-send\" ",
+    "<a class=\"comments-button comment-send button\" id=\"comments-send\" ",
     "target=\"_blank\" ref=\"noreferrer noopener\" href=\"",
     comments.length === 0
       ? buildNewIssueURL(opts["user"], opts["repo"], opts["title"])

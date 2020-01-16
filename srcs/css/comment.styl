@@ -1,11 +1,6 @@
 @import "variables";
 @import "nib";
-.comments {
-  if (getThemeConfig("comment.disqusShortName")) {
-    .disqus_thread {
-      margin: 1em 2em;
-    }
-  }
+.comment {
   if (getThemeConfig("comment.issue.enable")) {
     .comment-results {
       padding: 1em;
@@ -105,15 +100,18 @@
         display: flex;
         flex-direction: row;
         justify-content: center;
-        .comments-send {
+        .comment-send {
           padding: 0.3em 1em;
           background: $color-button-comment-background;
           border: 0.1em solid $color-button-comment-border;
         }
       }
     }
-  }
-  if (getThemeConfig("comment.valine.enable")) {
+  } else if (getThemeConfig("comment.disqusShortName")) {
+    .disqus_thread {
+      margin: 1em 2em;
+    }
+  } else if (getThemeConfig("comment.valine.enable")) {
     .vcomments {
       margin: 1em 2em;
     }
