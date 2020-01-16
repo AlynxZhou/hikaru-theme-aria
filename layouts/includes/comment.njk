@@ -1,89 +1,110 @@
 {% block comment %}
 <div class="comments" id="comments">
-  {% if themeConfig.comment.disqusShortName %}
-  <script defer id="dsq-count-scr" src="//{{ themeConfig.comment.disqusShortName }}.disqus.com/count.js"></script>
   {% if comment !== false %}
-  <div id="disqus_thread" class="disqus_thread"></div>
-  <script type="text/javascript">
-    var disqus_config = function () {
-      this.page.url = "{{ getPath(page.docPath) }}";
-      this.page.identifier = "{{ getPath(page.docPath) }}";
-    };
-    (function() {
-      var d = document, s = d.createElement("script");
-      s.src = "https://{{ themeConfig.comment.disqusShortName }}.disqus.com/embed.js";
-      s.setAttribute("data-timestamp", +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  </script>
-  {% endif %}
-  {% elif themeConfig.comment.issue.enable %}
-  <script defer type="text/javascript" src="{{ getPath("js/comment.js") }}"></script>
-  <script type="text/javascript">
-    documentReady(function () {
-      loadCommentCount({
-        "user": "{{ themeConfig.comment.issue.user }}",
-        "repo": "{{ themeConfig.comment.issue.repo }}",
-        "containerClass": "comment-count"
-      });
-    });
-  </script>
-  {% if comment !== false %}
-  <div class="comment-results" id="comment-results">
-    <div class="sk-wave" id="sk-wave">
-      <div class="sk-rect sk-rect1"></div>
-      <div class="sk-rect sk-rect2"></div>
-      <div class="sk-rect sk-rect3"></div>
-      <div class="sk-rect sk-rect4"></div>
-      <div class="sk-rect sk-rect5"></div>
-    </div>
+  <div class="comment-buttons">
+    {% if themeConfig.comment.disqusShortName %}
+    <button class="button" id="comment-toggle-disqus">Disqus</button>
+    {% endif %}
+    {% if themeConfig.comment.issue.enable %}
+    <button class="button" id="comment-toggle-issue">Issue</button>
+    {% endif %}
+    {% if themeConfig.comment.valine.enable %}
+    <button class="button" id="comment-toggle-valine">Valine</button>
+    {% endif %}
   </div>
-  <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.marked %}{{ themeConfig.libCDN.marked }}{% else %}{{ getPath("js/marked.min.js") }}{% endif %}"></script>
-  <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.highlight %}{{ themeConfig.libCDN.highlight }}{% else %}{{ getPath("js/highlight.min.js") }}{% endif %}"></script>
-  <script type="text/javascript">
-    documentReady(function () {
-      marked.setOptions({
-        "highlight": function (code, lang) {
-          return hljs.highlightAuto(code).value;
-        }
-      });
-      loadComment({
-        "user": "{{ themeConfig.comment.issue.user }}",
-        "repo": "{{ themeConfig.comment.issue.repo }}",
-        "sendButtonText": "{{ __("comment.send") }}",
-        "noCommentText": "{{ __("comment.none") }}",
-        "failText": "{{ __("comment.fail") }}",
-        "title": "{{ __(title) }}",
-        "containerID": "comment-results"
-      });
-    });
-  </script>
   {% endif %}
-  {% elif themeConfig.comment.valine.enable %}
-  {% if comment !== false %}
-  <div id="vcomments" class="vcomments"></div>
-  <script defer src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.avMin %}{{ themeConfig.libCDN.avMin }}{% else %}{{ getPath("js/av-min.js") }}{% endif %}"></script>
-  <script defer src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.valine %}{{ themeConfig.libCDN.valine }}{% else %}{{ getPath("js/valine.min.js") }}{% endif %}"></script>
-  <script type="text/javascript">
-    documentReady(function () {
-      new Valine({
-        "el": "#vcomments",
-        "appId": "{{ themeConfig.comment.valine.appID }}",
-        "appKey": "{{ themeConfig.comment.valine.appKey }}",
-        "verify": "{{ themeConfig.comment.valine.verify }}",
-        "notify": "{{ themeConfig.comment.valine.notify }}",
-        "avatar": "{{ themeConfig.comment.valine.avatar }}",
-        "meta": {{ themeConfig.comment.valine.meta }},
-        "pageSize": {{ themeConfig.comment.valine.pageSize }},
-        "lang": "{{ themeConfig.comment.valine.lang }}",
-        "visitor": "{{ themeConfig.comment.valine.visitor }}",
-        "highlight": "{{ themeConfig.comment.valine.highlight }}",
-        "placeholder": "{{ __("valine.placeholder") }}",
-        "avatarForce": "{{ themeConfig.comment.valine.avatarForce }}"
-      });
-    });
-  </script>
+  {% if themeConfig.comment.disqusShortName %}
+  <div id="disqus-comment">
+    <script defer id="dsq-count-scr" src="//{{ themeConfig.comment.disqusShortName }}.disqus.com/count.js"></script>
+    {% if comment !== false %}
+    <div id="disqus_thread" class="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = "{{ getPath(page.docPath) }}";
+        this.page.identifier = "{{ getPath(page.docPath) }}";
+      };
+      (function() {
+        var d = document, s = d.createElement("script");
+        s.src = "https://{{ themeConfig.comment.disqusShortName }}.disqus.com/embed.js";
+        s.setAttribute("data-timestamp", +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    {% endif %}
+  </div>
   {% endif %}
+  {% if themeConfig.comment.issue.enable %}
+  <div id="issue-comment">
+    <script defer type="text/javascript" src="{{ getPath("js/comment.js") }}"></script>
+    <script type="text/javascript">
+      documentReady(function () {
+        loadCommentCount({
+          "user": "{{ themeConfig.comment.issue.user }}",
+          "repo": "{{ themeConfig.comment.issue.repo }}",
+          "containerClass": "comment-count"
+        });
+      });
+    </script>
+    {% if comment !== false %}
+    <div class="comment-results" id="comment-results">
+      <div class="sk-wave" id="sk-wave">
+        <div class="sk-rect sk-rect1"></div>
+        <div class="sk-rect sk-rect2"></div>
+        <div class="sk-rect sk-rect3"></div>
+        <div class="sk-rect sk-rect4"></div>
+        <div class="sk-rect sk-rect5"></div>
+      </div>
+    </div>
+    <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.marked %}{{ themeConfig.libCDN.marked }}{% else %}{{ getPath("js/marked.min.js") }}{% endif %}"></script>
+    <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.highlight %}{{ themeConfig.libCDN.highlight }}{% else %}{{ getPath("js/highlight.min.js") }}{% endif %}"></script>
+    <script type="text/javascript">
+      documentReady(function () {
+        marked.setOptions({
+          "highlight": function (code, lang) {
+            return hljs.highlightAuto(code).value;
+          }
+        });
+        loadComment({
+          "user": "{{ themeConfig.comment.issue.user }}",
+          "repo": "{{ themeConfig.comment.issue.repo }}",
+          "sendButtonText": "{{ __("comment.send") }}",
+          "noCommentText": "{{ __("comment.none") }}",
+          "failText": "{{ __("comment.fail") }}",
+          "title": "{{ __(title) }}",
+          "containerID": "comment-results"
+        });
+      });
+    </script>
+    {% endif %}
+  </div>
+  {% endif %}
+  {% if themeConfig.comment.valine.enable %}
+  <div id="valine-comment">
+    {% if comment !== false %}
+    <div id="vcomments" class="vcomments"></div>
+    <script defer src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.avMin %}{{ themeConfig.libCDN.avMin }}{% else %}{{ getPath("js/av-min.js") }}{% endif %}"></script>
+    <script defer src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.valine %}{{ themeConfig.libCDN.valine }}{% else %}{{ getPath("js/valine.min.js") }}{% endif %}"></script>
+    <script type="text/javascript">
+      documentReady(function () {
+        new Valine({
+          "el": "#vcomments",
+          "appId": "{{ themeConfig.comment.valine.appID }}",
+          "appKey": "{{ themeConfig.comment.valine.appKey }}",
+          "verify": "{{ themeConfig.comment.valine.verify }}",
+          "notify": "{{ themeConfig.comment.valine.notify }}",
+          "avatar": "{{ themeConfig.comment.valine.avatar }}",
+          "meta": {{ themeConfig.comment.valine.meta }},
+          "pageSize": {{ themeConfig.comment.valine.pageSize }},
+          "lang": "{{ themeConfig.comment.valine.lang }}",
+          "visitor": "{{ themeConfig.comment.valine.visitor }}",
+          "highlight": "{{ themeConfig.comment.valine.highlight }}",
+          "placeholder": "{{ __("valine.placeholder") }}",
+          "avatarForce": "{{ themeConfig.comment.valine.avatarForce }}"
+        });
+      });
+    </script>
+    {% endif %}
+  </div>
   {% endif %}
 </div>
 {% endblock %}

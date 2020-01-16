@@ -154,6 +154,62 @@ documentReady(function () {
     slideToggle(document.getElementById("menu"));
   };
 
+  var issueComment = document.getElementById("issue-comment");
+  var valineComment = document.getElementById("valine-comment");
+  var disqusComment = document.getElementById("disqus-comment");
+  var issueButton = document.getElementById("comment-toggle-issue");
+  var valineButton = document.getElementById("comment-toggle-valine");
+  var disqusButton = document.getElementById("comment-toggle-disqus");
+  
+  if (issueComment != null) {
+    issueComment.style.display = "none";
+  }
+  if (valineComment != null) {
+    valineComment.style.display = "none";
+  }
+  if (disqusComment != null) {
+    disqusComment.style.display = "block";
+  }
+  if (disqusButton != null) {
+    disqusButton.onclick = function () {
+      if (issueComment != null) {
+        issueComment.style.display = "none";
+      }
+      if (valineComment != null) {
+        valineComment.style.display = "none";
+      }
+      if (disqusComment != null) {
+        disqusComment.style.display = "block";
+      }
+    };
+  }
+  if (issueButton != null) {
+    issueButton.onclick = function () {
+      if (issueComment != null) {
+        issueComment.style.display = "block";
+      }
+      if (valineComment != null) {
+        valineComment.style.display = "none";
+      }
+      if (disqusComment != null) {
+        disqusComment.style.display = "none";
+      }
+    };
+  }
+  if (valineButton != null) {
+    valineButton.onclick = function () {
+      if (issueComment != null) {
+        issueComment.style.display = "none";
+      }
+      if (valineComment != null) {
+        valineComment.style.display = "block";
+      }
+      if (disqusComment != null) {
+        disqusComment.style.display = "none";
+      }
+    };
+  }
+
   var current = new Date().getFullYear().toString();
   var since = document.getElementById("years-text").innerHTML;
   if (since.length === 0) {
