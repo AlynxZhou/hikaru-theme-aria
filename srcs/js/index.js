@@ -19,6 +19,31 @@ var elementBefore = function (element, before) {
   element.insertAdjacentElement("afterend", before);
 };
 
+var scrollToTop = function (duration, offset) {
+  duration = duration || 400;
+  offset = offset || 0;
+  var oldOffset = document.documentElement.scrollTop ||
+    document.body.scrollTop;
+  var startMs = performance.now();
+  function frame(currentMs) {
+    // Time based frame step.
+    var currentOffset = (
+      1 - (currentMs - startMs) / duration
+    ) * (oldOffset - offset);
+    if (currentOffset <= offset) {
+      // Finished animation!
+      document.documentElement.scrollTop = offset;
+      document.body.scrollTop = offset;
+    } else {
+      document.documentElement.scrollTop = currentOffset;
+      document.body.scrollTop = currentOffset;
+      // Call next animation!
+      requestAnimationFrame(frame);
+    }
+  }
+  requestAnimationFrame(frame);
+};
+
 var slideUp = function (target, duration) {
   duration = duration || 400;
   target.style.transitionProperty = "height, margin, padding";
@@ -32,7 +57,7 @@ var slideUp = function (target, duration) {
   target.style.paddingBottom = 0;
   target.style.marginTop = 0;
   target.style.marginBottom = 0;
-  window.setTimeout(function () {
+  setTimeout(function () {
     target.style.display = "none";
     target.style.removeProperty("height");
     target.style.removeProperty("padding-top");
@@ -48,7 +73,7 @@ var slideUp = function (target, duration) {
 var slideDown = function (target, duration) {
   duration = duration || 400;
   target.style.removeProperty("display");
-  var display = window.getComputedStyle(target).display;
+  var display = getComputedStyle(target).display;
   if (display === "none") {
     display = "block";
   }
@@ -69,7 +94,7 @@ var slideDown = function (target, duration) {
   target.style.removeProperty("padding-bottom");
   target.style.removeProperty("margin-top");
   target.style.removeProperty("margin-bottom");
-  window.setTimeout(function () {
+  setTimeout(function () {
     target.style.removeProperty("height");
     target.style.removeProperty("overflow");
     target.style.removeProperty("transition-duration");
@@ -79,7 +104,7 @@ var slideDown = function (target, duration) {
 
 var slideToggle = function (target, duration) {
   duration = duration || 400;
-  return window.getComputedStyle(target).display === "none"
+  return getComputedStyle(target).display === "none"
     ? slideDown(target, duration)
     : slideUp(target, duration);
 };
@@ -88,6 +113,10 @@ documentReady(function () {
   // If some init functions are used for library which is always enabled,
   // and does not depend on templating,
   // init function should be written here.
+
+  document.getElementById("back-to-top").onclick = function () {
+    scrollToTop();
+  };
 
   var rewardButton = document.getElementById("reward-button");
   if (rewardButton != null) {
