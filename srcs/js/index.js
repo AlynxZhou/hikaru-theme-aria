@@ -1,5 +1,8 @@
 "use strict";
 var documentReady = function (callback) {
+  if (callback == null) {
+    return;
+  }
   document.readyState !== "loading"
     ? callback()
     : document.addEventListener("DOMContentLoaded", callback);
@@ -12,28 +15,35 @@ var createElementFromString = function (string) {
 };
 
 var elementsEach = function (elements, callback) {
+  if (elements == null || callback == null) {
+    return;
+  }
   return Array.prototype.forEach.call(elements, callback);
 };
 
 var elementBefore = function (element, before) {
+  if (element == null || before == null) {
+    return;
+  }
   element.insertAdjacentElement("afterend", before);
 };
 
-var scrollToTop = function (duration, offset) {
-  duration = duration || 400;
-  offset = offset || 0;
+var scrollToTop = function (opts) {
+  opts = opts || {}
+  opts["duration"] = opts["duration"] || 400;
+  opts["offset"] = opts["offset"] || 0;
   var oldOffset = document.documentElement.scrollTop ||
     document.body.scrollTop;
   var startMs = performance.now();
   function frame(currentMs) {
     // Time based frame step.
     var currentOffset = (
-      1 - (currentMs - startMs) / duration
-    ) * (oldOffset - offset);
-    if (currentOffset <= offset) {
+      1 - (currentMs - startMs) / opts["duration"]
+    ) * (oldOffset - opts["offset"]);
+    if (currentOffset <= opts["offset"]) {
       // Finished animation!
-      document.documentElement.scrollTop = offset;
-      document.body.scrollTop = offset;
+      document.documentElement.scrollTop = opts["offset"];
+      document.body.scrollTop = opts["offset"];
     } else {
       document.documentElement.scrollTop = currentOffset;
       document.body.scrollTop = currentOffset;
@@ -45,6 +55,9 @@ var scrollToTop = function (duration, offset) {
 };
 
 var slideUp = function (target, duration) {
+  if (target == null) {
+    return;
+  }
   duration = duration || 400;
   target.style.transitionProperty = "height, margin, padding";
   target.style.transitionDuration = duration + "ms";
@@ -71,6 +84,9 @@ var slideUp = function (target, duration) {
 };
 
 var slideDown = function (target, duration) {
+  if (target == null) {
+    return;
+  }
   duration = duration || 400;
   target.style.removeProperty("display");
   var display = getComputedStyle(target).display;
@@ -103,6 +119,9 @@ var slideDown = function (target, duration) {
 };
 
 var slideToggle = function (target, duration) {
+  if (target == null) {
+    return;
+  }
   duration = duration || 400;
   return getComputedStyle(target).display === "none"
     ? slideDown(target, duration)
