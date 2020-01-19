@@ -133,7 +133,7 @@ function renderComment(comment) {
       : ("<span class=\"comment-info-association\">" +
          comment["author_association"] + "</span>"),
     "<span class=\"comment-info-date\">",
-    new Date(comment["updated_at"]).toString(),
+    new Date(comment["updated_at"]).toLocaleString(),
     "</span>",
     "</div>",
     "<div class=\"comment-content\">",
