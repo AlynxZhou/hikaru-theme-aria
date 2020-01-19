@@ -133,7 +133,7 @@ hr {
   margin: 1.5em 0;
   width: 100%;
   box-sizing: content-box;
-  background: repeating-linear-gradient(-45deg, #ccc, #ccc 0.25em, transparent 0.25em, transparent 0.5em);
+  background: repeating-linear-gradient(-45deg, #ccc, #ccc 0.25rem, transparent 0.25rem, transparent 0.5rem);
 }
 article table {
   margin: 1em auto;
@@ -144,14 +144,14 @@ article table {
     background: $color-table-head-background;
     th {
       padding: 0.4em 0.7em;
-      border: 0.1em solid $color-table-head-border;
+      border: 0.1rem solid $color-table-head-border;
     }
   }
   tbody tr {
     background: $color-table-odd-row-background;
     td {
       padding: 0.4em 0.7em;
-      border: 0.1em solid $color-table-border;
+      border: 0.1rem solid $color-table-border;
       &:nth-child(2n) {
         background: $color-table-even-row-background;
       }
@@ -160,7 +160,7 @@ article table {
       background: $color-table-even-row-background;
       td {
         padding: 0.4em 0.7em;
-        border: 0.1em solid $color-table-border;
+        border: 0.1rem solid $color-table-border;
         &:nth-child(2n) {
           background: $color-table-odd-row-background;
         }
@@ -176,8 +176,6 @@ code {
   word-wrap: break-word;
   border-radius: $corner-radius;
   font-family: $font-code;
-  // Use a single font here makes line-height wrong.
-  font-size: $font-size;
   background: $color-code-background;
   -webkit-font-feature-settings: "liga" 0; /* No variation */
   -moz-font-feature-settings: "liga=0"; /* Firefox 4.0 to 14.0 */
@@ -222,7 +220,7 @@ pre code {
     margin: 0.25em;
     box-sizing: border-box;
     color: $color-link-copy-font;
-    transition: 0.2s ease-in-out;
+    transition: 0.3s ease-in-out;
     &:hover {
       color: $color-link-copy-hover-font;
       border-bottom: none;
@@ -299,6 +297,7 @@ figure.highlight {
 blockquote {
   margin: 1em 0;
   word-wrap: break-word;
+  // This is relative to text.
   padding: 0 1em;
   border-left: 0.25em solid $color-background;
   color: $color-quote-font;
@@ -346,11 +345,11 @@ blockquote {
 .card {
   display: block;
   background: $color-card-background;
-  transition: 0.2s ease-in-out;
   box-sizing: border-box;
   border-radius: $corner-radius;
-  padding: 0.5em 1em;
-  margin: 0.5em;
+  padding: 0.5rem 1rem;
+  margin: 0.5rem;
+  transition: 0.3s ease-in-out;
   &:hover {
     box-shadow: 0 0 1em 0.5em rgba(0, 0, 0, 0.19);
   }

@@ -38,6 +38,10 @@ Don't forget to add space after English puctuation.
 
 They should look like CSS, don't remove `{`, `}` and `;`.
 
+For decoration's size that related to inner text, or inside other container, use `em`. (e.g. `line-height`, `text-shadow`, `ul`'s `padding-left`, link's `border-bottom` and `top`, inline element's `margin` and `padding`.)
+
+For `font-size` or other non-relative size elements, use `rem`. (e.g. box-shadow, container's `width`, block element's `margin`, `padding` and `border`.)
+
 Use 2-spaces indent.
 
 ## Nunjucks

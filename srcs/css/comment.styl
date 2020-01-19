@@ -3,7 +3,7 @@
 .comment {
   if (getThemeConfig("comment.issue.enable")) {
     .comment-results {
-      padding: 1em;
+      padding: 1rem;
       .comment-fail {
         text-align: center;
         color: $color-comment-font;
@@ -20,26 +20,27 @@
           flex-wrap: nowrap;
           justify-content: stretch;
           align-items: start;
-          margin: 1em 0;
+          margin: 0.5rem 0;
           .comment-avatar-container {
             flex: 1 1 auto;
             width: 10%;
             .comment-avatar {
               width: 70%;
-              border: 0.1em solid white;
+              border: 0.1rem solid white;
               border-radius: 50%;
-              transition: 1s ease-in-out;
+              transition: box-shadow 0.3s ease-in-out, transform 1s ease-in-out;
               &:hover {
-                transform: rotateY(720deg);
                 box-shadow: 0 0 1em 0.5em rgba(0, 0, 0, 0.19);
+                transform: rotateY(720deg);
               }
             }
           }
           .comment-body-container {
             flex: 9 9 auto;
             width: 90%;
+            transition: 0.3s ease-in-out;
+            overflow: hidden;
             border-radius: $corner-radius;
-            transition: 1s ease-in-out;
             .comment-info {
               padding: 0.5em;
               color: $color-comment-info-font;
@@ -84,6 +85,7 @@
               pre {
                 overflow: auto;
                 padding: 0.5em;
+                border-radius: $corner-radius;
                 background: $color-code-background;
                 code {
                   background: transparent;
@@ -109,11 +111,11 @@
     }
   } else if (getThemeConfig("comment.disqusShortName")) {
     .disqus_thread {
-      margin: 1em 2em;
+      margin: 1rem 2rem;
     }
   } else if (getThemeConfig("comment.valine.enable")) {
     .vcomments {
-      margin: 1em 2em;
+      margin: 1rem 2rem;
     }
   }
 }
