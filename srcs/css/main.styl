@@ -1,9 +1,9 @@
 @import "variables";
 @import "nib";
-.main {
+main.main {
   font: $font-size $font-main;
   margin-top: 0 - $search-height;
-  .main-container {
+  div.main-container {
     width: auto;
     background: $color-main-background;
     box-sizing: border-box;
@@ -20,15 +20,15 @@
     align-items: stretch;
     flex-wrap: nowrap;
     padding: 0;
-    .content {
+    div.content {
       flex: 3 3 auto;
       width: 75%;
     }
   }
   @media (max-width: $media-main-fold-width) {
-    .main-container {
+    div.main-container {
       flex-direction: column;
-      .content {
+      div.content {
         width: 100%;
       }
     }

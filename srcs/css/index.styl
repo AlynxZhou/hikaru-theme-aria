@@ -40,7 +40,6 @@ body {
   color: $color-font;
   background: $color-background;
   font: $font-size $font-all
-  word-wrap: break-word;
   display: flex;
   min-height: 100%;
   flex-direction: column;
@@ -51,11 +50,14 @@ main {
 header, footer {
   flex: none;
 }
-.container {
+div.container {
   padding: 0;
   // max-width: $container-max-width;
   width: 75%;
   margin: 0 auto;
+}
+div.center {
+  text-align: center
 }
 ol, ul {
   padding-left: 2em;
@@ -75,13 +77,10 @@ a {
   }
 }
 img {
-  width: 100%;
+  max-width: 100%;
 }
 a.gallery-item, a.img-link {
   border-bottom: none;
-  display: block;
-  margin: 1em 0 0 0;
-  text-align: center;
   img {
     transition: 0.3s ease-in-out;
     border: 0.15em solid $color-background;
@@ -104,7 +103,7 @@ a#top, a#more {
     top: 0;
   }
 }
-.caption {
+span.caption {
   color: $color-quote-font;
   display: block;
   text-align: center;
@@ -187,7 +186,7 @@ pre code {
   margin: 0;
   padding: 0;
 }
-.code-titlebar {
+div.code-titlebar {
   display: flex;
   flex-direction: row;
   flex-warp: nowarp;
@@ -197,23 +196,23 @@ pre code {
   color: $color-code-titlebar-font;
   background: $color-code-titlebar-background;
   padding: 0.25em 0.5em;
-  .titlebar-left {
+  div.titlebar-left {
     flex: 0 0 auto;
     text-align: left;
     padding: 0 0.25em;
   }
-  .titlebar-center {
+  div.titlebar-center {
     flex: 1 1 auto;
     text-align: center;
     padding: 0 0.25em;
   }
-  .titlebar-right {
+  div.titlebar-right {
     flex: 0 0 auto;
     text-align: right;
     padding: 0 0.25em;
   }
   button.copy {
-    background: transparent;
+    background: inherit;
     text-decoration: none;
     border: none;
     padding: 0;
@@ -242,13 +241,13 @@ pre code {
       opacity: 0.7;
     }
   }
-  .dot-close {
+  button.dot-close {
     background: $color-button-dot-close-background;
   }
-  .dot-maximize {
+  button.dot-maximize {
     background: $color-button-dot-maximize-background;
   }
-  .dot-minimize {
+  button.dot-minimize {
     background: $color-button-dot-minimize-background;
   }
 }
@@ -291,13 +290,12 @@ figure.highlight {
     }
     code {
       color: inherit;
-      background: transparent;
+      background: inherit;
     }
   }
 }
 blockquote {
   margin: 1em 0;
-  word-wrap: break-word;
   // This is relative to text.
   padding: 0 1em;
   border-left: 0.25em solid $color-background;
@@ -309,7 +307,7 @@ blockquote {
     margin: 0;
   }
 }
-.center-quote, .centerquote {
+blockquote.center-quote, blockquote.centerquote {
   margin: 1em 0;
   padding: 0.5em 15%;
   border-left: none;
@@ -317,33 +315,32 @@ blockquote {
   border-bottom: 0.2em solid $color-background;
   text-align: center;
   color: $color-quote-font;
-  word-wrap: break-word;
   p, div {
     text-align: center;
   }
 }
-.alert-red, .alert-green, .alert-blue {
+div.alert-red, div.alert-green, div.alert-blue {
   text-align: center;
   margin: 1em 0;
   padding: 0.5em 15%;
   border-radius: $corner-radius;
 }
-.alert-red {
+div.alert-red {
   color: $color-alert-red-font;
   border: 0.1em solid $color-alert-red-border;
   background-color: $color-alert-red-background;
 }
-.alert-green {
+div.alert-green {
   color: $color-alert-green-font;
   border: 0.1em solid $color-alert-green-border;
   background-color: $color-alert-green-background;
 }
-.alert-blue {
+div.alert-blue {
   color: $color-alert-blue-font;
   border: 0.1em solid $color-alert-blue-border;
   background-color: $color-alert-blue-background;
 }
-.card {
+article.card {
   display: block;
   background: $color-card-background;
   box-sizing: border-box;
@@ -355,11 +352,11 @@ blockquote {
     box-shadow: 0 0 1em 0.5em rgba(0, 0, 0, 0.19);
   }
 }
-.svg-inline--fa {
+svg.svg-inline--fa {
   margin: 0 0.2em;
 }
 if (getThemeConfig("animate")) {
-  .animate {
+  article.animate {
     animation: 0.3s flip forwards;
     opacity: 0;
     transform-origin: 50%;
@@ -377,7 +374,7 @@ if (getThemeConfig("animate")) {
   }
 }
 @media (max-width: $media-container-expand-width) {
-   .container {
-     width: 100%;
-   }
- }
+  div.container {
+    width: 100%;
+  }
+}

@@ -1,18 +1,18 @@
 @import "variables";
 @import "nib";
-.header {
+header.header {
   padding-bottom: $search-height;
   margin-bottom: 0;
   background: $color-header-background;
   color: $color-header-font;
-  .header-container {
+  div.header-container {
     display: flex;
     flex-direction: row;
     justify-content: stretch;
     align-items: center;
     flex-wrap: nowrap;
     padding: 1rem;
-    .header-title {
+    div.header-title {
       text-align: left;
       width: 50%;
       word-wrap: break-word;
@@ -30,16 +30,16 @@
           top: 0;
         }
       }
-      .title {
+      h1.title {
         font: bold 2rem $font-title;
         margin: 0 0 0.5rem 0;
       }
-      .subtitle {
+      h2.subtitle {
         font: italic 1.5rem $font-subtitle;
         margin: 0.5rem 0 0 0;
       }
     }
-    .logo {
+    div.logo {
       text-align: right;
       width: 50%;
       flex: 1 1 auto;
@@ -51,13 +51,13 @@
     }
   }
   @media (max-width: $media-footer-header-nav-fold-width) {
-    .header-container {
+    div.header-container {
       flex-direction: column-reverse;
-      .header-title {
+      div.header-title {
         text-align: center;
         width: auto;
       }
-      .logo {
+      div.logo {
         text-align: center;
         width: auto;
       }

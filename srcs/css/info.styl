@@ -1,11 +1,11 @@
 @import "variables";
 @import "nib";
-.info {
+div.info {
   text-align: center;
-  .author-avatar {
+  img.author-avatar {
+    // Keep in center.
     width: 90%;
     display: block;
-    // Keep in center.
     margin: 1rem auto;
     border: 0.3rem solid white;
     border-radius: 50%;
@@ -15,19 +15,19 @@
       transform: rotateY(720deg);
     }
   }
-  .author-name {
+  h1.author-name {
     color: $color-author-name-font;
     font-size: 1.8rem;
     font-weight: normal;
     margin: 0.5rem 0;
   }
-  .author-description {
+  h2.author-description {
     color: $color-author-description-font;
     font-size: 1.2rem;
     font-weight: normal;
     margin: 0.5rem 0;
   }
-  .site-count {
+  div.site-count {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -47,15 +47,15 @@
         border-right: none;
       }
     }
-    .site-count-title {
+    div.site-count-title {
       margin: 0;
       font-size: 1.2rem;
     }
   }
-  .rss {
+  div.rss {
     margin: 1rem 0;
     padding: 0;
-    .rss-link {
+    a.rss-link {
       display: block;
       text-align: center;
       font-size: 1.5rem;

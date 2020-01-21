@@ -29,9 +29,9 @@ var loadScrollSpy = function (opts) {
       // and e is last, or e's next is lower than current position.
       if (e.offsetTop <= position &&
           (i === headers.length - 1 || headers[i + 1].offsetTop > position)) {
-        var oldActive = target.querySelector(".active");
+        var oldActive = target.querySelector("a.active");
         var newActive = target.querySelector(
-          ["[href=\"#", e.id, "\"]"].join("")
+          ["a[href=\"#", e.id, "\"]"].join("")
         );
         if (oldActive !== newActive) {
           if (oldActive != null) {
@@ -46,7 +46,7 @@ var loadScrollSpy = function (opts) {
     // If we are out of container, none is active.
     if (container.offsetTop > position ||
         container.offsetTop + container.offsetHeight < position) {
-      var oldActive = target.querySelector(".active");
+      var oldActive = target.querySelector("a.active");
       if (oldActive != null) {
         oldActive.classList.remove("active");
       }

@@ -1,10 +1,10 @@
 @import "variables";
 @import "nib";
-.footer {
+footer.footer {
   background: $color-footer-background;
   color: $color-footer-font;
   margin-top: 1.5rem;
-  .footer-container {
+  div.footer-container {
     width: auto;
     word-wrap: break-word;
     line-height: 2;
@@ -14,16 +14,16 @@
     justify-content: stretch;
     align-items: flex-end;
     flex-wrap: nowrap;
-    .footer-left {
+    div.footer-left {
       flex: 1 1 auto;
       text-align: left;
       width: 50%;
     }
-    .footer-right {
+    div.footer-right {
       flex: 1 1 auto;
       text-align: right;
       width: 50%;
-      .custom-info {
+      div.custom-info {
         width: 100%;
         word-wrap: break-word;
       }
@@ -43,7 +43,7 @@
       top: 0.1em;
     }
   }
-  .back-to-top {
+  div.back-to-top {
     display: block;
     text-align: center;
     button {
@@ -51,27 +51,27 @@
       outline: 0;
       background: $color-background;
       color: $color-link-font;
-      overflow: hidden;
       display: inline-block;
       margin: 0 auto;
       padding: 0 0.75em;
       cursor: pointer;
       border-radius: bottom $corner-radius;
       font-size: 2rem;
+      transition: 0.3s ease-in-out;
       &:hover {
         color: $color-link-hover-font;
       }
     }
   }
   @media (max-width: $media-footer-header-nav-fold-width) {
-    .footer-container {
+    div.footer-container {
       flex-direction: column-reverse;
       align-items: stretch;
-      .footer-left {
+      div.footer-left {
         text-align: center;
         width: auto;
       }
-      .footer-right {
+      div.footer-right {
         text-align: center;
         width: auto;
       }

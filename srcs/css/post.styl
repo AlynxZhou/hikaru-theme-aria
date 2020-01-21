@@ -1,13 +1,13 @@
 @import "variables";
 @import "nib";
 @import "reward";
-.post {
-  .post-header {
+article.post {
+  header.post-header {
     text-align: center;
-    .post-title-simple {
+    h1.post-title-simple {
       margin: 0;
     }
-    .post-title .post-title-link {
+    h1.post-title a.post-title-link {
       // Use inline-block because it is not supposed to hold the whole line.
       display: inline-block;
       position: relative;
@@ -36,15 +36,12 @@
         top: 0.1em;
       }
     }
-    .post-meta span.meta-block {
+    div.post-meta span.meta-block {
       display: block;
       margin: 0.5em;
     }
   }
-  .post-main {
-    img {
-      max-width: 90%;
-    }
+  main.post-main {
     a.header-link, a.headerlink {
       border: none;
       &:hover {
@@ -59,7 +56,7 @@
       }
     }
   }
-  .post-tag {
+  a.post-tag {
     display: inline-block;
     background: $color-button-tag-first-background;
     border: 0.1em solid $color-button-tag-first-border;
@@ -73,15 +70,15 @@
       border: 0.1em solid $color-button-tag-third-border;
     }
   }
-  .post-footer {
+  footer.post-footer {
     text-align: center;
-    .post-tags .post-tag {
+    div.post-tags a.post-tag {
       margin: 0.5em;
     }
   }
-  .tags-cloud {
+  div.tags-cloud {
     text-align: center;
-    .post-tag {
+    a.post-tag {
       margin: 0.1em 0.5em;
     }
   }

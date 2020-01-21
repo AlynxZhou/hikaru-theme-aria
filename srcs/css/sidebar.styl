@@ -1,20 +1,19 @@
 @import "variables";
 @import "nib";
 @import "info";
-.sidebar {
+aside.sidebar {
   background: $color-sidebar-background;
   flex: 1 1 auto;
   width: 25%;
   padding: 0;
-  word-wrap: break-word;
-  .search {
+  div.search {
     height: $search-height - $search-padding-top;
     display: block;
     text-align: center;
     background: $color-search-background;
     color: $color-search-font;
     padding-top: $search-padding-top;
-    .search-input {
+    input.search-input {
       width: 70%;
       height: 1.8rem;
       border: none;
@@ -30,7 +29,7 @@
         opacity: 0.7;
       }
     }
-    .search-submit {
+    button.search-submit {
       position: relative;
       transition: 0.3s ease-in-out;
       color: $color-search-font;
@@ -38,7 +37,7 @@
       padding: 0;
       margin: 0.25em;
       box-sizing: border-box;
-      background: transparent;
+      background: inherit;
       border: none;
       &:hover {
         color: $color-search-hover-font;
@@ -49,16 +48,16 @@
       }
     }
   }
-  .sidebar-item {
+  div.sidebar-item {
     margin: 1rem;
   }
-  .sidebar-sticky {
+  div.sidebar-sticky {
     position: -webkit-sticky;
     position: sticky;
     top: 0;
     padding-bottom: 1em;
   }
-  .post-toc .toc-link.active {
+  div.post-toc a.toc-link.active {
     color: $color-link-hover-font;
     border-bottom: 0.05em solid $color-link-hover-font;
   }
@@ -68,7 +67,7 @@
   }
   @media (max-width: $media-main-fold-width) {
     width: 100%;
-    .sidebar-item {
+    div.sidebar-item {
       text-align: center;
       ul {
         padding: 0;
@@ -77,13 +76,13 @@
           margin: 0.5em 1em;
         }
       }
-      .toc {
+      ol.toc {
         // It is not supposed to hold the whole line.
         display: inline-block;
         text-align: left;
       }
     }
-    .sidebar-sticky {
+    div.sidebar-sticky {
       position: static;
     }
   }

@@ -1,20 +1,20 @@
 @import "variables";
 @import "nib";
 @import "comment";
-.page {
-  .page-title {
+div.page {
+  h1.page-title, h2.page-title {
     text-align: center;
   }
-  .page-counter {
+  h2.page-counter {
     text-align: center;
   }
-  .pagination {
+  nav.pagination {
     margin: 1rem 0;
     padding: 1rem 0;
     display: block;
     text-align: center;
     color: $color-link-font;
-    .page-number, .extend {
+    a.page-number, a.extend {
       overflow: hidden;
       font-size: 1.2rem;
       padding: 0.5em;
@@ -31,12 +31,12 @@
         border-top: 0.07em solid $color-link-hover-font;
       }
     }
-    .space {
+    span.space {
       margin: 0 0.5em;
       color: $color-link-font;
     }
   }
-  .page-nav {
+  nav.page-nav {
     margin: 0 1rem;
     padding: 0;
     display: flex;
@@ -44,7 +44,7 @@
     justify-content: space-between;
     align-items: stretch;
     flex-wrap: nowrap;
-    .page-nav-item {
+    div.page-nav-item {
       flex: 1 1 auto;
       font-size: 1.2rem;
       a {
@@ -63,14 +63,14 @@
         }
       }
     }
-    .page-nav-next {
+    div.page-nav-next {
       width: 45%;
       text-align: left;
       a {
         justify-content: flex-start;
       }
     }
-    .page-nav-prev {
+    div.page-nav-prev {
       width: 45%;
       text-align: right;
       a {

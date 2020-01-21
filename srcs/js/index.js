@@ -200,8 +200,8 @@ documentReady(function () {
     }
   }
 
-  elementsEach(document.querySelectorAll(".post img"), function (e, i) {
-    // If an image works as link, don"t attach light gallary to it.
+  elementsEach(document.querySelectorAll("article.post img"), function (e, i) {
+    // If an image works as link, don't attach light gallary to it.
     if (e.parentNode.tagName !== "A") {
       if (e.title) {
         elementBefore(e, createElementFromString(
@@ -219,7 +219,7 @@ documentReady(function () {
   });
 
   if (typeof lightGallery !== "undefined") {
-    elementsEach(document.querySelectorAll(".post"), function (e, i) {
+    elementsEach(document.querySelectorAll("article.post"), function (e, i) {
       lightGallery(e, {"selector": ".gallery-item"});
     });
   }

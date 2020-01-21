@@ -1,30 +1,30 @@
 @import "variables";
 @import "nib";
-.comment {
+div.comment {
   if (getThemeConfig("comment.issue.enable")) {
-    .comment-results {
+    div.comment-results {
       padding: 1rem;
-      .comment-fail {
+      div.comment-fail {
         text-align: center;
         color: $color-comment-font;
       }
-      .comments-header {
+      header.comments-header {
         padding: 0.5em;
         text-align: center;
         color: $color-comment-font;
       }
-      .comments-main {
-        .comment {
+      main.comments-main {
+        div.comment {
           display: flex;
           flex-direction: row;
           flex-wrap: nowrap;
           justify-content: stretch;
           align-items: start;
           margin: 0.5rem 0;
-          .comment-avatar-container {
+          div.comment-avatar-container {
             flex: 1 1 auto;
             width: 10%;
-            .comment-avatar {
+            img.comment-avatar {
               width: 70%;
               border: 0.1rem solid white;
               border-radius: 50%;
@@ -35,13 +35,13 @@
               }
             }
           }
-          .comment-body-container {
+          div.comment-body-container {
             flex: 9 9 auto;
             width: 90%;
             transition: 0.3s ease-in-out;
             overflow: hidden;
             border-radius: $corner-radius;
-            .comment-info {
+            div.comment-info {
               padding: 0.5em;
               color: $color-comment-info-font;
               background: $color-comment-info-background;
@@ -60,26 +60,26 @@
                   top: 0.1em;
                 }
               }
-              .comment-info-author {
+              span.comment-info-author {
                 margin: 0 0.5em;
               }
-              .comment-info-date {
+              span.comment-info-date {
                 margin: 0 0.5em;
               }
-              .comment-info-association {
+              span.comment-info-association {
                 margin: 0 0.5em;
                 padding: 0 0.5em;
                 border: 0.05em solid $color-comment-info-font;
                 border-radius: $corner-radius;
                 color: $color-comment-info-font;
               }
-              .comment-info-link {
+              a.comment-info-link {
                 &::before {
                   content: "#";
                 }
               }
             }
-            .comment-content {
+            div.comment-content {
               padding: 0.5em 1em;
               background: $color-comment-content-background;
               pre {
@@ -88,7 +88,7 @@
                 border-radius: $corner-radius;
                 background: $color-code-background;
                 code {
-                  background: transparent;
+                  background: inherit;
                 }
               }
             }
@@ -98,11 +98,11 @@
           }
         }
       }
-      .comments-footer {
+      footer.comments-footer {
         display: flex;
         flex-direction: row;
         justify-content: center;
-        .comment-send {
+        a.comment-send {
           padding: 0.3em 1em;
           background: $color-button-comment-background;
           border: 0.1em solid $color-button-comment-border;
@@ -110,11 +110,11 @@
       }
     }
   } else if (getThemeConfig("comment.disqusShortName")) {
-    .disqus_thread {
+    div.disqus_thread {
       margin: 1rem 2rem;
     }
   } else if (getThemeConfig("comment.valine.enable")) {
-    .vcomments {
+    div.vcomments {
       margin: 1rem 2rem;
     }
   }

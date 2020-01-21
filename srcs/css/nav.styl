@@ -1,9 +1,10 @@
 @import "variables";
 @import "nib";
-.nav {
+nav.nav {
   position: relative;
   margin: 0;
   padding: 0 0.5em;
+  overflow: hidden;
   background: $color-nav-background;
   // -0.5rem is the offset for main shadow.
   box-shadow: 0 -0.5rem 1rem 0.5rem rgba(0, 0, 0, 0.19);
@@ -46,23 +47,26 @@
       }
     }
   }
-  .nav-toggle {
+  button.nav-toggle {
+    display: none;
     text-align: center;
+    border: none;
+    outline: 0;
+    background: inherit;
     font-size: 2rem;
-    position: relative;
     cursor: pointer;
     color: $color-nav-link-font;
-    display: none;
     width: 100%;
-    text-align: center;
-    border-bottom: none;
+    transition: 0.3s ease-in-out;
     &:hover {
-      border-bottom: none;
       color: $color-nav-link-hover-font;
+      background: $color-nav-hover-background;
     }
   }
   @media (max-width: $media-footer-header-nav-fold-width) {
-    .nav-toggle {
+    padding: 0;
+    button.nav-toggle {
+      // Take full line for easier click.
       display: block;
     }
     ul {
@@ -72,14 +76,6 @@
         display: block;
         text-align: center
         margin: 0.1em 0;
-        a {
-          position: relative;
-          border-bottom: none;
-          &:hover {
-            color: $color-nav-link-hover-font;
-            background: $color-nav-hover-background;
-          }
-        }
       }
     }
   }
