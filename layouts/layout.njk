@@ -71,7 +71,7 @@
     <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.clipboard %}{{ themeConfig.libCDN.clipboard }}{% else %}{{ getPath("js/clipboard.min.js") }}{% endif %}"></script>
     <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.fontAwesome %}{{ themeConfig.libCDN.fontAwesome }}{% else %}{{ getPath("js/fontawesome-all.min.js") }}{% endif %}"></script>
     {% if themeConfig.busuanzi %}
-    <script defer src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.busuanzi %}{{ themeConfig.libCDN.busuanzi }}{% else %}{{ getPath("js/busuanzi.pure.mini.js") }}{% endif %}"></script>
+    <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.busuanzi %}{{ themeConfig.libCDN.busuanzi }}{% else %}{{ getPath("js/busuanzi.pure.mini.js") }}{% endif %}"></script>
     {% endif %}
     {% if themeConfig.mathjax.cdn and themeConfig.mathjax.enable %}
     {% if themeConfig.mathjax.global or page.mathjax %}
