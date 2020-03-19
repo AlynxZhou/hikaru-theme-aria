@@ -19,6 +19,7 @@
     {% if siteConfig.description %}
     <meta name="description" content="{{ siteConfig.description }}">
     {% endif %}
+    <link rel="canonical" href="{{ getURL(docPath) }}">
     {% if themeConfig.favicon.appleTouchIcon %}
     <link rel="apple-touch-icon" sizes="180x180" href="{{ getPath(themeConfig.favicon.appleTouchIcon) }}">
     {% endif %}
