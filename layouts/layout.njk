@@ -100,25 +100,42 @@
       documentReady(function () {
         var themeToggle = document.getElementById("theme-toggle");
         var preferenceQuery = window.matchMedia("(prefers-color-scheme: dark)");
+        var theme = localStorage.getItem("theme");
         var checkPreference = function (query) {
           if (query.matches) {
             themeToggle.innerHTML = "<i class=\"far fa-moon\" aria-label=\"{{ __("accessibility.themeDark") }}\"></i>";
             document.documentElement.setAttribute("data-theme", "dark");
+            localStorage.setItem("theme", "dark");
           } else {
             themeToggle.innerHTML = "<i class=\"far fa-sun\" aria-label=\"{{ __("accessibility.themeLight") }}\"></i>";
             document.documentElement.setAttribute("data-theme", "light");
+            localStorage.setItem("theme", "light");
           }
         }
-        checkPreference(preferenceQuery);
+        // Check user's choice from localStorage.
+        if (theme === "dark") {
+          themeToggle.innerHTML = "<i class=\"far fa-moon\" aria-label=\"{{ __("accessibility.themeDark") }}\"></i>";
+          document.documentElement.setAttribute("data-theme", "dark");;
+        } else if (theme === "light") {
+          themeToggle.innerHTML = "<i class=\"far fa-sun\" aria-label=\"{{ __("accessibility.themeLight") }}\"></i>";
+          document.documentElement.setAttribute("data-theme", "light")
+        } else {
+          // Init from user's system settings if no choice.
+          checkPreference(preferenceQuery);
+        }
+        // User changed system settings, update.
         preferenceQuery.addListener(checkPreference);
+        // User changed website settings, update.
         themeToggle.onclick = function () {
           var theme = document.documentElement.getAttribute("data-theme");
           if (theme === "dark") {
             themeToggle.innerHTML = "<i class=\"far fa-sun\" aria-label=\"{{ __("accessibility.themeLight") }}\"></i>";
             document.documentElement.setAttribute("data-theme", "light");
+            localStorage.setItem("theme", "light");
           } else {
             themeToggle.innerHTML = "<i class=\"far fa-moon\" aria-label=\"{{ __("accessibility.themeDark") }}\"></i>";
             document.documentElement.setAttribute("data-theme", "dark");
+            localStorage.setItem("theme", "dark");
           }
         }
         elementsEach(
