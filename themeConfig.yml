@@ -99,6 +99,7 @@ libCDN:
     loader:
     solid:
     brands:
+    regular:
   lightGallery:
     js:
     css:
