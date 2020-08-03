@@ -8,6 +8,9 @@ html, body, .container {
   height: 100%;
 }
 html {
+  transition: 0.3s ease-in-out;
+  scrollbar-width: thin;
+  scrollbar-color: $color-scrollbar $color-scrollbar-background;
   ::selection {
     color: $color-selection-font;
     background: $color-selection-background;
@@ -395,6 +398,7 @@ if (getThemeConfig("animate")) {
   }
 }
 html[data-theme="dark"] {
+  scrollbar-color: $color-dark-scrollbar $color-dark-scrollbar-background;
   ::-webkit-scrollbar {
     background: $color-dark-scrollbar-background;
   }
