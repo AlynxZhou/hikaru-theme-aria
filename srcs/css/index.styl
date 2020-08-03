@@ -19,12 +19,14 @@ html {
   ::-webkit-scrollbar {
     width: 0.5em;
     height: 0.5em;
+    transition: 0.3s ease-in-out;
     background: $color-scrollbar-background;
   }
   ::-webkit-scrollbar-track {
     background: 0 0;
   }
   ::-webkit-scrollbar-thumb {
+    transition: 0.3s ease-in-out;
     background: $color-scrollbar;
     border-radius: 0.25em;
     &:hover {
@@ -32,9 +34,11 @@ html {
     }
   }
   ::-webkit-scrollbar-corner {
+    transition: 0.3s ease-in-out;
     background: $color-scrollbar-corner;
   }
   ::-webkit-scrollbar-resizer {
+    transition: 0.3s ease-in-out;
     background: $color-scrollbar-resizer;
   }
 }
@@ -359,7 +363,6 @@ div.alert-blue {
 }
 article.card {
   display: block;
-  transition: 0.3s ease-in-out;
   background: $color-card-background;
   box-sizing: border-box;
   border-radius: $corner-radius;
@@ -402,10 +405,10 @@ html[data-theme="dark"] {
     }
   }
   ::-webkit-scrollbar-corner {
-    background: $color-scrollbar-corner;
+    background: $color-dark-scrollbar-corner;
   }
   ::-webkit-scrollbar-resizer {
-    background: $color-scrollbar-resizer;
+    background: $color-dark-scrollbar-resizer;
   }
   body {
     color: $color-dark-font;
@@ -420,6 +423,7 @@ html[data-theme="dark"] {
     }
   }
   a.gallery-item, a.img-link {
+    // This will inherit from html[data-theme="dark"] a.
     border-bottom: none;
     img {
       border: 0.15em solid $color-dark-quote-font;
@@ -437,14 +441,10 @@ html[data-theme="dark"] {
   article table {
     thead tr {
       background: $color-dark-table-head-background;
-      th {
-        border: 0.1rem solid $color-dark-table-head-border;
-      }
     }
     tbody tr {
       background: $color-dark-table-odd-row-background;
       td {
-        border: 0.1rem solid $color-dark-table-border;
         &:nth-child(2n) {
           background: $color-dark-table-even-row-background;
         }
@@ -452,7 +452,6 @@ html[data-theme="dark"] {
       &:nth-child(2n) {
         background: $color-dark-table-even-row-background;
         td {
-          border: 0.1rem solid $color-dark-table-border;
           &:nth-child(2n) {
             background: $color-dark-table-odd-row-background;
           }
@@ -478,6 +477,8 @@ html[data-theme="dark"] {
     }
   }
   blockquote.center-quote, blockquote.centerquote {
+    // This will inherit from html[data-theme="dark"] blockquote.
+    border-left: none;
     border-top: 0.2em solid $color-dark-quote-font;
     border-bottom: 0.2em solid $color-dark-quote-font;
     color: $color-dark-quote-font;
