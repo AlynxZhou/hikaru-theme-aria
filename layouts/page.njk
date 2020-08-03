@@ -1,18 +1,3 @@
-{% if page.layout === "index" or page.title === "index" %}
-{% include "includes/index.njk" %}
-{% elif page.layout === "archive" or page.title === "archive" %}
-{% include "includes/archive.njk" %}
-{% elif page.layout === "categories" or page.title === "categories" %}
-{% include "includes/categories.njk" %}
-{% elif page.layout === "category" or page.title === "category" %}
-{% include "includes/category.njk" %}
-{% elif page.layout === "tags" or page.title === "tags" %}
-{% include "includes/tags.njk" %}
-{% elif page.layout === "tag" or page.title === "tag" %}
-{% include "includes/tag.njk" %}
-{% elif page.layout === "search" or page.title === "search" %}
-{% include "includes/search.njk" %}
-{% else %}
 {% extends "layout.njk" %}
 
 {% block css %}

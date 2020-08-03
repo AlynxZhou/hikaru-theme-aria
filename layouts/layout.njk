@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html data-theme="light" lang="{{ page.lang or page.language or siteConfig.language }}">
+<html data-theme="light" lang="{{ lang or language or siteConfig.language }}">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,8 +11,8 @@
     {% if themeConfig.googleVerification %}
     <meta name="google-site-verification" content="{{ themeConfig.googleVerification }}">
     {% endif %}
-    {% if page.keywords %}
-    <meta name="keywords" content="{{ page.keywords.join(", ") }}">
+    {% if keywords %}
+    <meta name="keywords" content="{{ keywords.join(", ") }}">
     {% elif themeConfig.keywords %}
     <meta name="keywords" content="{{ themeConfig.keywords.join(", ") }}">
     {% endif %}
@@ -75,7 +75,7 @@
     <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.busuanzi %}{{ themeConfig.libCDN.busuanzi }}{% else %}{{ getPath("js/busuanzi.pure.mini.js") }}{% endif %}"></script>
     {% endif %}
     {% if themeConfig.mathjax.cdn and themeConfig.mathjax.enable %}
-    {% if themeConfig.mathjax.global or page.mathjax %}
+    {% if themeConfig.mathjax.global or mathjax %}
     <script defer type="text/javascript" src="{{ themeConfig.mathjax.cdn }}"></script>
     <script type="text/x-mathjax-config">
       MathJax.Hub.Config({
