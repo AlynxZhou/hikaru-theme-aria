@@ -70,7 +70,9 @@
     <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.lgThumbnail %}{{ themeConfig.libCDN.lgThumbnail }}{% else %}{{ getPath("js/lg-thumbnail.min.js") }}{% endif %}"></script>
     <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.lgZoom %}{{ themeConfig.libCDN.lgZoom }}{% else %}{{ getPath("js/lg-zoom.min.js") }}{% endif %}"></script>
     <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.clipboard %}{{ themeConfig.libCDN.clipboard }}{% else %}{{ getPath("js/clipboard.min.js") }}{% endif %}"></script>
-    <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.fontAwesome %}{{ themeConfig.libCDN.fontAwesome }}{% else %}{{ getPath("js/fontawesome-all.min.js") }}{% endif %}"></script>
+    <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.fontAwesome.solid %}{{ themeConfig.libCDN.fontAwesome.solid }}{% else %}{{ getPath("js/fa-solid.min.js") }}{% endif %}"></script>
+    <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.fontAwesome.brands %}{{ themeConfig.libCDN.fontAwesome.brands }}{% else %}{{ getPath("js/fa-brands.min.js") }}{% endif %}"></script>
+    <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.fontAwesome/loader %}{{ themeConfig.libCDN.fontAwesome.loader }}{% else %}{{ getPath("js/fontawesome.min.js") }}{% endif %}"></script>
     {% if themeConfig.busuanzi %}
     <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.busuanzi %}{{ themeConfig.libCDN.busuanzi }}{% else %}{{ getPath("js/busuanzi.pure.mini.js") }}{% endif %}"></script>
     {% endif %}

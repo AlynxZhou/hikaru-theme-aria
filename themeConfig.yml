@@ -91,11 +91,14 @@ mathjax:
   global:
   cdn:
 
-# Note: `fontawesome` is fontawesome-all. `busuanzi` is `busuanzi.pure.mini.js`.
+# Note: `fontAwesome.loader` is `fontawesome.min.js`. `busuanzi` is `busuanzi.pure.mini.js`.
 # If you don't know what you are doing, don't change it.
 libCDN:
   enable: false
   fontAwesome:
+    loader:
+    solid:
+    brands:
   lightGallery:
     js:
     css:
