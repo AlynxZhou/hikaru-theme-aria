@@ -13,6 +13,7 @@ div.page {
     padding: 1rem 0;
     display: block;
     text-align: center;
+    transition: 0.3s ease-in-out;
     color: $color-link-font;
     a.page-number, a.extend {
       overflow: hidden;
@@ -33,6 +34,7 @@ div.page {
     }
     span.space {
       margin: 0 0.5em;
+      transition: 0.3s ease-in-out;
       color: $color-link-font;
     }
   }
@@ -75,6 +77,28 @@ div.page {
       text-align: right;
       a {
         justify-content: flex-end;
+      }
+    }
+  }
+}
+html[data-theme="dark"] {
+  div.page {
+    nav.pagination {
+      color: $color-dark-link-font;
+      a.page-number, a.extend {
+        border-bottom: 0.15em solid $color-dark-link-font;
+        &:hover {
+          border-bottom: 0.15em solid $color-dark-link-hover-font;
+        }
+        &.current {
+          color: $color-dark-link-hover-font;
+          border-bottom: 0.15em solid $color-dark-link-hover-font;
+          border-top: 0.07em solid $color-dark-link-hover-font;
+        }
+      }
+      span.space {
+        margin: 0 0.5em;
+        color: $color-dark-link-font;
       }
     }
   }

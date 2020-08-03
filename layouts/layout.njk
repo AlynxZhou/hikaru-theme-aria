@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang or page.language or siteConfig.language }}">
+<html data-theme="light" lang="{{ page.lang or page.language or siteConfig.language }}">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -98,6 +98,29 @@
     {% endif %}
     <script type="text/javascript">
       documentReady(function () {
+        var themeToggle = document.getElementById("theme-toggle");
+        var preferenceQuery = window.matchMedia("(prefers-color-scheme: dark)");
+        var checkPreference = function (query) {
+          if (query.matches) {
+            themeToggle.innerHTML = "<i class=\"far fa-moon\" aria-label=\"{{ __("accessibility.themeDark") }}\"></i>";
+            document.documentElement.setAttribute("data-theme", "dark");
+          } else {
+            themeToggle.innerHTML = "<i class=\"far fa-sun\" aria-label=\"{{ __("accessibility.themeLight") }}\"></i>";
+            document.documentElement.setAttribute("data-theme", "light");
+          }
+        }
+        checkPreference(preferenceQuery);
+        preferenceQuery.addListener(checkPreference);
+        themeToggle.onclick = function () {
+          var theme = document.documentElement.getAttribute("data-theme");
+          if (theme === "dark") {
+            themeToggle.innerHTML = "<i class=\"far fa-sun\" aria-label=\"{{ __("accessibility.themeLight") }}\"></i>";
+            document.documentElement.setAttribute("data-theme", "light");
+          } else {
+            themeToggle.innerHTML = "<i class=\"far fa-moon\" aria-label=\"{{ __("accessibility.themeDark") }}\"></i>";
+            document.documentElement.setAttribute("data-theme", "dark");
+          }
+        }
         elementsEach(
           document.querySelectorAll(".post pre code figure.highlight"),
           function (e, i) {

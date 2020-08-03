@@ -5,10 +5,12 @@ div.comment {
     div.comment-results {
       padding: 1rem;
       div.comment-fail {
+        transition: 0.3s ease-in-out;
         text-align: center;
         color: $color-comment-font;
       }
       header.comments-header {
+        transition: 0.3s ease-in-out;
         padding: 0.5em;
         text-align: center;
         color: $color-comment-font;
@@ -81,9 +83,11 @@ div.comment {
               }
             }
             div.comment-content {
+              transition: 0.3s ease-in-out;
               padding: 0.5em 1em;
               background: $color-comment-content-background;
               pre {
+                transition: 0.3s ease-in-out;
                 overflow: auto;
                 padding: 0.5em;
                 border-radius: $corner-radius;
@@ -117,6 +121,32 @@ div.comment {
   } else if (getThemeConfig("comment.valine.enable")) {
     div.vcomments {
       margin: 1rem 2rem;
+    }
+  }
+}
+html[data-theme="dark"] {
+  div.comment {
+    if (getThemeConfig("comment.issue.enable")) {
+      div.comment-results {
+        div.comment-fail {
+          color: $color-dark-comment-font;
+        }
+        header.comments-header {
+          color: $color-dark-comment-font;
+        }
+        main.comments-main {
+          div.comment {
+            div.comment-body-container {
+              div.comment-content {
+                background: $color-dark-comment-content-background;
+                pre {
+                  background: $color-dark-code-background;
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

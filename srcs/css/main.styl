@@ -5,6 +5,7 @@ main.main {
   margin-top: 0 - $search-height;
   div.main-container {
     width: auto;
+    transition: 0.3s ease-in-out;
     background: $color-main-background;
     box-sizing: border-box;
     // 0.5rem is the offset for nav shadow.
@@ -25,7 +26,16 @@ main.main {
       width: 75%;
     }
   }
-  @media (max-width: $media-main-fold-width) {
+}
+html[data-theme="dark"] {
+  main.main {
+    div.main-container {
+      background: $color-dark-main-background;
+    }
+  }
+}
+@media (max-width: $media-main-fold-width) {
+  main.main {
     div.main-container {
       flex-direction: column;
       div.content {

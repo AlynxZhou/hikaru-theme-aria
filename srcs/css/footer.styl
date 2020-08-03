@@ -60,10 +60,26 @@ footer.footer {
       transition: 0.3s ease-in-out;
       &:hover {
         color: $color-link-hover-font;
+        border: none;
       }
     }
   }
-  @media (max-width: $media-footer-header-nav-fold-width) {
+}
+html[data-theme="dark"] {
+  footer.footer {
+    div.back-to-top {
+      button {
+        background: $color-dark-background;
+        color: $color-dark-link-font;
+        &:hover {
+          color: $color-dark-link-hover-font;
+        }
+      }
+    }
+  }
+}
+@media (max-width: $media-footer-header-nav-fold-width) {
+  footer.footer {
     div.footer-container {
       flex-direction: column-reverse;
       align-items: stretch;

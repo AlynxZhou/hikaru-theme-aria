@@ -16,12 +16,14 @@ div.info {
     }
   }
   h1.author-name {
+    transition: 0.3s ease-in-out;
     color: $color-author-name-font;
     font-size: 1.8rem;
     font-weight: normal;
     margin: 0.5rem 0;
   }
   h2.author-description {
+    transition: 0.3s ease-in-out;
     color: $color-author-description-font;
     font-size: 1.2rem;
     font-weight: normal;
@@ -30,7 +32,7 @@ div.info {
   div.site-count {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
     align-items: stretch;
     flex-wrap: nowrap;
     width: 100%;
@@ -38,6 +40,7 @@ div.info {
     text-align: center;
     div.count-block {
       flex: 1 1 auto;
+      transition: 0.3s ease-in-out;
       border-left: 0.05rem $color-quote-font solid;
       border-right: 0.05rem $color-quote-font solid;
       &:first-child {
@@ -57,12 +60,34 @@ div.info {
     padding: 0;
     a.rss-link {
       display: block;
-      text-align: center;
+      transition: 0.3s ease-in-out;
       font-size: 1.5rem;
       color: $color-button-font;
       background: $color-button-rss-background;
       border: 0.1em solid $color-button-rss-border;
       padding: 0.2em;
+    }
+  }
+}
+html[data-theme="dark"] {
+  div.info {
+    h1.author-name {
+      color: $color-dark-author-name-font;
+    }
+    h2.author-description {
+      color: $color-dark-author-description-font;
+    }
+    div.site-count {
+      div.count-block {
+        border-left: 0.05rem $color-dark-quote-font solid;
+        border-right: 0.05rem $color-dark-quote-font solid;
+        &:first-child {
+          border-left: none;
+        }
+        &:last-child {
+          border-right: none;
+        }
+      }
     }
   }
 }

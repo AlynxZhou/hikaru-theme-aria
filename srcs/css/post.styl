@@ -13,6 +13,7 @@ article.post {
       position: relative;
       text-decoration: none;
       border-bottom: none;
+      transition: 0.3s ease-in-out;
       color: $color-font;
       &::after {
         content: " ";
@@ -43,9 +44,9 @@ article.post {
   }
   main.post-main {
     a.header-link, a.headerlink {
-      border: none;
+      border-bottom: none;
       &:hover {
-        border: none;
+        border-bottom: none;
       }
       &:active {
         top: 0;
@@ -80,6 +81,18 @@ article.post {
     text-align: center;
     a.post-tag {
       margin: 0.1em 0.5em;
+    }
+  }
+}
+html[data-theme="dark"] {
+  article.post {
+    header.post-header {
+      h1.post-title a.post-title-link {
+        color: $color-dark-font;
+        &::after {
+          background: $color-dark-font;
+        }
+      }
     }
   }
 }

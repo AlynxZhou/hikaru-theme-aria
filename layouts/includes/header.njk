@@ -21,6 +21,9 @@
         <li role="menuitem"><a href="{{ getPath(e.link) }}"{% if isCurrentPath(e.link) %} class="current"{% endif %}>{% if e.icon %}{{ e.icon }}{% endif %}<span class="menu-text">{{ __(e.name) }}</span></a></li>
         {% endfor %}
       </ul>
+      <button class="theme-toggle" id="theme-toggle">
+        <i class="far fa-sun" aria-label="{{ __("accessibility.themeLight") }}"></i>
+      </button>
     </nav>
   </div>
 </header>

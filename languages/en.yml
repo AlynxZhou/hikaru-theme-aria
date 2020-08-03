@@ -63,6 +63,8 @@ accessibility:
   nextPage: Next Page
   backToTop: Back to Top
   navToggle: Toggle Navbar
+  lightTheme: Light Theme
+  darkTheme: Dark Theme
   sitePV: Site Visit Count
   siteUV: Site User Count
   pagePV: Page Click Count

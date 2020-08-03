@@ -2,7 +2,9 @@
 @import "info";
 
 aside.sidebar {
+  transition: 0.3s ease-in-out;
   background: $color-sidebar-background;
+  background: url(getPath("images/background.webp"));
   flex: 1 1 auto;
   width: 25%;
   padding: 0;
@@ -41,6 +43,7 @@ aside.sidebar {
       border: none;
       &:hover {
         color: $color-search-hover-font;
+        border: none;
       }
       &:active {
         top: 0;
@@ -63,9 +66,26 @@ aside.sidebar {
   }
   // Replace hr color in index.styl.
   hr {
+    transition: 0.3s ease-in-out;
     background: repeating-linear-gradient(-45deg, #fff, #fff 0.25rem, transparent 0.25rem, transparent 0.5rem);
   }
-  @media (max-width: $media-main-fold-width) {
+}
+html[data-theme="dark"] {
+  aside.sidebar {
+    background: $color-dark-sidebar-background;
+    background: url(getPath("images/background-dark.webp"));
+    div.post-toc a.toc-link.active {
+      color: $color-dark-link-hover-font;
+      border-bottom: 0.05em solid $color-dark-link-hover-font;
+    }
+    // Replace hr color in index.styl.
+    hr {
+      background: repeating-linear-gradient(-45deg, #ccc, #ccc 0.25rem, transparent 0.25rem, transparent 0.5rem);
+    }
+  }
+}
+@media (max-width: $media-main-fold-width) {
+  aside.sidebar {
     width: 100%;
     div.sidebar-item {
       text-align: center;

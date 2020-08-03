@@ -63,6 +63,8 @@ accessibility:
   nextPage: 下一页
   backToTop: 回到顶部
   navToggle: 切换导航栏
+  lightTheme: 浅色模式
+  darkTheme: 深色模式
   sitePV: 站点点击量
   siteUV: 站点用户数
   pagePV: 页面点击量

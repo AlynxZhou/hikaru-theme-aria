@@ -7,36 +7,39 @@
 html, body, .container {
   height: 100%;
 }
-::selection {
-  color: $color-selection-font;
-  background: $color-selection-background;
-}
-::-moz-selection {
-  color: $color-selection-font;
-  background: $color-selection-background;
-}
-::-webkit-scrollbar {
-  width: 0.5em;
-  height: 0.5em;
-  background: $color-scrollbar-background;
-}
-::-webkit-scrollbar-track {
-  background: 0 0;
-}
-::-webkit-scrollbar-thumb {
-  background: $color-scrollbar;
-  border-radius: 0.25em;
-  &:hover {
-    background: $color-scrollbar-hover;
+html {
+  ::selection {
+    color: $color-selection-font;
+    background: $color-selection-background;
+  }
+  ::-moz-selection {
+    color: $color-selection-font;
+    background: $color-selection-background;
+  }
+  ::-webkit-scrollbar {
+    width: 0.5em;
+    height: 0.5em;
+    background: $color-scrollbar-background;
+  }
+  ::-webkit-scrollbar-track {
+    background: 0 0;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: $color-scrollbar;
+    border-radius: 0.25em;
+    &:hover {
+      background: $color-scrollbar-hover;
+    }
+  }
+  ::-webkit-scrollbar-corner {
+    background: $color-scrollbar-corner;
+  }
+  ::-webkit-scrollbar-resizer {
+    background: $color-scrollbar-resizer;
   }
 }
-::-webkit-scrollbar-corner {
-  background: $color-scrollbar-corner;
-}
-::-webkit-scrollbar-resizer {
-  background: $color-scrollbar-resizer;
-}
 body {
+  transition: 0.3s ease-in-out;
   color: $color-font;
   background: $color-background;
   font: $font-size $font-all
@@ -83,7 +86,7 @@ a.gallery-item, a.img-link {
   border-bottom: none;
   img {
     transition: 0.3s ease-in-out;
-    border: 0.15em solid $color-background;
+    border: 0.15em solid $color-quote-font;
   }
   &:hover {
     border-bottom: none;
@@ -104,6 +107,7 @@ a#top, a#more {
   }
 }
 span.caption {
+  transition: 0.3s ease-in-out;
   color: $color-quote-font;
   display: block;
   text-align: center;
@@ -121,6 +125,7 @@ a.button, button.button {
   border: 0.1em solid $color-button-border;
   &:hover {
     box-shadow: 0 0 1em 0.5em rgba(0, 0, 0, 0.19);
+    border-bottom: none;
   }
   &:active {
     top: 0.1em;
@@ -140,6 +145,7 @@ article table {
   border-spacing: 0;
   border-collapse: collapse;
   thead tr {
+    transition: 0.3s ease-in-out;
     background: $color-table-head-background;
     th {
       padding: 0.4em 0.7em;
@@ -147,20 +153,24 @@ article table {
     }
   }
   tbody tr {
+    transition: 0.3s ease-in-out;
     background: $color-table-odd-row-background;
     td {
       padding: 0.4em 0.7em;
       border: 0.1rem solid $color-table-border;
       &:nth-child(2n) {
+        transition: 0.3s ease-in-out;
         background: $color-table-even-row-background;
       }
     }
     &:nth-child(2n) {
+      transition: 0.3s ease-in-out;
       background: $color-table-even-row-background;
       td {
         padding: 0.4em 0.7em;
         border: 0.1rem solid $color-table-border;
         &:nth-child(2n) {
+          transition: 0.3s ease-in-out;
           background: $color-table-odd-row-background;
         }
       }
@@ -168,6 +178,7 @@ article table {
   }
 }
 code {
+  transition: 0.3s ease-in-out;
   margin: 0.05em 0.05em;
   color: $color-code-font;
   padding: 0.125em 0.25em;
@@ -222,7 +233,7 @@ div.code-titlebar {
     transition: 0.3s ease-in-out;
     &:hover {
       color: $color-link-copy-hover-font;
-      border-bottom: none;
+      border: none;
     }
     &.copied {
       color: $color-link-copy-hover-font;
@@ -239,6 +250,7 @@ div.code-titlebar {
     transition: 0.3s ease-in-out;
     &:hover {
       opacity: 0.7;
+      border: none;
     }
   }
   button.dot-close {
@@ -278,9 +290,10 @@ figure.highlight {
       flex: 0 0 auto;
       text-align: right;
       padding: 0 0.5em;
+      transition: 0.3s ease-in-out;
       // Only show border of gutter, so when user choose no gutter in config,
       // there is no border for code.
-      border-right: 0.1em dotted $color-background;
+      border-right: 0.1em dotted $color-quote-font;
     }
     &.code {
       position: relative;
@@ -298,10 +311,12 @@ blockquote {
   margin: 1em 0;
   // This is relative to text.
   padding: 0 1em;
-  border-left: 0.25em solid $color-background;
+  transition: 0.3s ease-in-out;
+  border-left: 0.25em solid $color-dark-quote-font;
   color: $color-quote-font;
   p {
     white-space: pre-wrap;
+    transition: 0.3s ease-in-out;
     color: $color-quote-font;
     padding: 0;
     margin: 0;
@@ -311,9 +326,10 @@ blockquote.center-quote, blockquote.centerquote {
   margin: 1em 0;
   padding: 0.5em 15%;
   border-left: none;
-  border-top: 0.2em solid $color-background;
-  border-bottom: 0.2em solid $color-background;
+  border-top: 0.2em solid $color-dark-quote-font;
+  border-bottom: 0.2em solid $color-dark-quote-font;
   text-align: center;
+  transition: 0.3s ease-in-out;
   color: $color-quote-font;
   p, div {
     text-align: center;
@@ -323,6 +339,7 @@ div.alert-red, div.alert-green, div.alert-blue {
   text-align: center;
   margin: 1em 0;
   padding: 0.5em 15%;
+  transition: 0.3s ease-in-out;
   border-radius: $corner-radius;
 }
 div.alert-red {
@@ -342,6 +359,7 @@ div.alert-blue {
 }
 article.card {
   display: block;
+  transition: 0.3s ease-in-out;
   background: $color-card-background;
   box-sizing: border-box;
   border-radius: $corner-radius;
@@ -371,6 +389,100 @@ if (getThemeConfig("animate")) {
         transform: rotateX(0);
       }
     }
+  }
+}
+html[data-theme="dark"] {
+  ::-webkit-scrollbar {
+    background: $color-dark-scrollbar-background;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: $color-dark-scrollbar;
+    &:hover {
+      background: $color-dark-scrollbar-hover;
+    }
+  }
+  ::-webkit-scrollbar-corner {
+    background: $color-scrollbar-corner;
+  }
+  ::-webkit-scrollbar-resizer {
+    background: $color-scrollbar-resizer;
+  }
+  body {
+    color: $color-dark-font;
+    background: $color-dark-background;
+  }
+  a {
+    color: $color-dark-link-font;
+    border-bottom: 0.05em dotted $color-dark-link-font;
+    &:hover {
+      color: $color-dark-link-hover-font;
+      border-bottom: 0.05em solid $color-dark-link-hover-font;
+    }
+  }
+  a.gallery-item, a.img-link {
+    img {
+      border: 0.15em solid $color-dark-quote-font;
+    }
+  }
+  span.caption {
+    color: $color-dark-quote-font;
+  }
+  a.button, button.button {
+    opacity: $opacity-dark;
+  }
+  article table {
+    thead tr {
+      background: $color-dark-table-head-background;
+      th {
+        border: 0.1rem solid $color-dark-table-head-border;
+      }
+    }
+    tbody tr {
+      background: $color-dark-table-odd-row-background;
+      td {
+        border: 0.1rem solid $color-dark-table-border;
+        &:nth-child(2n) {
+          background: $color-dark-table-even-row-background;
+        }
+      }
+      &:nth-child(2n) {
+        background: $color-dark-table-even-row-background;
+        td {
+          border: 0.1rem solid $color-dark-table-border;
+          &:nth-child(2n) {
+            background: $color-dark-table-odd-row-background;
+          }
+        }
+      }
+    }
+  }
+  code {
+    opacity: $opacity-dark;
+  }
+  figure.highlight {
+    pre {
+      &.gutter {
+        border-right: 0.1em dotted $color-dark-quote-font;
+      }
+    }
+  }
+  blockquote {
+    border-left: 0.25em solid $color-dark-quote-font;
+    color: $color-dark-quote-font;
+    p {
+      color: $color-dark-quote-font;
+    }
+  }
+  blockquote.center-quote, blockquote.centerquote {
+    border-top: 0.2em solid $color-dark-quote-font;
+    border-bottom: 0.2em solid $color-dark-quote-font;
+    color: $color-dark-quote-font;
+  }
+  div.alert-red, div.alert-green, div.alert-blue {
+    opacity: $opacity-dark;
+  }
+  article.card {
+    background: $color-dark-card-background;
   }
 }
 @media (max-width: $media-container-expand-width) {

@@ -9,7 +9,7 @@ header.header {
     display: flex;
     flex-direction: row;
     justify-content: stretch;
-    align-items: center;
+    align-items: stretch;
     flex-wrap: nowrap;
     padding: 1rem;
     div.header-title {
@@ -50,7 +50,9 @@ header.header {
       }
     }
   }
-  @media (max-width: $media-footer-header-nav-fold-width) {
+}
+@media (max-width: $media-footer-header-nav-fold-width) {
+  header.header {
     div.header-container {
       flex-direction: column-reverse;
       div.header-title {
