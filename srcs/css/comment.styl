@@ -4,6 +4,11 @@ div.comment {
   if (getThemeConfig("comment.issue.enable")) {
     div.comment-results {
       padding: 1rem;
+      div.sk-wave {
+        div.sk-rect {
+          background: $color-comment-sk-wave-background;
+        }
+      }
       div.comment-fail {
         transition: 0.3s ease-in-out;
         text-align: center;
@@ -127,6 +132,11 @@ html[data-theme="dark"] {
   div.comment {
     if (getThemeConfig("comment.issue.enable")) {
       div.comment-results {
+        div.sk-wave {
+          div.sk-rect {
+            background: $color-dark-comment-sk-wave-background;
+          }
+        }
         div.comment-fail {
           color: $color-dark-comment-font;
         }
