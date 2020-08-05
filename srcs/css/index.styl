@@ -4,13 +4,21 @@
 @import "main";
 @import "footer";
 
-html, body, .container {
+html, body {
+  width: 100%;
   height: 100%;
 }
 html {
+  // Scrollbar for document.
   transition: 0.3s ease-in-out;
   scrollbar-width: thin;
   scrollbar-color: $color-scrollbar $color-scrollbar-background;
+  * {
+    // Scrollbar for others.
+    transition: 0.3s ease-in-out;
+    scrollbar-width: thin;
+    scrollbar-color: $color-scrollbar $color-scrollbar-background;
+  }
   ::selection {
     color: $color-selection-font;
     background: $color-selection-background;
@@ -51,19 +59,22 @@ body {
   background: $color-background;
   font: $font-size $font-all
   display: flex;
-  min-height: 100%;
   flex-direction: column;
-}
-main {
-  flex: 1 0 auto;
-}
-header, footer {
-  flex: none;
+  flex-wrap: nowrap;
+  justify-content: stretch;
+  align-items: stretch;
+  main.main {
+    flex: 1 0 auto;
+  }
+  header.header, footer.footer {
+    flex: 0 0 auto;
+  }
 }
 div.container {
   padding: 0;
   // max-width: $container-max-width;
   width: 75%;
+  height: 100%;
   margin: 0 auto;
 }
 div.center {
@@ -207,7 +218,7 @@ pre code {
 div.code-titlebar {
   display: flex;
   flex-direction: row;
-  flex-warp: nowarp;
+  flex-wrap: nowrap;
   justify-content: space-between;
   align-items: center;
   border-radius: $corner-radius $corner-radius 0 0;
@@ -273,9 +284,9 @@ div.code-titlebar {
 figure.highlight {
   display: flex;
   flex-direction: row;
-  flex-warp: nowarp;
-  justify-content: flex-start;
-  align-items: flex-start;
+  flex-wrap: nowrap;
+  justify-content: stretch;
+  align-items: stretch;
   overflow: auto;
   border-left: 0.1em solid $color-code-border;
   border-bottom: 0.1em solid $color-code-border;
@@ -399,6 +410,9 @@ if (getThemeConfig("animate")) {
 }
 html[data-theme="dark"] {
   scrollbar-color: $color-dark-scrollbar $color-dark-scrollbar-background;
+  * {
+    scrollbar-color: $color-dark-scrollbar $color-dark-scrollbar-background;
+  }
   ::-webkit-scrollbar {
     background: $color-dark-scrollbar-background;
   }
