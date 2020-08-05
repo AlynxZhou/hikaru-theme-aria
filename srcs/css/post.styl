@@ -2,7 +2,14 @@
 @import "reward";
 
 article.post {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: stretch;
+  align-items: stretch;
   header.post-header {
+    flex: 0 0 auto;
     text-align: center;
     h1.post-title-simple {
       margin: 0;
@@ -43,6 +50,12 @@ article.post {
     }
   }
   main.post-main {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: stretch;
+    align-items: stretch;
     a.header-link, a.headerlink {
       border-bottom: none;
       &:hover {
@@ -72,6 +85,7 @@ article.post {
     }
   }
   footer.post-footer {
+    flex: 0 0 auto;
     text-align: center;
     div.post-tags a.post-tag {
       margin: 0.5em;
