@@ -9,7 +9,7 @@
 
 {% block content %}
 <div id="page" class="page">
-  <article class="article post card{% if themeConfig.animate %} animate{% endif %}">
+  <article class="article post card{% if themeConfig.animate %} animate{% endif %}" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
       <link itemprop="mainEntityOfPage" href="{{ getURL(docPath) }}">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">

@@ -1,9 +1,6 @@
 {% block pagination %}
 {% if pageArray != null and pageIndex != null %}
 <nav class="pagination">
-  {% if pageIndex !== 0 %}
-  <a class="extend prev" href="{{ getPath(pageArray[pageIndex - 1].docPath) }}" aria-label="{{ __("accessibility.prevPage") }}"><i class="fas fa-angle-left"></i></a>
-  {% endif %}
   {% if pageIndex > 2 %}
   <a class="page-number" href="{{ getPath(pageArray[0].docPath) }}">1</a>
   <span class="space">…</span>
@@ -22,9 +19,6 @@
   {% for page in pageArray.slice(pageIndex + 1, pageArray.length) %}
   <a class="page-number" href="{{ getPath(page.docPath) }}">{{ page.pageIndex + 1 }}</a>
   {% endfor %}
-  {% endif %}
-  {% if pageIndex !== pageArray.length - 1 %}
-  <a class="extend next" href="{{ getPath(pageArray[pageIndex + 1].docPath) }}" aria-label="{{ __("accessibility.nextPage") }}"><i class="fas fa-angle-right"></i></a>
   {% endif %}
 </nav>
 {% endif %}

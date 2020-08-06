@@ -1,6 +1,7 @@
 @import "variables";
 @import "comment";
 
+// page means area outside card.
 div.page {
   h1.page-title, h2.page-title {
     text-align: center;
@@ -9,17 +10,17 @@ div.page {
     text-align: center;
   }
   nav.pagination {
-    margin: 1rem 0;
-    padding: 1rem 0;
+    margin: 0.5em 0;
+    padding: 0.5em;
     display: block;
     text-align: center;
     transition: 0.3s ease-in-out;
     color: $color-link-font;
     a.page-number, a.extend {
-      overflow: hidden;
-      font-size: 1.2rem;
-      padding: 0.5em;
-      margin: 0 0.5em;
+      display: inline-block;
+      font-size: 1.25rem;
+      padding: 0.3em 0.5em;
+      margin: 0 0.25em;
       text-decoration: none;
       border-bottom: 0.15em solid $color-link-font;
       transition: 0.3s ease-in-out;
@@ -29,11 +30,13 @@ div.page {
       &.current {
         color: $color-link-hover-font;
         border-bottom: 0.15em solid $color-link-hover-font;
-        border-top: 0.07em solid $color-link-hover-font;
+        border-top: 0.1em solid $color-link-hover-font;
       }
     }
     span.space {
-      margin: 0 0.5em;
+      display: inline-block;
+      font-size: 1.25rem;
+      margin: 0 0.25em;
       transition: 0.3s ease-in-out;
       color: $color-link-font;
     }
@@ -66,14 +69,12 @@ div.page {
       }
     }
     div.page-nav-next {
-      width: 45%;
       text-align: left;
       a {
         justify-content: flex-start;
       }
     }
     div.page-nav-prev {
-      width: 45%;
       text-align: right;
       a {
         justify-content: flex-end;
