@@ -34,7 +34,7 @@ var scrollToTop = function (opts) {
   opts["offset"] = opts["offset"] || 0;
   var oldOffset = document.documentElement.scrollTop ||
     document.body.scrollTop;
-  var startMs = performance.now();
+  var startMs = window.performance.now();
   function frame(currentMs) {
     // Time based frame step.
     var currentOffset = (
@@ -48,10 +48,10 @@ var scrollToTop = function (opts) {
       document.documentElement.scrollTop = currentOffset;
       document.body.scrollTop = currentOffset;
       // Call next animation!
-      requestAnimationFrame(frame);
+      window.requestAnimationFrame(frame);
     }
   }
-  requestAnimationFrame(frame);
+  window.requestAnimationFrame(frame);
 };
 
 var slideUp = function (target, duration) {
@@ -70,7 +70,7 @@ var slideUp = function (target, duration) {
   target.style.paddingBottom = 0;
   target.style.marginTop = 0;
   target.style.marginBottom = 0;
-  setTimeout(function () {
+  window.setTimeout(function () {
     target.style.display = "none";
     target.style.removeProperty("height");
     target.style.removeProperty("padding-top");
@@ -89,7 +89,7 @@ var slideDown = function (target, duration) {
   }
   duration = duration || 400;
   target.style.removeProperty("display");
-  var display = getComputedStyle(target).display;
+  var display = window.getComputedStyle(target).display;
   if (display === "none") {
     display = "block";
   }
@@ -110,7 +110,7 @@ var slideDown = function (target, duration) {
   target.style.removeProperty("padding-bottom");
   target.style.removeProperty("margin-top");
   target.style.removeProperty("margin-bottom");
-  setTimeout(function () {
+  window.setTimeout(function () {
     target.style.removeProperty("height");
     target.style.removeProperty("overflow");
     target.style.removeProperty("transition-duration");
@@ -123,7 +123,7 @@ var slideToggle = function (target, duration) {
     return;
   }
   duration = duration || 400;
-  return getComputedStyle(target).display === "none"
+  return window.getComputedStyle(target).display === "none"
     ? slideDown(target, duration)
     : slideUp(target, duration);
 };
@@ -133,35 +133,40 @@ documentReady(function () {
   // and does not depend on templating,
   // init function should be written here.
 
-  document.getElementById("back-to-top").onclick = function () {
-    scrollToTop();
-  };
+  document.getElementById("back-to-top").addEventListener(
+    "click",
+    function (event) {
+      scrollToTop();
+    }
+  );
 
   var rewardButton = document.getElementById("reward-button");
+  var qr = document.getElementById("qr");
   if (rewardButton != null) {
-    rewardButton.onclick = function () {
-      document.getElementById("qr").getAttribute("aria-hidden") === "true"
-        ? document.getElementById("qr").setAttribute("aria-hidden", "false")
-        : document.getElementById("qr").setAttribute("aria-hidden", "true");
-      slideToggle(document.getElementById("qr"));
-    };
+    rewardButton.addEventListener("click", function () {
+      qe.getAttribute("aria-hidden") === "true"
+        ? qr.setAttribute("aria-hidden", "false")
+        : qr.setAttribute("aria-hidden", "true");
+      slideToggle(qr);
+    });
   }
 
-  document.getElementById("nav-toggle").onclick = function () {
-    document.getElementById("menu").getAttribute("aria-hidden") === "true"
-      ? document.getElementById("menu").setAttribute("aria-hidden", "false")
-      : document.getElementById("menu").setAttribute("aria-hidden", "true");
-    slideToggle(document.getElementById("menu"));
-  };
+  var menu = document.getElementById("menu");
+  var navToggle = document.getElementById("nav-toggle");
+  navToggle.addEventListener("click", function () {
+    menu.getAttribute("aria-hidden") === "true"
+      ? menu.setAttribute("aria-hidden", "false")
+      : menu.setAttribute("aria-hidden", "true");
+    slideToggle(menu);
+  });
 
+  var yearsText = document.getElementById("years-text");
   var current = new Date().getFullYear().toString();
-  var since = document.getElementById("years-text").innerHTML;
+  var since = yearsText.innerHTML;
   if (since.length === 0) {
-    document.getElementById("years-text").innerHTML = current;
+    yearsText.innerHTML = current;
   } else if (since !== current) {
-    document.getElementById("years-text").innerHTML = [
-      since, " - ", current
-    ].join("");
+    yearsText.innerHTML = [since, " - ", current].join("");
   }
 
   // (40em - 0.6em) * 16px
@@ -170,35 +175,29 @@ documentReady(function () {
   var minWidth = Math.round((40 - 0.4) * 16);
   // Auto hide main nav menus in small screen.
   if (window.innerWidth <= minWidth) {
-    document.getElementById("menu").style.display = "none";
-    document.getElementById("menu").setAttribute("aria-hidden", "true");
-    document.getElementById("nav-toggle").setAttribute(
-      "aria-hidden", "false"
-    );
+    menu.style.display = "none";
+    menu.setAttribute("aria-hidden", "true");
+    navToggle.setAttribute("aria-hidden", "false");
   }
   var windowWidth = window.innerWidth;
   // Show menu again when window becomes bigger.
-  window.onresize = function () {
+  window.addEventListener("resize", function (event) {
     if (window.innerWidth > minWidth) {
-      document.getElementById("menu").style.display = "";
-      document.getElementById("menu").setAttribute("aria-hidden", "false");
-      document.getElementById("nav-toggle").setAttribute(
-        "aria-hidden", "true"
-      );
+      menu.style.display = "";
+      menu.setAttribute("aria-hidden", "false");
+      navToggle.setAttribute("aria-hidden", "true");
     } else {
       // Android chrome fires resize when scroll down.
       // Because it hides address bar to enlarge window height.
       // To avoid it, check width.
       if (window.innerWidth !== windowWidth) {
-        document.getElementById("menu").style.display = "none";
-        document.getElementById("menu").setAttribute("aria-hidden", "true");
-        document.getElementById("nav-toggle").setAttribute(
-          "aria-hidden", "false"
-        );
+        menu.style.display = "none";
+        menu.setAttribute("aria-hidden", "true");
+        navToggle.setAttribute("aria-hidden", "false");
         windowWidth = window.innerWidth;
       }
     }
-  }
+  });
 
   elementsEach(document.querySelectorAll("article.post img"), function (e, i) {
     // If an image works as link, don't attach light gallary to it.
