@@ -64,7 +64,7 @@ Prefer to use `"` and escaping instead of `'`.
 
 Don't remove `;`.
 
-Write functions like `function name(arg1, arg2) {}`, keep space after `function`, `,` and before `{`, but not after function name.
+Write functions like `function name(arg1, arg2) {}`, keep space after `function`, `,` and before `{`, but not after function name. But I prefer `var name = function (arg1, arg2) {};`
 
 Use 2-spaces indent.
 
