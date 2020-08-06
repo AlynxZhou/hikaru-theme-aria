@@ -105,13 +105,10 @@
       // Check user's choice from localStorage.
       var theme = localStorage.getItem("theme");
       var preferenceQuery = window.matchMedia("(prefers-color-scheme: dark)");
+      // theme might be null here.
       if (theme !== "dark" && theme !== "light") {
         // Init from user's system settings if no choice.
-        if (preferenceQuery.matches) {
-          theme = "dark";
-        } else {
-          theme = "light";
-        }
+        theme = preferenceQuery.matches ? "dark" : "light";
       }
       // Yes, it looks I can modify documentElement before ready!
       document.documentElement.setAttribute("data-theme", theme);
@@ -119,28 +116,22 @@
       documentReady(function () {
         var themeToggle = document.getElementById("theme-toggle");
         var setThemeToggle = function (themeToggle, theme) {
-          if (theme === "dark") {
-            themeToggle.innerHTML = "<i class=\"far fa-moon\" aria-label=\"{{ __("accessibility.themeDark") }}\"></i>";
-          } else if (theme === "light") {
-            themeToggle.innerHTML = "<i class=\"far fa-sun\" aria-label=\"{{ __("accessibility.themeLight") }}\"></i>";
-          }
+          themeToggle.innerHTML = theme === "dark"
+            ? "<i class=\"far fa-moon\" aria-label=\"{{ __("accessibility.themeDark") }}\"></i>"
+            : "<i class=\"far fa-sun\" aria-label=\"{{ __("accessibility.themeLight") }}\"></i>";
         }
         // Update theme toggle content.
         setThemeToggle(themeToggle, theme);
         // User changed system settings, update.
         preferenceQuery.addListener(function (event) {
-          if (event.matches) {
-            theme = "dark";
-          } else {
-            theme = "light";
-          }
+          theme = event.matches ? "dark" : "light";
           setThemeToggle(themeToggle, theme);
           document.documentElement.setAttribute("data-theme", theme);
           localStorage.setItem("theme", theme);
         });
         // Other page of site changed storage, update.
         window.addEventListener("storage", function (event) {
-          if (event.key === "theme") {
+          if (event.key === "theme" && event.newValue !== event.oldValue) {
             theme = event.newValue;
             setThemeToggle(themeToggle, theme);
             document.documentElement.setAttribute("data-theme", theme);
@@ -148,11 +139,7 @@
         });
         // User changed website settings, update.
         themeToggle.addEventListener("click", function (event) {
-          if (theme === "dark") {
-            theme = "light";
-          } else {
-            theme = "dark";
-          }
+          theme = theme === "dark" ? "light" : "dark";
           setThemeToggle(themeToggle, theme);
           document.documentElement.setAttribute("data-theme", theme);
           localStorage.setItem("theme", theme);
