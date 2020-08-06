@@ -26,7 +26,12 @@
       <div class="post-meta">
         {% if createdDate %}
         <span class="post-date meta-block">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="{{ createdDate.toISOString() }}">{{ createdMoment.format("YYYY-MM-DD ddd HH:mm:ss z") }}</time></span>
+          <i class="far fa-calendar-check"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="{{ createdDate.toISOString() }}">{{ createdMoment.format("YYYY-MM-DD ddd HH:mm:ss z") }}</time></span>
+        </span>
+        {% endif %}
+        {% if updatedDate %}
+        <span class="post-date meta-block">
+          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateUpdated" datetime="{{ updatedDate.toISOString() }}">{{ updatedMoment.format("YYYY-MM-DD ddd HH:mm:ss z") }}</time></span>
         </span>
         {% endif %}
         {% if categories and categories.length %}
