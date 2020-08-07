@@ -10,34 +10,21 @@ html, body {
 }
 html {
   // Scrollbar for document.
-  transition: 0.3s ease-in-out;
   scrollbar-width: thin;
   scrollbar-color: $color-scrollbar $color-scrollbar-background;
-  * {
-    // Scrollbar for others.
-    transition: 0.3s ease-in-out;
-    scrollbar-width: thin;
-    scrollbar-color: $color-scrollbar $color-scrollbar-background;
-  }
-  ::selection {
-    color: $color-selection-font;
-    background: $color-selection-background;
-  }
-  ::-moz-selection {
+  ::selection, ::-moz-selection {
     color: $color-selection-font;
     background: $color-selection-background;
   }
   ::-webkit-scrollbar {
     width: 0.5em;
     height: 0.5em;
-    transition: 0.3s ease-in-out;
     background: $color-scrollbar-background;
   }
   ::-webkit-scrollbar-track {
     background: 0 0;
   }
   ::-webkit-scrollbar-thumb {
-    transition: 0.3s ease-in-out;
     background: $color-scrollbar;
     border-radius: 0.25em;
     &:hover {
@@ -45,11 +32,9 @@ html {
     }
   }
   ::-webkit-scrollbar-corner {
-    transition: 0.3s ease-in-out;
     background: $color-scrollbar-corner;
   }
   ::-webkit-scrollbar-resizer {
-    transition: 0.3s ease-in-out;
     background: $color-scrollbar-resizer;
   }
 }
@@ -97,7 +82,6 @@ img {
 a.gallery-item, a.img-link {
   border-bottom: none;
   img {
-    transition: 0.3s ease-in-out;
     border: 0.15em solid $color-quote-font;
   }
   &:hover {
@@ -119,7 +103,6 @@ a#top, a#more {
   }
 }
 span.caption {
-  transition: 0.3s ease-in-out;
   color: $color-quote-font;
   display: block;
   text-align: center;
@@ -157,7 +140,6 @@ article table {
   border-spacing: 0;
   border-collapse: collapse;
   thead tr {
-    transition: 0.3s ease-in-out;
     background: $color-table-head-background;
     th {
       padding: 0.4em 0.7em;
@@ -165,24 +147,20 @@ article table {
     }
   }
   tbody tr {
-    transition: 0.3s ease-in-out;
     background: $color-table-odd-row-background;
     td {
       padding: 0.4em 0.7em;
       border: 0.1rem solid $color-table-border;
       &:nth-child(2n) {
-        transition: 0.3s ease-in-out;
         background: $color-table-even-row-background;
       }
     }
     &:nth-child(2n) {
-      transition: 0.3s ease-in-out;
       background: $color-table-even-row-background;
       td {
         padding: 0.4em 0.7em;
         border: 0.1rem solid $color-table-border;
         &:nth-child(2n) {
-          transition: 0.3s ease-in-out;
           background: $color-table-odd-row-background;
         }
       }
@@ -190,7 +168,6 @@ article table {
   }
 }
 code {
-  transition: 0.3s ease-in-out;
   margin: 0.05em 0.05em;
   color: $color-code-font;
   padding: 0.125em 0.25em;
@@ -302,7 +279,6 @@ figure.highlight {
       flex: 0 0 auto;
       text-align: right;
       padding: 0 0.5em;
-      transition: 0.3s ease-in-out;
       // Only show border of gutter, so when user choose no gutter in config,
       // there is no border for code.
       border-right: 0.1em dotted $color-quote-font;
@@ -323,13 +299,10 @@ blockquote {
   margin: 1em 0;
   // This is relative to text.
   padding: 0 1em;
-  transition: 0.3s ease-in-out;
-  border-left: 0.25em solid $color-dark-quote-font;
+  border-left: 0.25em solid $color-quote-font;
   color: $color-quote-font;
   p {
     white-space: pre-wrap;
-    transition: 0.3s ease-in-out;
-    color: $color-quote-font;
     padding: 0;
     margin: 0;
   }
@@ -338,10 +311,9 @@ blockquote.center-quote, blockquote.centerquote {
   margin: 1em 0;
   padding: 0.5em 15%;
   border-left: none;
-  border-top: 0.2em solid $color-dark-quote-font;
-  border-bottom: 0.2em solid $color-dark-quote-font;
+  border-top: 0.2em solid $color-quote-font;
+  border-bottom: 0.2em solid $color-quote-font;
   text-align: center;
-  transition: 0.3s ease-in-out;
   color: $color-quote-font;
   p, div {
     text-align: center;
@@ -351,7 +323,6 @@ div.alert-red, div.alert-green, div.alert-blue {
   text-align: center;
   margin: 1em 0;
   padding: 0.5em 15%;
-  transition: 0.3s ease-in-out;
   border-radius: $corner-radius;
 }
 div.alert-red {
@@ -376,7 +347,6 @@ article.card {
   border-radius: $corner-radius;
   padding: 0.5rem 1rem;
   margin: 0.5rem;
-  transition: 0.3s ease-in-out;
   &:hover {
     box-shadow: 0 0 1em 0.5em rgba(0, 0, 0, 0.19);
   }
