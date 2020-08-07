@@ -14,8 +14,8 @@ article.post {
       position: relative;
       text-decoration: none;
       border-bottom: none;
-      transition: 0.3s ease-in-out;
       color: $color-font;
+      color: var(--color-font);
       &::after {
         content: " ";
         position: absolute;
@@ -23,10 +23,11 @@ article.post {
         height: 0.1em;
         bottom: 0;
         left: 0;
+        transition: transform 0.3s ease-in-out;
         background: $color-font;
+        background: var(--color-font);
         visibility: hidden;
         transform: scaleX(0);
-        transition: 0.3s ease-in-out;
       }
       &:hover {
         &::after {
@@ -82,18 +83,6 @@ article.post {
     text-align: center;
     a.post-tag {
       margin: 0.1em 0.5em;
-    }
-  }
-}
-html[data-theme="dark"] {
-  article.post {
-    header.post-header {
-      h1.post-title a.post-title-link {
-        color: $color-dark-font;
-        &::after {
-          background: $color-dark-font;
-        }
-      }
     }
   }
 }

@@ -4,60 +4,104 @@
 @import "main";
 @import "footer";
 
+:root {
+  --color-scrollbar: $color-scrollbar;
+  --color-scrollbar-background: $color-scrollbar-background;
+  --color-scrollbar-hover: $color-scrollbar-hover;
+  --color-scrollbar-corner: $color-scrollbar-corner;
+  --color-scrollbar-resizer: $color-scrollbar-resizer;
+  --color-font: $color-font;
+  --color-background: $color-background;
+  --color-link-font: $color-link-font;
+  --color-link-hover-font: $color-link-hover-font;
+  --color-quote-font: $color-quote-font;
+  --color-table-head-background: $color-table-head-background;
+  --color-table-head-border: $color-table-head-border;
+  --color-table-odd-row-background: $color-table-odd-row-background;
+  --color-table-border: $color-table-border;
+  --color-table-even-row-background: $color-table-even-row-background;
+  --color-card-background: $color-card-background;
+  --color-hr-sidebar-background: $color-hr-sidebar-background;
+  --color-comment-sk-wave-background: $color-comment-sk-wave-background;
+  --color-comment-font: $color-comment-font;
+  --color-comment-content-background: $color-comment-content-background;
+  --color-author-name-font: $color-author-name-font;
+  --color-author-description-font: $color-author-description-font;
+  --color-main-background: $color-main-background;
+  --color-reward-font: $color-reward-font;
+  --color-sidebar-background: $color-sidebar-background;
+  --url-sidebar-background: $url-sidebar-background;
+}
+:root[data-theme="dark"] {
+  --color-scrollbar: $color-dark-scrollbar;
+  --color-scrollbar-background: $color-dark-scrollbar-background;
+  --color-scrollbar-hover: $color-dark-scrollbar-hover;
+  --color-scrollbar-corner: $color-dark-scrollbar-corner;
+  --color-scrollbar-resizer: $color-dark-scrollbar-resizer;
+  --color-font: $color-dark-font;
+  --color-background: $color-dark-background;
+  --color-link-font: $color-dark-link-font;
+  --color-link-hover-font: $color-dark-link-hover-font;
+  --color-quote-font: $color-dark-quote-font;
+  --color-table-head-background: $color-dark-table-head-background;
+  --color-table-head-border: $color-dark-table-head-border;
+  --color-table-odd-row-background: $color-dark-table-odd-row-background;
+  --color-table-border: $color-dark-table-border;
+  --color-table-even-row-background: $color-dark-table-even-row-background;
+  --color-card-background: $color-dark-card-background;
+  --color-hr-sidebar-background: $color-dark-hr-sidebar-background;
+  --color-comment-sk-wave-background: $color-dark-comment-sk-wave-background;
+  --color-comment-font: $color-dark-comment-font;
+  --color-comment-content-background: $color-dark-comment-content-background;
+  --color-author-name-font: $color-dark-author-name-font;
+  --color-author-description-font: $color-dark-author-description-font;
+  --color-main-background: $color-dark-main-background;
+  --color-reward-font: $color-dark-reward-font;
+  --color-sidebar-background: $color-dark-sidebar-background;
+  --url-sidebar-background: $url-dark-sidebar-background;
+}
 html, body {
   width: 100%;
   height: 100%;
 }
 html {
   // Scrollbar for document.
-  transition: 0.3s ease-in-out;
   scrollbar-width: thin;
   scrollbar-color: $color-scrollbar $color-scrollbar-background;
-  * {
-    // Scrollbar for others.
-    transition: 0.3s ease-in-out;
-    scrollbar-width: thin;
-    scrollbar-color: $color-scrollbar $color-scrollbar-background;
-  }
-  ::selection {
-    color: $color-selection-font;
-    background: $color-selection-background;
-  }
-  ::-moz-selection {
-    color: $color-selection-font;
-    background: $color-selection-background;
-  }
-  ::-webkit-scrollbar {
-    width: 0.5em;
-    height: 0.5em;
-    transition: 0.3s ease-in-out;
-    background: $color-scrollbar-background;
-  }
-  ::-webkit-scrollbar-track {
-    background: 0 0;
-  }
-  ::-webkit-scrollbar-thumb {
-    transition: 0.3s ease-in-out;
-    background: $color-scrollbar;
-    border-radius: 0.25em;
-    &:hover {
-      background: $color-scrollbar-hover;
-    }
-  }
-  ::-webkit-scrollbar-corner {
-    transition: 0.3s ease-in-out;
-    background: $color-scrollbar-corner;
-  }
-  ::-webkit-scrollbar-resizer {
-    transition: 0.3s ease-in-out;
-    background: $color-scrollbar-resizer;
+  scrollbar-color: var(--color-scrollbar) var(--color-scrollbar-background);
+}
+::selection, ::-moz-selection {
+  color: $color-selection-font;
+  background: $color-selection-background;
+}
+::-webkit-scrollbar {
+  width: 0.5em;
+  height: 0.5em;
+  background: var(--color-scrollbar-background);
+}
+::-webkit-scrollbar-track {
+  background: 0 0;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-scrollbar);
+  border-radius: 0.25em;
+  &:hover {
+    background: var(--color-scrollbar-hover);
   }
 }
+::-webkit-scrollbar-corner {
+  background: var(--color-scrollbar-corner);
+}
+::-webkit-scrollbar-resizer {
+  background: var(--color-scrollbar-resizer);
+}
 body {
-  transition: 0.3s ease-in-out;
+  transition: color 0.3s ease-in-out, background 0.3s ease-in-out;
   font: $font-size $font-all;
   color: $color-font;
+  color: var(--color-font);
   background: $color-background;
+  background: var(--color-background);
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -79,13 +123,17 @@ ol, ul {
 }
 a {
   position: relative;
+  transition: color 0.3s ease-in-out, border-bottom 0.3s ease-in-out;
   color: $color-link-font;
+  color: var(--color-link-font);
   text-decoration: none;
   border-bottom: 0.05em dotted $color-link-font;
-  transition: 0.3s ease-in-out;
+  border-bottom: 0.05em dotted var(--color-link-font);
   &:hover {
     color: $color-link-hover-font;
+    color: var(--color-link-hover-font);
     border-bottom: 0.05em solid $color-link-hover-font;
+    border-bottom: 0.05em solid var(--color-link-hover-font);
   }
   &:active {
     top: 0.1em;
@@ -97,8 +145,8 @@ img {
 a.gallery-item, a.img-link {
   border-bottom: none;
   img {
-    transition: 0.3s ease-in-out;
     border: 0.15em solid $color-quote-font;
+    border: 0.15em solid var(--color-quote-font);
   }
   &:hover {
     border-bottom: none;
@@ -119,15 +167,15 @@ a#top, a#more {
   }
 }
 span.caption {
-  transition: 0.3s ease-in-out;
   color: $color-quote-font;
+  color: var(--color-quote-font);
   display: block;
   text-align: center;
   margin: 0 0 1em 0;
 }
 a.button, button.button {
   position: relative;
-  transition: 0.3s ease-in-out;
+  transition: box-shadow 0.3s ease-in-out;
   text-decoration: none;
   border-radius: $corner-radius;
   border-bottom: none;
@@ -149,7 +197,7 @@ hr {
   margin: 1.5em 0;
   width: 100%;
   box-sizing: content-box;
-  background: repeating-linear-gradient(-45deg, #ccc, #ccc 0.25rem, transparent 0.25rem, transparent 0.5rem);
+  background: repeating-linear-gradient(-45deg, $color-hr-background, $color-hr-background 0.25em, transparent 0.25em, transparent 0.5em);
 }
 article table {
   margin: 1em auto;
@@ -157,40 +205,42 @@ article table {
   border-spacing: 0;
   border-collapse: collapse;
   thead tr {
-    transition: 0.3s ease-in-out;
     background: $color-table-head-background;
+    background: var(--color-table-head-background);
     th {
       padding: 0.4em 0.7em;
-      border: 0.1rem solid $color-table-head-border;
+      border: 0.1em solid $color-table-head-border;
+      border: 0.1em solid var(--color-table-head-border);
     }
   }
   tbody tr {
-    transition: 0.3s ease-in-out;
     background: $color-table-odd-row-background;
+    background: var(--color-table-odd-row-background);
     td {
       padding: 0.4em 0.7em;
-      border: 0.1rem solid $color-table-border;
+      border: 0.1em solid $color-table-border;
+      border: 0.1em solid var(--color-table-border);
       &:nth-child(2n) {
-        transition: 0.3s ease-in-out;
         background: $color-table-even-row-background;
+        background: var(--color-table-even-row-background);
       }
     }
     &:nth-child(2n) {
-      transition: 0.3s ease-in-out;
       background: $color-table-even-row-background;
+      background: var(--color-table-even-row-background);
       td {
         padding: 0.4em 0.7em;
-        border: 0.1rem solid $color-table-border;
+        border: 0.1em solid $color-table-border;
+        border: 0.1em solid var(--color-table-border);
         &:nth-child(2n) {
-          transition: 0.3s ease-in-out;
           background: $color-table-odd-row-background;
+          background: var(--color-table-odd-row-background);
         }
       }
     }
   }
 }
 code {
-  transition: 0.3s ease-in-out;
   margin: 0.05em 0.05em;
   color: $color-code-font;
   padding: 0.125em 0.25em;
@@ -242,7 +292,7 @@ div.code-titlebar {
     margin: 0.25em;
     box-sizing: border-box;
     color: $color-link-copy-font;
-    transition: 0.3s ease-in-out;
+    transition: color 0.3s ease-in-out;
     &:hover {
       color: $color-link-copy-hover-font;
       border: none;
@@ -259,7 +309,7 @@ div.code-titlebar {
     border-radius: 50%;
     width: 1em;
     height: 1em;
-    transition: 0.3s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
     &:hover {
       opacity: 0.7;
       border: none;
@@ -282,6 +332,9 @@ figure.highlight {
   justify-content: stretch;
   align-items: stretch;
   overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: $color-scrollbar $color-scrollbar-background;
+  scrollbar-color: var(--color-scrollbar) var(--color-scrollbar-background);
   border-left: 0.1em solid $color-code-border;
   border-bottom: 0.1em solid $color-code-border;
   border-right: 0.1em solid $color-code-border;
@@ -302,10 +355,10 @@ figure.highlight {
       flex: 0 0 auto;
       text-align: right;
       padding: 0 0.5em;
-      transition: 0.3s ease-in-out;
       // Only show border of gutter, so when user choose no gutter in config,
       // there is no border for code.
       border-right: 0.1em dotted $color-quote-font;
+      border-right: 0.1em dotted var(--color-quote-font);
     }
     &.code {
       position: relative;
@@ -323,13 +376,12 @@ blockquote {
   margin: 1em 0;
   // This is relative to text.
   padding: 0 1em;
-  transition: 0.3s ease-in-out;
-  border-left: 0.25em solid $color-dark-quote-font;
   color: $color-quote-font;
+  color: var(--color-quote-font);
+  border-left: 0.25em solid $color-quote-font;
+  border-left: 0.25em solid var(--color-quote-font);
   p {
     white-space: pre-wrap;
-    transition: 0.3s ease-in-out;
-    color: $color-quote-font;
     padding: 0;
     margin: 0;
   }
@@ -337,12 +389,14 @@ blockquote {
 blockquote.center-quote, blockquote.centerquote {
   margin: 1em 0;
   padding: 0.5em 15%;
-  border-left: none;
-  border-top: 0.2em solid $color-dark-quote-font;
-  border-bottom: 0.2em solid $color-dark-quote-font;
-  text-align: center;
-  transition: 0.3s ease-in-out;
   color: $color-quote-font;
+  color: var(--color-quote-font);
+  border-left: none;
+  border-top: 0.2em solid $color-quote-font;
+  border-top: 0.2em solid var(--color-quote-font);
+  border-bottom: 0.2em solid $color-quote-font;
+  border-bottom: 0.2em solid var(--color-quote-font);
+  text-align: center;
   p, div {
     text-align: center;
   }
@@ -351,7 +405,6 @@ div.alert-red, div.alert-green, div.alert-blue {
   text-align: center;
   margin: 1em 0;
   padding: 0.5em 15%;
-  transition: 0.3s ease-in-out;
   border-radius: $corner-radius;
 }
 div.alert-red {
@@ -372,11 +425,11 @@ div.alert-blue {
 article.card {
   display: block;
   background: $color-card-background;
+  background: var(--color-card-background);
   box-sizing: border-box;
   border-radius: $corner-radius;
-  padding: 0.5rem 1rem;
-  margin: 0.5rem;
-  transition: 0.3s ease-in-out;
+  padding: 0.5em 1em;
+  margin: 0.5em;
   &:hover {
     box-shadow: 0 0 1em 0.5em rgba(0, 0, 0, 0.19);
   }
@@ -400,106 +453,6 @@ if (getThemeConfig("animate")) {
         transform: rotateX(0);
       }
     }
-  }
-}
-html[data-theme="dark"] {
-  scrollbar-color: $color-dark-scrollbar $color-dark-scrollbar-background;
-  * {
-    scrollbar-color: $color-dark-scrollbar $color-dark-scrollbar-background;
-  }
-  ::-webkit-scrollbar {
-    background: $color-dark-scrollbar-background;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: $color-dark-scrollbar;
-    &:hover {
-      background: $color-dark-scrollbar-hover;
-    }
-  }
-  ::-webkit-scrollbar-corner {
-    background: $color-dark-scrollbar-corner;
-  }
-  ::-webkit-scrollbar-resizer {
-    background: $color-dark-scrollbar-resizer;
-  }
-  body {
-    color: $color-dark-font;
-    background: $color-dark-background;
-  }
-  a {
-    color: $color-dark-link-font;
-    border-bottom: 0.05em dotted $color-dark-link-font;
-    &:hover {
-      color: $color-dark-link-hover-font;
-      border-bottom: 0.05em solid $color-dark-link-hover-font;
-    }
-  }
-  a.gallery-item, a.img-link {
-    // This will inherit from html[data-theme="dark"] a.
-    border-bottom: none;
-    img {
-      border: 0.15em solid $color-dark-quote-font;
-    }
-    &:hover {
-      border-bottom: none;
-    }
-  }
-  span.caption {
-    color: $color-dark-quote-font;
-  }
-  a.button, button.button {
-    opacity: $opacity-dark;
-  }
-  article table {
-    thead tr {
-      background: $color-dark-table-head-background;
-    }
-    tbody tr {
-      background: $color-dark-table-odd-row-background;
-      td {
-        &:nth-child(2n) {
-          background: $color-dark-table-even-row-background;
-        }
-      }
-      &:nth-child(2n) {
-        background: $color-dark-table-even-row-background;
-        td {
-          &:nth-child(2n) {
-            background: $color-dark-table-odd-row-background;
-          }
-        }
-      }
-    }
-  }
-  code {
-    opacity: $opacity-dark;
-  }
-  figure.highlight {
-    pre {
-      &.gutter {
-        border-right: 0.1em dotted $color-dark-quote-font;
-      }
-    }
-  }
-  blockquote {
-    border-left: 0.25em solid $color-dark-quote-font;
-    color: $color-dark-quote-font;
-    p {
-      color: $color-dark-quote-font;
-    }
-  }
-  blockquote.center-quote, blockquote.centerquote {
-    // This will inherit from html[data-theme="dark"] blockquote.
-    border-left: none;
-    border-top: 0.2em solid $color-dark-quote-font;
-    border-bottom: 0.2em solid $color-dark-quote-font;
-    color: $color-dark-quote-font;
-  }
-  div.alert-red, div.alert-green, div.alert-blue {
-    opacity: $opacity-dark;
-  }
-  article.card {
-    background: $color-dark-card-background;
   }
 }
 @media (max-width: $media-container-expand-width) {

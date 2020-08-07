@@ -30,10 +30,10 @@ $blue-dark = #2356af;
 $blue-deep = #13229f;
 
 $color-font = $black-dark;
+$color-background = $grey;
 $color-quote-font = $grey-dim;
 $color-selection-font = $black-deep;
 $color-selection-background = $blue-bright;
-$color-background = $grey;
 $color-comment-font = $grey-dim;
 $color-comment-info-font = $grey-lighter;
 $color-comment-info-link-font = $grey-light;
@@ -53,6 +53,8 @@ $color-nav-link-hover-font = white;
 $color-nav-current-background = $black-deep;
 $color-main-background = $grey-lighter;
 $color-card-background = white;
+$color-hr-background = $grey;
+$color-hr-sidebar-background = white;
 $color-sidebar-background = $grey-light;
 $color-footer-background = $black-light;
 $color-footer-font = $grey-lighter;
@@ -110,8 +112,8 @@ $color-scrollbar-corner = $grey-dim;
 $color-scrollbar-resizer = $grey-dark;
 
 $color-dark-font = $grey-lighter;
-$color-dark-quote-font = $grey-dark;
 $color-dark-background = $black-dim;
+$color-dark-quote-font = $grey-dark;
 $color-dark-comment-font = $grey-light;
 $color-dark-comment-content-background = $black-lighter;
 $color-dark-comment-sk-wave-background = $grey-light;
@@ -119,9 +121,12 @@ $color-dark-link-font = $grey-light;
 $color-dark-link-hover-font = white;
 $color-dark-main-background = $black-dark;
 $color-dark-card-background = $black-lighter;
+$color-dark-hr-sidebar-background = $grey;
 $color-dark-sidebar-background = $black-dim;
 $color-dark-author-name-font = $grey-lighter;
 $color-dark-author-description-font = $grey-light;
+$color-dark-table-border = $grey-dark;
+$color-dark-table-head-border = $grey-light;
 $color-dark-table-head-background = $black-dark;
 $color-dark-table-odd-row-background = $black-light;
 $color-dark-table-even-row-background = $black-dark;
@@ -131,7 +136,11 @@ $color-dark-scrollbar-hover = $grey-lighter;
 $color-dark-scrollbar-background = transparent;
 $color-dark-scrollbar-corner = $grey-lighter;
 $color-dark-scrollbar-resizer = $grey-light;
-$opacity-dark = 0.9
+
+// $opacity-dark = 0.9
+
+$url-sidebar-background = url(getPath("images/background.webp"));
+$url-dark-sidebar-background = url(getPath("images/background-dark.webp"));
 
 $font-sans = Roboto, "Noto Sans", "Noto Sans CJK", Helvetica, Arial, sans-serif;
 $font-serif = "Roboto Slab", "Noto Serif", "Noto Serif CJK", Georgia, "Times New Roman", serif;
@@ -162,9 +171,9 @@ if (getThemeConfig("customFont.enable") && getThemeConfig("customFont.code")) {
 $font-size = 16px;
 
 $corner-radius = 0.3em
-$search-height = 3rem;
-$search-padding-top = 0.5rem;
-// $container-max-width = 80rem;
-$media-footer-header-nav-fold-width = 40rem;
-$media-main-fold-width = 60rem;
-$media-container-expand-width = 80rem;
+$search-height = 3em;
+$search-padding-top = 0.5em;
+// $container-max-width = 80em;
+$media-footer-header-nav-fold-width = 40em;
+$media-main-fold-width = 60em;
+$media-container-expand-width = 80em;

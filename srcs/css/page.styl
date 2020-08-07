@@ -14,35 +14,41 @@ div.page {
     padding: 0.5em;
     display: block;
     text-align: center;
-    transition: 0.3s ease-in-out;
-    color: $color-link-font;
     a.page-number, a.extend {
       display: inline-block;
       font-size: 1.25rem;
       padding: 0.3em 0.5em;
       margin: 0 0.25em;
       text-decoration: none;
+      color: $color-link-font;
+      color: var(--color-link-font);
       border-bottom: 0.15em solid $color-link-font;
-      transition: 0.3s ease-in-out;
+      border-bottom: 0.15em solid var(--color-link-font);
       &:hover {
+        color: $color-link-hover-font;
+        color: var(--color-link-hover-font);
         border-bottom: 0.15em solid $color-link-hover-font;
+        border-bottom: 0.15em solid var(--color-link-hover-font);
       }
       &.current {
         color: $color-link-hover-font;
+        color: var(--color-link-hover-font);
         border-bottom: 0.15em solid $color-link-hover-font;
+        border-bottom: 0.15em solid var(--color-link-hover-font);
         border-top: 0.1em solid $color-link-hover-font;
+        border-top: 0.1em solid var(--color-link-hover-font);
       }
     }
     span.space {
       display: inline-block;
       font-size: 1.25rem;
       margin: 0 0.25em;
-      transition: 0.3s ease-in-out;
       color: $color-link-font;
+      color: var(--color-link-font);
     }
   }
   nav.page-nav {
-    margin: 0 1rem;
+    margin: 0 1em;
     padding: 0;
     display: flex;
     flex-direction: row;
@@ -78,27 +84,6 @@ div.page {
       text-align: right;
       a {
         justify-content: flex-end;
-      }
-    }
-  }
-}
-html[data-theme="dark"] {
-  div.page {
-    nav.pagination {
-      color: $color-dark-link-font;
-      a.page-number, a.extend {
-        border-bottom: 0.15em solid $color-dark-link-font;
-        &:hover {
-          border-bottom: 0.15em solid $color-dark-link-hover-font;
-        }
-        &.current {
-          color: $color-dark-link-hover-font;
-          border-bottom: 0.15em solid $color-dark-link-hover-font;
-          border-top: 0.07em solid $color-dark-link-hover-font;
-        }
-      }
-      span.space {
-        color: $color-dark-link-font;
       }
     }
   }

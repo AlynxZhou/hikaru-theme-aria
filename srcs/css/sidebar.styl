@@ -2,9 +2,10 @@
 @import "info";
 
 aside.sidebar {
-  transition: 0.3s ease-in-out;
   background: $color-sidebar-background;
-  background: url(getPath("images/background.webp"));
+  background: var(--color-sidebar-background);
+  background: $url-sidebar-background;
+  background: var(--url-sidebar-background);
   flex: 1 1 auto;
   width: 25%;
   padding: 0;
@@ -17,12 +18,12 @@ aside.sidebar {
     padding-top: $search-padding-top;
     input.search-input {
       width: 70%;
-      height: 1.8rem;
+      height: 1.8em;
       border: none;
       border-bottom: 0.1em dotted $color-search-font;
       background: $color-search-background;
       color: $color-search-font;
-      transition: 0.3s ease-in-out;
+      transition: border-bottom 0.3s ease-in-out;
       &:focus {
         border-bottom: 0.1em solid $color-search-font;
       }
@@ -33,7 +34,7 @@ aside.sidebar {
     }
     button.search-submit {
       position: relative;
-      transition: 0.3s ease-in-out;
+      transition: color 0.3s ease-in-out;
       color: $color-search-font;
       text-decoration: none;
       padding: 0;
@@ -52,7 +53,7 @@ aside.sidebar {
     }
   }
   div.sidebar-item {
-    margin: 1rem;
+    margin: 1em;
   }
   div.sidebar-sticky {
     position: -webkit-sticky;
@@ -61,28 +62,15 @@ aside.sidebar {
     padding-bottom: 1em;
   }
   div.post-toc a.toc-link.active {
-    transition: 0.3s ease-in-out;
     color: $color-link-hover-font;
+    color: var(--color-link-hover-font);
     border-bottom: 0.05em solid $color-link-hover-font;
+    border-bottom: 0.05em solid var(--color-link-hover-font);
   }
   // Replace hr color in index.styl.
   hr {
-    transition: 0.3s ease-in-out;
-    background: repeating-linear-gradient(-45deg, #fff, #fff 0.25rem, transparent 0.25rem, transparent 0.5rem);
-  }
-}
-html[data-theme="dark"] {
-  aside.sidebar {
-    background: $color-dark-sidebar-background;
-    background: url(getPath("images/background-dark.webp"));
-    div.post-toc a.toc-link.active {
-      color: $color-dark-link-hover-font;
-      border-bottom: 0.05em solid $color-dark-link-hover-font;
-    }
-    // Replace hr color in index.styl.
-    hr {
-      background: repeating-linear-gradient(-45deg, #ccc, #ccc 0.25rem, transparent 0.25rem, transparent 0.5rem);
-    }
+    background: repeating-linear-gradient(-45deg, $color-hr-sidebar-background, $color-hr-sidebar-background 0.25em, transparent 0.25em, transparent 0.5em);
+    background: repeating-linear-gradient(-45deg, var(--color-hr-sidebar-background), var(--color-hr-sidebar-background) 0.25em, transparent 0.25em, transparent 0.5em);
   }
 }
 @media (max-width: $media-main-fold-width) {

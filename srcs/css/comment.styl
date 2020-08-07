@@ -3,22 +3,23 @@
 div.comment {
   if (getThemeConfig("comment.issue.enable")) {
     div.comment-results {
-      padding: 1rem;
+      padding: 1em;
       div.sk-wave {
         div.sk-rect {
           background: $color-comment-sk-wave-background;
+          background: var(--color-comment-sk-wave-background);
         }
       }
       div.comment-fail {
-        transition: 0.3s ease-in-out;
         text-align: center;
         color: $color-comment-font;
+        color: var(--color-comment-font);
       }
       header.comments-header {
-        transition: 0.3s ease-in-out;
         padding: 0.5em;
         text-align: center;
         color: $color-comment-font;
+        color: var(--color-comment-font);
       }
       main.comments-main {
         div.comment {
@@ -27,13 +28,13 @@ div.comment {
           flex-wrap: nowrap;
           justify-content: stretch;
           align-items: start;
-          margin: 0.5rem 0;
+          margin: 0.5em 0;
           div.comment-avatar-container {
             flex: 1 1 auto;
             width: 10%;
             img.comment-avatar {
               width: 70%;
-              border: 0.1rem solid white;
+              border: 0.1em solid white;
               border-radius: 50%;
               transition: box-shadow 0.3s ease-in-out, transform 1s ease-in-out;
               &:hover {
@@ -57,7 +58,7 @@ div.comment {
                 color: $color-comment-info-link-font;
                 text-decoration: none;
                 border-bottom: 0.05em dotted $color-comment-info-link-font;
-                transition: 0.3s ease-in-out;
+                transition: color 0.3s ease-in-out, border-bottom 0.3s ease-in-out;
                 &:hover {
                   color: $color-comment-info-link-hover-font;
                   border-bottom: 0.05em solid $color-comment-info-link-hover-font;
@@ -87,11 +88,10 @@ div.comment {
               }
             }
             div.comment-content {
-              transition: 0.3s ease-in-out;
               padding: 0.5em 1em;
               background: $color-comment-content-background;
+              background: var(--color-comment-content-background);
               pre {
-                transition: 0.3s ease-in-out;
                 overflow: auto;
                 padding: 0.5em;
                 border-radius: $corner-radius;
@@ -110,7 +110,9 @@ div.comment {
       footer.comments-footer {
         display: flex;
         flex-direction: row;
+        flex-wrap: nowrap;
         justify-content: center;
+        align-items: center;
         a.comment-send {
           padding: 0.3em 1em;
           background: $color-button-comment-background;
@@ -120,39 +122,11 @@ div.comment {
     }
   } else if (getThemeConfig("comment.disqusShortName")) {
     div.disqus_thread {
-      margin: 1rem 2rem;
+      margin: 1em 2em;
     }
   } else if (getThemeConfig("comment.valine.enable")) {
     div.vcomments {
-      margin: 1rem 2rem;
-    }
-  }
-}
-html[data-theme="dark"] {
-  div.comment {
-    if (getThemeConfig("comment.issue.enable")) {
-      div.comment-results {
-        div.sk-wave {
-          div.sk-rect {
-            background: $color-dark-comment-sk-wave-background;
-          }
-        }
-        div.comment-fail {
-          color: $color-dark-comment-font;
-        }
-        header.comments-header {
-          color: $color-dark-comment-font;
-        }
-        main.comments-main {
-          div.comment {
-            div.comment-body-container {
-              div.comment-content {
-                background: $color-dark-comment-content-background;
-              }
-            }
-          }
-        }
-      }
+      margin: 1em 2em;
     }
   }
 }

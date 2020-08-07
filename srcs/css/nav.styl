@@ -6,8 +6,8 @@ nav.nav {
   padding: 0 0.5em;
   overflow: hidden;
   background: $color-nav-background;
-  // -0.5rem is the offset for main shadow.
-  box-shadow: 0 -0.5rem 1rem 0.5rem rgba(0, 0, 0, 0.19);
+  // -0.5em is the offset for main shadow.
+  box-shadow: 0 -0.5em 1em 0.5em rgba(0, 0, 0, 0.19);
   border-radius: $corner-radius $corner-radius 0 0;
   display: flex;
   flex-direction: row;
@@ -24,7 +24,7 @@ nav.nav {
     cursor: pointer;
     color: $color-nav-link-font;
     width: 100%;
-    transition: 0.3s ease-in-out;
+    transition: color 0.3s ease-in-out, background 0.3s ease-in-out;
     &:hover {
       color: $color-nav-link-hover-font;
       background: $color-nav-hover-background;
@@ -38,6 +38,9 @@ nav.nav {
     margin: 0;
     flex: 1 1 auto;
     overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: $color-scrollbar $color-scrollbar-background;
+    scrollbar-color: var(--color-scrollbar) var(--color-scrollbar-background);
     white-space: nowrap;
     li {
       position: relative;
@@ -53,7 +56,7 @@ nav.nav {
         padding: 0.5em;
         color: $color-nav-link-font;
         text-decoration: none;
-        transition: 0.3s ease-in-out;
+        transition: color 0.3s ease-in-out, background 0.3s ease-in-out;
         border-bottom: none;
         &:hover {
           color: $color-nav-link-hover-font;
@@ -81,7 +84,7 @@ nav.nav {
     font-size: 2rem;
     cursor: pointer;
     color: $color-nav-link-font;
-    transition: 0.3s ease-in-out;
+    transition: color 0.3s ease-in-out, background 0.3s ease-in-out;
     &:hover {
       color: $color-nav-link-hover-font;
       background: $color-nav-hover-background;
