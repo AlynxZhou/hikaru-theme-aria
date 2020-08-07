@@ -1,17 +1,18 @@
 @import "variables"
 
 div.reward {
-  margin: 1rem auto;
+  margin: 1em auto;
   width: 90%;
   text-align: center;
   color: $color-reward-font;
+  color: var(--color-reward-font);
   div.qr {
     text-align: center;
     div {
       padding: 0.5em;
       display: inline-block;
       img {
-        width: 10rem;
+        width: 10em;
         margin: 0 auto;
         display: block;
       }
@@ -28,10 +29,5 @@ div.reward {
     margin: 0.5em 0;
     background: $color-button-reward-background;
     border: 0.1em solid $color-button-reward-border;
-  }
-}
-html[data-theme="dark"] {
-  div.reward {
-    color: $color-dark-reward-font;
   }
 }

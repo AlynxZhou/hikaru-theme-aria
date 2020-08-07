@@ -6,8 +6,8 @@ div.info {
     // Keep in center.
     width: 90%;
     display: block;
-    margin: 1rem auto;
-    border: 0.3rem solid white;
+    margin: 1em auto;
+    border: 0.3em solid white;
     border-radius: 50%;
     transition: box-shadow 0.3s ease-in-out, transform 1s ease-in-out;
     &:hover {
@@ -17,15 +17,17 @@ div.info {
   }
   h1.author-name {
     color: $color-author-name-font;
+    color: var(--color-author-name-font);
     font-size: 1.8rem;
     font-weight: normal;
-    margin: 0.5rem 0;
+    margin: 0.5em 0;
   }
   h2.author-description {
     color: $color-author-description-font;
+    color: var(--color-author-description-font);
     font-size: 1.2rem;
     font-weight: normal;
-    margin: 0.5rem 0;
+    margin: 0.5em 0;
   }
   div.site-count {
     display: flex;
@@ -34,12 +36,14 @@ div.info {
     align-items: stretch;
     flex-wrap: nowrap;
     width: 100%;
-    margin: 1rem 0;
+    margin: 1em 0;
     text-align: center;
     div.count-block {
       flex: 1 1 auto;
-      border-left: 0.05rem $color-quote-font solid;
-      border-right: 0.05rem $color-quote-font solid;
+      border-left: 0.05em $color-quote-font solid;
+      border-left: 0.05em var(--color-quote-font) solid;
+      border-right: 0.05em $color-quote-font solid;
+      border-right: 0.05em var(--color-quote-font) solid;
       &:first-child {
         border-left: none;
       }
@@ -53,7 +57,7 @@ div.info {
     }
   }
   div.rss {
-    margin: 1rem 0;
+    margin: 1em 0;
     padding: 0;
     a.rss-link {
       display: block;
@@ -62,28 +66,6 @@ div.info {
       background: $color-button-rss-background;
       border: 0.1em solid $color-button-rss-border;
       padding: 0.2em;
-    }
-  }
-}
-html[data-theme="dark"] {
-  div.info {
-    h1.author-name {
-      color: $color-dark-author-name-font;
-    }
-    h2.author-description {
-      color: $color-dark-author-description-font;
-    }
-    div.site-count {
-      div.count-block {
-        border-left: 0.05rem $color-dark-quote-font solid;
-        border-right: 0.05rem $color-dark-quote-font solid;
-        &:first-child {
-          border-left: none;
-        }
-        &:last-child {
-          border-right: none;
-        }
-      }
     }
   }
 }

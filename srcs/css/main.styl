@@ -4,12 +4,14 @@ main.main {
   flex: 1 0 auto;
   font: $font-size $font-main;
   margin-top: 0 - $search-height;
+  margin-bottom: 1.5em;
   div.main-container {
     width: auto;
     background: $color-main-background;
+    background: var(--color-main-background);
     box-sizing: border-box;
-    // 0.5rem is the offset for nav shadow.
-    box-shadow: 0 0.5rem 1rem 0.5rem rgba(0, 0, 0, 0.19);
+    // 0.5em is the offset for nav shadow.
+    box-shadow: 0 0.5em 1em 0.5em rgba(0, 0, 0, 0.19);
     border-radius: 0 0 $corner-radius $corner-radius;
     display: flex;
     if (getThemeConfig("sidebar") == "left") {
@@ -24,13 +26,6 @@ main.main {
     div.content {
       flex: 3 3 auto;
       width: 75%;
-    }
-  }
-}
-html[data-theme="dark"] {
-  main.main {
-    div.main-container {
-      background: $color-dark-main-background;
     }
   }
 }

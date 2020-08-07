@@ -4,12 +4,11 @@ footer.footer {
   flex: 0 0 auto;
   background: $color-footer-background;
   color: $color-footer-font;
-  margin-top: 1.5rem;
   div.footer-container {
     width: auto;
     word-wrap: break-word;
     line-height: 2;
-    padding: 1rem;
+    padding: 1em;
     display: flex;
     flex-direction: row;
     justify-content: stretch;
@@ -35,7 +34,7 @@ footer.footer {
     color: $color-footer-link-font;
     text-decoration: none;
     border-bottom: 0.05em dotted $color-footer-link-font;
-    transition: 0.3s ease-in-out;
+    transition: color 0.3s ease-in-out, border-bottom 0.3s ease-in-out;
     &:hover {
       color: $color-footer-link-hover-font;
       border-bottom: 0.05em solid $color-footer-link-hover-font;
@@ -50,31 +49,21 @@ footer.footer {
     button {
       border: none;
       outline: 0;
-      background: $color-background;
+      transition: color 0.3s ease-in-out;
       color: $color-link-font;
+      color: var(--color-link-font);
+      background: $color-background;
+      background: var(--color-background);
       display: inline-block;
       margin: 0 auto;
       padding: 0 0.75em;
       cursor: pointer;
       border-radius: 0 0 $corner-radius $corner-radius;
       font-size: 2rem;
-      transition: 0.3s ease-in-out;
       &:hover {
         color: $color-link-hover-font;
+        color: var(--color-link-hover-font);
         border: none;
-      }
-    }
-  }
-}
-html[data-theme="dark"] {
-  footer.footer {
-    div.back-to-top {
-      button {
-        background: $color-dark-background;
-        color: $color-dark-link-font;
-        &:hover {
-          color: $color-dark-link-hover-font;
-        }
       }
     }
   }

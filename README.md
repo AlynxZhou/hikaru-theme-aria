@@ -8,25 +8,20 @@ Live Demo: [喵's StackHarbor](https://sh.alynx.moe/)
 
 # Feature
 
-- Elegant responsive double column layout with css animation.
-
+- Elegant responsive double column layout with CSS animation.
 - Comment system (currently supprt [Disqus](https://disqus.com/), a builtin GitHub issue based comment and [Valine](https://valine.js.org/)).
-
 - Busuanzi counting.
-
 - Hikaru local search support.
-
 - Multi-languages support (currently `zh-Hans`, `zh-Hant-HK`, `zh-Hant-TW` and `en`, PR welcome).
-
 - Image display powered by [Lightgallery](https://sachinchoolur.github.io/lightgallery.js/).
-
 - RSS feed supported.
+- Dark mode supported by CSS variables.
 
 # Before Using
 
-- Using a static website generator needs some basic knowledge, if you know nothing, Hikaru and ARIA are not your best choice. Please be sure you know Hikaru, YAML, git, Markdown and Web before continuing.
+Using a static website generator needs some basic knowledge, if you know nothing, Hikaru and ARIA are not your best choice. Please be sure you know Hikaru, YAML, git, Markdown and Web before continuing.
 
-- ARIA uses [FlexBox layout](https://developer.mozilla.org/en-US/docs/Web/CSS/flex) to place elements, and Internet Explorer before version 9 has no way to support it. So if you use IE, upgrade to IE 11 or later, or use a modern browser like [Google Chrome](https://www.google.com/chrome/) or [Mozilla Firefox](https://www.mozilla.org/en-US/firefox/). Or if you know how to fallback FlexBox in elder IE, please send PRs, thanks.
+ARIA uses [FlexBox layout](https://developer.mozilla.org/en-US/docs/Web/CSS/flex) to place elements, and Internet Explorer before version 9 has no way to support it. So if you use IE, upgrade to IE 11 or later, or use a modern browser like [Google Chrome](https://www.google.com/chrome/) or [Mozilla Firefox](https://www.mozilla.org/en-US/firefox/). Or if you know how to fallback FlexBox in elder IE, please send PRs, thanks.
 
 # Coding Style
 
