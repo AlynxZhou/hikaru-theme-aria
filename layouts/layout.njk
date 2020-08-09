@@ -145,9 +145,9 @@
           localStorage.setItem("theme", theme);
         });
         elementsEach(
-          document.querySelectorAll(".post pre code figure.highlight"),
+          document.querySelectorAll(".post figure.code-block"),
           function (e, i) {
-            var lang = e.parentNode.className;
+            var lang = e.getAttribute("data-lang");
             e.insertAdjacentElement("beforebegin", createElementFromString([
               "<div class=\"code-titlebar\">",
                 "<div class=\"titlebar-left\">",
