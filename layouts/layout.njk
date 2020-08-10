@@ -55,11 +55,11 @@
     {% if themeConfig.sidebar !== false %}
     <link rel="stylesheet" type="text/css" href="{{ getPath("css/sidebar.css") }}">
     {% endif %}
-    {% block css %}{% endblock %}
     <link rel="stylesheet" type="text/css" href="{{ getPath("css/custom.css") }}">
     <link rel="stylesheet" type="text/css" href="{% if themeConfig.libCDN.enable and themeConfig.libCDN[themeConfig.highlight] %}{{ themeConfig.libCDN[themeConfig.highlight] }}{% else %}{{ getPath("css/" + themeConfig.highlight + ".css") }}{% endif %}">
     <link rel="stylesheet" type="text/css" href="{% if themeConfig.libCDN.enable and themeConfig.libCDN.lightGallery.css %}{{ themeConfig.libCDN.lightGallery.css }}{% else %}{{ getPath("css/lightgallery.min.css") }}{% endif %}">
     <link rel="stylesheet" type="text/css" href="{% if themeConfig.libCDN.enable and themeConfig.libCDN.spinkit %}{{ themeConfig.libCDN.spinkit }}{% else %}{{ getPath("css/spinkit.css") }}{% endif %}">
+    {% block css %}{% endblock %}
     {# You should not set `defer` to `index.js` because other scripts depends it for `documentReady()`! #}
     <script type="text/javascript" src="{{ getPath("js/index.js") }}"></script>
     <script defer type="text/javascript" src="{{ getPath("js/scrollspy.js") }}"></script>
@@ -147,14 +147,14 @@
         elementsEach(
           document.querySelectorAll(".post figure.code-block"),
           function (e, i) {
-            var lang = e.getAttribute("data-lang");
+            var info = e.getAttribute("data-info");
             e.insertAdjacentElement("beforebegin", createElementFromString([
               "<div class=\"code-titlebar\">",
                 "<div class=\"titlebar-left\">",
                   "<button class=\"copy\" aria-label=\"{{ __("clipboard.copy") }}\"><i class=\"far fa-copy\"></i></button>",
                 "</div>",
                 "<div class=\"titlebar-center\">",
-                  lang.length ? lang.toUpperCase() : "{{ __("code") }}",
+                  info != null && info.length ? info.toUpperCase() : "{{ __("code") }}",
                 "</div>",
                 "<div class=\"titlebar-right\">",
                   "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",

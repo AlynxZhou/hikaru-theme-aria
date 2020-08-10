@@ -242,13 +242,13 @@ article table {
 }
 code {
   margin: 0 0.05em;
-  color: $color-code-font;
   padding: 0 0.25em;
+  color: $color-code-font;
+  background: $color-code-background;
   overflow: auto;
   word-wrap: break-word;
   border-radius: $corner-radius;
   font-family: $font-code;
-  background: $color-code-background;
   -webkit-font-feature-settings: "liga" 0; /* No variation */
   -moz-font-feature-settings: "liga=0"; /* Firefox 4.0 to 14.0 */
   -moz-font-feature-settings: "liga" 0; /* Firefox 15.0 onwards */
@@ -262,8 +262,8 @@ div.code-titlebar {
   justify-content: space-between;
   align-items: center;
   border-radius: $corner-radius $corner-radius 0 0;
-  color: $color-code-titlebar-font;
-  background: $color-code-titlebar-background;
+  color: $color-code-block-titlebar-font;
+  background: $color-code-block-titlebar-background;
   padding: 0 0.25em;
   margin: 0;
   div.titlebar-left {
@@ -282,7 +282,7 @@ div.code-titlebar {
     padding: 0 0.25em;
   }
   button.copy {
-    background: inherit;
+    background: transparent;
     text-decoration: none;
     border: none;
     padding: 0;
@@ -328,9 +328,9 @@ figure.code-block {
   flex-wrap: nowrap;
   justify-content: stretch;
   align-items: stretch;
-  border-left: 0.1em solid $color-code-border;
-  border-bottom: 0.1em solid $color-code-border;
-  border-right: 0.1em solid $color-code-border;
+  border-left: 0.1em solid $color-code-block-border;
+  border-bottom: 0.1em solid $color-code-block-border;
+  border-right: 0.1em solid $color-code-block-border;
   padding: 0;
   margin: 0;
   -webkit-font-feature-settings: "liga" 0; /* No variation */
@@ -338,6 +338,11 @@ figure.code-block {
   -moz-font-feature-settings: "liga" 0; /* Firefox 15.0 onwards */
   -moz-font-feature-settings: "liga" 0; /* Firefox 15.0 onwards explicitly set feature values */
   font-feature-settings: "liga" 0; /* No variation */
+  // A default color if Hikaru's builtin hljs is disabled.
+  &:not(.hljs) {
+    color: $color-code-block-font;
+    background: $color-code-block-background;
+  }
   pre {
     font-family: $font-code;
     font-size: $font-size;
@@ -350,8 +355,7 @@ figure.code-block {
       padding: 0.5em;
       // Only show border of gutter, so when user choose no gutter in config,
       // there is no border for code.
-      border-right: 0.1em dotted $color-quote-font;
-      border-right: 0.1em dotted var(--color-quote-font);
+      border-right: 0.1em dotted $color-code-block-font;
     }
     &.code {
       flex: 1 1 auto;
@@ -361,6 +365,14 @@ figure.code-block {
       scrollbar-width: thin;
       scrollbar-color: $color-scrollbar $color-scrollbar-background;
       scrollbar-color: var(--color-scrollbar) var(--color-scrollbar-background);
+      code {
+        margin: 0;
+        padding: 0;
+        color: inherit;
+        background: transparent;
+        word-wrap: normal;
+        border-radius: 0;
+      }
     }
   }
 }
