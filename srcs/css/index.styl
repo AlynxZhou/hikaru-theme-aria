@@ -22,6 +22,7 @@
   --color-table-even-row-background: $color-table-even-row-background;
   --color-card-background: $color-card-background;
   --color-hr-sidebar-background: $color-hr-sidebar-background;
+  --color-sk-wave-background: $color-sk-wave-background;
   --color-comment-sk-wave-background: $color-comment-sk-wave-background;
   --color-comment-font: $color-comment-font;
   --color-comment-content-background: $color-comment-content-background;
@@ -50,6 +51,7 @@
   --color-table-even-row-background: $color-dark-table-even-row-background;
   --color-card-background: $color-dark-card-background;
   --color-hr-sidebar-background: $color-dark-hr-sidebar-background;
+  --color-sk-wave-background: $color-dark-sk-wave-background;
   --color-comment-sk-wave-background: $color-dark-comment-sk-wave-background;
   --color-comment-font: $color-dark-comment-font;
   --color-comment-content-background: $color-dark-comment-content-background;
@@ -425,6 +427,41 @@ div.alert-blue {
   color: $color-alert-blue-font;
   border: 0.1em solid $color-alert-blue-border;
   background-color: $color-alert-blue-background;
+}
+div.sk-wave {
+  font-size: 1rem;
+  margin: 2em auto;
+  height: 3em;
+  text-align: center;
+  div.sk-rect {
+    background: $color-sk-wave-background;
+    background: var(--color-sk-wave-background);
+    height: 100%;
+    width: 0.5em;
+    display: inline-block;
+    animation: sk-wave-stretch-delay 1.2s infinite ease-in-out;
+    animation-delay: -1.2s;
+    &:nth-child(2n) {
+      animation-delay: -1.1s;
+    }
+    &:nth-child(3n) {
+      animation-delay: -1.0s;
+    }
+    &:nth-child(4n) {
+      animation-delay: -0.9s;
+    }
+    &:nth-child(5n) {
+      animation-delay: -0.8s;
+    }
+  }
+  @keyframes sk-wave-stretch-delay {
+    0%, 40%, 100% {
+      transform: scaleY(0.4);
+    }
+    20% {
+      transform: scaleY(1);
+    }
+  }
 }
 article.card {
   display: block;
