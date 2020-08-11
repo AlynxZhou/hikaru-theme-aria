@@ -106,7 +106,6 @@ body {
   background: var(--color-background);
   display: flex;
   flex-direction: column;
-  flex-wrap: nowrap;
   justify-content: stretch;
   align-items: stretch;
 }
@@ -141,12 +140,10 @@ a {
     top: 0.1em;
   }
 }
-img {
-  max-width: 100%;
-}
 a.gallery-item, a.img-link {
   border-bottom: none;
   img {
+    transition: box-shadow 0.3s ease-in-out;
     border: 0.15em solid $color-quote-font;
     border: 0.15em solid var(--color-quote-font);
   }
@@ -158,30 +155,23 @@ a.gallery-item, a.img-link {
   }
 }
 a#top, a#more {
+  position: static;
   border: none;
   margin: 0;
   padding: 0;
   &:hover {
     border: none;
   }
-  &:active {
-    top: 0;
-  }
 }
 span.caption {
   color: $color-quote-font;
   color: var(--color-quote-font);
-  display: block;
-  text-align: center;
-  margin: 0 0 1em 0;
 }
 a.button, button.button {
   position: relative;
   transition: box-shadow 0.3s ease-in-out;
   text-decoration: none;
   border-radius: $corner-radius;
-  border-bottom: none;
-  box-sizing: border-box;
   color: $color-button-font;
   background: $color-button-background;
   border: 0.1em solid $color-button-border;
@@ -198,30 +188,29 @@ hr {
   border: none;
   margin: 1.5em 0;
   width: 100%;
-  box-sizing: content-box;
   background: repeating-linear-gradient(-45deg, $color-hr-background, $color-hr-background 0.25em, transparent 0.25em, transparent 0.5em);
 }
 article table {
   // Make table center.
   margin: 0 auto;
-  border-spacing: 0;
-  border-collapse: collapse;
+  th {
+    padding: 0.4em 0.7em;
+    border: 0.1em solid $color-table-head-border;
+    border: 0.1em solid var(--color-table-head-border);
+  }
+  td {
+    padding: 0.4em 0.7em;
+    border: 0.1em solid $color-table-border;
+    border: 0.1em solid var(--color-table-border);
+  }
   thead tr {
     background: $color-table-head-background;
     background: var(--color-table-head-background);
-    th {
-      padding: 0.4em 0.7em;
-      border: 0.1em solid $color-table-head-border;
-      border: 0.1em solid var(--color-table-head-border);
-    }
   }
   tbody tr {
     background: $color-table-odd-row-background;
     background: var(--color-table-odd-row-background);
     td {
-      padding: 0.4em 0.7em;
-      border: 0.1em solid $color-table-border;
-      border: 0.1em solid var(--color-table-border);
       &:nth-child(2n) {
         background: $color-table-even-row-background;
         background: var(--color-table-even-row-background);
@@ -231,9 +220,6 @@ article table {
       background: $color-table-even-row-background;
       background: var(--color-table-even-row-background);
       td {
-        padding: 0.4em 0.7em;
-        border: 0.1em solid $color-table-border;
-        border: 0.1em solid var(--color-table-border);
         &:nth-child(2n) {
           background: $color-table-odd-row-background;
           background: var(--color-table-odd-row-background);
@@ -243,31 +229,29 @@ article table {
   }
 }
 code {
-  margin: 0 0.05em;
   padding: 0 0.25em;
   color: $color-code-font;
   background: $color-code-background;
-  overflow: auto;
   word-wrap: break-word;
   border-radius: $corner-radius;
   font-family: $font-code;
-  -webkit-font-feature-settings: "liga" 0; /* No variation */
-  -moz-font-feature-settings: "liga=0"; /* Firefox 4.0 to 14.0 */
-  -moz-font-feature-settings: "liga" 0; /* Firefox 15.0 onwards */
-  -moz-font-feature-settings: "liga" 0; /* Firefox 15.0 onwards explicitly set feature values */
-  font-feature-settings: "liga" 0; /* No variation */
+  font-feature-settings: "liga" 0;
+}
+pre {
+  font-family: $font-code;
+  font-size: $font-size;
+  // Keep Chinese and English the same height.
+  line-height: 1.5;
+  font-feature-settings: "liga" 0;
 }
 div.code-titlebar {
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: stretch;
+  align-items: stretch;
   border-radius: $corner-radius $corner-radius 0 0;
   color: $color-code-block-titlebar-font;
   background: $color-code-block-titlebar-background;
   padding: 0 0.25em;
-  margin: 0;
 }
 div.titlebar-left {
   flex: 0 0 auto;
@@ -290,7 +274,6 @@ button.copy {
   border: none;
   padding: 0;
   margin: 0.25em;
-  box-sizing: border-box;
   color: $color-link-copy-font;
   transition: color 0.3s ease-in-out;
   &:hover {
@@ -326,8 +309,6 @@ button.dot-minimize {
 }
 figure.code-block {
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
   justify-content: stretch;
   align-items: stretch;
   border-left: 0.1em solid $color-code-block-border;
@@ -341,15 +322,6 @@ figure.code-block {
     background: $color-code-block-background;
   }
   pre {
-    font-family: $font-code;
-    font-size: $font-size;
-    // Keep Chinese and English the same height.
-    line-height: 1.5;
-    -webkit-font-feature-settings: "liga" 0; /* No variation */
-    -moz-font-feature-settings: "liga=0"; /* Firefox 4.0 to 14.0 */
-    -moz-font-feature-settings: "liga" 0; /* Firefox 15.0 onwards */
-    -moz-font-feature-settings: "liga" 0; /* Firefox 15.0 onwards explicitly set feature values */
-    font-feature-settings: "liga" 0; /* No variation */
     margin: 0;
     &.gutter {
       flex: 0 0 auto;
@@ -361,7 +333,6 @@ figure.code-block {
     }
     &.code {
       flex: 1 1 auto;
-      text-align: left;
       padding: 0.5em;
       overflow: auto;
       scrollbar-width: thin;
@@ -468,7 +439,6 @@ article.card {
   transition: box-shadow 0.3s ease-in-out;
   background: $color-card-background;
   background: var(--color-card-background);
-  box-sizing: border-box;
   overflow: hidden;
   border-radius: $corner-radius;
   padding: 0.5em 1em;

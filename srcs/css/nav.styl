@@ -1,19 +1,14 @@
 @import "variables";
 
 nav.nav {
-  position: relative;
-  margin: 0;
   padding: 0 0.5em;
-  overflow: hidden;
   background: $color-nav-background;
   // -0.5em is the offset for main shadow.
   box-shadow: 0 -0.5em 1em 0.5em rgba(0, 0, 0, 0.19);
   border-radius: $corner-radius $corner-radius 0 0;
   display: flex;
-  flex-direction: row;
   justify-content: stretch;
   align-items: stretch;
-  flex-wrap: nowrap;
   ul {
     display: block;
     list-style: none;
@@ -26,12 +21,11 @@ nav.nav {
     scrollbar-color: var(--color-scrollbar) var(--color-scrollbar-background);
     white-space: nowrap;
     li {
-      position: relative;
       text-align: center;
       display: inline-block;
       margin: 0 0.1em;
       a {
-        position: relative;
+        position: static;
         display: block;
         font-size: 1.5rem;
         // Keep Chinese and English the same height.
@@ -45,9 +39,6 @@ nav.nav {
           color: $color-nav-link-hover-font;
           background: $color-nav-hover-background;
           border-bottom: none;
-        }
-        &:active {
-          top: 0;
         }
         &.current {
           color: $color-nav-link-hover-font;

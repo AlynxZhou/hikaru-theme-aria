@@ -1,8 +1,10 @@
 @import "variables";
 
+div.comment {
+  margin: 1em;
+}
 if (getThemeConfig("comment.issue.enable")) {
   div.comment-results {
-    padding: 1em;
     div.sk-wave {
       div.sk-rect {
         background: $color-comment-sk-wave-background;
@@ -23,10 +25,8 @@ if (getThemeConfig("comment.issue.enable")) {
   }
   div.comment-result {
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
     justify-content: stretch;
-    align-items: start;
+    align-items: stretch;
     margin: 0.5em 0;
   }
   div.comment-avatar-container {
@@ -46,7 +46,6 @@ if (getThemeConfig("comment.issue.enable")) {
   div.comment-body-container {
     flex: 9 9 auto;
     width: 90%;
-    box-sizing: border-box;
     overflow: hidden;
     border-radius: $corner-radius;
     transition: box-shadow 0.3s ease-in-out;
@@ -73,10 +72,7 @@ if (getThemeConfig("comment.issue.enable")) {
         top: 0.1em;
       }
     }
-    a.comment-info-author {
-      margin: 0 0.5em;
-    }
-    span.comment-info-date {
+    a.comment-info-author, span.comment-info-date {
       margin: 0 0.5em;
     }
     span.comment-info-association {

@@ -40,22 +40,17 @@ input.search-input {
   }
 }
 button.search-submit {
-  position: relative;
+  position: static;
   transition: color 0.3s ease-in-out;
   color: $color-search-font;
   text-decoration: none;
   padding: 0;
   margin: 0.25em;
-  box-sizing: border-box;
   background: inherit;
   border: none;
   &:hover {
     color: $color-search-hover-font;
     border: none;
-  }
-  &:active {
-    top: 0;
-    left: 0;
   }
 }
 div.sidebar-item {

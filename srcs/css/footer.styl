@@ -25,10 +25,8 @@ div.footer-container {
   line-height: 2;
   padding: 1em;
   display: flex;
-  flex-direction: row;
   justify-content: stretch;
   align-items: stretch;
-  flex-wrap: nowrap;
 }
 div.footer-left, div.footer-right {
   flex: 1 1 auto;
@@ -47,25 +45,25 @@ div.custom-info {
 div.back-to-top {
   display: block;
   text-align: center;
-  button {
+}
+button.back-to-top {
+  border: none;
+  outline: 0;
+  transition: color 0.3s ease-in-out;
+  color: $color-link-font;
+  color: var(--color-link-font);
+  background: $color-background;
+  background: var(--color-background);
+  display: inline-block;
+  margin: 0 auto;
+  padding: 0 0.75em;
+  cursor: pointer;
+  border-radius: 0 0 $corner-radius $corner-radius;
+  font-size: 2rem;
+  &:hover {
+    color: $color-link-hover-font;
+    color: var(--color-link-hover-font);
     border: none;
-    outline: 0;
-    transition: color 0.3s ease-in-out;
-    color: $color-link-font;
-    color: var(--color-link-font);
-    background: $color-background;
-    background: var(--color-background);
-    display: inline-block;
-    margin: 0 auto;
-    padding: 0 0.75em;
-    cursor: pointer;
-    border-radius: 0 0 $corner-radius $corner-radius;
-    font-size: 2rem;
-    &:hover {
-      color: $color-link-hover-font;
-      color: var(--color-link-hover-font);
-      border: none;
-    }
   }
 }
 @media (max-width: $media-footer-header-nav-fold-width) {
