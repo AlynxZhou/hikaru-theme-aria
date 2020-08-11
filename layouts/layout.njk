@@ -62,6 +62,7 @@
     {# You should not set `defer` to `index.js` because other scripts depends it for `documentReady()`! #}
     <script type="text/javascript" src="{{ getPath("js/index.js") }}"></script>
     <script defer type="text/javascript" src="{{ getPath("js/scrollspy.js") }}"></script>
+    <script defer type="text/javascript" src="{{ getPath("js/custom.js") }}"></script>
     <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.lightGallery.js %}{{ themeConfig.libCDN.lightGallery.js }}{% else %}{{ getPath("js/lightgallery.min.js") }}{% endif %}"></script>
     <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.lgFullscreen %}{{ themeConfig.libCDN.lgFullscreen }}{% else %}{{ getPath("js/lg-fullscreen.min.js") }}{% endif %}"></script>
     <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.lgHash %}{{ themeConfig.libCDN.lgHash }}{% else %}{{ getPath("js/lg-hash.min.js") }}{% endif %}"></script>
@@ -187,7 +188,6 @@
       });
     </script>
     {% block js %}{% endblock %}
-    <script defer type="text/javascript" src="{{ getPath("js/custom.js") }}"></script>
     <title>{% block title %}{% endblock %}</title>
   </head>
   <body itemscope itemtype="http://schema.org/WebPage">
