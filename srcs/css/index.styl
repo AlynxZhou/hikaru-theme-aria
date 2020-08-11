@@ -62,10 +62,6 @@
   --color-sidebar-background: $color-dark-sidebar-background;
   --url-sidebar-background: $url-dark-sidebar-background;
 }
-html, body {
-  width: 100%;
-  height: 100%;
-}
 html {
   // Scrollbar for document.
   scrollbar-width: thin;
@@ -111,10 +107,14 @@ body {
   flex-direction: column;
   justify-content: stretch;
   align-items: stretch;
+  width: 100%;
+  height: 100%;
+  min-width: $body-min-width;
+  overflow: auto;
 }
 div.container {
   padding: 0;
-  // max-width: $container-max-width;
+  max-width: $container-max-width;
   width: 75%;
   height: 100%;
   margin: 0 auto;
