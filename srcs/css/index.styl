@@ -72,6 +72,9 @@ html {
   scrollbar-color: $color-scrollbar $color-scrollbar-background;
   scrollbar-color: var(--color-scrollbar) var(--color-scrollbar-background);
 }
+* {
+  box-sizing: border-box;
+}
 ::selection, ::-moz-selection {
   color: $color-selection-font;
   background: $color-selection-background;
@@ -139,6 +142,9 @@ a {
   &:active {
     top: 0.1em;
   }
+}
+table, img {
+  max-width: 100%;
 }
 a.gallery-item, a.img-link {
   border-bottom: none;
@@ -247,7 +253,7 @@ pre {
 div.code-titlebar {
   display: flex;
   justify-content: stretch;
-  align-items: stretch;
+  align-items: center;
   border-radius: $corner-radius $corner-radius 0 0;
   color: $color-code-block-titlebar-font;
   background: $color-code-block-titlebar-background;
