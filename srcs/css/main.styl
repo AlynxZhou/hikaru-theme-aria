@@ -5,37 +5,35 @@ main.main {
   font: $font-size $font-main;
   margin-top: 0 - $search-height;
   margin-bottom: 1.5em;
-  div.main-container {
-    width: auto;
-    background: $color-main-background;
-    background: var(--color-main-background);
-    box-sizing: border-box;
-    // 0.5em is the offset for nav shadow.
-    box-shadow: 0 0.5em 1em 0.5em rgba(0, 0, 0, 0.19);
-    border-radius: 0 0 $corner-radius $corner-radius;
-    display: flex;
-    if (getThemeConfig("sidebar") == "left") {
-      flex-direction: row-reverse;
-    } else if (getThemeConfig("sidebar") == "right") {
-      flex-direction: row;
-    }
-    justify-content: stretch;
-    align-items: stretch;
-    flex-wrap: nowrap;
-    padding: 0;
-    div.content {
-      flex: 3 3 auto;
-      width: 75%;
-    }
+}
+div.main-container {
+  width: auto;
+  background: $color-main-background;
+  background: var(--color-main-background);
+  box-sizing: border-box;
+  // 0.5em is the offset for nav shadow.
+  box-shadow: 0 0.5em 1em 0.5em rgba(0, 0, 0, 0.19);
+  border-radius: 0 0 $corner-radius $corner-radius;
+  display: flex;
+  if (getThemeConfig("sidebar") == "left") {
+    flex-direction: row-reverse;
+  } else if (getThemeConfig("sidebar") == "right") {
+    flex-direction: row;
   }
+  justify-content: stretch;
+  align-items: stretch;
+  flex-wrap: nowrap;
+  padding: 0;
+}
+div.content {
+  flex: 3 3 auto;
+  width: 75%;
 }
 @media (max-width: $media-main-fold-width) {
-  main.main {
-    div.main-container {
-      flex-direction: column;
-      div.content {
-        width: 100%;
-      }
-    }
+  div.main-container {
+    flex-direction: column;
+  }
+  div.content {
+    width: 100%;
   }
 }

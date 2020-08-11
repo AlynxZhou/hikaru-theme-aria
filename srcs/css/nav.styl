@@ -14,23 +14,6 @@ nav.nav {
   justify-content: stretch;
   align-items: stretch;
   flex-wrap: nowrap;
-  button.nav-toggle {
-    display: none;
-    text-align: center;
-    border: none;
-    outline: 0;
-    background: inherit;
-    font-size: 2rem;
-    cursor: pointer;
-    color: $color-nav-link-font;
-    width: 100%;
-    transition: color 0.3s ease-in-out, background 0.3s ease-in-out;
-    &:hover {
-      color: $color-nav-link-hover-font;
-      background: $color-nav-hover-background;
-      border: none;
-    }
-  }
   ul {
     display: block;
     list-style: none;
@@ -73,34 +56,35 @@ nav.nav {
       }
     }
   }
-  button.theme-toggle {
-    display: block;
-    flex: 0 0 auto;
-    width: 5%;
-    text-align: center;
+}
+button.nav-toggle, button.theme-toggle {
+  flex: 0 0 auto;
+  text-align: center;
+  border: none;
+  outline: 0;
+  background: inherit;
+  font-size: 2rem;
+  cursor: pointer;
+  color: $color-nav-link-font;
+  transition: color 0.3s ease-in-out, background 0.3s ease-in-out;
+  &:hover {
+    color: $color-nav-link-hover-font;
+    background: $color-nav-hover-background;
     border: none;
-    outline: 0;
-    background: inherit;
-    font-size: 2rem;
-    cursor: pointer;
-    color: $color-nav-link-font;
-    transition: color 0.3s ease-in-out, background 0.3s ease-in-out;
-    &:hover {
-      color: $color-nav-link-hover-font;
-      background: $color-nav-hover-background;
-      border: none;
-    }
   }
+}
+button.nav-toggle {
+  display: none;
+  width: 100%;
+}
+button.theme-toggle {
+  display: block;
+  width: 5%;
 }
 @media (max-width: $media-footer-header-nav-fold-width) {
   nav.nav {
     flex-direction: column;
     padding: 0;
-    button.nav-toggle {
-      // Take full line for easier click.
-      display: block;
-      flex: auto;
-    }
     ul {
       display: none;
       white-space: normal;
@@ -110,11 +94,11 @@ nav.nav {
         margin: 0.1em 0;
       }
     }
-    button.theme-toggle {
-      // Take full line for easier click.
-      display: block;
-      flex: auto;
-      width: 100%;
-    }
+  }
+  button.nav-toggle, button.theme-toggle {
+    // Take full line for easier click.
+    display: block;
+    flex: 1 1 auto;
+    width: 100%;
   }
 }

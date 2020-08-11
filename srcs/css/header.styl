@@ -6,64 +6,58 @@ header.header {
   margin-bottom: 0;
   background: $color-header-background;
   color: $color-header-font;
-  div.header-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: stretch;
-    align-items: stretch;
-    flex-wrap: nowrap;
-    padding: 1em;
-    div.header-title {
-      text-align: left;
-      width: 50%;
-      word-wrap: break-word;
-      flex: 1 1 auto;
+}
+div.header-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  align-items: stretch;
+  flex-wrap: nowrap;
+  padding: 1em;
+}
+div.header-title {
+  text-align: left;
+  width: 50%;
+  word-wrap: break-word;
+  flex: 1 1 auto;
+  color: $color-title-font;
+  a {
+    color: $color-title-font;
+    text-decoration: none;
+    border-bottom: none;
+    &:hover {
       color: $color-title-font;
-      a {
-        color: $color-title-font;
-        text-decoration: none;
-        border-bottom: none;
-        &:hover {
-          color: $color-title-font;
-          border-bottom: none;
-        }
-        &:active {
-          top: 0;
-        }
-      }
-      h1.title {
-        font: bold 2rem $font-title;
-        margin: 0 0 0.5em 0;
-      }
-      h2.subtitle {
-        font: italic 1.5rem $font-subtitle;
-        margin: 0.5em 0 0 0;
-      }
+      border-bottom: none;
     }
-    div.logo {
-      text-align: right;
-      width: 50%;
-      flex: 1 1 auto;
-      img {
-        display: inline-block;
-        max-height: 5em;
-        width: auto;
-      }
+    &:active {
+      top: 0;
     }
   }
 }
+h1.title {
+  font: bold 2rem $font-title;
+  margin: 0 0 0.5em 0;
+}
+h2.subtitle {
+  font: italic 1.5rem $font-subtitle;
+  margin: 0.5em 0 0 0;
+}
+div.logo {
+  text-align: right;
+  width: 50%;
+  flex: 1 1 auto;
+  img {
+    display: inline-block;
+    max-height: 5em;
+    width: auto;
+  }
+}
 @media (max-width: $media-footer-header-nav-fold-width) {
-  header.header {
-    div.header-container {
-      flex-direction: column-reverse;
-      div.header-title {
-        text-align: center;
-        width: auto;
-      }
-      div.logo {
-        text-align: center;
-        width: auto;
-      }
-    }
+  div.header-container {
+    flex-direction: column-reverse;
+  }
+  div.header-title, div.logo {
+    text-align: center;
+    width: auto;
   }
 }

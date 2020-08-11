@@ -2,89 +2,87 @@
 @import "comment";
 
 // page means area outside card.
-div.page {
-  h1.page-title, h2.page-title {
-    text-align: center;
+h1.page-title, h2.page-title {
+  text-align: center;
+}
+h2.page-counter {
+  text-align: center;
+}
+nav.pagination {
+  margin: 0.5em 0;
+  padding: 0.5em;
+  display: block;
+  text-align: center;
+}
+a.page-number, a.extend {
+  display: inline-block;
+  font-size: 1.25rem;
+  padding: 0.3em 0.5em;
+  margin: 0 0.25em;
+  text-decoration: none;
+  color: $color-link-font;
+  color: var(--color-link-font);
+  border-bottom: 0.15em solid $color-link-font;
+  border-bottom: 0.15em solid var(--color-link-font);
+  &:hover {
+    color: $color-link-hover-font;
+    color: var(--color-link-hover-font);
+    border-bottom: 0.15em solid $color-link-hover-font;
+    border-bottom: 0.15em solid var(--color-link-hover-font);
   }
-  h2.page-counter {
-    text-align: center;
+  &.current {
+    color: $color-link-hover-font;
+    color: var(--color-link-hover-font);
+    border-bottom: 0.15em solid $color-link-hover-font;
+    border-bottom: 0.15em solid var(--color-link-hover-font);
+    border-top: 0.1em solid $color-link-hover-font;
+    border-top: 0.1em solid var(--color-link-hover-font);
   }
-  nav.pagination {
-    margin: 0.5em 0;
-    padding: 0.5em;
-    display: block;
-    text-align: center;
-    a.page-number, a.extend {
-      display: inline-block;
-      font-size: 1.25rem;
-      padding: 0.3em 0.5em;
-      margin: 0 0.25em;
-      text-decoration: none;
-      color: $color-link-font;
-      color: var(--color-link-font);
-      border-bottom: 0.15em solid $color-link-font;
-      border-bottom: 0.15em solid var(--color-link-font);
-      &:hover {
-        color: $color-link-hover-font;
-        color: var(--color-link-hover-font);
-        border-bottom: 0.15em solid $color-link-hover-font;
-        border-bottom: 0.15em solid var(--color-link-hover-font);
-      }
-      &.current {
-        color: $color-link-hover-font;
-        color: var(--color-link-hover-font);
-        border-bottom: 0.15em solid $color-link-hover-font;
-        border-bottom: 0.15em solid var(--color-link-hover-font);
-        border-top: 0.1em solid $color-link-hover-font;
-        border-top: 0.1em solid var(--color-link-hover-font);
-      }
-    }
-    span.space {
-      display: inline-block;
-      font-size: 1.25rem;
-      margin: 0 0.25em;
-      color: $color-link-font;
-      color: var(--color-link-font);
-    }
-  }
-  nav.page-nav {
-    margin: 0 1em;
-    padding: 0;
-    display: flex;
+}
+span.space {
+  display: inline-block;
+  font-size: 1.25rem;
+  margin: 0 0.25em;
+  color: $color-link-font;
+  color: var(--color-link-font);
+}
+nav.page-nav {
+  margin: 0 1em;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  flex-wrap: nowrap;
+}
+div.page-nav-item {
+  flex: 1 1 auto;
+  font-size: 1.2rem;
+  a {
+    position: relative;
+    display: inline-flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: stretch;
     flex-wrap: nowrap;
-    div.page-nav-item {
-      flex: 1 1 auto;
-      font-size: 1.2rem;
-      a {
-        position: relative;
-        display: inline-flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        align-items: center;
-        text-decoration: none;
-        border-bottom: none;
-        span {
-          margin: 0.3em;
-        }
-        &:active {
-          top: 0.1em;
-        }
-      }
+    align-items: center;
+    text-decoration: none;
+    border-bottom: none;
+    span {
+      margin: 0.3em;
     }
-    div.page-nav-next {
-      text-align: left;
-      a {
-        justify-content: flex-start;
-      }
+    &:active {
+      top: 0.1em;
     }
-    div.page-nav-prev {
-      text-align: right;
-      a {
-        justify-content: flex-end;
-      }
-    }
+  }
+}
+div.page-nav-next {
+  text-align: left;
+  a {
+    justify-content: flex-start;
+  }
+}
+div.page-nav-prev {
+  text-align: right;
+  a {
+    justify-content: flex-end;
   }
 }

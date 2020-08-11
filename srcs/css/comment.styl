@@ -1,132 +1,129 @@
 @import "variables";
 
-div.comment {
-  if (getThemeConfig("comment.issue.enable")) {
-    div.comment-results {
-      padding: 1em;
-      div.sk-wave {
-        div.sk-rect {
-          background: $color-comment-sk-wave-background;
-          background: var(--color-comment-sk-wave-background);
-        }
-      }
-      div.comment-fail {
-        text-align: center;
-        color: $color-comment-font;
-        color: var(--color-comment-font);
-      }
-      header.comments-header {
-        padding: 0.5em;
-        text-align: center;
-        color: $color-comment-font;
-        color: var(--color-comment-font);
-      }
-      main.comments-main {
-        div.comment {
-          display: flex;
-          flex-direction: row;
-          flex-wrap: nowrap;
-          justify-content: stretch;
-          align-items: start;
-          margin: 0.5em 0;
-          div.comment-avatar-container {
-            flex: 1 1 auto;
-            width: 10%;
-            img.comment-avatar {
-              width: 70%;
-              border: 0.1em solid white;
-              border-radius: 50%;
-              transition: box-shadow 0.3s ease-in-out, transform 1s ease-in-out;
-              &:hover {
-                box-shadow: 0 0 1em 0.5em rgba(0, 0, 0, 0.19);
-                transform: rotateY(720deg);
-              }
-            }
-          }
-          div.comment-body-container {
-            flex: 9 9 auto;
-            width: 90%;
-            overflow: hidden;
-            border-radius: $corner-radius;
-            div.comment-info {
-              padding: 0.5em;
-              color: $color-comment-info-font;
-              background: $color-comment-info-background;
-              overflow: auto;
-              a {
-                position: relative;
-                color: $color-comment-info-link-font;
-                text-decoration: none;
-                border-bottom: 0.05em dotted $color-comment-info-link-font;
-                transition: color 0.3s ease-in-out, border-bottom 0.3s ease-in-out;
-                &:hover {
-                  color: $color-comment-info-link-hover-font;
-                  border-bottom: 0.05em solid $color-comment-info-link-hover-font;
-                }
-                &:active {
-                  top: 0.1em;
-                }
-              }
-              a.comment-info-author {
-                margin: 0 0.5em;
-              }
-              span.comment-info-date {
-                margin: 0 0.5em;
-              }
-              span.comment-info-association {
-                margin: 0 0.5em;
-                padding: 0 0.5em;
-                border: 0.05em solid $color-comment-info-font;
-                border-radius: $corner-radius;
-                color: $color-comment-info-font;
-              }
-              a.comment-info-link {
-                margin: 0 0.5em;
-                &::before {
-                  content: "#";
-                }
-              }
-            }
-            div.comment-content {
-              padding: 0.5em 1em;
-              background: $color-comment-content-background;
-              background: var(--color-comment-content-background);
-              pre {
-                overflow: auto;
-                padding: 0.5em;
-                border-radius: $corner-radius;
-                background: $color-code-background;
-                code {
-                  background: inherit;
-                }
-              }
-            }
-            &:hover {
-              box-shadow: 0 0 1em 0.5em rgba(0, 0, 0, 0.19);
-            }
-          }
-        }
-      }
-      footer.comments-footer {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: center;
-        align-items: center;
-        a.comment-send {
-          padding: 0.3em 1em;
-          background: $color-button-comment-background;
-          border: 0.1em solid $color-button-comment-border;
-        }
+if (getThemeConfig("comment.issue.enable")) {
+  div.comment-results {
+    padding: 1em;
+    div.sk-wave {
+      div.sk-rect {
+        background: $color-comment-sk-wave-background;
+        background: var(--color-comment-sk-wave-background);
       }
     }
-  } else if (getThemeConfig("comment.disqusShortName")) {
-    div.disqus_thread {
-      margin: 1em 2em;
+  }
+  div.comment-fail {
+    text-align: center;
+    color: $color-comment-font;
+    color: var(--color-comment-font);
+  }
+  header.comments-header {
+    padding: 0.5em;
+    text-align: center;
+    color: $color-comment-font;
+    color: var(--color-comment-font);
+  }
+  div.comment-result {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: stretch;
+    align-items: start;
+    margin: 0.5em 0;
+  }
+  div.comment-avatar-container {
+    flex: 1 1 auto;
+    width: 10%;
+  }
+  img.comment-avatar {
+    width: 70%;
+    border: 0.1em solid white;
+    border-radius: 50%;
+    transition: box-shadow 0.3s ease-in-out, transform 1s ease-in-out;
+    &:hover {
+      box-shadow: 0 0 1em 0.5em rgba(0, 0, 0, 0.19);
+      transform: rotateY(720deg);
     }
-  } else if (getThemeConfig("comment.valine.enable")) {
-    div.vcomments {
-      margin: 1em 2em;
+  }
+  div.comment-body-container {
+    flex: 9 9 auto;
+    width: 90%;
+    box-sizing: border-box;
+    overflow: hidden;
+    border-radius: $corner-radius;
+    transition: box-shadow 0.3s ease-in-out;
+    &:hover {
+      box-shadow: 0 0 1em 0.5em rgba(0, 0, 0, 0.19);
     }
+  }
+  div.comment-info {
+    padding: 0.5em;
+    color: $color-comment-info-font;
+    background: $color-comment-info-background;
+    overflow: auto;
+    a {
+      position: relative;
+      color: $color-comment-info-link-font;
+      text-decoration: none;
+      border-bottom: 0.05em dotted $color-comment-info-link-font;
+      transition: color 0.3s ease-in-out, border-bottom 0.3s ease-in-out;
+      &:hover {
+        color: $color-comment-info-link-hover-font;
+        border-bottom: 0.05em solid $color-comment-info-link-hover-font;
+      }
+      &:active {
+        top: 0.1em;
+      }
+    }
+    a.comment-info-author {
+      margin: 0 0.5em;
+    }
+    span.comment-info-date {
+      margin: 0 0.5em;
+    }
+    span.comment-info-association {
+      margin: 0 0.5em;
+      padding: 0 0.5em;
+      border: 0.05em solid $color-comment-info-font;
+      border-radius: $corner-radius;
+      color: $color-comment-info-font;
+    }
+    a.comment-info-link {
+      margin: 0 0.5em;
+      &::before {
+        content: "#";
+      }
+    }
+  }
+  div.comment-content {
+    padding: 0.5em 1em;
+    background: $color-comment-content-background;
+    background: var(--color-comment-content-background);
+    pre {
+      overflow: auto;
+      padding: 0.5em;
+      border-radius: $corner-radius;
+      background: $color-code-background;
+      code {
+        background: inherit;
+      }
+    }
+  }
+  footer.comments-footer {
+    padding: 0.5em;
+    text-align: center;
+    color: $color-comment-font;
+    color: var(--color-comment-font);
+  }
+  a.comment-send {
+    padding: 0.3em 1em;
+    background: $color-button-comment-background;
+    border: 0.1em solid $color-button-comment-border;
+  }
+} else if (getThemeConfig("comment.disqusShortName")) {
+  div.disqus_thread {
+    margin: 1em 2em;
+  }
+} else if (getThemeConfig("comment.valine.enable")) {
+  div.vcomments {
+    margin: 1em 2em;
   }
 }

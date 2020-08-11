@@ -9,90 +9,91 @@ aside.sidebar {
   flex: 1 1 auto;
   width: 25%;
   padding: 0;
-  div.search {
-    height: $search-height - $search-padding-top;
-    display: block;
-    text-align: center;
-    background: $color-search-background;
-    color: $color-search-font;
-    padding-top: $search-padding-top;
-    input.search-input {
-      width: 70%;
-      height: 1.8em;
-      border: none;
-      border-bottom: 0.1em dotted $color-search-font;
-      background: $color-search-background;
-      color: $color-search-font;
-      transition: border-bottom 0.3s ease-in-out;
-      &:focus {
-        border-bottom: 0.1em solid $color-search-font;
-      }
-      &::placeholder {
-        color: $color-search-font;
-        opacity: 0.7;
-      }
-    }
-    button.search-submit {
-      position: relative;
-      transition: color 0.3s ease-in-out;
-      color: $color-search-font;
-      text-decoration: none;
-      padding: 0;
-      margin: 0.25em;
-      box-sizing: border-box;
-      background: inherit;
-      border: none;
-      &:hover {
-        color: $color-search-hover-font;
-        border: none;
-      }
-      &:active {
-        top: 0;
-        left: 0;
-      }
-    }
-  }
-  div.sidebar-item {
-    margin: 1em;
-  }
-  div.sidebar-sticky {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
-    padding-bottom: 1em;
-  }
-  div.post-toc a.toc-link.active {
-    color: $color-link-hover-font;
-    color: var(--color-link-hover-font);
-    border-bottom: 0.05em solid $color-link-hover-font;
-    border-bottom: 0.05em solid var(--color-link-hover-font);
-  }
   // Replace hr color in index.styl.
   hr {
     background: repeating-linear-gradient(-45deg, $color-hr-sidebar-background, $color-hr-sidebar-background 0.25em, transparent 0.25em, transparent 0.5em);
     background: repeating-linear-gradient(-45deg, var(--color-hr-sidebar-background), var(--color-hr-sidebar-background) 0.25em, transparent 0.25em, transparent 0.5em);
   }
 }
+div.search {
+  height: $search-height - $search-padding-top;
+  display: block;
+  text-align: center;
+  background: $color-search-background;
+  color: $color-search-font;
+  padding-top: $search-padding-top;
+}
+input.search-input {
+  width: 70%;
+  height: 1.8em;
+  border: none;
+  border-bottom: 0.1em dotted $color-search-font;
+  background: $color-search-background;
+  color: $color-search-font;
+  transition: border-bottom 0.3s ease-in-out;
+  &:focus {
+    border-bottom: 0.1em solid $color-search-font;
+  }
+  &::placeholder {
+    color: $color-search-font;
+    opacity: 0.7;
+  }
+}
+button.search-submit {
+  position: relative;
+  transition: color 0.3s ease-in-out;
+  color: $color-search-font;
+  text-decoration: none;
+  padding: 0;
+  margin: 0.25em;
+  box-sizing: border-box;
+  background: inherit;
+  border: none;
+  &:hover {
+    color: $color-search-hover-font;
+    border: none;
+  }
+  &:active {
+    top: 0;
+    left: 0;
+  }
+}
+div.sidebar-item {
+  margin: 1em;
+}
+div.sidebar-sticky {
+  // Personally I prefer Firefox, btw.
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  padding-bottom: 1em;
+}
+a.toc-link.active {
+  color: $color-link-hover-font;
+  color: var(--color-link-hover-font);
+  border-bottom: 0.05em solid $color-link-hover-font;
+  border-bottom: 0.05em solid var(--color-link-hover-font);
+}
 @media (max-width: $media-main-fold-width) {
   aside.sidebar {
     width: 100%;
-    div.sidebar-item {
-      text-align: center;
-      ul {
-        padding: 0;
-        li {
-          display: inline-block;
-          margin: 0.5em 1em;
-        }
-      }
-      ol.toc {
-        // It is not supposed to hold the whole line.
+  }
+  div.sidebar-item {
+    text-align: center;
+    ul {
+      padding: 0;
+      li {
         display: inline-block;
-        text-align: left;
+        margin: 0.5em 1em;
       }
     }
-    div.sidebar-sticky {
-      position: static;
-    }
+  }
+  ol.toc {
+    // It is not supposed to hold the whole line.
+    display: inline-block;
+    text-align: left;
+  }
+  div.sidebar-sticky {
+    position: static;
   }
 }

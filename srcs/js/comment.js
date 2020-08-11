@@ -108,7 +108,7 @@ function getComments(issue, callback) {
 
 function renderComment(comment) {
   return [
-    "<div class=\"comment\">",
+    "<div class=\"comment-result\">",
     "<div class=\"comment-avatar-container\">",
     "<img class=\"comment-avatar\" alt=\"@",
     comment["user"]["login"],

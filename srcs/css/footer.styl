@@ -4,31 +4,6 @@ footer.footer {
   flex: 0 0 auto;
   background: $color-footer-background;
   color: $color-footer-font;
-  div.footer-container {
-    width: auto;
-    word-wrap: break-word;
-    line-height: 2;
-    padding: 1em;
-    display: flex;
-    flex-direction: row;
-    justify-content: stretch;
-    align-items: stretch;
-    flex-wrap: nowrap;
-    div.footer-left {
-      flex: 1 1 auto;
-      text-align: left;
-      width: 50%;
-    }
-    div.footer-right {
-      flex: 1 1 auto;
-      text-align: right;
-      width: 50%;
-      div.custom-info {
-        width: 100%;
-        word-wrap: break-word;
-      }
-    }
-  }
   a {
     position: relative;
     color: $color-footer-link-font;
@@ -43,44 +18,63 @@ footer.footer {
       top: 0.1em;
     }
   }
-  div.back-to-top {
-    display: block;
-    text-align: center;
-    button {
+}
+div.footer-container {
+  width: auto;
+  word-wrap: break-word;
+  line-height: 2;
+  padding: 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  align-items: stretch;
+  flex-wrap: nowrap;
+}
+div.footer-left, div.footer-right {
+  flex: 1 1 auto;
+  width: 50%;
+}
+div.footer-left {
+  text-align: left;
+}
+div.footer-right {
+  text-align: right;
+}
+div.custom-info {
+  width: 100%;
+  word-wrap: break-word;
+}
+div.back-to-top {
+  display: block;
+  text-align: center;
+  button {
+    border: none;
+    outline: 0;
+    transition: color 0.3s ease-in-out;
+    color: $color-link-font;
+    color: var(--color-link-font);
+    background: $color-background;
+    background: var(--color-background);
+    display: inline-block;
+    margin: 0 auto;
+    padding: 0 0.75em;
+    cursor: pointer;
+    border-radius: 0 0 $corner-radius $corner-radius;
+    font-size: 2rem;
+    &:hover {
+      color: $color-link-hover-font;
+      color: var(--color-link-hover-font);
       border: none;
-      outline: 0;
-      transition: color 0.3s ease-in-out;
-      color: $color-link-font;
-      color: var(--color-link-font);
-      background: $color-background;
-      background: var(--color-background);
-      display: inline-block;
-      margin: 0 auto;
-      padding: 0 0.75em;
-      cursor: pointer;
-      border-radius: 0 0 $corner-radius $corner-radius;
-      font-size: 2rem;
-      &:hover {
-        color: $color-link-hover-font;
-        color: var(--color-link-hover-font);
-        border: none;
-      }
     }
   }
 }
 @media (max-width: $media-footer-header-nav-fold-width) {
-  footer.footer {
-    div.footer-container {
-      flex-direction: column-reverse;
-      align-items: stretch;
-      div.footer-left {
-        text-align: center;
-        width: auto;
-      }
-      div.footer-right {
-        text-align: center;
-        width: auto;
-      }
-    }
+  div.footer-container {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+  div.footer-left, div.footer-right {
+    text-align: center;
+    width: auto;
   }
 }
