@@ -144,7 +144,7 @@ documentReady(function () {
   var qr = document.getElementById("qr");
   if (rewardButton != null) {
     rewardButton.addEventListener("click", function () {
-      qe.getAttribute("aria-hidden") === "true"
+      qr.getAttribute("aria-hidden") === "true"
         ? qr.setAttribute("aria-hidden", "false")
         : qr.setAttribute("aria-hidden", "true");
       slideToggle(qr);
@@ -204,7 +204,11 @@ documentReady(function () {
     if (e.parentNode.tagName !== "A") {
       if (e.title) {
         elementBefore(e, createElementFromString(
-          ["<span class=\"caption\">", e.title, "</span>"].join("")
+          [
+            "<div class=\"center\"><span class=\"caption\">",
+            e.title,
+            "</span></div>"
+          ].join("")
         ));
       }
       var a = document.createElement("a");
