@@ -110,15 +110,17 @@ libCDN:
   lgZoom:
   lgVideo:
   busuanzi:
-  atom-one-dark:
-  atom-one-light:
-  solarized-dark:
-  solarized-light:
   normalize:
   marked:
   avMin:
   valine:
   clipboard:
+  # Don't use camelCase for hljs theme CSS files,
+  # because they need to keep the same as highlight values.
+  atom-one-dark:
+  atom-one-light:
+  solarized-dark:
+  solarized-light:
 
 social:
   enable: true

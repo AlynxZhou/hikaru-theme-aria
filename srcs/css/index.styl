@@ -285,7 +285,7 @@ div.titlebar-right {
   padding: 0 0.25em;
 }
 button.copy {
-  background: transparent;
+  background: inherit;
   text-decoration: none;
   border: none;
   padding: 0;
@@ -335,11 +335,6 @@ figure.code-block {
   border-right: 0.1em solid $color-code-block-border;
   padding: 0;
   margin: 0;
-  -webkit-font-feature-settings: "liga" 0; /* No variation */
-  -moz-font-feature-settings: "liga=0"; /* Firefox 4.0 to 14.0 */
-  -moz-font-feature-settings: "liga" 0; /* Firefox 15.0 onwards */
-  -moz-font-feature-settings: "liga" 0; /* Firefox 15.0 onwards explicitly set feature values */
-  font-feature-settings: "liga" 0; /* No variation */
   // A default color if Hikaru's builtin hljs is disabled.
   &:not(.hljs) {
     color: $color-code-block-font;
@@ -350,6 +345,11 @@ figure.code-block {
     font-size: $font-size;
     // Keep Chinese and English the same height.
     line-height: 1.5;
+    -webkit-font-feature-settings: "liga" 0; /* No variation */
+    -moz-font-feature-settings: "liga=0"; /* Firefox 4.0 to 14.0 */
+    -moz-font-feature-settings: "liga" 0; /* Firefox 15.0 onwards */
+    -moz-font-feature-settings: "liga" 0; /* Firefox 15.0 onwards explicitly set feature values */
+    font-feature-settings: "liga" 0; /* No variation */
     margin: 0;
     &.gutter {
       flex: 0 0 auto;
@@ -371,7 +371,7 @@ figure.code-block {
         margin: 0;
         padding: 0;
         color: inherit;
-        background: transparent;
+        background: inherit;
         word-wrap: normal;
         border-radius: 0;
       }

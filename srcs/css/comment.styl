@@ -101,9 +101,15 @@ if (getThemeConfig("comment.issue.enable")) {
       overflow: auto;
       padding: 0.5em;
       border-radius: $corner-radius;
-      background: $color-code-background;
+      color: $color-code-block-font;
+      background: $color-code-block-background;
       code {
+        margin: 0;
+        padding: 0;
+        color: inherit;
         background: inherit;
+        word-wrap: normal;
+        border-radius: 0;
       }
     }
   }
