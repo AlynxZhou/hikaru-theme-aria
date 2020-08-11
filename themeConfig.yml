@@ -112,6 +112,7 @@ libCDN:
   busuanzi:
   normalize:
   marked:
+  highlight:
   avMin:
   valine:
   clipboard:
