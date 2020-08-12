@@ -277,19 +277,19 @@ div.titlebar-right {
   padding: 0 0.25em;
 }
 button.copy {
-  background: inherit;
+  color: $color-button-copy-font;
+  background: $color-code-block-titlebar-background;
   text-decoration: none;
   border: none;
   padding: 0;
   margin: 0.25em;
-  color: $color-link-copy-font;
   transition: color 0.3s ease-in-out;
   &:hover {
-    color: $color-link-copy-hover-font;
+    color: $color-button-copy-hover-font;
     border: none;
   }
   &.copied {
-    color: $color-link-copy-hover-font;
+    color: $color-button-copy-hover-font;
   }
 }
 button.button-dot {
@@ -350,7 +350,8 @@ figure.code-block {
         margin: 0;
         padding: 0;
         color: inherit;
-        background: inherit;
+        // IE does not support inherit for background.
+        background: transparent;
         word-wrap: normal;
         border-radius: 0;
       }
