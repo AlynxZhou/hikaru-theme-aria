@@ -109,15 +109,17 @@ body {
   align-items: stretch;
   width: 100%;
   height: 100%;
+  // You phone is too long and too narrow, let the whole page scroll.
   min-width: $body-min-width;
   overflow: auto;
 }
 div.container {
   padding: 0;
-  max-width: $container-max-width;
+  margin: 0 auto;
   width: 75%;
   height: 100%;
-  margin: 0 auto;
+  // You have a brand screen! You must be so rich but we take care your neck.
+  max-width: $container-max-width;
 }
 div.center {
   text-align: center
