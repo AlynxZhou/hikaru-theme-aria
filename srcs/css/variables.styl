@@ -164,8 +164,7 @@ if (getThemeConfig("customFont.enable") && getThemeConfig("customFont.main")) {
   $font-main = getThemeConfig("customFont.main"), $font-main;
 }
 // $font-code inherits $font-mono and $font-all;
-$font-code = $font-mono;
-$font-code = $font-code, $font-all;
+$font-code = $font-mono, $font-all;
 if (getThemeConfig("customFont.enable") && getThemeConfig("customFont.code")) {
   $font-code = getThemeConfig("customFont.code"), $font-code;
 }
