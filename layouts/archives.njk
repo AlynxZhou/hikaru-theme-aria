@@ -9,8 +9,8 @@
 
 {% block content %}
 <div id="archives" class="archives page">
-  <h1 class="page-title">{{ __(title) }}</h1>
-  <h2 class="page-counter">
+  <div class="page-title">{{ __(title) }}</div>
+  <div class="page-counter">
     {% if site.posts.length > 1 %}
     {{ __("postCount.more", site.posts.length) }}
     {% elif posts.length === 1 %}
@@ -18,18 +18,18 @@
     {% else %}
     {{ __("postCount.none") }}
     {% endif %}
-  </h2>
+  </div>
   {% set year = "1970" %}
   {% for post in posts %}
   {% if post.createdMoment.format("YYYY") !== year %}
   {% set year = post.createdMoment.format("YYYY") %}
-  <h2 class="page-title">{{ year }}</h1>
+  <div class="page-title">{{ year }}</div>
   {% endif %}
   <article class="article post card{% if themeConfig.animate %} animate{% endif %}" itemscope itemtype="http://schema.org/Article">
     <header id="post-header" class="post-header">
-      <h1 class="post-title-simple" itemprop="name headline">
+      <div class="post-title-simple" itemprop="name headline">
         <a class="post-title-link post-title-link-external" href="{{ getPath(post.docPath) }}" itemprop="url">{{ post.title }}</a>
-      </h1>
+      </div>
       {% if post.createdDate %}
       <span class="post-date">
         <time title="post-date" itemprop="dateCreated datePublished" datetime="{{ post.createdDate.toISOString() }}">{{ post.createdMoment.format("MM-DD") }}</time>

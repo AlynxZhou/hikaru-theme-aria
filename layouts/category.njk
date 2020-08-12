@@ -9,13 +9,13 @@
 
 {% block content %}
 <div id="category" class="category page">
-  <h1 class="page-title">{{ name }}</h1>
+  <div class="page-title">{{ name }}</div>
   {% for post in posts %}
   <article class="article post card{% if themeConfig.animate %} animate{% endif %}" itemscope itemtype="http://schema.org/Article">
     <header id="post-header" class="post-header">
-      <h1 class="post-title-simple" itemprop="name headline">
+      <div class="post-title-simple" itemprop="name headline">
         <a class="post-title-link post-title-link-external" href="{{ getPath(post.docPath) }}" itemprop="url">{{ post.title }}</a>
-      </h1>
+      </div>
       {% if post.createdDate %}
       <span class="post-date">
         <time title="post-date" itemprop="dateCreated datePublished" datetime="{{ post.createdDate.toISOString() }}">{{ post.createdMoment.format("MM-DD") }}</time>

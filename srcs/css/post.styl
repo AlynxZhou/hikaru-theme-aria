@@ -5,44 +5,51 @@
 header.post-header {
   text-align: center;
 }
-h1.post-title-simple {
-  margin: 0;
+div.post-title-simple {
+  // Looks like h1, but without margin.
+  font-size: 2rem;
+  font-weight: bold;
 }
-// I don't want to change link in `h1.post-title-simple`,
+// I don't want to change link in `div.post-title-simple`,
 // which is used in pages like archives.
-h1.post-title a.post-title-link {
-  // Use inline-block because it is not supposed to hold the whole line.
-  display: inline-block;
-  position: relative;
-  text-decoration: none;
-  border-bottom: none;
-  color: $color-font;
-  color: var(--color-font);
-  &::after {
-    content: " ";
-    position: absolute;
-    width: 100%;
-    height: 0.1em;
-    bottom: 0;
-    left: 0;
-    transition: transform 0.3s ease-in-out;
-    background: $color-font;
-    background: var(--color-font);
-    visibility: hidden;
-    transform: scaleX(0);
-  }
-  &:hover {
-    &::after {
-      visibility: visible;
-      transform: scaleX(1);
-    }
-  }
-  &:active {
-    top: 0.1em;
-  }
+div.post-title {
+  // Looks like h1.
+  font-size: 2rem;
+  margin: 0.67em 0;
+  font-weight: bold;
+  a.post-title-link {
+   // Use inline-block because it is not supposed to hold the whole line.
+   display: inline-block;
+   position: relative;
+   text-decoration: none;
+   border-bottom: none;
+   color: $color-font;
+   color: var(--color-font);
+   &::after {
+     content: " ";
+     position: absolute;
+     width: 100%;
+     height: 0.1em;
+     bottom: 0;
+     left: 0;
+     transition: transform 0.3s ease-in-out;
+     background: $color-font;
+     background: var(--color-font);
+     visibility: hidden;
+     transform: scaleX(0);
+   }
+   &:hover {
+     &::after {
+       visibility: visible;
+       transform: scaleX(1);
+     }
+   }
+   &:active {
+     top: 0.1em;
+   }
+ }
 }
-span.meta-block {
-  display: block;
+div.meta-block {
   margin: 0.5em;
 }
 a.header-link, a.headerlink {

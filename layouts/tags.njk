@@ -25,10 +25,10 @@
 <div id="tags" class="tags page">
   <article class="article post card{% if themeConfig.animate %} animate{% endif %}">
     <header class="post-header">
-      <h1 class="post-title" itemprop="name headline">{{ __(title) }}</h1>
+      <div class="post-title" itemprop="name headline">{{ __(title) }}</div>
     </header>
     <main class="post-main" id="scrollspy-container">
-      <h2 class="page-counter">
+      <div class="page-counter">
         {% if site.tagsLength > 1 %}
         {{ __("tagCount.more", site.tagsLength) }}
         {% elif tags.length === 1 %}
@@ -36,7 +36,7 @@
         {% else %}
         {{ __("tagCount.none") }}
         {% endif %}
-      </h2>
+      </div>
       <div class="tags-cloud">
         {% for tag in site.tags %}
         <a class="post-tag button" href="{{ getPath(tag.docPath) }}" rel="tag"><i class="fas fa-tag"></i>{{ tag.name }} {{ tag.posts.length }}</a>
