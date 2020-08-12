@@ -324,7 +324,11 @@ var loadComment = function (opts) {
         return;
       }
       findIssueByTitle(issues, opts["title"], function (issue) {
-        var pagesLength = calPagesLength(issue["comments"], opts["perPage"]);
+        var pagesLength = 1;
+        // Issue might be null here.
+        if (issue != null) {
+          calPagesLength(issue["comments"], opts["perPage"]);
+        }
         if (commentPage > pagesLength) {
           commentPage = pagesLength;
         }
