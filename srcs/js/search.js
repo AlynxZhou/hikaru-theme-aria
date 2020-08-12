@@ -1,7 +1,7 @@
 /*
  * A local search script for [hikaru-generator-search](https://github.com/AlynxZhou/hikaru-generator-search/).
  * CopyLeft (C) 2020
- * AlynxZhou <alynx.zhou@gmail.com> (https://alynx.moe/)
+ * AlynxZhou <alynx.zhou@gmail.com> (https://alynx.one/)
  */
 
 "use strict";
@@ -10,9 +10,28 @@ var SUBSTRING_OFFSET = 150;
 var MAX_KEYWORDS = 30;
 var MAX_DISPLAY_SLICES = 10;
 
+function parseQueryString(queryString) {
+  var result = {};
+  if (queryString.charAt(0) === "?") {
+    queryString = queryString.substring(1);
+  }
+  var pairs = queryString.split("&");
+  // Reverse loop because we only need the first value in this script.
+  for (var i = pairs.length - 1; i >= 0; --i) {
+    var pair = pairs[i].split("=");
+    // Ignore `&a=` or `&a`.
+    if (pair[1] != null && pair[1].length > 0) {
+      var key = window.decodeURIComponent(pair[0]);
+      var value = window.decodeURIComponent(pair[1]);
+      result[key] = value;
+    }
+  }
+  return result;
+}
+
 function fetchJSON(path, callback) {
   if (window.fetch != null) {
-    fetch(path).then(function (response) {
+    window.fetch(path).then(function (response) {
       if (response.status !== 200) {
         callback(new Error(response.status), null);
         return;
@@ -24,9 +43,9 @@ function fetchJSON(path, callback) {
   } else {
     var xhr = null;
     if (window.XMLHttpRequest) {
-      xhr = new XMLHttpRequest();
+      xhr = new window.XMLHttpRequest();
     } else if (window.ActiveXObject) {
-      xhr = new ActiveXObject("Microsoft.XMLHTTP");
+      xhr = new window.ActiveXObject("Microsoft.XMLHTTP");
     }
     if (xhr == null) {
       console.error("Your broswer does not support XMLHttpRequest!");
@@ -224,11 +243,11 @@ function fastUniqKeywords(array) {
 }
 
 function parseKeywords(queryString) {
-  var urlParams = new URLSearchParams(window.location.search);
-  if (!urlParams.has("q")) {
+  var urlParams = parseQueryString(queryString);
+  if (urlParams["q"] == null) {
     return [];
   }
-  var query = urlParams.get('q').trim();
+  var query = urlParams["q"].trim();
   if (query.length <= 0) {
     return [];
   }

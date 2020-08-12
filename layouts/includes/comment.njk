@@ -25,7 +25,7 @@
   <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.highlight %}{{ themeConfig.libCDN.highlight }}{% else %}{{ getPath("js/highlight.min.js") }}{% endif %}"></script>
   <script type="text/javascript">
     documentReady(function () {
-      marked.setOptions({
+      window.marked.setOptions({
         "highlight": function (code, lang) {
           return hljs.highlightAuto(code).value;
         }
@@ -33,10 +33,13 @@
       loadComment({
         "user": "{{ themeConfig.comment.issue.user }}",
         "repo": "{{ themeConfig.comment.issue.repo }}",
+        "perPage": "{{ themeConfig.comment.issue.perPage }}",
         "sendButtonText": "{{ __("comment.send") }}",
         "noCommentText": "{{ __("comment.none") }}",
         "failText": "{{ __("comment.fail") }}",
         "title": "{{ __(title) }}",
+        "queryString": window.location.search,
+        "basePath": "{{ getPath(docPath) }}",
         "containerID": "comment-results"
       });
     });

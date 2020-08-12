@@ -1,25 +1,13 @@
 {% block pagination %}
 {% if pageArray != null and pageIndex != null %}
 <nav class="pagination">
-  {% if pageIndex > 2 %}
-  <a class="page-number" href="{{ getPath(pageArray[0].docPath) }}">1</a>
-  <span class="space">…</span>
-  <a class="page-number" href="{{ getPath(pageArray[pageIndex - 1].docPath) }}">{{ pageIndex }}</a>
-  {% else %}
-  {% for page in pageArray.slice(0, pageIndex) %}
+  {% for page in pageArray %}
+  {% if page.pageIndex !== pageIndex %}
   <a class="page-number" href="{{ getPath(page.docPath) }}">{{ page.pageIndex + 1 }}</a>
-  {% endfor %}
-  {% endif %}
+  {% else %}
   <a class="page-number current" href="{{ getPath(docPath) }}">{{ pageIndex + 1 }}</a>
-  {% if pageIndex < pageArray.length - 1 - 2 %}
-  <a class="page-number" href="{{ getPath(pageArray[pageIndex + 1].docPath) }}">{{ pageIndex + 2 }}</a>
-  <span class="space">…</span>
-  <a class="page-number" href="{{ getPath(pageArray[pageArray.length - 1].docPath) }}">{{ pageArray.length }}</a>
-  {% else %}
-  {% for page in pageArray.slice(pageIndex + 1, pageArray.length) %}
-  <a class="page-number" href="{{ getPath(page.docPath) }}">{{ page.pageIndex + 1 }}</a>
-  {% endfor %}
   {% endif %}
+  {% endfor %}
 </nav>
 {% endif %}
 {% endblock %}

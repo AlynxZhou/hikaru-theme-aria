@@ -276,7 +276,7 @@ Get icons in [Font Awesome](https://fontawesome.com/).
 
 First set `comment` to `enable: true` to enable comment in all pages (except Home, Archives, Categories, Tags), then fill your Disqus Shortname. If you want to disable comment in some pages, add front-matter `comment: false` (`comment` NOT `comments`!).
 
-If you use builtin GitHub issue based comment, first set `enable` to `true`, `user` is your GitHub user name, `repo` is your GitHub repo name. This script only read issues from GitHub API, and has no data forward that may lose your info, it is safe.
+If you use builtin GitHub issue based comment, first set `enable` to `true`, `user` is your GitHub user name, `repo` is your GitHub repo name. Because GitHub forces to use a paginated API, there is a `perPage` option, better to keep it default. This script only read issues from GitHub API, and has no data forward that may lose your info, it is safe.
 
 If you use Valine, read its docs and fill options `apiID`, `apiKey`, set `enable` to `true` and custom other options.
 

@@ -155,6 +155,7 @@ comment:
     enable: false
     user:
     repo:
+    perPage: 10
   disqusShortName:
   valine:
     enable: false
