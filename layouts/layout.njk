@@ -109,7 +109,14 @@
     <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.highlight %}{{ themeConfig.libCDN.highlight }}{% else %}{{ getPath("js/highlight.min.js") }}{% endif %}"></script>
     <script type="text/javascript">
       documentReady(function () {
-        hljs.initHighlighting();
+        elementsEach(
+          document.querySelectorAll("figure.code-block pre.code code"),
+          function (e, i) {
+            // We want to use hljs' background and color for the whole block.
+            e.parentNode.parentNode.classList.add("hljs");
+            hljs.highlightBlock(e);
+          }
+        );
       });
     </script>
     {% endif %}
