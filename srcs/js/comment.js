@@ -327,7 +327,7 @@ var loadComment = function (opts) {
         var pagesLength = 1;
         // Issue might be null here.
         if (issue != null) {
-          calPagesLength(issue["comments"], opts["perPage"]);
+          pagesLength = calPagesLength(issue["comments"], opts["perPage"]);
         }
         if (commentPage > pagesLength) {
           commentPage = pagesLength;
