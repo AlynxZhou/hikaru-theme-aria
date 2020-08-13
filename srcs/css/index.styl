@@ -354,6 +354,11 @@ figure.code-block {
         background: transparent;
         word-wrap: normal;
         border-radius: 0;
+        // hljs don't touch my styles except color.
+        &.hljs {
+          display: inline;
+          overflow: visible;
+        }
       }
     }
   }

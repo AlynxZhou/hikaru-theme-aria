@@ -86,23 +86,32 @@
     {% if themeConfig.mathjax.global or mathjax %}
     <script defer type="text/javascript" src="{{ themeConfig.mathjax.cdn }}"></script>
     <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        "tex2jax": {
-          "inlineMath": [["$", "$"], ["\\(", "\\)"]],
-          "processEscapes": true,
-          "skipTags": ["script", "noscript", "style", "textarea", "pre", "code"]
-        }
-      });
-    </script>
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i) {
-          all[i].SourceElement().parentNode.className += " has-jax";
-        }
+      documentReady(function () {
+        MathJax.Hub.Config({
+          "tex2jax": {
+            "inlineMath": [["$", "$"], ["\\(", "\\)"]],
+            "processEscapes": true,
+            "skipTags": ["script", "noscript", "style", "textarea", "pre", "code"]
+          }
+        });
+        MathJax.Hub.Queue(function() {
+          var all = MathJax.Hub.getAllJax();
+          for (var i = 0; i < all.length; ++i) {
+            all[i].SourceElement().parentNode.className += " has-jax";
+          }
+        });
       });
     </script>
     {% endif %}
+    {% endif %}
+    {# If user choose to use Hikaru's builtin highlight, hljs is only used by issue comment. #}
+    {% if siteConfig.highlight.enable !== true or (themeConfig.comment.issue.enable and comment !== false) %}
+    <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.highlight %}{{ themeConfig.libCDN.highlight }}{% else %}{{ getPath("js/highlight.min.js") }}{% endif %}"></script>
+    <script type="text/javascript">
+      documentReady(function () {
+        hljs.initHighlighting();
+      });
+    </script>
     {% endif %}
     <script type="text/javascript">
       // Set theme before page rendering.
