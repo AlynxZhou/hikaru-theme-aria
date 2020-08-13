@@ -129,10 +129,11 @@ feed:
 
 ### Highlight Settings
 
-If you want to add line numbers, set `gutter: true`.
+If you want to add line numbers, set `gutter: true`. If you want speed up generation, you can set `enable: false` to prevent Hikaru for doing highlight, and highlight will be done in browser with JavaScript.
 
 ```yaml
 highlight:
+  enable: true
   gutter: true
   hljs: true
 ```
@@ -151,7 +152,7 @@ Following needs to be changed in `themeConfig.yml`, not all config needs customi
 
 ### Menu Settings
 
-You should already have `srcs/categories/index.md` and `srcs/tags/index.md` when you creating your site with Hikaru, if not, create them and set front matter `layout: categories` or `layout: tags`, and set them like following:
+If you want tags and categories links in menu, set it like following:
 
 ```yaml
 menu:
@@ -186,7 +187,7 @@ Set it in `creativeCommons`. To keep it simple ARIA will show a link in footer. 
 
 ### Code Highlight
 
-ARIA has 4 highlight theme. You can choose the value of `highlight` in one of `atom-one-dark`, `atom-one-light`, `solarized-dark`, `solarized-light`. ARIA uses Hikaru's internal highlight.js, so if you want to add more highlight theme, go to [highlight.js' style repo](https://github.com/isagalaev/highlight.js/tree/master/src/styles) and download CSS file you need to your site's `srcs/css/` dir (just create a `css/` dir in `srcs/` that you store site source files, you can also put it into theme's `srcs/css/` but it will make git workspace dirty), then set here to your downloaded file name (without `.css` suffix, it will be add automatically).
+ARIA has 4 highlight theme. You can choose the value of `highlight` in one of `atom-one-dark`, `atom-one-light`, `solarized-dark`, `solarized-light`. ARIA uses  highlight.js, so if you want to add more highlight theme, go to [highlight.js' style repo](https://github.com/isagalaev/highlight.js/tree/master/src/styles) and download CSS file you need to your site's `srcs/css/` dir (just create a `css/` dir in `srcs/` that you store site source files, you can also put it into theme's `srcs/css/` but it will make git workspace dirty), then set here to your downloaded file name (without `.css` suffix, it will be add automatically).
 
 ### Custom Info
 
