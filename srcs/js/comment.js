@@ -274,7 +274,7 @@ function renderComments(comments, commentPage, pagesLength, opts) {
   return header.concat(main).concat(footer).join("");
 }
 
-function renderError(err, opt) {
+function renderError(err, opts) {
   if (opts["failText"] != null) {
     return [
       "<div class=\"comment-fail\" id=\"comment-fail\">",
@@ -315,12 +315,12 @@ var loadComment = function (opts) {
   }
   getRepo(buildRepoURL(opts["user"], opts["repo"]), function (err, repo) {
     if (err != null) {
-      container.innerHTML = renderError(err, opt);
+      container.innerHTML = renderError(err, opts);
       return;
     }
     getIssues(repo, function (err, issues) {
       if (err != null) {
-        container.innerHTML = renderError(err, opt);
+        container.innerHTML = renderError(err, opts);
         return;
       }
       findIssueByTitle(issues, opts["title"], function (issue) {
@@ -335,7 +335,7 @@ var loadComment = function (opts) {
         getComments(
           issue, opts["perPage"], commentPage, function (err, comments) {
             if (err != null) {
-              container.innerHTML = renderError(err, opt);
+              container.innerHTML = renderError(err, opts);
               return;
             }
             container.style.display = "block";
