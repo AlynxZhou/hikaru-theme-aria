@@ -113,8 +113,6 @@ libCDN:
   normalize:
   marked:
   highlight:
-  avMin:
-  valine:
   clipboard:
   # Don't use camelCase for hljs theme CSS files,
   # because they need to keep the same as highlight values.
@@ -157,19 +155,6 @@ comment:
     repo:
     perPage: 10
   disqusShortName:
-  valine:
-    enable: false
-    appID:
-    appKey:
-    verify: false
-    notify: false
-    avatar: mm
-    meta: "[\"nick\", \"mail\", \"link\"]"
-    pageSize: 10
-    lang: zh-cn
-    visitor: false
-    highlight: true
-    avatarForce: false
 
 reward:
   enable: false
