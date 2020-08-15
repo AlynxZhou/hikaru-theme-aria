@@ -62,7 +62,7 @@ function fetchJSON(path, callback) {
     window.fetch(path).then(function (response) {
       if (response.status !== 200) {
         // fetch does not reject on HTTP error, so we do this manually.
-        throw new Error("HTTP status " + response.status);
+        throw new Error("Unexpected HTTP status code " + response.status);
         return;
       }
       return response.json();
@@ -84,13 +84,13 @@ function fetchJSON(path, callback) {
       return;
     }
     xhr.onreadystatechange = function () {
-      // 4 is ready.
+      // This function will be called if readyState changed.
+      // 4 is ready, and we just ignore if not ready.
       if (xhr.readyState !== 4) {
-        callback(new Error("Unexpected readyState " + xhr.readyState), null);
         return;
       }
       if (xhr.status !== 200) {
-        callback(new Error(xhr.status), null);
+        callback(new Error("Unexpected HTTP status code " + xhr.status), null);
         return;
       }
       callback(null, JSON.parse(xhr.response));
