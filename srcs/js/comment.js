@@ -61,12 +61,16 @@ function fetchJSON(path, callback) {
   if (window.fetch != null) {
     window.fetch(path).then(function (response) {
       if (response.status !== 200) {
-        callback(new Error(response.status), null);
+        // fetch does not reject on HTTP error, so we do this manually.
+        throw new Error("HTTP status " + response.status);
         return;
       }
-      response.json().then(function (json) {
-        callback(null, json);
-      });
+      return response.json();
+    }).then(function (json) {
+      callback(null, json);
+    }).catch(function (err) {
+      // Catch HTTP error and fetch error.
+      callback(err, null);
     });
   } else {
     var xhr = null;
@@ -76,12 +80,13 @@ function fetchJSON(path, callback) {
       xhr = new window.ActiveXObject("Microsoft.XMLHTTP");
     }
     if (xhr == null) {
-      console.error("Your broswer does not support XMLHttpRequest!");
+      callback(new Error("XMLHttpRequest is not available"), null);
       return;
     }
     xhr.onreadystatechange = function () {
       // 4 is ready.
       if (xhr.readyState !== 4) {
+        callback(new Error("Unexpected readyState " + xhr.readyState), null);
         return;
       }
       if (xhr.status !== 200) {
@@ -120,7 +125,7 @@ function getIssues(repo, callback) {
       callback(err, results);
       return;
     }
-    results = results.concat(issues)
+    results = results.concat(issues);
     if (nextPage <= pagesLength) {
       fetchJSON([
         repo["url"],
@@ -132,7 +137,7 @@ function getIssues(repo, callback) {
       ].join(""), handler);
     } else {
       // No more issues, loop finished.
-      callback(null, results)
+      callback(null, results);
     }
   }
   fetchJSON([
@@ -243,14 +248,21 @@ function renderComment(comment) {
 }
 
 function renderComments(comments, commentPage, pagesLength, opts) {
-  var header = [
-    "<header class=\"comments-header\" id=\"comments-header\">",
-    comments.length > 0 || opts["noCommentText"] == null
-      ? ""
-      : ("<span class=\"comment-none\">" + opts["noCommentText"] + "</span>"),
-    "</header>"
-  ];
+  var header = ["<header class=\"comments-header\" id=\"comments-header\">"];
+  if (comments.length === 0) {
+    header.push("<span class=\"comment-none\">");
+    header.push(opts["noCommentText"]);
+    header.push("</span>");
+  }
+  header.push("</header>");
   var main = ["<main class=\"comments-main\" id=\"comments-main\">"];
+  for (var i = 0; i < comments.length; ++i) {
+    main.push(renderComment(comments[i]));
+  }
+  if (comments.length > 0) {
+    main.push(renderPagination(commentPage, pagesLength, opts));
+  }
+  main.push("</main>");
   var footer = ["<footer class=\"comments-footer\" id=\"comments-footer\">"];
   footer.push("<a class=\"comments-button comment-send button\" ");
   footer.push("id=\"comments-send\" target=\"_blank\" ");
@@ -264,26 +276,17 @@ function renderComments(comments, commentPage, pagesLength, opts) {
   footer.push(opts["sendButtonText"]);
   footer.push("</a>");
   footer.push("</footer>");
-  for (var i = 0; i < comments.length; ++i) {
-    main.push(renderComment(comments[i]));
-  }
-  if (comments.length > 0) {
-    main.push(renderPagination(commentPage, pagesLength, opts));
-  }
-  main.push("</main>");
   return header.concat(main).concat(footer).join("");
 }
 
 function renderError(err, opts) {
-  if (opts["failText"] != null) {
-    return [
-      "<div class=\"comment-fail\" id=\"comment-fail\">",
-      err.message,
-      ": ",
-      opts["failText"],
-      "</div>"
-    ].join("");
-  }
+  return [
+    "<div class=\"comment-fail\" id=\"comment-fail\">",
+    err.message,
+    ": ",
+    opts["failText"],
+    "</div>"
+  ].join("");
 }
 
 var loadComment = function (opts) {
@@ -299,6 +302,8 @@ var loadComment = function (opts) {
   }
   opts["perPage"] = opts["perPage"] || 10;
   opts["basePath"] = opts["basePath"] || "./";
+  opts["failText"] = opts["failText"] || "";
+  opts["noCommentText"] = opts["noCommentText"] || "";
   // I hate IE.
   var polyfillParseInt = window.parseInt;
   if (Number.parseInt != null) {

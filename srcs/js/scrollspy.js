@@ -1,6 +1,6 @@
 "use strict";
 var loadScrollSpy = function (opts) {
-  opts = opts || {}
+  opts = opts || {};
   opts["containerID"] = opts["containerID"] || "scrollspy-container";
   opts["headerSelector"] = opts["headerSelector"] || "h1, h2, h3, h4, h5, h6";
   opts["targetID"] = opts["targetID"] || "scrollspy-target";

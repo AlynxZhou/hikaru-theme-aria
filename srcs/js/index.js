@@ -29,7 +29,7 @@ var elementBefore = function (element, before) {
 };
 
 var scrollToTop = function (opts) {
-  opts = opts || {}
+  opts = opts || {};
   opts["duration"] = opts["duration"] || 400;
   opts["offset"] = opts["offset"] || 0;
   var oldOffset = document.documentElement.scrollTop ||
@@ -63,7 +63,6 @@ var slideUp = function (target, duration) {
   target.style.transitionDuration = duration + "ms";
   target.style.boxSizing = "border-box";
   target.style.height = target.offsetHeight + "px";
-  target.offsetHeight;
   target.style.overflow = "hidden";
   target.style.height = 0;
   target.style.paddingTop = 0;
@@ -101,7 +100,6 @@ var slideDown = function (target, duration) {
   target.style.paddingBottom = 0;
   target.style.marginTop = 0;
   target.style.marginBottom = 0;
-  target.offsetHeight;
   target.style.boxSizing = "border-box";
   target.style.transitionProperty = "height, margin, padding";
   target.style.transitionDuration = duration + "ms";

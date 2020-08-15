@@ -33,12 +33,16 @@ function fetchJSON(path, callback) {
   if (window.fetch != null) {
     window.fetch(path).then(function (response) {
       if (response.status !== 200) {
-        callback(new Error(response.status), null);
+        // fetch does not reject on HTTP error, so we do this manually.
+        throw new Error("HTTP status " + response.status);
         return;
       }
-      response.json().then(function (json) {
-        callback(null, json);
-      });
+      return response.json();
+    }).then(function (json) {
+      callback(null, json);
+    }).catch(function (err) {
+      // Catch HTTP error and fetch error.
+      callback(err, null);
     });
   } else {
     var xhr = null;
@@ -48,12 +52,13 @@ function fetchJSON(path, callback) {
       xhr = new window.ActiveXObject("Microsoft.XMLHTTP");
     }
     if (xhr == null) {
-      console.error("Your broswer does not support XMLHttpRequest!");
+      callback(new Error("XMLHttpRequest is not available"), null);
       return;
     }
     xhr.onreadystatechange = function () {
       // 4 is ready.
       if (xhr.readyState !== 4) {
+        callback(new Error("Unexpected readyState " + xhr.readyState), null);
         return;
       }
       if (xhr.status !== 200) {
@@ -107,7 +112,7 @@ function buildSortedSlices(prop) {
   var slices = [];
   // Sorting slice array is hard so sort index array instead.
   prop["contentKeywords"].sort(function (a, b) {
-    return a["index"] - b["index"]
+    return a["index"] - b["index"];
   });
   // Get content slice position.
   for (
@@ -136,7 +141,7 @@ function mergeSlices(slices) {
   if (slices.length === 0) {
     return mergedSlices;
   }
-  mergedSlices.push(slices[0])
+  mergedSlices.push(slices[0]);
   for (var i = 1; i < slices.length; ++i) {
     // If two slice have common part, merge them.
     if (mergedSlices[mergedSlices.length - 1]["end"] >= slices[i]["start"]) {
@@ -155,7 +160,7 @@ function buildHighlightedTitle(prop) {
   var regexKeywords = [];
   for (var i = 0; i < prop["titleKeywords"].length; ++i) {
     if (prop["titleKeywords"][i]["keyword"].length > 0) {
-      regexKeywords.push(prop["titleKeywords"][i]["keyword"])
+      regexKeywords.push(prop["titleKeywords"][i]["keyword"]);
     }
   }
   // Replace all in one time to prevent it from matching <strong> tag.
@@ -175,14 +180,14 @@ function buildHighlightedContent(prop, mergedSlices) {
     ));
   }
   var regexKeywords = [];
-  for (var i = 0; i < prop["contentKeywords"].length; ++i) {
-    if (prop["contentKeywords"][i]["keyword"].length > 0) {
-      regexKeywords.push(prop["contentKeywords"][i]["keyword"]);
+  for (var j = 0; j < prop["contentKeywords"].length; ++j) {
+    if (prop["contentKeywords"][j]["keyword"].length > 0) {
+      regexKeywords.push(prop["contentKeywords"][j]["keyword"]);
     }
   }
   var regex = new RegExp(regexKeywords.join("|"), "gi");
-  for (var i = 0; i < matchedContents.length; i++) {
-    matchedContents[i] = matchedContents[i].replace(
+  for (var k = 0; k < matchedContents.length; ++k) {
+    matchedContents[k] = matchedContents[k].replace(
       regex, "<strong class=\"search-keyword\">$&</strong>"
     );
   }
@@ -251,13 +256,13 @@ function parseKeywords(queryString) {
   if (query.length <= 0) {
     return [];
   }
-  return fastUniqKeywords(query.split(/[\s-\+]+/));
+  return fastUniqKeywords(query.split(/[\s-+]+/));
 }
 
 function renderDataProps(dataProps) {
   var res = [];
   for (var i = 0; i < dataProps.length; ++i) {
-    res.push("<li><a href=\"")
+    res.push("<li><a href=\"");
     res.push(dataProps[i]["dataURL"]);
     res.push("\" class=\"search-result-title\">");
     res.push(dataProps[i]["highlightedTitle"]);
@@ -278,7 +283,7 @@ var loadSearch = function (opts) {
       opts["containerID"] == null) {
     return;
   }
-  opts["noResultText"] = opts["noResultText"] || ""
+  opts["noResultText"] = opts["noResultText"] || "";
   var container = document.getElementById(opts["containerID"]);
   container.style.display = "block";
   var header = [];
