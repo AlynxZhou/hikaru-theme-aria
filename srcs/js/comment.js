@@ -288,6 +288,7 @@ function renderError(err, opts) {
   ].join("");
 }
 
+/* eslint-disable-next-line no-unused-vars */
 var loadComment = function (opts) {
   if (opts == null) {
     return;
@@ -353,6 +354,7 @@ var loadComment = function (opts) {
   });
 };
 
+/* eslint-disable-next-line no-unused-vars */
 var loadCommentCount = function (opts) {
   if (opts == null) {
     return;

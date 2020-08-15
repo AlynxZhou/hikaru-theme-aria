@@ -1,4 +1,5 @@
 "use strict";
+
 var documentReady = function (callback) {
   if (callback == null) {
     return;
@@ -63,12 +64,15 @@ var slideUp = function (target, duration) {
   target.style.transitionDuration = duration + "ms";
   target.style.boxSizing = "border-box";
   target.style.height = target.offsetHeight + "px";
-  target.style.overflow = "hidden";
+  // Don't know why but next line cannot be removed.
+  /* eslint-disable-next-line no-unused-expressions */
+  target.offsetHeight;
   target.style.height = 0;
   target.style.paddingTop = 0;
   target.style.paddingBottom = 0;
   target.style.marginTop = 0;
   target.style.marginBottom = 0;
+  target.style.overflow = "hidden";
   window.setTimeout(function () {
     target.style.display = "none";
     target.style.removeProperty("height");
@@ -94,12 +98,15 @@ var slideDown = function (target, duration) {
   }
   target.style.display = display;
   var height = target.offsetHeight;
-  target.style.overflow = "hidden";
   target.style.height = 0;
   target.style.paddingTop = 0;
   target.style.paddingBottom = 0;
   target.style.marginTop = 0;
   target.style.marginBottom = 0;
+  // Don't know why but next line cannot be removed.
+  /* eslint-disable-next-line no-unused-expressions */
+  target.offsetHeight;
+  target.style.overflow = "hidden";
   target.style.boxSizing = "border-box";
   target.style.transitionProperty = "height, margin, padding";
   target.style.transitionDuration = duration + "ms";
@@ -221,10 +228,12 @@ documentReady(function () {
 
   if (typeof lightGallery !== "undefined") {
     elementsEach(document.querySelectorAll("article.post"), function (e, i) {
+      /* eslint-disable-next-line no-undef */
       lightGallery(e, {"selector": ".gallery-item"});
     });
   }
 
+  /* eslint-disable-next-line no-undef */
   loadScrollSpy({
     "containerID": "scrollspy-container",
     "targetID": "scrollspy-target",

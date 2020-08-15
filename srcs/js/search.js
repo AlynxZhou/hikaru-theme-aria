@@ -273,6 +273,7 @@ function renderDataProps(dataProps) {
   return res;
 }
 
+/* eslint-disable-next-line no-unused-vars */
 var loadSearch = function (opts) {
   if (opts == null) {
     return;

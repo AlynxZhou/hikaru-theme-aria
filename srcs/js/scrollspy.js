@@ -1,4 +1,6 @@
 "use strict";
+
+/* eslint-disable-next-line no-unused-vars */
 var loadScrollSpy = function (opts) {
   opts = opts || {};
   opts["containerID"] = opts["containerID"] || "scrollspy-container";
