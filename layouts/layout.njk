@@ -13,14 +13,14 @@
     {% endif %}
     {% if keywords %}
     <meta name="keywords" content="{{ keywords.join(", ") }}">
-    {% elif themeConfig.keywords %}
+    {% elseif themeConfig.keywords %}
     <meta name="keywords" content="{{ themeConfig.keywords.join(", ") }}">
     {% endif %}
     {% if excerpt %}
     <meta name="description" content="{{ excerpt | striptags }}">
-    {% elif description %}
+    {% elseif description %}
     <meta name="description" content="{{ description | striptags }}">
-    {% elif siteConfig.description %}
+    {% elseif siteConfig.description %}
     <meta name="description" content="{{ siteConfig.description | striptags }}">
     {% endif %}
     <link rel="canonical" href="{{ getURL(docPath) }}">

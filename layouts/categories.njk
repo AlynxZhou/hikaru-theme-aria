@@ -17,7 +17,7 @@
       <div class="page-counter">
         {% if site.categoriesLength > 1 %}
         {{ __("categoryCount.more", site.categoriesLength) }}
-        {% elif site.categories.length === 1 %}
+        {% elseif site.categories.length === 1 %}
         {{ __("categoryCount.one", site.categoriesLength) }}
         {% else %}
         {{ __("categoryCount.none") }}

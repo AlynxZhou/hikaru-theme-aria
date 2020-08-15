@@ -50,7 +50,7 @@
         <div class="post-comment-count meta-block">
           <i class="far fa-comments"></i><span><a href="{{ getPath(post.docPath) }}#comment-results" itemprop="discussionUrl"><span class="post-comment-count comment-count" data-comment-identifier="{{ post.title }}" itemprop="commentCount">{{ __("comment.read") }}</span></a></span>
         </div>
-        {% elif themeConfig.comment.disqusShortName %}
+        {% elseif themeConfig.comment.disqusShortName %}
         <div class="post-comment-count meta-block">
           <i class="far fa-comments"></i><span><a href="{{ getPath(post.docPath) }}#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="{{ getPath(post.docPath) }}" itemprop="commentCount"></span></a></span>
         </div>
@@ -61,9 +61,9 @@
     <main class="post-main" id="scrollspy-container" itemprop="articleBody">
       {% if post.excerpt  %}
       {{ post.excerpt }}
-      {% elif post.description %}
+      {% elseif post.description %}
       {{ post.description }}
-      {% elif themeConfig.autoExcerpt %}
+      {% elseif themeConfig.autoExcerpt %}
       <p>{{ (post.content | striptags).substring(0, themeConfig.autoExcerpt) }}…</p>
       {% else %}
       {{ post.content }}

@@ -20,12 +20,12 @@
         <div class="site-count-title">{{ __("archives") }}</div>
         <div><a href="{{ getPath(e.link) }}">{{ site.posts.length }}</a></div>
       </div>
-      {% elif e.name === "categories" %}
+      {% elseif e.name === "categories" %}
       <div class="categories-count count-block">
         <div class="site-count-title">{{ __("categories") }}</div>
         <div><a href="{{ getPath(e.link) }}">{{ site.categoriesLength }}</a></div>
       </div>
-      {% elif e.name === "tags" %}
+      {% elseif e.name === "tags" %}
       <div class="tags-count count-block">
         <div class="site-count-title">{{ __("tags") }}</div>
         <div><a href="{{ getPath(e.link) }}">{{ site.tagsLength }}</a></div>

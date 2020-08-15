@@ -44,7 +44,7 @@
     });
   </script>
   {% endif %}
-  {% elif themeConfig.comment.disqusShortName %}
+  {% elseif themeConfig.comment.disqusShortName %}
   <script defer id="dsq-count-scr" src="//{{ themeConfig.comment.disqusShortName }}.disqus.com/count.js"></script>
   {% if comment !== false %}
   <div id="disqus_thread" class="disqus_thread"></div>
@@ -61,7 +61,7 @@
     })();
   </script>
   {% endif %}
-  {% elif themeConfig.comment.valine.enable %}
+  {% elseif themeConfig.comment.valine.enable %}
   {% if comment !== false %}
   <div id="vcomments" class="vcomments"></div>
   <script defer src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.avMin %}{{ themeConfig.libCDN.avMin }}{% else %}{{ getPath("js/av-min.js") }}{% endif %}"></script>

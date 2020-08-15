@@ -13,7 +13,7 @@
   <div class="page-counter">
     {% if site.posts.length > 1 %}
     {{ __("postCount.more", site.posts.length) }}
-    {% elif posts.length === 1 %}
+    {% elseif posts.length === 1 %}
     {{ __("postCount.one", site.posts.length) }}
     {% else %}
     {{ __("postCount.none") }}
