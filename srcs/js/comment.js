@@ -63,7 +63,6 @@ function fetchJSON(path, callback) {
       if (response.status !== 200) {
         // fetch does not reject on HTTP error, so we do this manually.
         throw new Error("Unexpected HTTP status code " + response.status);
-        return;
       }
       return response.json();
     }).then(function (json) {
