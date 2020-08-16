@@ -21,7 +21,7 @@ Live Demo: [喵's StackHarbor](https://sh.alynx.moe/)
 
 Using a static website generator needs some basic knowledge, if you know nothing, Hikaru and ARIA are not your best choice. Please be sure you know Hikaru, YAML, git, Markdown and Web before continuing.
 
-ARIA uses [FlexBox layout](https://developer.mozilla.org/en-US/docs/Web/CSS/flex) to place elements, and Internet Explorer before version 9 has no way to support it. So if you use IE, upgrade to IE 11 or later, or use a modern browser like [Google Chrome](https://www.google.com/chrome/) or [Mozilla Firefox](https://www.mozilla.org/en-US/firefox/). Or if you know how to fallback FlexBox in elder IE, please send PRs, thanks.
+IE support has been dropped since many new features cannot be easily polyfilled for IE, for example WebP, Promise, Fetch API, CacheStorage, some amazing functions in ARIA need those features so it's better to let IE users use modern browsers like [Mozilla Firefox](https://www.mozilla.org/en-US/firefox/) (**HIGHLY RECOMMENDED**) or [Google Chrome](https://www.google.com/chrome/).
 
 There won't be any stable releases for ARIA, because I am not interested in maintaining different versions except the one I am using. **Without maintaining stable releases are just stable bugs instead of quality.** So keep using the latest version of ARIA and Hikaru.
 
@@ -328,15 +328,15 @@ JavaScript inside scripts tags shoule have a 2-spaces indent to it's parent `<sc
 
 Most JavaScript code should inside `index.js`'s `documentReady()`.
 
-Consider not to use ES6, most of those functions can be written in ES5.
+IE support will be dropped so just use ES6, cheers!
 
-Prefer to use `Array.join()` instead of `+` to concat strings.
+Prefer to use template strings or `Array.join()` instead of `+` to concat strings.
 
 Prefer to use `"` and escaping instead of `'`.
 
 Don't remove `;`.
 
-Write functions like `function name(arg1, arg2) {}`, keep space after `function`, `,` and before `{`, but not after function name. But I prefer `var name = function (arg1, arg2) {};`
+Write functions like `function name(arg1, arg2) {}`, keep space after `function`, `,` and before `{`, but not after function name. But I prefer arrow functions with const.
 
 Use 2-spaces indent.
 
