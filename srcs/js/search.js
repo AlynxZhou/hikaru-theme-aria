@@ -29,9 +29,13 @@ function parseQueryString(queryString) {
   return result;
 }
 
-function fetchJSON(path, callback) {
+function fetchJSON(path, opts = {}, callback) {
+  if (callback == null) {
+    callback = opts;
+    opts = null;
+  }
   if (window.fetch != null) {
-    window.fetch(path).then(function (response) {
+    window.fetch(path, opts).then(function (response) {
       if (response.status !== 200) {
         // fetch does not reject on HTTP error, so we do this manually.
         throw new Error("Unexpected HTTP status code " + response.status);
@@ -66,6 +70,15 @@ function fetchJSON(path, callback) {
       }
       callback(null, JSON.parse(xhr.response));
     };
+    if (opts["headers"] != null) {
+      // Object.keys() is not supported by IE 9,
+      // but who cares? I only support IE 11.
+      var headerKeys = Object.keys(opts["headers"]);
+      // But IE 11 does not support for...of! I hate it!
+      for (var i = 0; i < headerKeys.length; ++i) {
+        xhr.setRequestHeader(headerKeys[i], opts["headers"][headerKeys[i]]);
+      }
+    }
     xhr.open("GET", path, true);
     xhr.send(null);
   }
