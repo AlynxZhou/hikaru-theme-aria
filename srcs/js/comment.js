@@ -160,11 +160,21 @@ function findIssueByTitle(issues, title, callback) {
   callback(null);
 }
 
-function getComments(issue, perPage, currentIndex, callback) {
+function getComments(issue, currentIndex, perPage, callback) {
   if (issue == null) {
     // Not a network error, just means no comment.
-    callback(null, []);
+    callback(null, [], 0, 0);
     return;
+  }
+  // We skip fetching comments if there is only one body,
+  // because pagesLength and currentIndex will be 0 and that's hard to handle.
+  if (issue["comments"] === 0) {
+    callback(null, [issue], 1, 1);
+    return;
+  }
+  var pagesLength = calPagesLength(issue["comments"], perPage);
+  if (currentIndex > pagesLength) {
+    currentIndex = pagesLength;
   }
   fetchJSON([
     issue["url"],
@@ -180,10 +190,9 @@ function getComments(issue, perPage, currentIndex, callback) {
     if (currentIndex === 1) {
       // GitHub does not treat issue content as comment, but we need.
       // Anyway, the first page will have perPage + 1 comments.
-      callback(null, [issue].concat(comments));
-    } else {
-      callback(null, comments);
+      comments = [issue].concat(comments);
     }
+    callback(null, comments, currentIndex, pagesLength);
   });
 }
 
@@ -329,16 +338,9 @@ var loadComment = function (opts) {
         return;
       }
       findIssueByTitle(issues, opts["title"], function (issue) {
-        var pagesLength = 1;
-        // Issue might be null here.
-        if (issue != null) {
-          pagesLength = calPagesLength(issue["comments"], opts["perPage"]);
-        }
-        if (commentPage > pagesLength) {
-          commentPage = pagesLength;
-        }
         getComments(
-          issue, opts["perPage"], commentPage, function (err, comments) {
+          issue, commentPage, opts["perPage"],
+          function (err, comments, commentPage, pagesLength) {
             if (err != null) {
               container.innerHTML = renderError(err, opts);
               return;
