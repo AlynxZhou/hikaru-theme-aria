@@ -123,44 +123,37 @@ function getRepo(path, callback) {
   });
 }
 
+// An ugly way to collect all issues,
+// because GitHub's API is paginated,
+// but our fetch is async.
 function getIssues(repo, callback) {
   var ISSUES_PER_PAGE = 70;
   var openIssuesCount = repo["open_issues_count"];
   var pagesLength = calPagesLength(openIssuesCount, ISSUES_PER_PAGE);
-  var nextPage = 1;
+  var fetchedPagesCount = 0;
   var results = [];
-  // An ugly way to collect all issues,
-  // because GitHub's API is paginated,
-  // but our fetch is async.
-  function handler(err, issues) {
-    ++nextPage;
-    if (err != null) {
-      callback(err, results);
-      return;
-    }
-    results = results.concat(issues);
-    if (nextPage <= pagesLength) {
-      fetchJSON([
-        repo["url"],
-        "/issues",
-        "?state=open&per_page=",
-        ISSUES_PER_PAGE,
-        "&page=",
-        nextPage
-      ].join(""), {"headers": GITHUB_API_HEADERS}, handler);
-    } else {
-      // No more issues, loop finished.
-      callback(null, results);
-    }
+  var lastError = null;
+  for (var i = 0; i < pagesLength; ++i) {
+    fetchJSON([
+      repo["url"],
+      "/issues",
+      "?state=open&per_page=",
+      ISSUES_PER_PAGE,
+      "&page=",
+      i
+    ].join(""), {"headers": GITHUB_API_HEADERS}, function (err, issues) {
+      ++fetchedPagesCount;
+      // Only last error can be handled, so sad.
+      if (err != null) {
+        lastError = err;
+      } else {
+        results = results.concat(issues);
+      }
+      if (fetchedPagesCount === pagesLength) {
+        callback(lastError, results);
+      }
+    });
   }
-  fetchJSON([
-    repo["url"],
-    "/issues",
-    "?state=open&per_page=",
-    ISSUES_PER_PAGE,
-    "&page=",
-    nextPage
-  ].join(""), {"headers": GITHUB_API_HEADERS}, handler);
 }
 
 function findIssueByTitle(issues, title, callback) {
