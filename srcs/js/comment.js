@@ -7,6 +7,7 @@
 
 var GITHUB_BASE_URL = "https://github.com";
 var GITHUB_API_BASE_URL = "https://api.github.com";
+var GITHUB_API_HEADERS = {"Accept": "application/vnd.github.v3.html+json"};
 
 function buildRepoURL(user, repo) {
   return [
@@ -57,9 +58,13 @@ function parseQueryString(queryString) {
   return result;
 }
 
-function fetchJSON(path, callback) {
+function fetchJSON(path, opts = {}, callback) {
+  if (callback == null) {
+    callback = opts;
+    opts = null;
+  }
   if (window.fetch != null) {
-    window.fetch(path).then(function (response) {
+    window.fetch(path, opts).then(function (response) {
       if (response.status !== 200) {
         // fetch does not reject on HTTP error, so we do this manually.
         throw new Error("Unexpected HTTP status code " + response.status);
@@ -94,6 +99,11 @@ function fetchJSON(path, callback) {
       }
       callback(null, JSON.parse(xhr.response));
     };
+    if (opts["headers"] != null) {
+      for (var key in opts["headers"]) {
+        xhr.setRequestHeader(key, opts["headers"][key]);
+      }
+    }
     xhr.open("GET", path, true);
     xhr.send(null);
   }
@@ -133,7 +143,7 @@ function getIssues(repo, callback) {
         ISSUES_PER_PAGE,
         "&page=",
         nextPage
-      ].join(""), handler);
+      ].join(""), {"headers": GITHUB_API_HEADERS}, handler);
     } else {
       // No more issues, loop finished.
       callback(null, results);
@@ -146,7 +156,7 @@ function getIssues(repo, callback) {
     ISSUES_PER_PAGE,
     "&page=",
     nextPage
-  ].join(""), handler);
+  ].join(""), {"headers": GITHUB_API_HEADERS}, handler);
 }
 
 function findIssueByTitle(issues, title, callback) {
@@ -183,7 +193,7 @@ function getComments(issue, currentIndex, perPage, callback) {
     perPage,
     "&page=",
     currentIndex
-  ].join(""), function (err, comments) {
+  ].join(""), {"headers": GITHUB_API_HEADERS}, function (err, comments) {
     if (err != null) {
       callback(err, null);
     }
@@ -248,7 +258,7 @@ function renderComment(comment) {
     "</span>",
     "</div>",
     "<div class=\"comment-content\">",
-    window.marked == null ? comment["body"] : window.marked(comment["body"]),
+    comment["body_html"],
     "</div>",
     "</div>",
     "</div>"

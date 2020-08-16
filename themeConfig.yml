@@ -111,7 +111,6 @@ libCDN:
   lgVideo:
   busuanzi:
   normalize:
-  marked:
   highlight:
   clipboard:
   # Don't use camelCase for hljs theme CSS files,
