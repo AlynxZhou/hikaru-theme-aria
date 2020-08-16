@@ -23,11 +23,6 @@
   </div>
   <script type="text/javascript">
     documentReady(function () {
-      window.marked.setOptions({
-        "highlight": function (code, lang) {
-          return hljs.highlightAuto(code).value;
-        }
-      });
       loadComment({
         "user": "{{ themeConfig.comment.issue.user }}",
         "repo": "{{ themeConfig.comment.issue.repo }}",
