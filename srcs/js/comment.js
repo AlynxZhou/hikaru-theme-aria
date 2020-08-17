@@ -10,6 +10,99 @@ const GITHUB_API_BASE_URL = "https://api.github.com";
 const GITHUB_API_HEADERS = {"Accept": "application/vnd.github.v3.html+json"};
 const ISSUES_PER_PAGE = 70;
 
+let cachePromise = null;
+
+// Fetching JSON with cache for GitHub API.
+const cachedFetchJSON = (path, opts = {}) => {
+  let cachedResponse = null;
+  return cachePromise.then((cache) => {
+    return cache.match(path);
+  }).then((response) => {
+    // No cache or no ETag, just re-fetch;
+    if (response == null || !response.headers.has("ETag")) {
+      return window.fetch(path, opts);
+    }
+    // Ask GitHub API whether cache is outdated.
+    cachedResponse = response;
+    opts["headers"] = opts["headers"] || {};
+    opts["headers"]["If-None-Match"] = cachedResponse.headers.get("ETag");
+    return window.fetch(path, opts);
+  }).then((response) => {
+    if (response.status === 200) {
+      // No cache or cache outdated and succeed.
+      // Update cache.
+      cachePromise.then((cache) => {
+        return cache.put(path, response);
+      });
+      // Cache needs an unconsumed response,
+      // so we clone respone before consume it.
+      return response.clone().json();
+    } else if (response.status === 304 && cachedResponse != null) {
+      // Not modified so use cache.
+      return cachedResponse.clone().json();
+    } else {
+      // fetch does not reject on HTTP error, so we do this manually.
+      throw new Error("Unexpected HTTP status code " + response.status);
+    }
+  });
+};
+
+// Fetching JSON without cache.
+const uncachedFetchJSON = (path, opts = {}) => {
+  return window.fetch(path, opts).then((response) => {
+    if (response.status === 200) {
+      return response.json();
+    } else {
+      // fetch does not reject on HTTP error, so we do this manually.
+      throw new Error("Unexpected HTTP status code " + response.status);
+    }
+  });
+};
+
+let fetchJSON = uncachedFetchJSON;
+
+const loadCache = (name) => {
+  // Unlike in .then(),
+  // we must explicit resolve and reject in a Promise's execuator.
+  return new Promise((resolve, reject) => {
+    if (cachePromise != null && fetchJSON !== uncachedFetchJSON) {
+      return reject(new Error("Cache is already loaded!"));
+    }
+    // Old version browsers does not support Response.
+    if (window.Response == null) {
+      return reject(
+        new Error("Old version browsers does not support Response.")
+      );
+    }
+    const testResponse = new window.Response();
+    // Safari and most mobile browsers do not support `Response.clone()`.
+    if (testResponse.headers == null || testResponse.clone == null) {
+      return reject(new Error(
+        "Safari and most mobile browsers do not support `Response.clone()`."
+      ));
+    }
+    // Chromium and Safari set `window.caches` to `undefined` if not HTTPS.
+    if (window.caches == null) {
+      return reject(new Error(
+        "Chromium and Safari set `window.caches` to `undefined` if not HTTPS."
+      ));
+    }
+    window.caches.open("CacheStorageTest").then((cache) => {
+      fetchJSON = cachedFetchJSON;
+      cachePromise = window.caches.open(name);
+      return window.caches.delete("CacheStorageTest");
+    }).then(() => {
+      return resolve();
+    }).catch((error) => {
+      // Firefox throws `SecurityError` if not HTTPS.
+      console.error(error);
+      return reject(new Error("Firefox throws `SecurityError` if not HTTPS."));
+    });
+  }).catch((error) => {
+    console.error(error);
+  });
+};
+
 const buildRepoURL = (user, repo) => {
   return `${GITHUB_API_BASE_URL}/repos/${user}/${repo}`;
 };
@@ -37,16 +130,6 @@ const calPagesLength = (totalLength, perPage) => {
   return result > floor ? floor + 1 : floor;
 };
 
-const fetchJSON = (path, opts = {}) => {
-  return window.fetch(path, opts).then((response) => {
-    if (response.status !== 200) {
-      // fetch does not reject on HTTP error, so we do this manually.
-      throw new Error("Unexpected HTTP status code " + response.status);
-    }
-    return response.json();
-  });
-};
-
 const getRepo = (path) => {
   return fetchJSON(path);
 };
@@ -65,7 +148,7 @@ const getIssues = (repo) => {
       "?state=open&per_page=",
       ISSUES_PER_PAGE,
       "&page=",
-      i
+      i + 1
     ].join(""), {"headers": GITHUB_API_HEADERS}));
   }
   return Promise.all(results).then((results) => {
@@ -201,7 +284,7 @@ const renderError = (err, opts) => {
 };
 
 /* eslint-disable-next-line no-unused-vars */
-window.loadComment = function (opts) {
+const loadComment = (opts) => {
   if (opts == null) {
     return;
   }
@@ -220,13 +303,15 @@ window.loadComment = function (opts) {
   if (container == null) {
     return;
   }
-  const urlParams = new URLSearchParams(opts["queryString"]);
+  const urlParams = new window.URLSearchParams(opts["queryString"]);
   let commentPage = 1;
   let pagesLength = 1;
   if (urlParams.has("comment_page")) {
     commentPage = Number.parseInt(urlParams.get("comment_page"));
   }
-  getRepo(buildRepoURL(opts["user"], opts["repo"])).then((repo) => {
+  loadCache(`${opts["user"]}/${opts["repo"]}`).then(() => {
+    return getRepo(buildRepoURL(opts["user"], opts["repo"]));
+  }).then((repo) => {
     return getIssues(repo);
   }).then((issues) => {
     const issue = findIssueByTitle(issues, opts["title"]);
@@ -256,7 +341,7 @@ window.loadComment = function (opts) {
 };
 
 /* eslint-disable-next-line no-unused-vars */
-window.loadCommentCount = function (opts) {
+const loadCommentCount = (opts) => {
   if (opts == null) {
     return;
   }
@@ -267,7 +352,9 @@ window.loadCommentCount = function (opts) {
   if (containers.length === 0) {
     return;
   }
-  getRepo(buildRepoURL(opts["user"], opts["repo"])).then((repo) => {
+  loadCache(`${opts["user"]}/${opts["repo"]}`).then(() => {
+    return getRepo(buildRepoURL(opts["user"], opts["repo"]));
+  }).then((repo) => {
     return getIssues(repo);
   }).then((issues) => {
     for (const container of containers) {
