@@ -309,7 +309,7 @@ const loadComment = (opts) => {
   if (urlParams.has("comment_page")) {
     commentPage = Number.parseInt(urlParams.get("comment_page"));
   }
-  loadCache(`${opts["user"]}/${opts["repo"]}`).then(() => {
+  return loadCache(`${opts["user"]}/${opts["repo"]}`).then(() => {
     return getRepo(buildRepoURL(opts["user"], opts["repo"]));
   }).then((repo) => {
     return getIssues(repo);
@@ -352,7 +352,7 @@ const loadCommentCount = (opts) => {
   if (containers.length === 0) {
     return;
   }
-  loadCache(`${opts["user"]}/${opts["repo"]}`).then(() => {
+  return loadCache(`${opts["user"]}/${opts["repo"]}`).then(() => {
     return getRepo(buildRepoURL(opts["user"], opts["repo"]));
   }).then((repo) => {
     return getIssues(repo);
