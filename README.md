@@ -83,7 +83,9 @@ feed:
 
 ### Highlight Settings
 
-If you want to add line numbers, set `gutter: true`. If you want speed up generation, you can set `enable: false` to prevent Hikaru for doing highlight, and highlight will be done in browser with JavaScript.
+If you want to speed up generation, you can set `enable: false` to prevent Hikaru for doing highlight, and ARIA will do highlight in browser with JavaScript.
+
+If you don't want to generate gutter to HTML docs with Hikaru, you can set `gutter: false`, and ARIA will generate gutter in browser with JavaScript, this is useful if you don't want gutter in Feed XML.
 
 ```yaml
 highlight:
