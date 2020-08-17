@@ -34,6 +34,17 @@
         "queryString": window.location.search,
         "basePath": "{{ getPath(docPath) }}",
         "containerID": "comment-results"
+      }).then(() => {
+        elementsEach(
+          document.querySelectorAll("div.comment-content img"),
+          (e, i) => {
+            // If an image works as link,
+            // stop adding link styles to it.
+            if (e.parentNode.tagName === "A") {
+              e.parentNode.classList.add("img-link");
+            }
+          }
+        );
       });
     });
   </script>
