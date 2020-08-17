@@ -3,7 +3,7 @@
   {% if themeConfig.comment.issue.enable %}
   <script defer type="text/javascript" src="{{ getPath("js/comment.js") }}"></script>
   <script type="text/javascript">
-    documentReady(function () {
+    documentReady(() => {
       loadCommentCount({
         "user": "{{ themeConfig.comment.issue.user }}",
         "repo": "{{ themeConfig.comment.issue.repo }}",
@@ -22,7 +22,7 @@
     </div>
   </div>
   <script type="text/javascript">
-    documentReady(function () {
+    documentReady(() => {
       loadComment({
         "user": "{{ themeConfig.comment.issue.user }}",
         "repo": "{{ themeConfig.comment.issue.repo }}",
@@ -43,12 +43,13 @@
   {% if comment !== false %}
   <div id="disqus_thread" class="disqus_thread"></div>
   <script type="text/javascript">
-    var disqus_config = function () {
+    const disqus_config = () => {
       this.page.url = "{{ getPath(docPath) }}";
       this.page.identifier = "{{ getPath(docPath) }}";
     };
-    (function() {
-      var d = document, s = d.createElement("script");
+    (() => {
+      const d = document;
+      const s = d.createElement("script");
       s.src = "https://{{ themeConfig.comment.disqusShortName }}.disqus.com/embed.js";
       s.setAttribute("data-timestamp", +new Date());
       (d.head || d.body).appendChild(s);

@@ -9,11 +9,11 @@
 {% if themeConfig.search %}
 <script defer type="text/javascript" src="{{ getPath("js/search.js") }}"></script>
 <script type="text/javascript">
-  documentReady(function () {
+  documentReady(() => {
     {% if isArray(siteConfig.search.path) %}
-    var searchPaths = [{% for p in siteConfig.search.path %}"{{ getPath(p) }}"{% if not loop.last %}, {% endif %}{% endfor %}];
+    const searchPaths = [{% for p in siteConfig.search.path %}"{{ getPath(p) }}"{% if not loop.last %}, {% endif %}{% endfor %}];
     {% else %}
-    var searchPaths = ["{{ getPath(siteConfig.search.path) }}"];
+    const searchPaths = ["{{ getPath(siteConfig.search.path) }}"];
     {% endif %}
     loadSearch({
       "paths": searchPaths,

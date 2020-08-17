@@ -86,7 +86,7 @@
     {% if themeConfig.mathjax.global or mathjax %}
     <script defer type="text/javascript" src="{{ themeConfig.mathjax.cdn }}"></script>
     <script type="text/x-mathjax-config">
-      documentReady(function () {
+      documentReady(() => {
         MathJax.Hub.Config({
           "tex2jax": {
             "inlineMath": [["$", "$"], ["\\(", "\\)"]],
@@ -94,10 +94,10 @@
             "skipTags": ["script", "noscript", "style", "textarea", "pre", "code"]
           }
         });
-        MathJax.Hub.Queue(function() {
-          var all = MathJax.Hub.getAllJax();
-          for (var i = 0; i < all.length; ++i) {
-            all[i].SourceElement().parentNode.className += " has-jax";
+        MathJax.Hub.Queue(() => {
+          const all = MathJax.Hub.getAllJax();
+          for (const jax of all) {
+            jax.SourceElement().parentNode.classList.add("has-jax");
           }
         });
       });
@@ -108,10 +108,10 @@
     {% if siteConfig.highlight.enable !== true or (themeConfig.comment.issue.enable and comment !== false) %}
     <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.highlight %}{{ themeConfig.libCDN.highlight }}{% else %}{{ getPath("js/highlight.min.js") }}{% endif %}"></script>
     <script type="text/javascript">
-      documentReady(function () {
+      documentReady(() => {
         elementsEach(
           document.querySelectorAll("figure.code-block pre.code code"),
-          function (e, i) {
+          (e, i) => {
             // We want to use hljs' background and color for the whole block.
             e.parentNode.parentNode.classList.add("hljs");
             hljs.highlightBlock(e);
@@ -123,8 +123,8 @@
     <script type="text/javascript">
       // Set theme before page rendering.
       // Check user's choice from localStorage.
-      var theme = localStorage.getItem("theme");
-      var preferenceQuery = window.matchMedia("(prefers-color-scheme: dark)");
+      let theme = localStorage.getItem("theme");
+      const preferenceQuery = window.matchMedia("(prefers-color-scheme: dark)");
       // theme might be null here.
       if (theme !== "dark" && theme !== "light") {
         // Init from user's system settings if no choice.
@@ -133,9 +133,9 @@
       // Yes, it looks I can modify documentElement before ready!
       document.documentElement.setAttribute("data-theme", theme);
       localStorage.setItem("theme", theme);
-      documentReady(function () {
-        var themeToggle = document.getElementById("theme-toggle");
-        var setThemeToggle = function (themeToggle, theme) {
+      documentReady(() => {
+        const themeToggle = document.getElementById("theme-toggle");
+        const setThemeToggle = (themeToggle, theme) => {
           themeToggle.innerHTML = theme === "dark"
             ? "<i class=\"far fa-moon\" aria-label=\"{{ __("accessibility.themeDark") }}\"></i>"
             : "<i class=\"far fa-sun\" aria-label=\"{{ __("accessibility.themeLight") }}\"></i>";
@@ -143,14 +143,14 @@
         // Update theme toggle content.
         setThemeToggle(themeToggle, theme);
         // User changed system settings, update.
-        preferenceQuery.addListener(function (event) {
+        preferenceQuery.addListener((event) => {
           theme = event.matches ? "dark" : "light";
           setThemeToggle(themeToggle, theme);
           document.documentElement.setAttribute("data-theme", theme);
           localStorage.setItem("theme", theme);
         });
         // Other page of site changed storage, update.
-        window.addEventListener("storage", function (event) {
+        window.addEventListener("storage", (event) => {
           if (event.key === "theme" && event.newValue !== event.oldValue) {
             theme = event.newValue;
             setThemeToggle(themeToggle, theme);
@@ -158,7 +158,7 @@
           }
         });
         // User changed website settings, update.
-        themeToggle.addEventListener("click", function (event) {
+        themeToggle.addEventListener("click", (event) => {
           theme = theme === "dark" ? "light" : "dark";
           setThemeToggle(themeToggle, theme);
           document.documentElement.setAttribute("data-theme", theme);
@@ -166,8 +166,8 @@
         });
         elementsEach(
           document.querySelectorAll(".post figure.code-block"),
-          function (e, i) {
-            var lang = e.getAttribute("data-lang");
+          (e, i) => {
+            const lang = e.getAttribute("data-lang");
             e.insertAdjacentElement("beforebegin", createElementFromString([
               "<div class=\"code-titlebar\">",
                 "<div class=\"titlebar-left\">",
@@ -185,22 +185,22 @@
             ].join("")));
           }
         );
-        var cb = new ClipboardJS("button.copy", {
-          "target": function (trigger) {
+        const cb = new ClipboardJS("button.copy", {
+          "target": (trigger) => {
               // Get target element by DOM API.
               // trigger.parentNode.parentNode is code-titlebar.
               // nextElementSibling is figure.highlight, lastChild is pre.code.
               return trigger.parentNode.parentNode.nextElementSibling.lastChild;
           }
         });
-        cb.on("success", function (e) {
+        cb.on("success", (e) => {
           e.clearSelection();
-          var trigger = e.trigger;
+          const trigger = e.trigger;
           // Change button text as a user tip.
           trigger.innerHTML = "<i class=\"far fa-check-square\"></i>";
           trigger.classList.add("copied");
           // Change button text back;
-          setTimeout(function () {
+          window.setTimeout(() => {
             trigger.innerHTML = "<i class=\"far fa-copy\"></i>";
             trigger.classList.remove("copied");
           }, 1500);
