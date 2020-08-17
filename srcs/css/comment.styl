@@ -57,7 +57,10 @@ if (getThemeConfig("comment.issue.enable")) {
     padding: 0.5em;
     color: $color-comment-info-font;
     background: $color-comment-info-background;
-    overflow: auto;
+    // Sometimes scrollbar shows because of Chinese word wrap with English.
+    scrollbar-width: thin;
+    scrollbar-color: $color-scrollbar $color-scrollbar-background;
+    scrollbar-color: var(--color-scrollbar) var(--color-scrollbar-background);
     a {
       position: relative;
       color: $color-comment-info-link-font;
