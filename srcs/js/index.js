@@ -30,6 +30,13 @@ const elementBefore = (element, before) => {
   if (element == null || before == null) {
     return;
   }
+  element.insertAdjacentElement("beforebegin", before);
+};
+
+const elementAfter = (element, before) => {
+  if (element == null || before == null) {
+    return;
+  }
   element.insertAdjacentElement("afterend", before);
 };
 
@@ -209,14 +216,14 @@ documentReady(() => {
     // If an image works as link, don't attach light gallary to it.
     if (e.parentNode.tagName !== "A") {
       if (e.title) {
-        elementBefore(e, createElementFromString(
+        elementAfter(e, createElementFromString(
           `<div class="center"><span class="caption">${e.title}</span></div>`
         ));
       }
       const a = document.createElement("a");
       a.href = e.src;
       a.className = "gallery-item";
-      elementBefore(e, a);
+      elementAfter(e, a);
       a.appendChild(e);
     } else {
       e.parentNode.classList.add("img-link");
