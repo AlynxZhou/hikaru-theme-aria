@@ -175,11 +175,11 @@ documentReady(() => {
 
   const yearsText = document.getElementById("years-text");
   const current = new Date().getFullYear().toString();
-  const since = yearsText.innerHTML;
+  const since = yearsText.textContent;
   if (since.length === 0) {
-    yearsText.innerHTML = current;
+    yearsText.textContent = current;
   } else if (since !== current) {
-    yearsText.innerHTML = `${since} - ${current}`;
+    yearsText.textContent = `${since} - ${current}`;
   }
 
   // (40em - 0.6em) * 16px
