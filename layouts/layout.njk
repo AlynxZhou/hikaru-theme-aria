@@ -156,7 +156,9 @@
         theme = preferenceQuery.matches ? "dark" : "light";
       }
       // Yes, it looks I can modify documentElement before ready!
-      document.documentElement.setAttribute("data-theme", theme);
+      window.requestAnimationFrame(() => {
+        document.documentElement.setAttribute("data-theme", theme);
+      });
       localStorage.setItem("theme", theme);
       documentReady(() => {
         const themeToggle = document.getElementById("theme-toggle");
@@ -171,7 +173,9 @@
         preferenceQuery.addListener((event) => {
           theme = event.matches ? "dark" : "light";
           setThemeToggle(themeToggle, theme);
-          document.documentElement.setAttribute("data-theme", theme);
+          window.requestAnimationFrame(() => {
+            document.documentElement.setAttribute("data-theme", theme);
+          });
           localStorage.setItem("theme", theme);
         });
         // Other page of site changed storage, update.
@@ -179,14 +183,18 @@
           if (event.key === "theme" && event.newValue !== event.oldValue) {
             theme = event.newValue;
             setThemeToggle(themeToggle, theme);
-            document.documentElement.setAttribute("data-theme", theme);
+            window.requestAnimationFrame(() => {
+              document.documentElement.setAttribute("data-theme", theme);
+            });
           }
         });
         // User changed website settings, update.
         themeToggle.addEventListener("click", (event) => {
           theme = theme === "dark" ? "light" : "dark";
           setThemeToggle(themeToggle, theme);
-          document.documentElement.setAttribute("data-theme", theme);
+          window.requestAnimationFrame(() => {
+            document.documentElement.setAttribute("data-theme", theme);
+          });
           localStorage.setItem("theme", theme);
         });
         elementsEach(
