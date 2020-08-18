@@ -201,7 +201,7 @@
           document.querySelectorAll(".post figure.code-block"),
           (e, i) => {
             const lang = e.getAttribute("data-lang");
-            e.insertAdjacentElement("beforebegin", createElementFromString([
+            elementBefore(e, createElementFromString([
               "<div class=\"code-titlebar\">",
                 "<div class=\"titlebar-left\">",
                   "<button class=\"copy\" aria-label=\"{{ __("clipboard.copy") }}\"><i class=\"far fa-copy\"></i></button>",
