@@ -156,9 +156,8 @@
         theme = preferenceQuery.matches ? "dark" : "light";
       }
       // Yes, it looks I can modify documentElement before ready!
-      window.requestAnimationFrame(() => {
-        document.documentElement.setAttribute("data-theme", theme);
-      });
+      // Don't use requestAnimationFrame here, it will cause flickering.
+      document.documentElement.setAttribute("data-theme", theme);
       localStorage.setItem("theme", theme);
       documentReady(() => {
         const themeToggle = document.getElementById("theme-toggle");
