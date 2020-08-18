@@ -1,5 +1,6 @@
 "use strict";
 
+/* eslint-disable-next-line no-unused-vars */
 const documentReady = (callback) => {
   if (callback == null) {
     return;
@@ -13,12 +14,14 @@ const documentReady = (callback) => {
   }
 };
 
+/* eslint-disable-next-line no-unused-vars */
 const createElementFromString = (string) => {
   const e = document.createElement("div");
   e.innerHTML = string;
   return e.firstElementChild;
 };
 
+/* eslint-disable-next-line no-unused-vars */
 const elementsEach = (elements, callback) => {
   if (elements == null || callback == null) {
     return;
@@ -26,6 +29,7 @@ const elementsEach = (elements, callback) => {
   return Array.prototype.forEach.call(elements, callback);
 };
 
+/* eslint-disable-next-line no-unused-vars */
 const elementBefore = (element, before) => {
   if (element == null || before == null) {
     return;
@@ -33,6 +37,7 @@ const elementBefore = (element, before) => {
   element.insertAdjacentElement("beforebegin", before);
 };
 
+/* eslint-disable-next-line no-unused-vars */
 const elementAfter = (element, before) => {
   if (element == null || before == null) {
     return;
@@ -40,6 +45,7 @@ const elementAfter = (element, before) => {
   element.insertAdjacentElement("afterend", before);
 };
 
+/* eslint-disable-next-line no-unused-vars */
 const scrollToTop = (opts) => {
   opts = opts || {};
   opts["duration"] = opts["duration"] || 400;
@@ -66,6 +72,7 @@ const scrollToTop = (opts) => {
   window.requestAnimationFrame(frame);
 };
 
+/* eslint-disable-next-line no-unused-vars */
 const slideUp = (target, duration) => {
   if (target == null) {
     return;
@@ -97,6 +104,7 @@ const slideUp = (target, duration) => {
   }, duration);
 };
 
+/* eslint-disable-next-line no-unused-vars */
 const slideDown = (target, duration) => {
   if (target == null) {
     return;
@@ -134,6 +142,7 @@ const slideDown = (target, duration) => {
   }, duration);
 };
 
+/* eslint-disable-next-line no-unused-vars */
 const slideToggle = (target, duration) => {
   if (target == null) {
     return;
