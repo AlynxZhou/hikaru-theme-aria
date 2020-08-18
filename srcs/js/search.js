@@ -12,7 +12,7 @@ const MAX_DISPLAY_SLICES = 10;
 
 const fetchJSON = (path, opts = {}) => {
   return window.fetch(path, opts).then((response) => {
-    if (response.status === 200) {
+    if (response.ok) {
       return response.json();
     } else {
       // fetch does not reject on HTTP error, so we do this manually.

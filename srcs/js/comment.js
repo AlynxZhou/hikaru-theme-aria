@@ -28,7 +28,7 @@ const cachedFetchJSON = (path, opts = {}) => {
     opts["headers"]["If-None-Match"] = cachedResponse.headers.get("ETag");
     return window.fetch(path, opts);
   }).then((response) => {
-    if (response.status === 200) {
+    if (response.ok) {
       // No cache or cache outdated and succeed.
       // Update cache.
       cachePromise.then((cache) => {
@@ -50,7 +50,7 @@ const cachedFetchJSON = (path, opts = {}) => {
 // Fetching JSON without cache.
 const uncachedFetchJSON = (path, opts = {}) => {
   return window.fetch(path, opts).then((response) => {
-    if (response.status === 200) {
+    if (response.ok) {
       return response.json();
     } else {
       // fetch does not reject on HTTP error, so we do this manually.
@@ -68,17 +68,21 @@ const loadCache = (name) => {
     if (cachePromise != null && fetchJSON !== uncachedFetchJSON) {
       return reject(new Error("Cache is already loaded!"));
     }
-    // Old version browsers does not support Response.
+    // Old version browsers does not support `Response`.
     if (window.Response == null) {
       return reject(
-        new Error("Old version browsers does not support Response.")
+        new Error("Old version browsers does not support `Response`.")
       );
     }
     const testResponse = new window.Response();
-    // Safari and most mobile browsers do not support `Response.clone()`.
-    if (testResponse.headers == null || testResponse.clone == null) {
+    // Safari and most mobile browsers do not support full `Response`.
+    if (
+      testResponse.clone == null ||
+      testResponse.status == null ||
+      testResponse.headers == null
+    ) {
       return reject(new Error(
-        "Safari and most mobile browsers do not support `Response.clone()`."
+        "Safari and most mobile browsers do not support full `Response`."
       ));
     }
     // Chromium and Safari set `window.caches` to `undefined` if not HTTPS.
