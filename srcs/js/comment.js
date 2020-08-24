@@ -98,9 +98,11 @@ const loadCache = (name) => {
     }).then(() => {
       return resolve();
     }).catch((error) => {
-      // Firefox throws `SecurityError` if not HTTPS.
+      // Firefox throws `SecurityError` if not HTTPS or `localhost`.
       console.error(error);
-      return reject(new Error("Firefox throws `SecurityError` if not HTTPS."));
+      return reject(new Error(
+        "Firefox throws `SecurityError` if not HTTPS or `localhost`."
+      ));
     });
   }).catch((error) => {
     console.error(error);
@@ -156,6 +158,10 @@ const getIssues = (repo) => {
     ].join(""), {"headers": GITHUB_API_HEADERS}));
   }
   return Promise.all(results).then((results) => {
+    if (results.length === 0) {
+      // No issue, no page, no Promise in array and cannot reduce.
+      return results;
+    }
     return results.reduce((accumulator, currentValue) => {
       return accumulator.concat(currentValue);
     });
