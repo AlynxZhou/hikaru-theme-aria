@@ -287,7 +287,7 @@ const renderError = (err, opts) => {
   return [
     "<div class=\"comment-fail\" id=\"comment-fail\">",
     err.message,
-    ": ",
+    "<br>",
     opts["failText"],
     "</div>"
   ].join("");
