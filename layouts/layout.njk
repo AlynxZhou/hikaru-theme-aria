@@ -61,19 +61,11 @@
     {% endif %}
     <link rel="stylesheet" type="text/css" href="{{ getPath("css/custom.css") }}">
     <link rel="stylesheet" type="text/css" href="{% if themeConfig.libCDN.enable and themeConfig.libCDN[themeConfig.highlight] %}{{ themeConfig.libCDN[themeConfig.highlight] }}{% else %}{{ getPath("css/" + themeConfig.highlight + ".css") }}{% endif %}">
-    <link rel="stylesheet" type="text/css" href="{% if themeConfig.libCDN.enable and themeConfig.libCDN.lightGallery.css %}{{ themeConfig.libCDN.lightGallery.css }}{% else %}{{ getPath("css/lightgallery.min.css") }}{% endif %}">
     {% block css %}{% endblock %}
     {# You should not set `defer` to `index.js` because other scripts depends it for `documentReady()`! #}
     <script type="text/javascript" src="{{ getPath("js/index.js") }}"></script>
     <script defer type="text/javascript" src="{{ getPath("js/scrollspy.js") }}"></script>
     <script defer type="text/javascript" src="{{ getPath("js/custom.js") }}"></script>
-    <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.lightGallery.js %}{{ themeConfig.libCDN.lightGallery.js }}{% else %}{{ getPath("js/lightgallery.min.js") }}{% endif %}"></script>
-    <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.lgFullscreen %}{{ themeConfig.libCDN.lgFullscreen }}{% else %}{{ getPath("js/lg-fullscreen.min.js") }}{% endif %}"></script>
-    <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.lgHash %}{{ themeConfig.libCDN.lgHash }}{% else %}{{ getPath("js/lg-hash.min.js") }}{% endif %}"></script>
-    <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.lgPager %}{{ themeConfig.libCDN.lgPager }}{% else %}{{ getPath("js/lg-pager.min.js") }}{% endif %}"></script>
-    <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.lgThumbnail %}{{ themeConfig.libCDN.lgThumbnail }}{% else %}{{ getPath("js/lg-thumbnail.min.js") }}{% endif %}"></script>
-    <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.lgZoom %}{{ themeConfig.libCDN.lgZoom }}{% else %}{{ getPath("js/lg-zoom.min.js") }}{% endif %}"></script>
-    <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.lgVideo %}{{ themeConfig.libCDN.lgVideo }}{% else %}{{ getPath("js/lg-video.min.js") }}{% endif %}"></script>
     <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.clipboard %}{{ themeConfig.libCDN.clipboard }}{% else %}{{ getPath("js/clipboard.min.js") }}{% endif %}"></script>
     <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.fontAwesome.solid %}{{ themeConfig.libCDN.fontAwesome.solid }}{% else %}{{ getPath("js/fa-solid.min.js") }}{% endif %}"></script>
     <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.fontAwesome.brands %}{{ themeConfig.libCDN.fontAwesome.brands }}{% else %}{{ getPath("js/fa-brands.min.js") }}{% endif %}"></script>

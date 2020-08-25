@@ -13,7 +13,6 @@ Live Demo: [喵's StackHarbor](https://sh.alynx.moe/)
 - Busuanzi counting.
 - Hikaru local search support.
 - Multi-languages support (currently `zh-Hans`, `zh-Hant-HK`, `zh-Hant-TW` and `en`, PR welcome).
-- Image display powered by [Lightgallery](https://sachinchoolur.github.io/lightgallery.js/).
 - RSS feed supported.
 - Dark mode supported by CSS variables.
 

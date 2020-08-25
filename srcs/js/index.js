@@ -223,28 +223,16 @@ documentReady(() => {
 
   elementsEach(document.querySelectorAll("article.post img"), (e, i) => {
     // If an image works as link, don't attach light gallary to it.
-    if (e.parentNode.tagName !== "A") {
+    if (e.parentNode.tagName.toLowerCase() === "a") {
+      e.parentNode.classList.add("img-link");
+    } else {
       if (e.title) {
         elementAfter(e, createElementFromString(
           `<div class="center"><span class="caption">${e.title}</span></div>`
         ));
       }
-      const a = document.createElement("a");
-      a.href = e.src;
-      a.className = "gallery-item";
-      elementAfter(e, a);
-      a.appendChild(e);
-    } else {
-      e.parentNode.classList.add("img-link");
     }
   });
-
-  if (typeof lightGallery !== "undefined") {
-    elementsEach(document.querySelectorAll("article.post"), (e, i) => {
-      /* eslint-disable-next-line no-undef */
-      lightGallery(e, {"selector": ".gallery-item"});
-    });
-  }
 
   /* eslint-disable-next-line no-undef */
   loadScrollSpy({

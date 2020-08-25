@@ -100,15 +100,6 @@ libCDN:
     solid:
     brands:
     regular:
-  lightGallery:
-    js:
-    css:
-  lgFullscreen:
-  lgHash:
-  lgPager:
-  lgThumbnail:
-  lgZoom:
-  lgVideo:
   busuanzi:
   normalize:
   highlight:

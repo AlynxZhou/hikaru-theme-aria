@@ -40,7 +40,7 @@
           (e, i) => {
             // If an image works as link,
             // stop adding link styles to it.
-            if (e.parentNode.tagName === "A") {
+            if (e.parentNode.tagName.toLowerCase() === "a") {
               e.parentNode.classList.add("img-link");
             }
           }
