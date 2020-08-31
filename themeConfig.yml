@@ -26,7 +26,7 @@ favicon:
   safariPinnedTab: favicons/safari-pinned-tab.svg
   androidManifest: favicons/site.webmanifest
   msBrowserConfig: favicons/browserconfig.xml
-  fallback: favicons/favicon.ico
+  fallback: favicon.ico
 
 # Must be an array.
 keywords:
