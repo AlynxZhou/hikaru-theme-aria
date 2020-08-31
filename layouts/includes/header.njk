@@ -3,8 +3,10 @@
   <div class="container">
     <div class="header-container">
       <div class="header-title">
-        <div class="title"><a href="{{ siteConfig.rootDir }}">{{ siteConfig.title }}</a></div>
+        <div class="title"><a href="{{ getPath() }}">{{ siteConfig.title }}</a></div>
+        {% if siteConfig.subtitle %}
         <div class="subtitle">{{ siteConfig.subtitle }}</div>
+        {% endif %}
       </div>
       {% if themeConfig.logo %}
       <div class="logo">

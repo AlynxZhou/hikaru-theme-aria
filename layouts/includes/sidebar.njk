@@ -12,7 +12,9 @@
     <img class="author-avatar" src="{{ getPath(themeConfig.avatar) }}" alt="{{ siteConfig.author }}">
     {% endif %}
     <div class="author-name">{{ siteConfig.author }}</div>
+    {% if siteConfig.description %}
     <div class="author-description">{{ siteConfig.description }}</div>
+    {% endif %}
     <div class="site-count">
       {% for e in themeConfig.menu %}
       {% if e.name === "archives" %}

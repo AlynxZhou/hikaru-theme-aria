@@ -11,18 +11,20 @@
     {% if themeConfig.googleVerification %}
     <meta name="google-site-verification" content="{{ themeConfig.googleVerification }}">
     {% endif %}
+    <meta name="author" content="{{ siteConfig.author }}">
+    {% if excerpt %}
+    <meta name="description" content="{{ excerpt | striptags }}">
+    {% elseif description %}
+    <meta name="description" content="{{ description }}">
+    {% elseif siteConfig.description %}
+    <meta name="description" content="{{ siteConfig.description }}">
+    {% endif %}
     {% if keywords %}
     <meta name="keywords" content="{{ keywords.join(", ") }}">
     {% elseif themeConfig.keywords %}
     <meta name="keywords" content="{{ themeConfig.keywords.join(", ") }}">
     {% endif %}
-    {% if excerpt %}
-    <meta name="description" content="{{ excerpt | striptags }}">
-    {% elseif description %}
-    <meta name="description" content="{{ description | striptags }}">
-    {% elseif siteConfig.description %}
-    <meta name="description" content="{{ siteConfig.description | striptags }}">
-    {% endif %}
+    <meta name="generator" content="Hikaru v{{ getVersion() }}">
     <link rel="canonical" href="{{ getURL(docPath) }}">
     {% if themeConfig.favicon.appleTouchIcon %}
     <link rel="apple-touch-icon" sizes="180x180" href="{{ getPath(themeConfig.favicon.appleTouchIcon) }}">
