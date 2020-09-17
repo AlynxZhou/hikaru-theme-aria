@@ -190,6 +190,33 @@
           });
           localStorage.setItem("theme", theme);
         });
+        // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat
+        // A modern way to show date in user's format.
+        // But it shows date only by default, no time.
+        const formatter = new Intl.DateTimeFormat("{{ siteConfig["language"] }}", {
+          "year": "numeric",
+          "month": "2-digit",
+          "day": "2-digit",
+          "weekday": "short",
+          "hour": "2-digit",
+          "minute": "2-digit",
+          "second": "2-digit",
+          "timeZoneName": "short",
+          "hour12": false
+        });
+        elementsEach(
+          document.querySelectorAll("time.post-full-date"),
+          (e, i) => {
+            const date = new Date(e.getAttribute("datetime"));
+            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/formatToParts
+            const parts = formatter.formatToParts(date);
+            const obj = {};
+            for (let {type, value} of parts) {
+              obj[type] = value
+            }
+            e.innerHTML = `${obj["year"]}-${obj["month"]}-${obj["day"]} ${obj["weekday"]} ${obj["hour"]}:${obj["minute"]}:${obj["second"]} ${obj["timeZoneName"]}`
+          }
+        );
         elementsEach(
           document.querySelectorAll(".post figure.code-block"),
           (e, i) => {

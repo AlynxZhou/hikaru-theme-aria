@@ -240,7 +240,11 @@ const renderComment = (comment) => {
       : ("<span class=\"comment-info-association\">" +
          comment["author_association"] + "</span>"),
     "<span class=\"comment-info-date\">",
-    new Date(comment["updated_at"]).toLocaleString(),
+    "<time class=\"comment-full-date\" title=\"comment-date\" itemprop=\"dateCreated datePublished\" datetime=\"",
+    comment["created_at"],
+    "\">",
+    new Date(comment["created_at"]).toLocaleString(),
+    "</time>",
     "</span>",
     "</div>",
     "<div class=\"comment-content\">",

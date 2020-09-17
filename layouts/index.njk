@@ -29,12 +29,12 @@
       <div class="post-meta">
         {% if post.createdDate %}
         <div class="post-date meta-block">
-          <i class="far fa-calendar-check"></i><span><time title="post-date" itemprop="dateCreated datePublished" datetime="{{ post.createdDate.toISOString() }}">{{ post.createdDate.toLocaleString() }}</time></span>
+          <i class="far fa-calendar-check"></i><span><time class="post-full-date" title="post-date" itemprop="dateCreated datePublished" datetime="{{ post.createdDate.toISOString() }}">{{ post.createdDate.toLocaleString() }}</time></span>
         </div>
         {% endif %}
         {% if post.updatedDate %}
         <div class="post-date meta-block">
-          <i class="far fa-calendar-plus"></i><span><time title="post-date" itemprop="dateUpdated" datetime="{{ post.updatedDate.toISOString() }}">{{ post.createdDate.toLocaleString() }}</time></span>
+          <i class="far fa-calendar-plus"></i><span><time class="post-full-date" title="post-date" itemprop="dateUpdated" datetime="{{ post.updatedDate.toISOString() }}">{{ post.createdDate.toLocaleString() }}</time></span>
         </div>
         {% endif %}
         {% if post.categories and post.categories.length %}
