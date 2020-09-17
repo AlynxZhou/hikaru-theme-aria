@@ -19,10 +19,10 @@
     {{ __("postCount.none") }}
     {% endif %}
   </div>
-  {% set year = "1970" %}
+  {% set year = 1970 %}
   {% for post in posts %}
-  {% if post.createdMoment.format("YYYY") !== year %}
-  {% set year = post.createdMoment.format("YYYY") %}
+  {% if post.createdDate.getFullYear() !== year %}
+  {% set year = post.createdDate.getFullYear() %}
   <div class="page-title">{{ year }}</div>
   {% endif %}
   <article class="article post card{% if themeConfig.animate %} animate{% endif %}" itemscope itemtype="http://schema.org/Article">
@@ -32,7 +32,7 @@
       </div>
       {% if post.createdDate %}
       <span class="post-date">
-        <time title="post-date" itemprop="dateCreated datePublished" datetime="{{ post.createdDate.toISOString() }}">{{ post.createdMoment.format("MM-DD") }}</time>
+        <time title="post-date" itemprop="dateCreated datePublished" datetime="{{ post.createdDate.toISOString() }}">{{ post.createdDate.getMonth() + 1 }}-{{ post.createdDate.getDate() }}</time>
       </span>
       {% endif %}
     </header>

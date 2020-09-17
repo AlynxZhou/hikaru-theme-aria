@@ -18,7 +18,7 @@
       </div>
       {% if post.createdDate %}
       <span class="post-date">
-        <time title="post-date" itemprop="dateCreated datePublished" datetime="{{ post.createdDate.toISOString() }}">{{ post.createdMoment.format("MM-DD") }}</time>
+        <time title="post-date" itemprop="dateCreated datePublished" datetime="{{ post.createdDate.toISOString() }}">{{ post.createdDate.getMonth() + 1 }}-{{ post.createdDate.getDate() }}</time>
       </span>
       {% endif %}
     </header>
