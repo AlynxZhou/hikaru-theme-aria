@@ -24,14 +24,14 @@
     <header class="post-header">
       <div class="post-title" itemprop="name headline">{{ __(title) }}</div>
       <div class="post-meta">
-        {% if createdDate %}
+        {% if created %}
         <div class="post-date meta-block">
-          <i class="far fa-calendar-check"></i><span><time class="post-full-date" title="post-date" itemprop="dateCreated datePublished" datetime="{{ createdDate.toISOString() }}">{{ createdDate.toLocaleString() }}</time></span>
+          <i class="far fa-calendar-check"></i><span><time class="post-full-date" title="post-date" itemprop="dateCreated datePublished" datetime="{{ created.toISOString() }}">{{ created.toLocaleString() }}</time></span>
         </div>
         {% endif %}
-        {% if updatedDate %}
+        {% if updated %}
         <div class="post-date meta-block">
-          <i class="far fa-calendar-plus"></i><span><time class="post-full-date" title="post-date" itemprop="dateUpdated" datetime="{{ updatedDate.toISOString() }}">{{ updatedDate.toLocaleString() }}</time></span>
+          <i class="far fa-calendar-plus"></i><span><time class="post-full-date" title="post-date" itemprop="dateUpdated" datetime="{{ updated.toISOString() }}">{{ updated.toLocaleString() }}</time></span>
         </div>
         {% endif %}
         {% if comment !== false and themeConfig.comment.enable %}
