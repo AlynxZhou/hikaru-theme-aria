@@ -33,13 +33,13 @@ There won't be any stable releases for ARIA, because I am not interested in main
 Clone it to `themes/aria`:
 
 ```
-$ git clone https://github.com/AlynxZhou/hikaru-theme-aria themes/aria
+$ git clone https://github.com/AlynxZhou/hikaru-theme-aria.git themes/aria
 ```
 
 Or if you already have a git repo in your site dir, you can add this as a submodule:
 
 ```
-$ git submodule add https://github.com/AlynxZhou/hikaru-theme-aria themes/aria
+$ git submodule add https://github.com/AlynxZhou/hikaru-theme-aria.git themes/aria
 ```
 
 ## Edit Site Config
