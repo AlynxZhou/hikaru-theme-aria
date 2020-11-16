@@ -13,9 +13,13 @@
     <div class="post-block">
       <link itemprop="mainEntityOfPage" href="{{ getURL(docPath) }}">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+        {% if author %}
+        <meta itemprop="name" content="{{ author }}">
+        {% else %}
         <meta itemprop="name" content="{{ siteConfig.author }}">
         <meta itemprop="description" content="{{ siteConfig.description }}">
         <meta itemprop="image" content="{{ getPath(themeConfig.avatar) }}">
+        {% endif %}
       </span>
       <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
         <meta itemprop="name" content="{{ siteConfig.title }}">
@@ -32,6 +36,17 @@
         {% if updated %}
         <div class="post-date meta-block">
           <i class="far fa-calendar-plus"></i><span><time class="post-full-date" title="post-date" itemprop="dateUpdated" datetime="{{ updated.toISOString() }}">{{ updated.toLocaleString() }}</time></span>
+        </div>
+        {% endif %}
+        {% if author or email %}
+        <div class="post-author meta-block">
+          {% if author and email %}
+          <i class="far fa-edit"></i><a href="mailto:{{ email }}">{{ author }}</a>
+          {% elseif email %}
+          <i class="far fa-edit"></i><a href="mailto:{{ email }}">{{ email }}</a>
+          {% elseif author %}
+          <i class="far fa-edit"></i><span>{{ author }}</span>
+          {% endif %}
         </div>
         {% endif %}
         {% if categories and categories.length %}
