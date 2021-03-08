@@ -44,7 +44,7 @@ $ git submodule add https://github.com/AlynxZhou/hikaru-theme-aria.git themes/ar
 
 ## Edit Site Config
 
-Following needs to be changed in your `siteConfig.yml`.
+Following needs to be changed in your `site-config.yaml`.
 
 ### Change Theme to `aria`
 
@@ -98,12 +98,12 @@ highlight:
 Copy theme config to your site dir:
 
 ```
-$ cp themes/aria/themeConfig.yml themeConfig.yml
+$ cp themes/aria/theme-config.yaml theme-config.yaml
 ```
 
 ## Edit Theme Config
 
-Following needs to be changed in `themeConfig.yml`, not all config needs customization, you just change what you need：
+Following needs to be changed in `theme-config.yaml`, not all config needs customization, you just change what you need：
 
 ### Menu Settings
 
@@ -299,7 +299,7 @@ If you use custom CSS or JavaScript, please use Git to commit them first. You ca
 
 Then use `git pull` to get the newest commit, if there is a conflict, merge it manually.
 
-Don't forget to compare `themeConfig.yml` in site's dir and theme's dir, then apply changes in example to your `themeConfig.yml` in site's dir manually.
+Don't forget to compare `theme-config.yaml` in site's dir and theme's dir, then apply changes in example to your `theme-config.yaml` in site's dir manually.
 
 # Coding Style
 
