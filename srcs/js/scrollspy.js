@@ -10,9 +10,7 @@ const doActive = (container, target, headers, position) => {
     if (e.offsetTop <= position &&
         (i === headers.length - 1 || headers[i + 1].offsetTop > position)) {
       const oldActive = target.querySelector("a.active");
-      const newActive = target.querySelector(
-        ["a[href=\"#", e.id, "\"]"].join("")
-      );
+      const newActive = target.querySelector(`a[href="#${e.id}"]`);
       if (oldActive !== newActive) {
         if (oldActive != null) {
           oldActive.classList.remove("active");

@@ -114,16 +114,9 @@ const buildRepoURL = (user, repo) => {
 };
 
 const buildNewIssueURL = (user, repo, title) => {
-  return [
-    GITHUB_BASE_URL,
-    "/",
-    user,
-    "/",
-    repo,
-    "/issues/new?title=",
-    window.encodeURIComponent(title),
-    "#issue_body"
-  ].join("");
+  return `${GITHUB_BASE_URL}/${user}/${repo}/issues/new?title=${
+    window.encodeURIComponent(title)
+  }#issue_body`;
 };
 
 const buildPagePath = (basePath, pageIndex) => {
@@ -148,14 +141,12 @@ const getIssues = (repo) => {
   const pagesLength = calPagesLength(openIssuesCount, ISSUES_PER_PAGE);
   const results = [];
   for (var i = 0; i < pagesLength; ++i) {
-    results.push(fetchJSON([
-      repo["url"],
-      "/issues",
-      "?state=open&per_page=",
-      ISSUES_PER_PAGE,
-      "&page=",
-      i + 1
-    ].join(""), {"headers": GITHUB_API_HEADERS}));
+    results.push(fetchJSON(
+      `${
+        repo["url"]
+      }/issues?state=open&per_page=${ISSUES_PER_PAGE}&page=${i + 1}`,
+      {"headers": GITHUB_API_HEADERS}
+    ));
   }
   return Promise.all(results).then((results) => {
     if (results.length === 0) {
@@ -179,14 +170,10 @@ const findIssueByTitle = (issues, title) => {
 };
 
 const getComments = (issue, commentPage, perPage, callback) => {
-  return fetchJSON([
-    issue["url"],
-    "/comments",
-    "?per_page=",
-    perPage,
-    "&page=",
-    commentPage
-  ].join(""), {"headers": GITHUB_API_HEADERS}).then((comments) => {
+  return fetchJSON(
+    `${issue["url"]}/comments?per_page=${perPage}&page=${commentPage}`,
+    {"headers": GITHUB_API_HEADERS}
+  ).then((comments) => {
     if (commentPage === 1) {
       // GitHub does not treat issue content as comment, but we need.
       // Anyway, the first page will have perPage + 1 comments.
@@ -240,7 +227,8 @@ const renderComment = (comment) => {
       : ("<span class=\"comment-info-association\">" +
          comment["author_association"] + "</span>"),
     "<span class=\"comment-info-date\">",
-    "<time class=\"comment-full-date\" title=\"comment-date\" itemprop=\"dateCreated datePublished\" datetime=\"",
+    "<time class=\"comment-full-date\" title=\"comment-date\" ",
+    "itemprop=\"dateCreated datePublished\" datetime=\"",
     comment["created_at"],
     "\">",
     new Date(comment["created_at"]).toLocaleString(),
@@ -288,13 +276,9 @@ const renderComments = (comments, commentPage, pagesLength, opts) => {
 };
 
 const renderError = (err, opts) => {
-  return [
-    "<div class=\"comment-fail\" id=\"comment-fail\">",
-    err.message,
-    "<br>",
-    opts["failText"],
-    "</div>"
-  ].join("");
+  return `<div class="comment-fail" id="comment-fail">${
+    err.message
+  }<br>${opts["failText"]}</div>`;
 };
 
 /* eslint-disable-next-line no-unused-vars */
