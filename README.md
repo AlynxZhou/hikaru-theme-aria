@@ -164,6 +164,10 @@ Theme color `color` will be used in header and footer background, and also in so
 
 If you want to let Google collect your website, you need to show that this is your website. When verifying, choose "Use <meta> tag" and copy the value of property `content` to `googleVerification` then re-generate and re-deploy your website.
 
+### Google Analytics
+
+To enable Google Analytics, visit [Google Analytics](https://analytics.google.com) and sign up, fill in the tracking ID or measurement ID (when using Google Analytics 4) in to the `googleAnalytics`.
+
 ### Website Start Year
 
 Set `since` to your start year，if blank or the same as current year, it will only show current year, else it will show `start - current`.
