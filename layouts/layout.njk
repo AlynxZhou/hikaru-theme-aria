@@ -267,6 +267,16 @@
         });
       });
     </script>
+    {% if themeConfig.googleAnalytics %}
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ themeConfig.googleAnalytics }}"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '{{ themeConfig.googleAnalytics }}');
+    </script>
+    {% endif %}
     {% block js %}{% endblock %}
     <title>{% block title %}{% endblock %}</title>
   </head>
