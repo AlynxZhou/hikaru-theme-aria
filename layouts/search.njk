@@ -44,7 +44,9 @@
       </span>
     </div>
     <header class="post-header">
-      <div class="post-title" itemprop="name headline">{{ __(title) }}</div>
+      <div class="post-title" itemprop="name headline">
+        <a class="post-title-link post-title-link-external" href="{{ getPath(docPath) }}" itemprop="url">{{ __(title) }}</a>
+      </div>
       <div class="post-meta">
         {# There should be no time for search result page. #}
       </div>

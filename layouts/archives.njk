@@ -9,7 +9,9 @@
 
 {% block content %}
 <div id="archives" class="archives page">
-  <div class="page-title">{{ __(title) }}</div>
+  <div class="page-title">
+    <a class="page-title-link page-title-link-external" href="{{ getPath(docPath) }}" itemprop="url">{{ __(title) }}</a>
+  </div>
   <div class="page-counter">
     {% if site.posts.length > 1 %}
     {{ __("postCount.more", site.posts.length) }}

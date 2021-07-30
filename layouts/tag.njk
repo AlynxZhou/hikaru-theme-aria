@@ -9,7 +9,9 @@
 
 {% block content %}
 <div id="tag" class="tag page">
-  <div class="page-title">{{ name }}</div>
+  <div class="page-title">
+    <a class="page-title-link page-title-link-external" href="{{ getPath(docPath) }}" itemprop="url">{{ name }}</a>
+  </div>
   {% for post in posts %}
   <article class="article post card{% if themeConfig.animate %} animate{% endif %}" itemscope itemtype="http://schema.org/Article">
     <header id="post-header" class="post-header">

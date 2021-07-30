@@ -8,6 +8,38 @@ div.page-title {
   font-size: 2rem;
   margin: 0.67em 0;
   font-weight: bold;
+  a.page-title-link {
+    // Use inline-block because it is not supposed to hold the whole line.
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+    border-bottom: none;
+    color: $color-font;
+    color: var(--color-font);
+    &::after {
+      content: " ";
+      position: absolute;
+      width: 100%;
+      height: 0.1em;
+      bottom: 0;
+      left: 0;
+      transition: transform 0.3s ease-in-out;
+      transform: scaleX(0);
+      background: $color-font;
+      background: var(--color-font);
+      // Not sure why but this prevents the disappear animation.
+      // visibility: hidden;
+    }
+    &:hover {
+      &::after {
+        visibility: visible;
+        transform: scaleX(1);
+      }
+    }
+    &:active {
+      top: 0.1em;
+    }
+  }
 }
 div.page-counter {
   text-align: center;
