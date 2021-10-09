@@ -8,6 +8,13 @@
 {% block title %}{{ siteConfig.title }}{% if siteConfig.subtitle %} - {{ siteConfig.subtitle }}{% endif %}{% endblock %}
 
 {% block content %}
+{% if themeConfig.pinnedMessage %}
+<div id="pinned-message" class="pinned-message">
+  <div class="card{% if themeConfig.animate %} animate{% endif %}">
+    {{ themeConfig.pinnedMessage }}
+  </div>
+</div>
+{% endif %}
 <div id="index" class="index page">
   {% for post in posts %}
   <article class="article post card{% if themeConfig.animate %} animate{% endif %}" itemscope itemtype="http://schema.org/Article">
