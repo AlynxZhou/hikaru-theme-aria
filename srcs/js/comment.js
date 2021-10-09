@@ -179,7 +179,9 @@ const getComments = (issue, commentPage, perPage, callback) => {
       // Anyway, the first page will have perPage + 1 comments.
       comments = [issue].concat(comments);
     }
-    return comments;
+    // If commentPage is not 1, issue body is not in comments,
+    // and we need it for issue URL, so return it here.
+    return [issue, comments];
   });
 };
 
@@ -243,7 +245,7 @@ const renderComment = (comment) => {
   ].join("");
 };
 
-const renderComments = (comments, commentPage, pagesLength, opts) => {
+const renderComments = (issue, comments, commentPage, pagesLength, opts) => {
   const header = ["<header class=\"comments-header\" id=\"comments-header\">"];
   if (comments.length === 0) {
     header.push("<span class=\"comment-none\">");
@@ -266,7 +268,7 @@ const renderComments = (comments, commentPage, pagesLength, opts) => {
   if (comments.length === 0) {
     footer.push(buildNewIssueURL(opts["user"], opts["repo"], opts["title"]));
   } else {
-    footer.push(comments[0]["html_url"] + "#new_comment_field");
+    footer.push(issue["html_url"] + "#new_comment_field");
   }
   footer.push("\">");
   footer.push(opts["sendButtonText"]);
@@ -327,10 +329,10 @@ const loadComment = (opts) => {
       commentPage = pagesLength;
     }
     return getComments(issue, commentPage, opts["perPage"]);
-  }).then((comments) => {
+  }).then(([issue, comments]) => {
     container.style.display = "block";
     container.innerHTML = renderComments(
-      comments, commentPage, pagesLength, opts
+      issue, comments, commentPage, pagesLength, opts
     );
   }).catch((error) => {
     container.style.display = "block";
