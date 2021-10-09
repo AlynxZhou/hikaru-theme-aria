@@ -395,11 +395,22 @@ blockquote.center-quote, blockquote.centerquote {
     text-align: center;
   }
 }
+// Don't use CSS varibles for text and anchor color in alert,
+// because we won't change alert background color in dark mode.
+// Invert text and anchor color to the light one will be unclear
+// because background is light too.
 div.alert-red, div.alert-green, div.alert-blue {
   text-align: center;
   margin: 1em 0;
   padding: 0.5em 15%;
   border-radius: $corner-radius;
+  a {
+    color: $color-link-font;
+    &:hover {
+      color: $color-link-hover-font;
+      border-bottom: 0.05em solid $color-link-hover-font;
+    }
+  }
 }
 div.alert-red {
   color: $color-alert-red-font;
