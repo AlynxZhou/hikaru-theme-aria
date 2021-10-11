@@ -164,8 +164,8 @@
         const themeToggle = document.getElementById("theme-toggle");
         const setThemeToggle = (themeToggle, theme) => {
           themeToggle.innerHTML = theme === "dark"
-            ? "<i class=\"far fa-moon\" aria-label=\"{{ __("accessibility.themeDark") }}\"></i>"
-            : "<i class=\"far fa-sun\" aria-label=\"{{ __("accessibility.themeLight") }}\"></i>";
+            ? "<i class=\"far fa-moon\" aria-label=\"{{ __("accessibility.darkTheme") }}\"></i>"
+            : "<i class=\"far fa-lightbulb\" aria-label=\"{{ __("accessibility.lightTheme") }}\"></i>";
         };
         // Update theme toggle content.
         setThemeToggle(themeToggle, theme);
