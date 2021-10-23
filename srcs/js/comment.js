@@ -171,7 +171,7 @@ const findIssueByTitle = (issues, title) => {
 
 const getComments = (issue, commentPage, perPage, callback) => {
   return fetchJSON(
-    `${issue["url"]}/comments?per_page=${perPage}&page=${commentPage}`,
+    `${issue["comments_url"]}?per_page=${perPage}&page=${commentPage}`,
     {"headers": GITHUB_API_HEADERS}
   ).then((comments) => {
     if (commentPage === 1) {
@@ -265,7 +265,7 @@ const renderComments = (issue, comments, commentPage, pagesLength, opts) => {
   footer.push("<a class=\"comments-button comment-send button\" ");
   footer.push("id=\"comments-send\" target=\"_blank\" ");
   footer.push("ref=\"noreferrer noopener\" href=\"");
-  if (comments.length === 0) {
+  if (issue == null) {
     footer.push(buildNewIssueURL(opts["user"], opts["repo"], opts["title"]));
   } else {
     footer.push(issue["html_url"] + "#new_comment_field");
@@ -317,12 +317,13 @@ const loadComment = (opts) => {
     const issue = findIssueByTitle(issues, opts["title"]);
     // Not a network error, just means no comment.
     if (issue == null) {
-      return [];
+      return [issue, []];
     }
     // We skip fetching comments if there is only one body,
     // because pagesLength and currentIndex will be 0 and that's hard to handle.
     if (issue["comments"] === 0) {
-      return [issue];
+      // Return the issue body and itself as the only comment.
+      return [issue, [issue]];
     }
     pagesLength = calPagesLength(issue["comments"], opts["perPage"]);
     if (commentPage > pagesLength) {
