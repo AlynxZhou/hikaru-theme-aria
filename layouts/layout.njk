@@ -149,7 +149,7 @@
     <script type="text/javascript">
       // Set theme before page rendering.
       // Check user's choice from localStorage.
-      let theme = localStorage.getItem("theme");
+      let theme = window.localStorage.getItem("theme");
       const preferenceQuery = window.matchMedia("(prefers-color-scheme: dark)");
       // theme might be null here.
       if (theme !== "dark" && theme !== "light") {
@@ -159,7 +159,7 @@
       // Yes, it looks I can modify documentElement before ready!
       // Don't use requestAnimationFrame here, it will cause flickering.
       document.documentElement.setAttribute("data-theme", theme);
-      localStorage.setItem("theme", theme);
+      window.localStorage.setItem("theme", theme);
       documentReady(() => {
         const themeToggle = document.getElementById("theme-toggle");
         const setThemeToggle = (themeToggle, theme) => {
@@ -176,7 +176,7 @@
           window.requestAnimationFrame(() => {
             document.documentElement.setAttribute("data-theme", theme);
           });
-          localStorage.setItem("theme", theme);
+          window.localStorage.setItem("theme", theme);
         });
         // Other page of site changed storage, update.
         window.addEventListener("storage", (event) => {
@@ -195,7 +195,7 @@
           window.requestAnimationFrame(() => {
             document.documentElement.setAttribute("data-theme", theme);
           });
-          localStorage.setItem("theme", theme);
+          window.localStorage.setItem("theme", theme);
         });
         // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat
         // A modern way to show date in user's format.
