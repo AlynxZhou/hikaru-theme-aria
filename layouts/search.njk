@@ -1,10 +1,5 @@
 {% extends "layout.njk" %}
 
-{% block css %}
-<link rel="stylesheet" type="text/css" href="{{ getPath("css/page.css") }}">
-<link rel="stylesheet" type="text/css" href="{{ getPath("css/post.css") }}">
-{% endblock %}
-
 {% block js %}
 {% if themeConfig.search %}
 <script defer type="text/javascript" src="{{ getPath("js/search.js") }}"></script>
@@ -45,7 +40,7 @@
     </div>
     <header class="post-header">
       <div class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="{{ getPath(docPath) }}" itemprop="url">{{ __(title) }}</a>
+        <a class="title-link" href="{{ getPath(docPath) }}" itemprop="url">{{ __(title) }}</a>
       </div>
       <div class="post-meta">
         {# There should be no time for search result page. #}

@@ -1,10 +1,5 @@
 {% extends "layout.njk" %}
 
-{% block css %}
-<link rel="stylesheet" type="text/css" href="{{ getPath("css/page.css") }}">
-<link rel="stylesheet" type="text/css" href="{{ getPath("css/post.css") }}">
-{% endblock %}
-
 {% block js %}
 <script type="text/javascript">
   documentReady(function () {
@@ -26,7 +21,7 @@
   <article class="article post card{% if themeConfig.animate %} animate{% endif %}">
     <header class="post-header">
       <div class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="{{ getPath(docPath) }}" itemprop="url">{{ __(title) }}</a>
+        <a class="title-link" href="{{ getPath(docPath) }}" itemprop="url">{{ __(title) }}</a>
       </div>
     </header>
     <main class="post-main" id="scrollspy-container">

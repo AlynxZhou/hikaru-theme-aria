@@ -1,10 +1,5 @@
 {% extends "layout.njk" %}
 
-{% block css %}
-<link rel="stylesheet" type="text/css" href="{{ getPath("css/page.css") }}">
-<link rel="stylesheet" type="text/css" href="{{ getPath("css/post.css") }}">
-{% endblock %}
-
 {% block title %}{{ siteConfig.title }}{% if siteConfig.subtitle %} - {{ siteConfig.subtitle }}{% endif %}{% endblock %}
 
 {% block content %}
@@ -35,7 +30,7 @@
     </div>
     <header class="post-header">
       <div class="post-title" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="{{ getPath(post.docPath) }}" itemprop="url">{{ post.title }}</a>
+        <a class="title-link" href="{{ getPath(post.docPath) }}" itemprop="url">{{ post.title }}</a>
       </div>
       <div class="post-meta">
         {% if post.created %}

@@ -1,22 +1,17 @@
 {% extends "layout.njk" %}
 
-{% block css %}
-<link rel="stylesheet" type="text/css" href="{{ getPath("css/page.css") }}">
-<link rel="stylesheet" type="text/css" href="{{ getPath("css/post.css") }}">
-{% endblock %}
-
 {% block title %}{{ __(title) }} {{ name }} - {{ siteConfig.title }}{% endblock %}
 
 {% block content %}
 <div id="tag" class="tag page">
   <div class="page-title">
-    <a class="page-title-link page-title-link-external" href="{{ getPath(docPath) }}" itemprop="url">{{ name }}</a>
+    <a class="title-link" href="{{ getPath(docPath) }}" itemprop="url">{{ name }}</a>
   </div>
   {% for post in posts %}
   <article class="article post card{% if themeConfig.animate %} animate{% endif %}" itemscope itemtype="http://schema.org/Article">
     <header id="post-header" class="post-header">
       <div class="post-title-simple" itemprop="name headline">
-        <a class="post-title-link post-title-link-external" href="{{ getPath(post.docPath) }}" itemprop="url">{{ post.title }}</a>
+        <a class="title-link-simple" href="{{ getPath(post.docPath) }}" itemprop="url">{{ post.title }}</a>
       </div>
       {% if post.created %}
       <span class="post-date">

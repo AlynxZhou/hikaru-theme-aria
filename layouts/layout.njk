@@ -57,12 +57,38 @@
     <link rel="stylesheet" type="text/css" href="{{ themeConfig.customFont.link }}">
     {% endif %}
     <link rel="stylesheet" type="text/css" href="{% if themeConfig.libCDN.enable and themeConfig.libCDN.normalize %}{{ themeConfig.libCDN.normalize }}{% else %}{{ getPath("css/normalize.css") }}{% endif %}">
+    <link rel="stylesheet" type="text/css" href="{{ getPath("css/variables.css") }}">
     <link rel="stylesheet" type="text/css" href="{{ getPath("css/index.css") }}">
-    {% if themeConfig.sidebar !== false %}
-    <link rel="stylesheet" type="text/css" href="{{ getPath("css/sidebar.css") }}">
-    {% endif %}
     <link rel="stylesheet" type="text/css" href="{{ getPath("css/custom.css") }}">
     <link rel="stylesheet" type="text/css" href="{% if themeConfig.libCDN.enable and themeConfig.libCDN[themeConfig.highlight] %}{{ themeConfig.libCDN[themeConfig.highlight] }}{% else %}{{ getPath("css/" + themeConfig.highlight + ".css") }}{% endif %}">
+    <style type="text/css">
+      :root {
+        --url-sidebar-background: url({{ getPath("images/background.webp") }});
+        --url-dark-sidebar-background: url({{ getPath("images/background-dark.webp") }});
+        {% if themeConfig.customFont.enable %}
+        {% if themeConfig.customFont.all %}
+        --font-all: {{ themeConfig.customFont.all }}, var(--font-sans);
+        {% endif %}
+        {% if themeConfig.customFont.title %}
+        --font-title: {{ themeConfig.customFont.title }}, var(--font-sans);
+        {% endif %}
+        {% if themeConfig.customFont.subtitle %}
+        --font-subtitle: {{ themeConfig.customFont.subtitle }}, var(--font-sans);
+        {% endif %}
+        {% if themeConfig.customFont.main %}
+        --font-main: {{ themeConfig.customFont.main }}, var(--font-sans);
+        {% endif %}
+        {% if themeConfig.customFont.code %}
+        --font-code: {{ themeConfig.customFont.code }}, var(--font-mono), var(--font-sans);
+        {% endif %}
+        {% endif %}
+      }
+      {% if themeConfig.sidebar === "left" %}
+      div.main-container {
+        flex-direction: row-reverse;
+      }
+      {% endif %}
+    </style>
     {% block css %}{% endblock %}
     {# You should not set `defer` to `index.js` because other scripts depends it for `documentReady()`! #}
     <script type="text/javascript" src="{{ getPath("js/index.js") }}"></script>
