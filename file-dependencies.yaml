@@ -1,0 +1,36 @@
+layouts:
+  archives.njk:
+    - layout.njk
+    - includes/pagination.njk
+  categories.njk:
+    - layout.njk
+  category.njk:
+    - layout.njk
+    - includes/pagination.njk
+  index.njk:
+    - layout.njk
+    - includes/pagination.njk
+  layout.njk:
+    - includes/footer.njk
+    - includes/header.njk
+    - includes/sidebar.njk
+  page.njk:
+    - layout.njk
+    - includes/comment.njk
+    - includes/reward.njk
+  post.njk:
+    - layout.njk
+    - includes/comment.njk
+    - includes/reward.njk
+  search.njk:
+    - layout.njk
+  tag.njk:
+    - layout.njk
+    - includes/pagination.njk
+  tags.njk:
+    - layout.njk
+
+# Currently aria does not use CSS preprocessors.
+# srcs:
+#   az.styl:
+#     - az1.styl
