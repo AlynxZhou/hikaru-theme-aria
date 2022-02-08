@@ -32,5 +32,9 @@ layouts:
 
 # Currently aria does not use CSS preprocessors.
 # srcs:
-#   az.styl:
-#     - az1.styl
+#   az1.styl:
+#     - az.styl
+#   az2.styl:
+#     - az.styl
+#   az3.styl:
+#     - az.styl
