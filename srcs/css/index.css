@@ -56,15 +56,6 @@ body {
   overflow: auto;
 }
 
-div.container {
-  width: 100%;
-  height: 100%;
-  /* You have a brand screen! You must be so rich but we take care your neck. */
-  max-width: var(--container-max-width);
-  padding: 0;
-  margin: 0 auto;
-}
-
 /* For user. */
 div.center {
   text-align: center
@@ -1231,6 +1222,43 @@ button.back-to-top:hover {
   color: var(--color-link-hover-font);
   border: none;
 }
+
+/* For container size, better to use min-width for media query. */
+/**
+ * The core is that don't shrink content
+ * when jumping from different media width:
+ * - For 40em and smaller, take the whole width.
+ * - 60em is content size 40em and sidebar size 20em, so from 40em to 60em
+ *   max-width is 40em, and then add sidebar in 60em.
+ * - Then we grow container with the whole width, but for small monitors,
+ *   80em is enough, so max-width is 80em.
+ * - But for large monitors, 80em is not enough, so from 100em we grow container
+ *   for 80% width, because 100em * 80% = 80em.
+ * - And being to large is hard to read,
+ *   so max-width is 100em for large monitors.
+ */
+div.container {
+  width: 100%;
+  height: 100%;
+  max-width: var(--container-single-column-max-width);
+  padding: 0;
+  margin: 0 auto;
+}
+
+@media (min-width: 60em) {
+  div.container {
+    max-width: var(--container-small-max-width);
+  }
+}
+
+@media (min-width: 100em) {
+  div.container {
+    width: 80%;
+    max-width: var(--container-max-width);
+  }
+}
+
+/* Other elements have special size to fold so use max-width for media query. */
 
 @media (max-width: 60em) {
   div.main-container {

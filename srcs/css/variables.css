@@ -183,6 +183,8 @@
   --main-margin-top: -3em;
   --search-padding-top: 0.5em;
   --container-max-width: 100em;
+  --container-small-max-width: 80em;
+  --container-single-column-max-width: 40em;
   --sidebar-width: 20em;
   --body-min-width: 20em;
   --comment-avatar-width: 5em;
