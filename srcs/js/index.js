@@ -26,7 +26,7 @@ const elementsEach = (elements, callback) => {
   if (elements == null || callback == null) {
     return;
   }
-  return Array.prototype.forEach.call(elements, callback);
+  Array.prototype.forEach.call(elements, callback);
 };
 
 /* eslint-disable-next-line no-unused-vars */
@@ -148,7 +148,7 @@ const slideToggle = (target, duration) => {
     return;
   }
   duration = duration || 400;
-  return window.getComputedStyle(target).display === "none"
+  window.getComputedStyle(target).display === "none"
     ? slideDown(target, duration)
     : slideUp(target, duration);
 };

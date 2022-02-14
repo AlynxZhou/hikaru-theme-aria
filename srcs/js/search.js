@@ -1,6 +1,6 @@
-/*
+/**
  * A local search script for [hikaru-generator-search](https://github.com/AlynxZhou/hikaru-generator-search/).
- * CopyLeft (C) 2020
+ * CopyLeft (C) 2020 - 2022
  * AlynxZhou <alynx.zhou@gmail.com> (https://alynx.one/)
  */
 
@@ -248,7 +248,7 @@ const loadSearch = (opts) => {
   }
   header.push("<ul class=\"search-result-list\">");
   footer.push("</ul>");
-  return Promise.all(opts["paths"].map((path) => {
+  Promise.all(opts["paths"].map((path) => {
     return fetchJSON(path);
   })).then((jsons) => {
     const data = jsons.map((json) => {

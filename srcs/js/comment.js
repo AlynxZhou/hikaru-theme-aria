@@ -1,6 +1,6 @@
-/*
+/**
  * A script that fetching and rendering GitHub issue as comments.
- * CopyLeft (C) 2020
+ * CopyLeft (C) 2020 - 2022
  * AlynxZhou <alynx.zhou@gmail.com> (https://alynx.one/)
  */
 "use strict";
@@ -91,7 +91,7 @@ const loadCache = (name) => {
         "Chromium and Safari set `window.caches` to `undefined` if not HTTPS."
       ));
     }
-    window.caches.open("CacheStorageTest").then((cache) => {
+    return window.caches.open("CacheStorageTest").then((cache) => {
       fetchJSON = cachedFetchJSON;
       cachePromise = window.caches.open(name);
       return window.caches.delete("CacheStorageTest");
@@ -309,7 +309,7 @@ const loadComment = (opts) => {
   if (urlParams.has("comment_page")) {
     commentPage = Number.parseInt(urlParams.get("comment_page"));
   }
-  return loadCache(`${opts["user"]}/${opts["repo"]}`).then(() => {
+  loadCache(`${opts["user"]}/${opts["repo"]}`).then(() => {
     return getRepo(buildRepoURL(opts["user"], opts["repo"]));
   }).then((repo) => {
     return getIssues(repo);
@@ -353,7 +353,7 @@ const loadCommentCount = (opts) => {
   if (containers.length === 0) {
     return;
   }
-  return loadCache(`${opts["user"]}/${opts["repo"]}`).then(() => {
+  loadCache(`${opts["user"]}/${opts["repo"]}`).then(() => {
     return getRepo(buildRepoURL(opts["user"], opts["repo"]));
   }).then((repo) => {
     return getIssues(repo);
