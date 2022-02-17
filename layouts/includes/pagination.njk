@@ -1,11 +1,11 @@
 {% block pagination %}
-{% if pageArray != null and pageIndex != null %}
+{% if pages != null %}
 <nav class="pagination">
-  {% for page in pageArray %}
-  {% if page.pageIndex !== pageIndex %}
-  <a class="page-number" href="{{ getPath(page.docPath) }}">{{ page.pageIndex + 1 }}</a>
+  {% for page in pages %}
+  {% if page.index !== index %}
+  <a class="page-number" href="{{ getPath(page.docPath) }}">{{ page.index + 1 }}</a>
   {% else %}
-  <a class="page-number current" href="{{ getPath(docPath) }}">{{ pageIndex + 1 }}</a>
+  <a class="page-number current" href="{{ getPath(docPath) }}">{{ index + 1 }}</a>
   {% endif %}
   {% endfor %}
 </nav>
