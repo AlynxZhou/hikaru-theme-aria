@@ -38,7 +38,7 @@ keywords:
 # by | by-sa | by-nd | by-nc | by-nc-sa | by-nc-nd
 creativeCommons:
 
-# Available: atom-one-dark | atom-one-light | solarized-dark | solarized-light
+# Available: atom-one-dark | atom-one-light | tomorrow-night-blue | tomorrow-night-bright | solarized-dark | solarized-light
 highlight: atom-one-dark
 
 # Pinned message in index.
