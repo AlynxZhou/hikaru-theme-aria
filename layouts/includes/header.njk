@@ -20,7 +20,12 @@
       </button>
       <ul id="menu" role="menubar" aria-hidden="false">
         {% for e in themeConfig.menu %}
-        <li role="menuitem"><a href="{{ getPath(e.link) }}"{% if isCurrentPath(e.link) %} class="current"{% endif %}>{% if e.icon %}{{ e.icon }}{% endif %}<span class="menu-text">{{ __(e.name) }}</span></a></li>
+        {% if isCurrentHost(e.link) %}
+        {% set external = false %}
+        {% else %}
+        {% set external = true %}
+        {% endif %}
+        <li role="menuitem"><a href="{% if external %}{{ e.link }}{% else %}{{ getPath(e.link) }}{% endif %}"{% if not external and isCurrentPath(e.link) %} class="current"{% endif %}{% if external %} target="_blank" rel="external nofollow noreferrer noopener"{% endif %}>{% if e.icon %}{{ e.icon }}{% endif %}<span class="menu-text">{{ __(e.name) }}</span></a></li>
         {% endfor %}
       </ul>
       <button class="theme-toggle" id="theme-toggle">
