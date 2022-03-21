@@ -113,20 +113,22 @@ If you want tags and categories links in menu, set it like following:
 menu:
   - name: home
     link: /
-    icon: <i class="fas fa-home"></i>
+    icon: <i class="bi bi-house"></i>
   - name: archives
     link: archives/
-    icon: <i class="fas fa-archive"></i>
+    icon: <i class="bi bi-archive"></i>
   - name: categories
     link: categories/
-    icon: <i class="fas fa-th-list"></i>
+    icon: <i class="bi bi-list-nested"></i>
   - name: tags
     link: tags/
-    icon: <i class="fas fa-tags"></i>
-  - name: about
-    link: about/
-    icon: <i class="fas fa-user-edit"></i>
+    icon: <i class="bi bi-tags"></i>
+  # - name: about
+  #   link: about/
+  #   icon: <i class="bi bi-person-bounding-box"></i>
 ```
+
+Get icons from [Bootstrap Icons](https://icons.getbootstrap.com/). Please use `<i>` tag.
 
 ### Generating Favicon
 
@@ -202,13 +204,13 @@ social:
   links:
     - name: Display Name
       link: Link Address
-      icon: Font Awesome icon tag you want to use
+      icon: <i class="bi bi-link-45deg"></i>
     - name: Display Name
       link: Link Address
-      icon: Font Awesome icon tag you want to use
+      icon: <i class="bi bi-link-45deg"></i>
 ```
 
-Get icons in [Font Awesome](https://fontawesome.com/).
+Get icons from [Bootstrap Icons](https://icons.getbootstrap.com/). Please use `<i>` tag.
 
 ### Blogrolls
 
@@ -220,13 +222,13 @@ blogroll:
   links:
     - name: Display Name
       link: Link Address
-      icon: Font Awesome icon tag you want to use
+      icon: <i class="bi bi-link-45deg"></i>
     - name: Display Name
       link: Link Address
-      icon: Font Awesome icon tag you want to use
+      icon: <i class="bi bi-link-45deg"></i>
 ```
 
-Get icons in [Font Awesome](https://fontawesome.com/).
+Get icons from [Bootstrap Icons](https://icons.getbootstrap.com/). Please use `<i>` tag.
 
 ### Comment Support
 

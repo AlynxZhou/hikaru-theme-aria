@@ -3,19 +3,19 @@
 menu:
   - name: home
     link: /
-    icon: <i class="fas fa-home"></i>
+    icon: <i class="bi bi-house"></i>
   - name: archives
     link: archives/
-    icon: <i class="fas fa-archive"></i>
+    icon: <i class="bi bi-archive"></i>
   - name: categories
     link: categories/
-    icon: <i class="fas fa-th-list"></i>
+    icon: <i class="bi bi-list-nested"></i>
   - name: tags
     link: tags/
-    icon: <i class="fas fa-tags"></i>
+    icon: <i class="bi bi-tags"></i>
   # - name: about
   #   link: about/
-  #   icon: <i class="fas fa-user-edit"></i>
+  #   icon: <i class="bi bi-person-bounding-box"></i>
 
 # Transform your image to those favicons in https://realfavicongenerator.net/.
 favicon:
@@ -45,7 +45,7 @@ highlight: atom-one-dark
 pinnedMessage: false
 
 # Custom info in footer.
-customInfo: 托管于<i class="fab fa-github-alt"></i><a href="https://pages.github.com/" target="_blank" rel="noreferrer noopener">GitHub Pages</a>
+customInfo: 托管于<i class="bi bi-github"></i><a href="https://pages.github.com/" target="_blank" rel="noreferrer noopener">GitHub Pages</a>
 
 # Select all your webfont in a CDN like Google Fonts, and then copy `href` property in the `<link>` tag, like `link: //fonts.googleapis.com/css?family=Lato|Roboto+Condensed|Skranji|Ubuntu|Ubuntu+Mono`.
 # Then set different fonts to different parts here.
@@ -94,17 +94,15 @@ mathjax:
   global:
   cdn:
 
-# Note: `fontAwesome.loader` is `fontawesome.min.js`. `busuanzi` is `busuanzi.pure.mini.js`.
 # If you don't know what you are doing, don't change it.
 libCDN:
   enable: false
-  fontAwesome:
-    loader:
-    solid:
-    brands:
-    regular:
-  busuanzi:
+  bootstrapIcons:
+    css:
+    woff2:
+    woff:
   normalize:
+  busuanzi:
   highlight:
   clipboard:
   # Don't use camelCase for hljs theme CSS files,
@@ -119,26 +117,23 @@ social:
   links:
     - name: E-Mail
       link: mailto:youremail@youremailhost
-      icon: <i class="fas fa-envelope"></i>
+      icon: <i class="bi bi-envelope"></i>
     - name: GitHub
       link: https://github.com/
-      icon: <i class="fab fa-github"></i>
-    - name: Weibo
-      link: https://weibo.com/
-      icon: <i class="fab fa-weibo"></i>
+      icon: <i class="bi bi-github"></i>
 
 blogroll:
   enable: true
   links:
     - name: GitHub
       link: https://github.com/
-      icon: <i class="fas fa-link"></i>
+      icon: <i class="bi bi-link-45deg"></i>
     - name: MDN
       link: https://developer.mozilla.org/
-      icon: <i class="fas fa-link"></i>
+      icon: <i class="bi bi-link-45deg"></i>
     - name: Nunjucks
       link: https://mozilla.github.io/nunjucks/
-      icon: <i class="fas fa-link"></i>
+      icon: <i class="bi bi-link-45deg"></i>
 
 comment:
   enable: false

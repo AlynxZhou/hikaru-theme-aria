@@ -36,7 +36,7 @@
       </div>
       <div class="tags-cloud">
         {% for tag in site.tags %}
-        <a class="post-tag button" href="{{ getPath(tag.docPath) }}" rel="tag"><i class="fas fa-tag"></i>{{ tag.name }} {{ tag.posts.length }}</a>
+        <a class="post-tag button" href="{{ getPath(tag.docPath) }}" rel="tag"><i class="bi bi-tag"></i>{{ tag.name }} {{ tag.posts.length }}</a>
         {% endfor %}
       </div>
     </main>

@@ -3,7 +3,7 @@
   {% if themeConfig.search %}
   <div class="search" role="search">
     <form action="{{ getPath(siteConfig.search.page) }}" method="get">
-      <button type="submit" class="search-submit" aria-label="{{ __("search") }}"><i class="fas fa-search"></i></button><input type="search" id="search-input" class="search-input" name="q" results="0" placeholder="{{ __("search") }}" aria-label="{{ __("search") }}">
+      <button type="submit" class="search-submit" aria-label="{{ __("search") }}"><i class="bi bi-search"></i></button><input type="search" id="search-input" class="search-input" name="q" results="0" placeholder="{{ __("search") }}" aria-label="{{ __("search") }}">
     </form>
   </div>
   {% endif %}
@@ -37,7 +37,7 @@
     </div>
     {% if siteConfig.feed.enable %}
     <div class="rss">
-      <a class="rss-link button sidebar-item" href="{{ getPath(siteConfig.feed.path) }}"><i class="fas fa-rss"></i>RSS</a>
+      <a class="rss-link button sidebar-item" href="{{ getPath(siteConfig.feed.path) }}"><i class="bi bi-rss"></i>RSS</a>
     </div>
     {% endif %}
   </div>
@@ -46,7 +46,7 @@
     {% if toc.length > 0 %}
     <hr>
     <div class="post-toc sidebar-item">
-      <div><i class="fas fa-list-ol"></i>{{ __("toc") }}</div>
+      <div><i class="bi bi-list-ol"></i>{{ __("toc") }}</div>
       {% macro listToc(toc, level = 1) %}
       <ol {% if level === 1 %}class="toc" id="scrollspy-target"{% endif %}>
       {% for h in toc %}
@@ -67,7 +67,7 @@
     {% if themeConfig.social.enable %}
     <hr>
     <div class="social-link sidebar-item">
-      <div><i class="far fa-address-card"></i>{{ __("socialLink") }}</div>
+      <div><i class="bi bi-person-workspace"></i>{{ __("socialLink") }}</div>
       <ul>
         {% for e in themeConfig.social.links %}
         <li>{% if e.icon %}{{ e.icon }}{% endif %}<a href="{{ e.link }}" target="_blank" rel="external nofollow noreferrer noopener">{{ e.name }}</a></li>
@@ -78,7 +78,7 @@
     {% if themeConfig.blogroll.enable %}
     <hr>
     <div class="blogroll sidebar-item">
-      <div><i class="fas fa-user-friends"></i>{{ __("blogroll") }}</div>
+      <div><i class="bi bi-people"></i>{{ __("blogroll") }}</div>
       <ul>
         {% for e in themeConfig.blogroll.links %}
         <li>{% if e.icon %}{{ e.icon }}{% endif %}<a href="{{ e.link }}" target="_blank" rel="external nofollow noreferrer noopener">{{ e.name }}</a></li>

@@ -60,11 +60,12 @@
     <link rel="stylesheet" type="text/css" href="{{ getPath("css/variables.css") }}">
     <link rel="stylesheet" type="text/css" href="{{ getPath("css/index.css") }}">
     <link rel="stylesheet" type="text/css" href="{{ getPath("css/custom.css") }}">
+    <link rel="stylesheet" type="text/css" href="{% if themeConfig.libCDN.enable and themeConfig.libCDN.bootstrapIcons.css %}{{ themeConfig.libCDN.bootstrapIcons.css }}{% else %}{{ getPath("css/bootstrap-icons.css") }}{% endif %}">
     <link rel="stylesheet" type="text/css" href="{% if themeConfig.libCDN.enable and themeConfig.libCDN[themeConfig.highlight] %}{{ themeConfig.libCDN[themeConfig.highlight] }}{% else %}{{ getPath("css/" + themeConfig.highlight + ".css") }}{% endif %}">
     <style type="text/css">
       :root {
-        --url-sidebar-background: url({{ getPath("images/background.webp") }});
-        --url-dark-sidebar-background: url({{ getPath("images/background-dark.webp") }});
+        --url-sidebar-background: url("{{ getPath("images/background.webp") }}");
+        --url-dark-sidebar-background: url("{{ getPath("images/background-dark.webp") }}");
         {% if themeConfig.customFont.enable %}
         {% if themeConfig.customFont.all %}
         --font-all: {{ themeConfig.customFont.all }}, var(--font-sans);
@@ -88,6 +89,11 @@
         flex-direction: row-reverse;
       }
       {% endif %}
+      /* Replace the default Bootstrap Icons fonts path. */
+      @font-face {
+        font-family: "bootstrap-icons";
+        src: url("{% if themeConfig.libCDN.enable and themeConfig.libCDN.bootstrapIcons.woff2 %}{{ themeConfig.libCDN.bootstrapIcons.woff2 }}{% else %}{{ getPath("fonts/bootstrap-icons.woff2") }}{% endif %}") format("woff2"), url("{% if themeConfig.libCDN.enable and themeConfig.libCDN.bootstrapIcons.woff %}{{ themeConfig.libCDN.bootstrapIcons.woff }}{% else %}{{ getPath("fonts/bootstrap-icons.woff") }}{% endif %}") format("woff");
+      }
     </style>
     {% block css %}{% endblock %}
     {# You should not set `defer` to `index.js` because other scripts depends it for `documentReady()`! #}
@@ -95,10 +101,6 @@
     <script defer type="text/javascript" src="{{ getPath("js/scrollspy.js") }}"></script>
     <script defer type="text/javascript" src="{{ getPath("js/custom.js") }}"></script>
     <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.clipboard %}{{ themeConfig.libCDN.clipboard }}{% else %}{{ getPath("js/clipboard.min.js") }}{% endif %}"></script>
-    <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.fontAwesome.solid %}{{ themeConfig.libCDN.fontAwesome.solid }}{% else %}{{ getPath("js/fa-solid.min.js") }}{% endif %}"></script>
-    <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.fontAwesome.brands %}{{ themeConfig.libCDN.fontAwesome.brands }}{% else %}{{ getPath("js/fa-brands.min.js") }}{% endif %}"></script>
-    <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.fontAwesome.regular %}{{ themeConfig.libCDN.fontAwesome.regular }}{% else %}{{ getPath("js/fa-regular.min.js") }}{% endif %}"></script>
-    <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.fontAwesome.loader %}{{ themeConfig.libCDN.fontAwesome.loader }}{% else %}{{ getPath("js/fontawesome.min.js") }}{% endif %}"></script>
     {% if themeConfig.busuanzi %}
     <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.busuanzi %}{{ themeConfig.libCDN.busuanzi }}{% else %}{{ getPath("js/busuanzi.pure.mini.js") }}{% endif %}"></script>
     {% endif %}
@@ -190,8 +192,8 @@
         const themeToggle = document.getElementById("theme-toggle");
         const setThemeToggle = (themeToggle, theme) => {
           themeToggle.innerHTML = theme === "dark"
-            ? "<i class=\"far fa-moon\" aria-label=\"{{ __("accessibility.darkTheme") }}\"></i>"
-            : "<i class=\"far fa-lightbulb\" aria-label=\"{{ __("accessibility.lightTheme") }}\"></i>";
+            ? "<i class=\"bi bi-moon\" aria-label=\"{{ __("accessibility.darkTheme") }}\"></i>"
+            : "<i class=\"bi bi-sun\" aria-label=\"{{ __("accessibility.lightTheme") }}\"></i>";
         };
         // Update theme toggle content.
         setThemeToggle(themeToggle, theme);
@@ -226,17 +228,20 @@
         // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat
         // A modern way to show date in user's format.
         // But it shows date only by default, no time.
-        const formatter = new Intl.DateTimeFormat("{{ siteConfig["language"] }}", {
-          "year": "numeric",
-          "month": "2-digit",
-          "day": "2-digit",
-          "weekday": "short",
-          "hour": "2-digit",
-          "minute": "2-digit",
-          "second": "2-digit",
-          "timeZoneName": "short",
-          "hour12": false
-        });
+        const formatter = new Intl.DateTimeFormat(
+          "{{ siteConfig["language"] }}",
+          {
+            "year": "numeric",
+            "month": "2-digit",
+            "day": "2-digit",
+            "weekday": "short",
+            "hour": "2-digit",
+            "minute": "2-digit",
+            "second": "2-digit",
+            "timeZoneName": "short",
+            "hour12": false
+          }
+        );
         elementsEach(
           document.querySelectorAll("time.post-full-date"),
           (e, i) => {
@@ -257,7 +262,7 @@
             elementBefore(e, createElementFromString([
               "<div class=\"code-titlebar\">",
                 "<div class=\"titlebar-left\">",
-                  "<button class=\"copy\" aria-label=\"{{ __("clipboard.copy") }}\"><i class=\"far fa-copy\"></i></button>",
+                  "<button class=\"copy\" aria-label=\"{{ __("clipboard.copy") }}\"><i class=\"bi bi-clipboard2-plus\"></i></button>",
                 "</div>",
                 "<div class=\"titlebar-center\">",
                   lang != null && lang.length ? lang.toUpperCase() : "{{ __("code") }}",
@@ -283,11 +288,11 @@
           e.clearSelection();
           const trigger = e.trigger;
           // Change button text as a user tip.
-          trigger.innerHTML = "<i class=\"far fa-check-square\"></i>";
+          trigger.innerHTML = "<i class=\"bi bi-clipboard2-check\"></i>";
           trigger.classList.add("copied");
           // Change button text back;
           window.setTimeout(() => {
-            trigger.innerHTML = "<i class=\"far fa-copy\"></i>";
+            trigger.innerHTML = "<i class=\"bi bi-clipboard2-plus\"></i>";
             trigger.classList.remove("copied");
           }, 1500);
         });

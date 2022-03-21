@@ -2,16 +2,16 @@
 <footer id="footer" class="footer"{% if themeConfig.color %} style="background: {{ themeConfig.color }};"{% endif %}>
   <div class="container">
     <div class="back-to-top">
-      <button id="back-to-top" class="back-to-top" aria-label="{{ __("accessibility.backToTop") }}"><i class="fas fa-angle-double-up"></i></button>
+      <button id="back-to-top" class="back-to-top" aria-label="{{ __("accessibility.backToTop") }}"><i class="bi bi-chevron-bar-up"></i></button>
     </div>
     <div class="footer-container">
       <div class="footer-left">
         <div class="copyright">
-          <span class="author"><i class="far fa-edit"></i>{{ siteConfig.author }}</span><span class="years"><i class="far fa-copyright"></i><span id="years-text">{% if themeConfig.since %}{{ themeConfig.since }}{% endif %}</span></span>{% if themeConfig.creativeCommons %}<span class="creative-commons"><i class="fab fa-creative-commons"></i><a href="http://creativecommons.org/licenses/{{ themeConfig.creativeCommons }}/4.0/" target="_blank" rel="external nofollow noreferrer noopener">{{ themeConfig.creativeCommons.toUpperCase() }} 4.0</a></span>{% endif %}
+          <span class="author"><i class="bi bi-pencil-square"></i>{{ siteConfig.author }}</span><span class="years"><i class="bi bi-calendar-minus"></i><span id="years-text">{% if themeConfig.since %}{{ themeConfig.since }}{% endif %}</span></span>{% if themeConfig.creativeCommons %}<span class="creative-commons"><i class="bi bi-badge-cc"></i><a href="http://creativecommons.org/licenses/{{ themeConfig.creativeCommons }}/4.0/" target="_blank" rel="external nofollow noreferrer noopener">{{ themeConfig.creativeCommons.toUpperCase() }} 4.0</a></span>{% endif %}
         </div>
         {% if themeConfig.busuanzi %}
         <div class="busuanzi">
-          <span id="busuanzi_container_site_pv"><i class="fas fa-eye" aria-label="{{ __("accessibility.sitePV") }}" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="fas fa-user" aria-label="{{ __("accessibility.siteUV") }}" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="fas fa-file-alt"></i><span id="busuanzi_value_page_pv" aria-label="{{ __("accessibility.pagePV") }}" aria-hidden="false"></span></span>
+          <span id="busuanzi_container_site_pv"><i class="bi bi-eye" aria-label="{{ __("accessibility.sitePV") }}" aria-hidden="false"></i><span id="busuanzi_value_site_pv"></span></span><span id="busuanzi_container_site_uv"><i class="bi bi-person-check" aria-label="{{ __("accessibility.siteUV") }}" aria-hidden="false"></i><span id="busuanzi_value_site_uv"></span></span><span id="busuanzi_container_page_pv"><i class="bi bi-filetype-html"></i><span id="busuanzi_value_page_pv" aria-label="{{ __("accessibility.pagePV") }}" aria-hidden="false"></span></span>
         </div>
         {% endif %}
       </div>
@@ -22,7 +22,7 @@
           {% endif %}
         </div>
         <div class="powered-by">
-          {{ __("poweredBy", "<a href=\"https://hikaru.alynx.one/\" target=\"_blank\" rel=\"external nofollow noreferrer noopener\">Hikaru</a>") }}<i class="fab fa-node-js"></i>{{ __("theme", "<a href=\"https://github.com/AlynxZhou/hikaru-theme-aria/\" target=\"_blank\" rel=\"external nofollow noreferrer noopener\">ARIA</a>") }}
+          {{ __("poweredBy", "<a href=\"https://hikaru.alynx.one/\" target=\"_blank\" rel=\"external nofollow noreferrer noopener\">Hikaru</a>") }}<i class="bi bi-nut"></i>{{ __("theme", "<a href=\"https://github.com/AlynxZhou/hikaru-theme-aria/\" target=\"_blank\" rel=\"external nofollow noreferrer noopener\">ARIA</a>") }}
         </div>
       </div>
     </div>

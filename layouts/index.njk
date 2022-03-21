@@ -35,22 +35,22 @@
       <div class="post-meta">
         {% if post.created %}
         <div class="post-date meta-block">
-          <i class="far fa-calendar-check"></i><span><time class="post-full-date" title="post-date" itemprop="dateCreated datePublished" datetime="{{ post.created.toISOString() }}">{{ post.created.toLocaleString() }}</time></span>
+          <i class="bi bi-calendar-check"></i><span><time class="post-full-date" title="post-date" itemprop="dateCreated datePublished" datetime="{{ post.created.toISOString() }}">{{ post.created.toLocaleString() }}</time></span>
         </div>
         {% endif %}
         {% if post.updated %}
         <div class="post-date meta-block">
-          <i class="far fa-calendar-plus"></i><span><time class="post-full-date" title="post-date" itemprop="dateUpdated" datetime="{{ post.updated.toISOString() }}">{{ post.created.toLocaleString() }}</time></span>
+          <i class="bi bi-calendar-plus"></i><span><time class="post-full-date" title="post-date" itemprop="dateUpdated" datetime="{{ post.updated.toISOString() }}">{{ post.created.toLocaleString() }}</time></span>
         </div>
         {% endif %}
         {% if post.author or post.email %}
         <div class="post-author meta-block">
           {% if post.author and post.email %}
-          <i class="far fa-edit"></i><a href="mailto:{{ post.email }}">{{ post.author }}</a>
+          <i class="bi bi-pencil-square"></i><a href="mailto:{{ post.email }}">{{ post.author }}</a>
           {% elseif post.email %}
-          <i class="far fa-edit"></i><a href="mailto:{{ post.email }}">{{ post.email }}</a>
+          <i class="bi bi-pencil-square"></i><a href="mailto:{{ post.email }}">{{ post.email }}</a>
           {% elseif post.author %}
-          <i class="far fa-edit"></i><span>{{ post.author }}</span>
+          <i class="bi bi-pencil-square"></i><span>{{ post.author }}</span>
           {% endif %}
         </div>
         {% endif %}
@@ -58,18 +58,18 @@
         <div class="post-categories meta-block">
           {# About `-`: https://mozilla.github.io/nunjucks/cn/templating.html#part-861ece9d8e5ce60c #}
           {% for cat in post.categories -%}
-          {% if loop.first %}<i class="far fa-folder-open"></i>{% else %}<i class="fas fa-angle-right"></i>{% endif %}<span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="{{ getPath(cat.docPath) }}" itemprop="url" rel="index"><span itemprop="name">{{ cat.name }}</span></a></span>
+          {% if loop.first %}<i class="bi bi-folder2-open"></i>{% else %}<i class="bi bi-chevron-right"></i>{% endif %}<span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="{{ getPath(cat.docPath) }}" itemprop="url" rel="index"><span itemprop="name">{{ cat.name }}</span></a></span>
           {%- endfor %}
         </div>
         {% endif %}
         {% if post.comment !== false and themeConfig.comment.enable %}
         {% if themeConfig.comment.issue.enable %}
         <div class="post-comment-count meta-block">
-          <i class="far fa-comments"></i><span><a href="{{ getPath(post.docPath) }}#comment-results" itemprop="discussionUrl"><span class="post-comment-count comment-count" data-comment-identifier="{{ post.title }}" itemprop="commentCount">{{ __("comment.read") }}</span></a></span>
+          <i class="bi bi-chat-dots"></i><span><a href="{{ getPath(post.docPath) }}#comment-results" itemprop="discussionUrl"><span class="post-comment-count comment-count" data-comment-identifier="{{ post.title }}" itemprop="commentCount">{{ __("comment.read") }}</span></a></span>
         </div>
         {% elseif themeConfig.comment.disqusShortName %}
         <div class="post-comment-count meta-block">
-          <i class="far fa-comments"></i><span><a href="{{ getPath(post.docPath) }}#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="{{ getPath(post.docPath) }}" itemprop="commentCount"></span></a></span>
+          <i class="bi bi-chat-dots"></i><span><a href="{{ getPath(post.docPath) }}#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="{{ getPath(post.docPath) }}" itemprop="commentCount"></span></a></span>
         </div>
         {% endif %}
         {% endif %}
@@ -90,7 +90,7 @@
       {% if post.tags and post.tags.length %}
       <div class="post-tags">
         {% for tag in post.tags -%}
-        <a class="post-tag button" href="{{ getPath(tag.docPath) }}" rel="tag"><i class="fas fa-tag"></i>{{ tag.name }}</a>
+        <a class="post-tag button" href="{{ getPath(tag.docPath) }}" rel="tag"><i class="bi bi-tag"></i>{{ tag.name }}</a>
         {%- endfor %}
       </div>
       {% endif %}
