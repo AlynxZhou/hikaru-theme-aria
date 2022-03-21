@@ -23,7 +23,7 @@
   </div>
   <script type="text/javascript">
     documentReady(() => {
-      loadComment({
+      const p = loadComment({
         "user": "{{ themeConfig.comment.issue.user }}",
         "repo": "{{ themeConfig.comment.issue.repo }}",
         "perPage": "{{ themeConfig.comment.issue.perPage }}",
@@ -34,21 +34,29 @@
         "queryString": window.location.search,
         "basePath": "{{ getPath(docPath) }}",
         "containerID": "comment-results"
-      }).then(() => {
+      });
+      // Something wrong.
+      if (p == null) {
+        return;
+      }
+      p.then(() => {
         // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat
         // A modern way to show date in user's format.
         // But it shows date only by default, no time.
-        const formatter = new Intl.DateTimeFormat("{{ siteConfig["language"] }}", {
-          "year": "numeric",
-          "month": "2-digit",
-          "day": "2-digit",
-          "weekday": "short",
-          "hour": "2-digit",
-          "minute": "2-digit",
-          "second": "2-digit",
-          "timeZoneName": "short",
-          "hour12": false
-        });
+        const formatter = new Intl.DateTimeFormat(
+          "{{ siteConfig["language"] }}",
+          {
+            "year": "numeric",
+            "month": "2-digit",
+            "day": "2-digit",
+            "weekday": "short",
+            "hour": "2-digit",
+            "minute": "2-digit",
+            "second": "2-digit",
+            "timeZoneName": "short",
+            "hour12": false
+          }
+        );
         elementsEach(
           document.querySelectorAll("time.comment-full-date"),
           (e, i) => {
@@ -57,9 +65,9 @@
             const parts = formatter.formatToParts(date);
             const obj = {};
             for (let {type, value} of parts) {
-              obj[type] = value
+              obj[type] = value;
             }
-            e.innerHTML = `${obj["year"]}-${obj["month"]}-${obj["day"]} ${obj["weekday"]} ${obj["hour"]}:${obj["minute"]}:${obj["second"]} ${obj["timeZoneName"]}`
+            e.innerHTML = `${obj["year"]}-${obj["month"]}-${obj["day"]} ${obj["weekday"]} ${obj["hour"]}:${obj["minute"]}:${obj["second"]} ${obj["timeZoneName"]}`;
           }
         );
         elementsEach(

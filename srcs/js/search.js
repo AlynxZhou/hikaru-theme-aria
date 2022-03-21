@@ -219,18 +219,18 @@ const renderDataProps = (dataProps) => {
 /* eslint-disable-next-line no-unused-vars */
 const loadSearch = (opts) => {
   if (opts == null) {
-    return;
+    return null;
   }
   if (opts["paths"] == null ||
       opts["queryString"] == null ||
       opts["containerID"] == null) {
-    return;
+    return null;
   }
   opts["failText"] = opts["failText"] || "";
   opts["noResultText"] = opts["noResultText"] || "";
   const container = document.getElementById(opts["containerID"]);
   if (container == null) {
-    return;
+    return null;
   }
   container.style.display = "block";
   const header = [];
@@ -238,7 +238,7 @@ const loadSearch = (opts) => {
   let keywords = parseKeywords(opts["queryString"]);
   if (keywords.length === 0) {
     container.innerHTML = opts["noResultText"];
-    return;
+    return null;
   }
   if (keywords.length > MAX_KEYWORDS) {
     keywords = keywords.slice(0, MAX_KEYWORDS);
@@ -248,7 +248,7 @@ const loadSearch = (opts) => {
   }
   header.push("<ul class=\"search-result-list\">");
   footer.push("</ul>");
-  Promise.all(opts["paths"].map((path) => {
+  return Promise.all(opts["paths"].map((path) => {
     return fetchJSON(path);
   })).then((jsons) => {
     const data = jsons.map((json) => {
