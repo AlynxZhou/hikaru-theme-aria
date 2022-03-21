@@ -51,7 +51,7 @@
     <link rel="shortcut icon" type="image/x-icon" href="{{ getPath(themeConfig.favicon.fallback) }}">
     {% endif %}
     {% if siteConfig.feed.enable %}
-    <link rel="alternate" href="{{ getPath(siteConfig.feed.path) }}" title="{{ siteConfig.title }}" type="application/atom+xml" />
+    <link rel="alternate" href="{{ getPath(siteConfig.feed.path) }}" title="{{ siteConfig.title }}" type="application/atom+xml">
     {% endif %}
     {% if themeConfig.customFont.enable and themeConfig.customFont.link %}
     <link rel="stylesheet" type="text/css" href="{{ themeConfig.customFont.link }}">
@@ -245,9 +245,9 @@
             const parts = formatter.formatToParts(date);
             const obj = {};
             for (let {type, value} of parts) {
-              obj[type] = value
+              obj[type] = value;
             }
-            e.innerHTML = `${obj["year"]}-${obj["month"]}-${obj["day"]} ${obj["weekday"]} ${obj["hour"]}:${obj["minute"]}:${obj["second"]} ${obj["timeZoneName"]}`
+            e.innerHTML = `${obj["year"]}-${obj["month"]}-${obj["day"]} ${obj["weekday"]} ${obj["hour"]}:${obj["minute"]}:${obj["second"]} ${obj["timeZoneName"]}`;
           }
         );
         elementsEach(
