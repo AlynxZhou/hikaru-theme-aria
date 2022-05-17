@@ -25,7 +25,15 @@
         {% else %}
         {% set external = true %}
         {% endif %}
-        <li role="menuitem"><a href="{% if external %}{{ e.link }}{% else %}{{ getPath(e.link) }}{% endif %}"{% if not external and isCurrentPath(e.link) %} class="current"{% endif %}{% if external %} target="_blank" rel="external nofollow noreferrer noopener"{% endif %}>{% if e.icon %}{{ e.icon }}{% endif %}<span class="menu-text">{{ __(e.name) }}</span></a></li>
+        {#
+          About `isCurrentPath(e.link, getPath(e.link) === getPath())`:
+          Normally "Home" is the site root dir, and all pages are under it,
+          then the "Home" link will always be current. For example,
+          `/blog/archives/` is always under `/blog/`. But we don't want two
+          current links ("Home" and "Archives"), so if a link is site root dir,
+          we use strict match for it.
+        #}
+        <li role="menuitem"><a href="{% if external %}{{ e.link }}{% else %}{{ getPath(e.link) }}{% endif %}"{% if not external and isCurrentPath(e.link, getPath(e.link) === getPath()) %} class="current"{% endif %}{% if external %} target="_blank" rel="external nofollow noreferrer noopener"{% endif %}>{% if e.icon %}{{ e.icon }}{% endif %}<span class="menu-text">{{ __(e.name) }}</span></a></li>
         {% endfor %}
       </ul>
       <button class="theme-toggle" id="theme-toggle">
