@@ -1,3 +1,11 @@
+/**
+ * A script that update list group components based on scroll position to
+ * indicate which link is currently active in the viewport.
+ * This is an alternative to Bootstrap's Scrollspy. However, it uses `current`
+ * as class name instead of `active`.
+ * CopyLeft (C) 2022
+ * AlynxZhou <alynx.zhou@gmail.com> (https://alynx.one/)
+ */
 "use strict";
 
 let lastKnownPosition = 0;
@@ -9,14 +17,14 @@ const doActive = (container, target, headers, position) => {
     // and e is last, or e's next is lower than current position.
     if (e.offsetTop <= position &&
         (i === headers.length - 1 || headers[i + 1].offsetTop > position)) {
-      const oldActive = target.querySelector("a.active");
+      const oldActive = target.querySelector("a.current");
       const newActive = target.querySelector(`a[href="#${e.id}"]`);
       if (oldActive !== newActive) {
         if (oldActive != null) {
-          oldActive.classList.remove("active");
+          oldActive.classList.remove("current");
         }
         if (newActive != null) {
-          newActive.classList.add("active");
+          newActive.classList.add("current");
         }
       }
     }
@@ -24,9 +32,9 @@ const doActive = (container, target, headers, position) => {
   // If we are out of container, none is active.
   if (container.offsetTop > position ||
       container.offsetTop + container.offsetHeight < position) {
-    const oldActive = target.querySelector("a.active");
+    const oldActive = target.querySelector("a.current");
     if (oldActive != null) {
-      oldActive.classList.remove("active");
+      oldActive.classList.remove("current");
     }
   }
 };

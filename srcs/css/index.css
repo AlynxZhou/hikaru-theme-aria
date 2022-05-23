@@ -77,7 +77,7 @@ a:hover {
   color: var(--color-link-hover-font);
   border-bottom: 0.05em solid var(--color-link-hover-font);
 }
-  
+
 a:active {
   top: 0.1em;
 }
@@ -588,8 +588,9 @@ nav.nav ul li a:hover {
 }
 
 nav.nav ul li a.current {
-  color: var(--color-nav-link-hover-font);
-  background: var(--color-nav-current-background);
+  font-weight: bold;
+  /* color: var(--color-nav-link-hover-font); */
+  /* background: var(--color-nav-current-background); */
 }
 
 button.nav-toggle, button.theme-toggle {
@@ -705,6 +706,10 @@ nav.pagination {
   text-align: center;
 }
 
+/**
+ * Don't set border color manually, or we will have conflict for current and
+ * hover.
+ */
 a.page-number {
   display: inline-block;
   font-size: 1.25rem;
@@ -712,18 +717,18 @@ a.page-number {
   margin: 0.1em 0.25em;
   text-decoration: none;
   color: var(--color-link-font);
-  border-bottom: 0.15em solid var(--color-link-font);
+  border-bottom: 0.15em solid;
+  transition: color 0.3s ease-in-out;
 }
 
 a.page-number:hover {
   color: var(--color-link-hover-font);
-  border-bottom: 0.15em solid var(--color-link-hover-font);
 }
 
 a.page-number.current {
-  color: var(--color-link-hover-font);
-  border-bottom: 0.15em solid var(--color-link-hover-font);
-  border-top: 0.1em solid var(--color-link-hover-font);
+  /* color: var(--color-link-hover-font); */
+  border-bottom: 0.15em solid;
+  border-top: 0.1em solid;
 }
 
 nav.page-nav {
@@ -1144,9 +1149,10 @@ div.sidebar-sticky {
   padding-bottom: 1em;
 }
 
-a.toc-link.active {
-  color: var(--color-link-hover-font);
-  border-bottom: 0.05em solid var(--color-link-hover-font);
+a.toc-link.current {
+  font-weight: bold;
+  /* color: var(--color-link-hover-font); */
+  /* border-bottom: 0.05em solid var(--color-link-hover-font); */
 }
 
 footer.footer {
@@ -1264,7 +1270,7 @@ div.container {
   div.main-container {
     flex-direction: column;
   }
-  
+
   div.content, aside.sidebar {
     flex: 1 1 auto;
   }
@@ -1272,22 +1278,22 @@ div.container {
   div.sidebar-item {
     text-align: center;
   }
-  
+
   div.sidebar-item ul {
     padding: 0;
   }
-  
+
   div.sidebar-item ul li {
     display: inline-block;
     margin: 0.5em 1em;
   }
-  
+
   ol.toc {
     /* It is not supposed to hold the whole line. */
     display: inline-block;
     text-align: left;
   }
-  
+
   div.sidebar-sticky {
     position: static;
   }
@@ -1299,7 +1305,7 @@ div.container {
     /* Stretch logo and title when fold. */
     align-items: stretch;
   }
-  
+
   div.header-title, div.logo {
     text-align: center;
     flex: 1 1 auto;
@@ -1309,17 +1315,17 @@ div.container {
     flex-direction: column;
     padding: 0;
   }
-  
+
   nav.nav ul {
     display: none;
     white-space: normal;
   }
-  
+
   nav.nav ul li {
     display: block;
     margin: 0.1em 0;
   }
-  
+
   button.nav-toggle, button.theme-toggle {
     /* Take full line for easier click. */
     display: block;
@@ -1339,7 +1345,7 @@ div.container {
     flex-direction: column-reverse;
     align-items: stretch;
   }
-  
+
   div.footer-left, div.footer-right {
     text-align: center;
     flex: 1 1 auto;
