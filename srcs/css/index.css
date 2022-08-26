@@ -597,7 +597,6 @@ button.nav-toggle, button.theme-toggle {
   flex: 0 0 auto;
   text-align: center;
   border: none;
-  outline: 0;
   padding: 0 0.5em;
   margin: 0;
   background: var(--color-nav-background);
@@ -833,7 +832,6 @@ div.reward {
 button.reward-button {
   cursor: pointer;
   border: none;
-  outline: 0;
   padding: 0.5em 0.5em;
   margin: 0.5em 0;
   background: var(--color-button-red-background);
@@ -1206,7 +1204,6 @@ div.back-to-top {
 
 button.back-to-top {
   border: none;
-  outline: 0;
   transition: color 0.3s ease-in-out;
   color: var(--color-link-font);
   background: var(--color-background);
