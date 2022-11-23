@@ -46,6 +46,8 @@
     <meta name="keywords" content="{{ themeConfig.keywords.join(", ") }}">
     {% endif %}
     <meta name="generator" content="Hikaru v{{ getVersion() }}">
+    {# We can handle both light and dark color scheme. #}
+    <meta name="color-scheme" content="light dark">
     {# See <https://ogp.me/>. #}
     <meta property="og:site_name" content="{{ siteConfig.title }}">
     <meta property="og:title" content="{{ __(title) }}">
