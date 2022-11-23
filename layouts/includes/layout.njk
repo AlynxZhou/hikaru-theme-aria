@@ -11,20 +11,62 @@
     {% if themeConfig.googleVerification %}
     <meta name="google-site-verification" content="{{ themeConfig.googleVerification }}">
     {% endif %}
+    {# See <https://html.spec.whatwg.org/multipage/semantics.html#standard-metadata-names>. #}
+    {% if author %}
+    <meta name="author" content="{{ author }}">
+    {% elseif email %}
+    {# Maybe email is not OK here... #}
+    <meta name="author" content="{{ email }}">
+    {% elseif siteConfig.author %}
     <meta name="author" content="{{ siteConfig.author }}">
-    {% if excerpt %}
+    {% endif %}
+    {% if excerpt  %}
     <meta name="description" content="{{ excerpt | striptags }}">
     {% elseif description %}
-    <meta name="description" content="{{ description }}">
+    <meta name="description" content="{{ description | striptags }}">
+    {% elseif content and themeConfig.autoExcerpt %}
+    {# Not all pages have contents, this only works for posts. #}
+    <meta name="description" content="{{ (content | striptags).substring(0, themeConfig.autoExcerpt) }}…">
+    {% elseif siteConfig.subtitle %}
+    {# This should be a page description instead of site description, but #}
+    {# just put something here if no page description. #}
+    <meta name="description" content="{{ siteConfig.subtitle }}">
     {% elseif siteConfig.description %}
+    {# Subtitle is more like site description and description is more like #}
+    {# author description. #}
     <meta name="description" content="{{ siteConfig.description }}">
     {% endif %}
     {% if keywords %}
     <meta name="keywords" content="{{ keywords.join(", ") }}">
+    {% elseif tags %}
+    {# See <https://mozilla.github.io/nunjucks/templating.html#join>. #}
+    {# Because Tag is an object and we cannot use `map()` in Nunjucks. #}
+    <meta name="keywords" content="{{ tags | join(", ", "name") }}">
     {% elseif themeConfig.keywords %}
     <meta name="keywords" content="{{ themeConfig.keywords.join(", ") }}">
     {% endif %}
     <meta name="generator" content="Hikaru v{{ getVersion() }}">
+    {# See <https://ogp.me/>. #}
+    <meta property="og:site_name" content="{{ siteConfig.title }}">
+    <meta property="og:title" content="{{ __(title) }}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ getURL(docPath) }}">
+    {# Though I have a site logo, but author avatar is better here. #}
+    {% if themeConfig.avatar %}
+    <meta property="og:image" content="{{ getURL(themeConfig.avatar) }}">
+    {% endif %}
+    {# Basically the same as description. #}
+    {% if excerpt  %}
+    <meta property="og:description" content="{{ excerpt | striptags }}">
+    {% elseif description %}
+    <meta property="og:description" content="{{ description | striptags }}">
+    {% elseif content and themeConfig.autoExcerpt %}
+    <meta property="og:description" content="{{ (content | striptags).substring(0, themeConfig.autoExcerpt) }}…">
+    {% elseif siteConfig.subtitle %}
+    <meta property="og:description" content="{{ siteConfig.subtitle }}">
+    {% elseif siteConfig.description %}
+    <meta property="og:description" content="{{ siteConfig.description }}">
+    {% endif %}
     <link rel="canonical" href="{{ getURL(docPath) }}">
     {% if themeConfig.favicon.appleTouchIcon %}
     <link rel="apple-touch-icon" sizes="180x180" href="{{ getPath(themeConfig.favicon.appleTouchIcon) }}">
