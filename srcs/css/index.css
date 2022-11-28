@@ -558,10 +558,13 @@ nav.nav {
 /* Use flex and block for ul and li to ignore white spaces Nunjucks puts here.*/
 nav.nav ul {
   display: flex;
+  flex: 1 1 auto;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: flex-start;
   list-style: none;
   padding: 0;
   margin: 0;
-  flex: 1 1 auto;
   overflow: auto;
   white-space: nowrap;
   scrollbar-width: thin;
@@ -569,6 +572,8 @@ nav.nav ul {
 }
 
 nav.nav ul li {
+  /* Don't stretch. */
+  flex: 0 0 auto;
   text-align: center;
   display: block;
   margin: 0 0.1em;
@@ -666,8 +671,11 @@ div.page-counter {
 
 nav.pagination {
   padding: 0.5em;
-  display: block;
-  text-align: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
 }
 
 /**
@@ -675,10 +683,12 @@ nav.pagination {
  * hover styles.
  */
 a.page-number {
-  display: inline-block;
+  display: block;
+  /* Don't stretch. */
+  flex: 0 0 auto;
   font-size: 1.25rem;
   padding: 0.3em 0.5em;
-  margin: 0.1em 0.25em;
+  margin: 0.1em 0.5em;
   text-decoration: none;
   color: var(--color-link-font);
   border-bottom: 0.15em solid;
@@ -747,8 +757,6 @@ div.page-title, div.post-title {
 }
 
 a.title-link {
-  /* Use inline-block because it is not supposed to hold the whole line. */
-  display: inline-block;
   position: relative;
   text-decoration: none;
   border-bottom: none;
@@ -1280,10 +1288,16 @@ div.container {
 
   div.sidebar-item ul {
     padding: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
   }
 
   div.sidebar-item ul li {
-    display: inline-block;
+    display: block;
+    flex: 0 0 auto;
     margin: 0.5em 1em;
   }
 
