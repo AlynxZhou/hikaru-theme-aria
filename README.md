@@ -325,6 +325,12 @@ Nunjucks tags should not be indented, which means they should be in the same lev
 
 Use 2-spaces indent.
 
+If you want to check some conditions before include a file, move `if` into included file.
+
+If control blocks or comments take a whole line, use `{%- %}` or `{#- #}` to strip those lines, this will remove white spaces used to indent. However, don't do this for `extends`, `include`, `block`, `endblock` or `{{ }}`, because they mean parts from other places, so it's useless to do this for them.
+
+If inner HTML does not take the whole line, control blocks should also be inline, instead of take a whole line.
+
 ## JavaScript
 
 JavaScript inside scripts tags shoule have a 2-spaces indent to it's parent `<script>` tag.

@@ -8,47 +8,41 @@
     <a class="title-link" href="{{ getPath(docPath) }}" itemprop="url">{{ __(title) }}</a>
   </div>
   <div class="page-counter">
-    {% if site.posts.length > 1 %}
+    {%- if site.posts.length > 1 %}
     {{ __("postCount.more", site.posts.length) }}
-    {% elseif posts.length === 1 %}
+    {%- elseif posts.length === 1 %}
     {{ __("postCount.one", site.posts.length) }}
-    {% else %}
+    {%- else %}
     {{ __("postCount.none") }}
-    {% endif %}
+    {%- endif %}
   </div>
-  {% set year = 1970 %}
-  {% for post in posts %}
-  {% if post.created.getFullYear() !== year %}
-  {% set year = post.created.getFullYear() %}
+  {%- set year = 1970 %}
+  {%- for post in posts %}
+  {%- if post.created.getFullYear() !== year %}
+  {%- set year = post.created.getFullYear() %}
   <div class="page-title">{{ year }}</div>
-  {% endif %}
+  {%- endif %}
   <article class="article post card{% if themeConfig.animate %} animate{% endif %}" itemscope itemtype="http://schema.org/Article">
     <header id="post-header" class="post-header">
       <div class="post-title-simple" itemprop="name headline">
         <a class="title-link-simple" href="{{ getPath(post.docPath) }}" itemprop="url">{{ post.title }}</a>
       </div>
-      {% if post.created %}
+      {%- if post.created %}
       <span class="post-date">
-        {% set month = post.created.getMonth() + 1 %}
-        {% if month <= 9 %}
-        {% set month = ["0", month].join("") %}
-        {% endif %}
-        {% set date = post.created.getDate() %}
-        {% if date <= 9 %}
-        {% set date = ["0", date].join("") %}
-        {% endif %}
+        {%- set month = post.created.getMonth() + 1 %}
+        {%- if month <= 9 %}
+        {%- set month = ["0", month].join("") %}
+        {%- endif %}
+        {%- set date = post.created.getDate() %}
+        {%- if date <= 9 %}
+        {%- set date = ["0", date].join("") %}
+        {%- endif %}
         <time title="post-date" itemprop="dateCreated datePublished" datetime="{{ post.created.toISOString() }}">{{ month }}-{{ date }}</time>
       </span>
-      {% endif %}
+      {%- endif %}
     </header>
   </article>
-  {% endfor %}
+  {%- endfor %}
   {% include "includes/pagination.njk" %}
-  {% if themeConfig.reward.enable %}
-  {% include "includes/reward.njk" %}
-  {% endif %}
-  {% if themeConfig.comment.enable %}
-  {% include "includes/comment.njk" %}
-  {% endif %}
 </div>
 {% endblock %}

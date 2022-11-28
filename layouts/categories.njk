@@ -12,37 +12,35 @@
     </header>
     <main class="post-main" id="scrollspy-container">
       <div class="page-counter">
-        {% if site.categoriesLength > 1 %}
+        {%- if site.categoriesLength > 1 %}
         {{ __("categoryCount.more", site.categoriesLength) }}
-        {% elseif site.categories.length === 1 %}
+        {%- elseif site.categories.length === 1 %}
         {{ __("categoryCount.one", site.categoriesLength) }}
-        {% else %}
+        {%- else %}
         {{ __("categoryCount.none") }}
-        {% endif %}
+        {%- endif %}
       </div>
       <div class="categories-list">
-        {% macro listCategory(cates) %}
+        {#-
+          Strip white spaces before and after macro defination as if it's
+          invisible to prevent blank lines.
+        #}
+        {%- macro listCategory(cates) -%}
+        {%- if cates != null and cates.length > 0 %}
         <ul>
-        {% for cate in cates %}
+        {%- for cate in cates %}
           <li>
             <a href="{{ getPath(cate.docPath) }}">{{ cate.name }}</a> <span>{{ cate.posts.length }}</span>
-            {% if cate.subs.length > 0 %}
             {{ listCategory(cate.subs) }}
-            {% endif %}
           </li>
-        {% endfor %}
+        {%- endfor %}
         </ul>
+        {% endif %}
         {% endmacro %}
         {{ listCategory(site.categories) }}
       </div>
     </main>
     <footer class="post-footer"></footer>
   </article>
-  {% if themeConfig.reward.enable %}
-  {% include "includes/reward.njk" %}
-  {% endif %}
-  {% if themeConfig.comment.enable %}
-  {% include "includes/comment.njk" %}
-  {% endif %}
 </div>
 {% endblock %}

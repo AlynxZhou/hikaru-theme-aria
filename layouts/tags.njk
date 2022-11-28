@@ -26,27 +26,19 @@
     </header>
     <main class="post-main" id="scrollspy-container">
       <div class="page-counter">
-        {% if site.tagsLength > 1 %}
+        {%- if site.tagsLength > 1 %}
         {{ __("tagCount.more", site.tagsLength) }}
-        {% elseif tags.length === 1 %}
+        {%- elseif tags.length === 1 %}
         {{ __("tagCount.one", site.tagsLength) }}
-        {% else %}
+        {%- else %}
         {{ __("tagCount.none") }}
-        {% endif %}
+        {%- endif %}
       </div>
       <div class="tags-cloud">
-        {% for tag in site.tags %}
-        <a class="post-tag button" href="{{ getPath(tag.docPath) }}" rel="tag"><i class="bi bi-tag"></i>{{ tag.name }} {{ tag.posts.length }}</a>
-        {% endfor %}
+        {% for tag in site.tags %}<a class="post-tag button" href="{{ getPath(tag.docPath) }}" rel="tag"><i class="bi bi-tag"></i>{{ tag.name }} {{ tag.posts.length }}</a>{% endfor %}
       </div>
     </main>
     <footer class="post-footer"></footer>
   </article>
-  {% if themeConfig.reward.enable %}
-  {% include "includes/reward.njk" %}
-  {% endif %}
-  {% if themeConfig.comment.enable %}
-  {% include "includes/comment.njk" %}
-  {% endif %}
 </div>
 {% endblock %}

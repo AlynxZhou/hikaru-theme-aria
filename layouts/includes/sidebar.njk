@@ -1,91 +1,96 @@
-{% block sidebar %}
+{#- Sidebar can be `left`, `right` or `false`. #}
+{%- if themeConfig.sidebar !== false %}
 <aside class="sidebar" id="sidebar">
-  {% if themeConfig.search %}
+  {%- if themeConfig.search %}
   <div class="search" role="search">
     <form action="{{ getPath(siteConfig.search.page) }}" method="get">
       <button type="submit" class="search-submit" aria-label="{{ __("search") }}"><i class="bi bi-search"></i></button><input type="search" id="search-input" class="search-input" name="q" results="0" placeholder="{{ __("search") }}" aria-label="{{ __("search") }}">
     </form>
   </div>
-  {% endif %}
+  {%- endif %}
   <div class="info sidebar-item" id="info">
-    {% if themeConfig.avatar %}
+    {%- if themeConfig.avatar %}
     <img class="author-avatar" src="{{ getPath(themeConfig.avatar) }}" alt="{{ siteConfig.author }}">
-    {% endif %}
+    {%- endif %}
     <div class="author-name">{{ siteConfig.author }}</div>
-    {% if siteConfig.description %}
+    {%- if siteConfig.description %}
     <div class="author-description">{{ siteConfig.description }}</div>
-    {% endif %}
+    {%- endif %}
     <div class="site-count">
-      {% for e in themeConfig.menu %}
-      {% if e.name === "archives" %}
+      {%- for e in themeConfig.menu %}
+      {%- if e.name === "archives" %}
       <div class="archives-count count-block">
         <div class="site-count-title">{{ __("archives") }}</div>
         <div><a href="{{ getPath(e.link) }}">{{ site.posts.length }}</a></div>
       </div>
-      {% elseif e.name === "categories" %}
+      {%- elseif e.name === "categories" %}
       <div class="categories-count count-block">
         <div class="site-count-title">{{ __("categories") }}</div>
         <div><a href="{{ getPath(e.link) }}">{{ site.categoriesLength }}</a></div>
       </div>
-      {% elseif e.name === "tags" %}
+      {%- elseif e.name === "tags" %}
       <div class="tags-count count-block">
         <div class="site-count-title">{{ __("tags") }}</div>
         <div><a href="{{ getPath(e.link) }}">{{ site.tagsLength }}</a></div>
       </div>
-      {% endif %}
-      {% endfor %}
+      {%- endif %}
+      {%- endfor %}
     </div>
-    {% if siteConfig.feed.enable %}
+    {%- if siteConfig.feed.enable %}
     <div class="rss">
       <a class="rss-link button sidebar-item" href="{{ getPath(siteConfig.feed.path) }}"><i class="bi bi-rss"></i>RSS</a>
     </div>
-    {% endif %}
+    {%- endif %}
   </div>
   <div class="sidebar-sticky">
-    {% if content %}
-    {% if toc.length > 0 %}
+    {%- if content %}
+    {%- if toc.length > 0 %}
     <hr>
     <div class="post-toc sidebar-item">
       <div><i class="bi bi-list-ol"></i>{{ __("toc") }}</div>
-      {% macro listToc(toc, level = 1) %}
-      <ol {% if level === 1 %}class="toc" id="scrollspy-target"{% endif %}>
-      {% for h in toc %}
+      {#-
+        Strip white spaces before and after macro defination as if it's
+        invisible to prevent blank lines.
+      #}
+      {%- macro listToc(toc, level = 1) -%}
+      {%- if toc != null and toc.length > 0 %}
+      <ol{% if level === 1 %} class="toc" id="scrollspy-target"{% endif %}>
+      {%- for h in toc %}
         <li>
-          {# Don't set anchor to absolute path, because it's hard to write selector for scrollspy. #}
+          {#- Don't set anchor to absolute path, because it's hard to write selector for scrollspy. #}
           <a class="list-group-item toc-link" href="{{ h.archor }}">{{ h.text }}</a>
-          {% if h.subs.length > 0 %}
           {{ listToc(h.subs, level + 1) }}
-          {% endif %}
         </li>
-      {% endfor %}
+      {%- endfor %}
       </ol>
-      {% endmacro %}
+      {%- endif %}
+      {%- endmacro -%}
       {{ listToc(toc) }}
     </div>
-    {% endif %}
-    {% endif %}
-    {% if themeConfig.social.enable %}
+    {%- endif %}
+    {%- endif %}
+    {%- if themeConfig.social.enable %}
     <hr>
     <div class="social-link sidebar-item">
       <div><i class="bi bi-person-workspace"></i>{{ __("socialLink") }}</div>
       <ul>
-        {% for e in themeConfig.social.links %}
+        {%- for e in themeConfig.social.links %}
         <li>{% if e.icon %}{{ e.icon }}{% endif %}<a href="{{ e.link }}" target="_blank" rel="external nofollow noreferrer noopener">{{ e.name }}</a></li>
-        {% endfor %}
+        {%- endfor %}
       </ul>
     </div>
-    {% endif %}
-    {% if themeConfig.blogroll.enable %}
+    {%- endif %}
+    {%- if themeConfig.blogroll.enable %}
     <hr>
     <div class="blogroll sidebar-item">
       <div><i class="bi bi-people"></i>{{ __("blogroll") }}</div>
       <ul>
-        {% for e in themeConfig.blogroll.links %}
+        {%- for e in themeConfig.blogroll.links %}
         <li>{% if e.icon %}{{ e.icon }}{% endif %}<a href="{{ e.link }}" target="_blank" rel="external nofollow noreferrer noopener">{{ e.name }}</a></li>
-        {% endfor %}
+        {%- endfor %}
       </ul>
     </div>
-    {% endif %}
+    {%- endif %}
   </div>
 </aside>
-{% endblock %}
+{%- endif %}

@@ -3,26 +3,26 @@
 {% block title %}{{ siteConfig.title }}{% if siteConfig.subtitle %} - {{ siteConfig.subtitle }}{% endif %}{% endblock %}
 
 {% block content %}
-{% if themeConfig.pinnedMessage %}
+{%- if themeConfig.pinnedMessage %}
 <div id="pinned-message" class="pinned-message">
   <div class="card{% if themeConfig.animate %} animate{% endif %}">
     {{ themeConfig.pinnedMessage }}
   </div>
 </div>
-{% endif %}
+{%- endif %}
 <div id="index" class="index page">
-  {% for post in posts %}
+  {%- for post in posts %}
   <article class="article post card{% if themeConfig.animate %} animate{% endif %}" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
       <link itemprop="mainEntityOfPage" href="{{ getURL(post.docPath) }}">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        {% if post.author %}
+        {%- if post.author %}
         <meta itemprop="name" content="{{ post.author }}">
-        {% else %}
+        {%- else %}
         <meta itemprop="name" content="{{ siteConfig.author }}">
         <meta itemprop="description" content="{{ siteConfig.description }}">
         <meta itemprop="image" content="{{ getPath(themeConfig.avatar) }}">
-        {% endif %}
+        {%- endif %}
       </span>
       <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
         <meta itemprop="name" content="{{ siteConfig.title }}">
@@ -33,76 +33,65 @@
         <a class="title-link" href="{{ getPath(post.docPath) }}" itemprop="url">{{ post.title }}</a>
       </div>
       <div class="post-meta">
-        {% if post.created %}
+        {%- if post.created %}
         <div class="post-date meta-block">
           <i class="bi bi-calendar-check"></i><span><time class="post-full-date" title="post-date" itemprop="dateCreated datePublished" datetime="{{ post.created.toISOString() }}">{{ post.created.toLocaleString() }}</time></span>
         </div>
-        {% endif %}
-        {% if post.updated %}
+        {%- endif %}
+        {%- if post.updated %}
         <div class="post-date meta-block">
           <i class="bi bi-calendar-plus"></i><span><time class="post-full-date" title="post-date" itemprop="dateUpdated" datetime="{{ post.updated.toISOString() }}">{{ post.created.toLocaleString() }}</time></span>
         </div>
-        {% endif %}
-        {% if post.author or post.email %}
+        {%- endif %}
+        {%- if post.author or post.email %}
         <div class="post-author meta-block">
-          {% if post.author and post.email %}
+          {%- if post.author and post.email %}
           <i class="bi bi-pencil-square"></i><a href="mailto:{{ post.email }}">{{ post.author }}</a>
-          {% elseif post.email %}
+          {%- elseif post.email %}
           <i class="bi bi-pencil-square"></i><a href="mailto:{{ post.email }}">{{ post.email }}</a>
-          {% elseif post.author %}
+          {%- elseif post.author %}
           <i class="bi bi-pencil-square"></i><span>{{ post.author }}</span>
-          {% endif %}
+          {%- endif %}
         </div>
-        {% endif %}
-        {% if post.categories and post.categories.length %}
+        {%- endif %}
+        {%- if post.categories and post.categories.length %}
         <div class="post-categories meta-block">
-          {# About `-`: https://mozilla.github.io/nunjucks/cn/templating.html#part-861ece9d8e5ce60c #}
-          {% for cat in post.categories -%}
-          {% if loop.first %}<i class="bi bi-folder2-open"></i>{% else %}<i class="bi bi-chevron-right"></i>{% endif %}<span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="{{ getPath(cat.docPath) }}" itemprop="url" rel="index"><span itemprop="name">{{ cat.name }}</span></a></span>
-          {%- endfor %}
+          {% for cat in post.categories %}{% if loop.first %}<i class="bi bi-folder2-open"></i>{% else %}<i class="bi bi-chevron-right"></i>{% endif %}<span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="{{ getPath(cat.docPath) }}" itemprop="url" rel="index"><span itemprop="name">{{ cat.name }}</span></a></span>{% endfor %}
         </div>
-        {% endif %}
-        {% if post.comment !== false and themeConfig.comment.enable %}
-        {% if themeConfig.comment.issue.enable %}
+        {%- endif %}
+        {%- if post.comment !== false and themeConfig.comment.enable %}
+        {%- if themeConfig.comment.issue.enable %}
         <div class="post-comment-count meta-block">
           <i class="bi bi-chat-dots"></i><span><a href="{{ getPath(post.docPath) }}#comment-results" itemprop="discussionUrl"><span class="post-comment-count comment-count" data-comment-identifier="{{ post.title }}" itemprop="commentCount">{{ __("comment.read") }}</span></a></span>
         </div>
-        {% elseif themeConfig.comment.disqusShortName %}
+        {%- elseif themeConfig.comment.disqusShortName %}
         <div class="post-comment-count meta-block">
           <i class="bi bi-chat-dots"></i><span><a href="{{ getPath(post.docPath) }}#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="{{ getPath(post.docPath) }}" itemprop="commentCount"></span></a></span>
         </div>
-        {% endif %}
-        {% endif %}
+        {%- endif %}
+        {%- endif %}
       </div>
     </header>
     <main class="post-main" id="scrollspy-container" itemprop="articleBody">
-      {% if post.excerpt  %}
+      {%- if post.excerpt  %}
       {{ post.excerpt }}
-      {% elseif post.description %}
+      {%- elseif post.description %}
       {{ post.description }}
-      {% elseif themeConfig.autoExcerpt %}
+      {%- elseif themeConfig.autoExcerpt %}
       <p>{{ (post.content | striptags).substring(0, themeConfig.autoExcerpt) }}…</p>
-      {% else %}
+      {%- else %}
       {{ post.content }}
-      {% endif %}
+      {%- endif %}
     </main>
     <footer class="post-footer">
-      {% if post.tags and post.tags.length %}
+      {%- if post.tags and post.tags.length %}
       <div class="post-tags">
-        {% for tag in post.tags -%}
-        <a class="post-tag button" href="{{ getPath(tag.docPath) }}" rel="tag"><i class="bi bi-tag"></i>{{ tag.name }}</a>
-        {%- endfor %}
+        {% for tag in post.tags %}<a class="post-tag button" href="{{ getPath(tag.docPath) }}" rel="tag"><i class="bi bi-tag"></i>{{ tag.name }}</a>{% endfor %}
       </div>
-      {% endif %}
+      {%- endif %}
     </footer>
   </article>
-  {% endfor %}
+  {%- endfor %}
   {% include "includes/pagination.njk" %}
-  {% if themeConfig.reward.enable %}
-  {% include "includes/reward.njk" %}
-  {% endif %}
-  {% if themeConfig.comment.enable %}
-  {% include "includes/comment.njk" %}
-  {% endif %}
 </div>
 {% endblock %}

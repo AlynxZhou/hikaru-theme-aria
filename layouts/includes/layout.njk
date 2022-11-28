@@ -4,102 +4,102 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=10">
-    {% if themeConfig.color %}
+    {%- if themeConfig.color %}
     <meta name="theme-color" content="{{ themeConfig.color }}">
     <meta name="msapplication-TileColor" content="{{ themeConfig.color }}">
-    {% endif %}
-    {% if themeConfig.googleVerification %}
+    {%- endif %}
+    {%- if themeConfig.googleVerification %}
     <meta name="google-site-verification" content="{{ themeConfig.googleVerification }}">
-    {% endif %}
-    {# See <https://html.spec.whatwg.org/multipage/semantics.html#standard-metadata-names>. #}
-    {% if author %}
+    {%- endif %}
+    {#- See <https://html.spec.whatwg.org/multipage/semantics.html#standard-metadata-names>. #}
+    {%- if author %}
     <meta name="author" content="{{ author }}">
-    {% elseif email %}
-    {# Maybe email is not OK here... #}
+    {%- elseif email %}
+    {#- Maybe email is not OK here... #}
     <meta name="author" content="{{ email }}">
-    {% elseif siteConfig.author %}
+    {%- elseif siteConfig.author %}
     <meta name="author" content="{{ siteConfig.author }}">
-    {% endif %}
-    {% if excerpt  %}
+    {%- endif %}
+    {%- if excerpt  %}
     <meta name="description" content="{{ excerpt | striptags }}">
-    {% elseif description %}
+    {%- elseif description %}
     <meta name="description" content="{{ description | striptags }}">
-    {% elseif content and themeConfig.autoExcerpt %}
-    {# Not all pages have contents, this only works for posts. #}
+    {%- elseif content and themeConfig.autoExcerpt %}
+    {#- Not all pages have contents, this only works for posts. #}
     <meta name="description" content="{{ (content | striptags).substring(0, themeConfig.autoExcerpt) }}…">
-    {% elseif siteConfig.subtitle %}
-    {# This should be a page description instead of site description, but #}
-    {# just put something here if no page description. #}
+    {%- elseif siteConfig.subtitle %}
+    {#- This should be a page description instead of site description, but #}
+    {#- just put something here if no page description. #}
     <meta name="description" content="{{ siteConfig.subtitle }}">
-    {% elseif siteConfig.description %}
-    {# Subtitle is more like site description and description is more like #}
-    {# author description. #}
+    {%- elseif siteConfig.description %}
+    {#- Subtitle is more like site description and description is more like #}
+    {#- author description. #}
     <meta name="description" content="{{ siteConfig.description }}">
-    {% endif %}
-    {% if keywords %}
+    {%- endif %}
+    {%- if keywords %}
     <meta name="keywords" content="{{ keywords.join(", ") }}">
-    {% elseif tags %}
-    {# See <https://mozilla.github.io/nunjucks/templating.html#join>. #}
-    {# Because Tag is an object and we cannot use `map()` in Nunjucks. #}
+    {%- elseif tags %}
+    {#- See <https://mozilla.github.io/nunjucks/templating.html#join>. #}
+    {#- Because Tag is an object and we cannot use `map()` in Nunjucks. #}
     <meta name="keywords" content="{{ tags | join(", ", "name") }}">
-    {% elseif themeConfig.keywords %}
+    {%- elseif themeConfig.keywords %}
     <meta name="keywords" content="{{ themeConfig.keywords.join(", ") }}">
-    {% endif %}
+    {%- endif %}
     <meta name="generator" content="Hikaru v{{ getVersion() }}">
-    {# We can handle both light and dark color scheme. #}
+    {#- We can handle both light and dark color scheme. #}
     <meta name="color-scheme" content="light dark">
-    {# See <https://ogp.me/>. #}
+    {#- See <https://ogp.me/>. #}
     <meta property="og:site_name" content="{{ siteConfig.title }}">
     <meta property="og:title" content="{{ __(title) }}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ getURL(docPath) }}">
-    {# Though I have a site logo, but author avatar is better here. #}
-    {% if themeConfig.avatar %}
+    {#- Though I have a site logo, but author avatar is better here. #}
+    {%- if themeConfig.avatar %}
     <meta property="og:image" content="{{ getURL(themeConfig.avatar) }}">
-    {% endif %}
-    {# Basically the same as description. #}
-    {% if excerpt  %}
+    {%- endif %}
+    {#- Basically the same as description. #}
+    {%- if excerpt  %}
     <meta property="og:description" content="{{ excerpt | striptags }}">
-    {% elseif description %}
+    {%- elseif description %}
     <meta property="og:description" content="{{ description | striptags }}">
-    {% elseif content and themeConfig.autoExcerpt %}
+    {%- elseif content and themeConfig.autoExcerpt %}
     <meta property="og:description" content="{{ (content | striptags).substring(0, themeConfig.autoExcerpt) }}…">
-    {% elseif siteConfig.subtitle %}
+    {%- elseif siteConfig.subtitle %}
     <meta property="og:description" content="{{ siteConfig.subtitle }}">
-    {% elseif siteConfig.description %}
+    {%- elseif siteConfig.description %}
     <meta property="og:description" content="{{ siteConfig.description }}">
-    {% endif %}
+    {%- endif %}
     <link rel="canonical" href="{{ getURL(docPath) }}">
-    {% if themeConfig.favicon.appleTouchIcon %}
+    {%- if themeConfig.favicon.appleTouchIcon %}
     <link rel="apple-touch-icon" sizes="180x180" href="{{ getPath(themeConfig.favicon.appleTouchIcon) }}">
-    {% endif %}
-    {% if themeConfig.favicon.androidChromeLarge %}
+    {%- endif %}
+    {%- if themeConfig.favicon.androidChromeLarge %}
     <link rel="icon" type="image/png" sizes="192x192" href="{{ getPath(themeConfig.favicon.androidChromeLarge) }}">
-    {% endif %}
-    {% if themeConfig.favicon.medium %}
+    {%- endif %}
+    {%- if themeConfig.favicon.medium %}
     <link rel="icon" type="image/png" sizes="32x32" href="{{ getPath(themeConfig.favicon.medium) }}">
-    {% endif %}
-    {% if themeConfig.favicon.small %}
+    {%- endif %}
+    {%- if themeConfig.favicon.small %}
     <link rel="icon" type="image/png" sizes="16x16" href="{{ getPath(themeConfig.favicon.small) }}">
-    {% endif %}
-    {% if themeConfig.favicon.safariPinnedTab %}
+    {%- endif %}
+    {%- if themeConfig.favicon.safariPinnedTab %}
     <link rel="mask-icon" href="{{ getPath(themeConfig.favicon.safariPinnedTab) }}" color="{{ themeConfig.color }}">
-    {% endif %}
-    {% if themeConfig.favicon.androidManifest %}
+    {%- endif %}
+    {%- if themeConfig.favicon.androidManifest %}
     <link rel="manifest" href="{{ getPath(themeConfig.favicon.androidManifest) }}">
-    {% endif %}
-    {% if themeConfig.favicon.msBrowserConfig %}
+    {%- endif %}
+    {%- if themeConfig.favicon.msBrowserConfig %}
     <meta name="msapplication-config" content="{{ getPath(themeConfig.favicon.msBrowserConfig) }}">
-    {% endif %}
-    {% if themeConfig.favicon.fallback %}
+    {%- endif %}
+    {%- if themeConfig.favicon.fallback %}
     <link rel="shortcut icon" type="image/x-icon" href="{{ getPath(themeConfig.favicon.fallback) }}">
-    {% endif %}
-    {% if siteConfig.feed.enable %}
+    {%- endif %}
+    {%- if siteConfig.feed.enable %}
     <link rel="alternate" href="{{ getPath(siteConfig.feed.path) }}" title="{{ siteConfig.title }}" type="application/atom+xml">
-    {% endif %}
-    {% if themeConfig.customFont.enable and themeConfig.customFont.link %}
+    {%- endif %}
+    {%- if themeConfig.customFont.enable and themeConfig.customFont.link %}
     <link rel="stylesheet" type="text/css" href="{{ themeConfig.customFont.link }}">
-    {% endif %}
+    {%- endif %}
     <link rel="stylesheet" type="text/css" href="{% if themeConfig.libCDN.enable and themeConfig.libCDN.normalize %}{{ themeConfig.libCDN.normalize }}{% else %}{{ getPath("css/normalize.css") }}{% endif %}">
     <link rel="stylesheet" type="text/css" href="{{ getPath("css/variables.css") }}">
     <link rel="stylesheet" type="text/css" href="{{ getPath("css/index.css") }}">
@@ -110,46 +110,46 @@
       :root {
         --url-sidebar-background: url("{{ getPath("images/background.webp") }}");
         --url-dark-sidebar-background: url("{{ getPath("images/background-dark.webp") }}");
-        {% if themeConfig.customFont.enable %}
-        {% if themeConfig.customFont.all %}
+        {%- if themeConfig.customFont.enable %}
+        {%- if themeConfig.customFont.all %}
         --font-all: {{ themeConfig.customFont.all }}, var(--font-sans);
-        {% endif %}
-        {% if themeConfig.customFont.title %}
+        {%- endif %}
+        {%- if themeConfig.customFont.title %}
         --font-title: {{ themeConfig.customFont.title }}, var(--font-sans);
-        {% endif %}
-        {% if themeConfig.customFont.subtitle %}
+        {%- endif %}
+        {%- if themeConfig.customFont.subtitle %}
         --font-subtitle: {{ themeConfig.customFont.subtitle }}, var(--font-sans);
-        {% endif %}
-        {% if themeConfig.customFont.main %}
+        {%- endif %}
+        {%- if themeConfig.customFont.main %}
         --font-main: {{ themeConfig.customFont.main }}, var(--font-sans);
-        {% endif %}
-        {% if themeConfig.customFont.code %}
+        {%- endif %}
+        {%- if themeConfig.customFont.code %}
         --font-code: {{ themeConfig.customFont.code }}, var(--font-mono), var(--font-sans);
-        {% endif %}
-        {% endif %}
+        {%- endif %}
+        {%- endif %}
       }
-      {% if themeConfig.sidebar === "left" %}
+      {%- if themeConfig.sidebar === "left" %}
       div.main-container {
         flex-direction: row-reverse;
       }
-      {% endif %}
+      {%- endif %}
       /* Replace the default Bootstrap Icons fonts path. */
       @font-face {
         font-family: "bootstrap-icons";
         src: url("{% if themeConfig.libCDN.enable and themeConfig.libCDN.bootstrapIcons.woff2 %}{{ themeConfig.libCDN.bootstrapIcons.woff2 }}{% else %}{{ getPath("fonts/bootstrap-icons.woff2") }}{% endif %}") format("woff2"), url("{% if themeConfig.libCDN.enable and themeConfig.libCDN.bootstrapIcons.woff %}{{ themeConfig.libCDN.bootstrapIcons.woff }}{% else %}{{ getPath("fonts/bootstrap-icons.woff") }}{% endif %}") format("woff");
       }
     </style>
-    {% block css %}{% endblock %}
-    {# You should not set `defer` to `index.js` because other scripts depends it for `documentReady()`! #}
+    {%- block css %}{% endblock %}
+    {#- You should not set `defer` to `index.js` because other scripts depends it for `documentReady()`! #}
     <script type="text/javascript" src="{{ getPath("js/index.js") }}"></script>
     <script defer type="text/javascript" src="{{ getPath("js/scrollspy.js") }}"></script>
     <script defer type="text/javascript" src="{{ getPath("js/custom.js") }}"></script>
     <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.clipboard %}{{ themeConfig.libCDN.clipboard }}{% else %}{{ getPath("js/clipboard.min.js") }}{% endif %}"></script>
-    {% if themeConfig.busuanzi %}
+    {%- if themeConfig.busuanzi %}
     <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.busuanzi %}{{ themeConfig.libCDN.busuanzi }}{% else %}{{ getPath("js/busuanzi.pure.mini.js") }}{% endif %}"></script>
-    {% endif %}
-    {% if themeConfig.mathjax.cdn and themeConfig.mathjax.enable %}
-    {% if themeConfig.mathjax.global or mathjax %}
+    {%- endif %}
+    {%- if themeConfig.mathjax.cdn and themeConfig.mathjax.enable %}
+    {%- if themeConfig.mathjax.global or mathjax %}
     <script defer type="text/javascript" src="{{ themeConfig.mathjax.cdn }}"></script>
     <script type="text/x-mathjax-config">
       documentReady(() => {
@@ -168,10 +168,10 @@
         });
       });
     </script>
-    {% endif %}
-    {% endif %}
-    {# If user choose to use Hikaru's builtin highlight, hljs is only used by issue comment. #}
-    {% if siteConfig.highlight.enable !== true or (themeConfig.comment.issue.enable and comment !== false) %}
+    {%- endif %}
+    {%- endif %}
+    {#- If user choose to use Hikaru's builtin highlight, hljs is only used by issue comment. #}
+    {%- if siteConfig.highlight.enable !== true or (themeConfig.comment.issue.enable and comment !== false) %}
     <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.highlight %}{{ themeConfig.libCDN.highlight }}{% else %}{{ getPath("js/highlight.min.js") }}{% endif %}"></script>
     <script type="text/javascript">
       documentReady(() => {
@@ -185,8 +185,8 @@
         );
       });
     </script>
-    {% endif %}
-    {% if siteConfig.highlight.gutter !== true %}
+    {%- endif %}
+    {%- if siteConfig.highlight.gutter !== true %}
     <script type="text/javascript">
       documentReady(() => {
         elementsEach(
@@ -217,7 +217,7 @@
         );
       });
     </script>
-    {% endif %}
+    {%- endif %}
     <script type="text/javascript">
       // Set theme before page rendering.
       // Check user's choice from localStorage.
@@ -353,10 +353,7 @@
           <div class="content">
             {% block content %}{% endblock %}
           </div>
-          {# Sidebar can be `left`, `right` or `false`. #}
-          {% if themeConfig.sidebar !== false %}
           {% include "includes/sidebar.njk" %}
-          {% endif %}
         </div>
       </div>
     </main>

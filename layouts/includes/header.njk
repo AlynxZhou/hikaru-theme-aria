@@ -1,31 +1,30 @@
-{% block header %}
 <header id="header" class="header"{% if themeConfig.color %} style="background: {{ themeConfig.color }};"{% endif %}>
   <div class="container">
     <div class="header-container">
       <div class="header-title">
         <div class="title"><a href="{{ getPath() }}">{{ siteConfig.title }}</a></div>
-        {% if siteConfig.subtitle %}
+        {%- if siteConfig.subtitle %}
         <div class="subtitle">{{ siteConfig.subtitle }}</div>
-        {% endif %}
+        {%- endif %}
       </div>
-      {% if themeConfig.logo %}
+      {%- if themeConfig.logo %}
       <div class="logo">
         <img src="{{ getPath(themeConfig.logo) }}" alt="logo">
       </div>
-      {% endif %}
+      {%- endif %}
     </div>
     <nav id="nav" class="nav">
       <button class="nav-toggle" id="nav-toggle" aria-hidden="true">
         <i class="bi bi-list" aria-label="{{ __("accessibility.navToggle") }}"></i>
       </button>
       <ul id="menu" role="menubar" aria-hidden="false">
-        {% for e in themeConfig.menu %}
-        {% if isCurrentHost(e.link) %}
-        {% set external = false %}
-        {% else %}
-        {% set external = true %}
-        {% endif %}
-        {#
+        {%- for e in themeConfig.menu %}
+        {%- if isCurrentHost(e.link) %}
+        {%- set external = false %}
+        {%- else %}
+        {%- set external = true %}
+        {%- endif %}
+        {#-
           About `isCurrentPath(e.link, getPath(e.link) === getPath())`:
           Normally "Home" is the site root dir, and all pages are under it,
           then the "Home" link will always be current. For example,
@@ -34,12 +33,11 @@
           we use strict match for it.
         #}
         <li role="menuitem"><a href="{% if external %}{{ e.link }}{% else %}{{ getPath(e.link) }}{% endif %}"{% if not external and isCurrentPath(e.link, getPath(e.link) === getPath()) %} class="current"{% endif %}{% if external %} target="_blank" rel="external nofollow noreferrer noopener"{% endif %}>{% if e.icon %}{{ e.icon }}{% endif %}<span class="menu-text">{{ __(e.name) }}</span></a></li>
-        {% endfor %}
+        {%- endfor %}
       </ul>
       <button class="theme-toggle" id="theme-toggle">
-        {# <i class="bi bi-moon" aria-label="{{ __("accessibility.themeDark") }}"></i> #}
+        {#- <i class="bi bi-moon" aria-label="{{ __("accessibility.themeDark") }}"></i> #}
       </button>
     </nav>
   </div>
 </header>
-{% endblock %}

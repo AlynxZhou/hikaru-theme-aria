@@ -1,15 +1,15 @@
 {% extends "includes/layout.njk" %}
 
 {% block js %}
-{% if themeConfig.search %}
+{%- if themeConfig.search %}
 <script defer type="text/javascript" src="{{ getPath("js/search.js") }}"></script>
 <script type="text/javascript">
   documentReady(() => {
-    {% if isArray(siteConfig.search.path) %}
+    {%- if isArray(siteConfig.search.path) %}
     const searchPaths = [{% for p in siteConfig.search.path %}"{{ getPath(p) }}"{% if not loop.last %}, {% endif %}{% endfor %}];
-    {% else %}
+    {%- else %}
     const searchPaths = ["{{ getPath(siteConfig.search.path) }}"];
-    {% endif %}
+    {%- endif %}
     loadSearch({
       "paths": searchPaths,
       "queryString": window.location.search,
@@ -19,7 +19,7 @@
     });
   });
 </script>
-{% endif %}
+{%- endif %}
 {% endblock %}
 
 {% block title %}{{ __(title) }} - {{ siteConfig.title }}{% endblock %}
@@ -43,7 +43,7 @@
         <a class="title-link" href="{{ getPath(docPath) }}" itemprop="url">{{ __(title) }}</a>
       </div>
       <div class="post-meta">
-        {# There should be no time for search result page. #}
+        {#- There should be no time for search result page. #}
       </div>
     </header>
     <main class="post-main" id="scrollspy-container">
@@ -59,6 +59,5 @@
     </main>
     <footer class="post-footer"></footer>
   </article>
-  {# There should be no comment and reward for search result page. #}
 </div>
 {% endblock %}

@@ -1,6 +1,6 @@
-{% block comment %}
+{%- if themeConfig.comment.enable and comment !== false %}
 <div class="comment" id="comment">
-  {% if themeConfig.comment.issue.enable %}
+  {%- if themeConfig.comment.issue.enable %}
   <script defer type="text/javascript" src="{{ getPath("js/comment.js") }}"></script>
   <script type="text/javascript">
     documentReady(() => {
@@ -11,7 +11,6 @@
       });
     });
   </script>
-  {% if comment !== false %}
   <div class="comment-results" id="comment-results">
     <div class="sk-wave" id="sk-wave">
       <div class="sk-rect sk-rect1"></div>
@@ -83,10 +82,8 @@
       });
     });
   </script>
-  {% endif %}
-  {% elseif themeConfig.comment.disqusShortName %}
+  {%- elseif themeConfig.comment.disqusShortName %}
   <script defer id="dsq-count-scr" src="//{{ themeConfig.comment.disqusShortName }}.disqus.com/count.js"></script>
-  {% if comment !== false %}
   <div id="disqus_thread" class="disqus_thread"></div>
   <script type="text/javascript">
     const disqus_config = () => {
@@ -101,7 +98,6 @@
       (d.head || d.body).appendChild(s);
     })();
   </script>
-  {% endif %}
-  {% endif %}
+  {%- endif %}
 </div>
-{% endblock %}
+{%- endif %}
