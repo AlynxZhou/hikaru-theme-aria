@@ -13,19 +13,19 @@
   --pink: #f8f8f8;
   --orange: #fc6423;
   --red-lighter: #f8d7da;
-  --red-light: #f5c6cb;
+  --red-light: #f5969b;
   --red: #ff2a2a;
   --red-dark: #9f1313;
   --red-deep: #721c24;
   --yellow: #fdbc40;
-  --green-lighter: #d4edda;
-  --green-light: #c3e6cb;
+  --green-lighter: #d4fdda;
+  --green-light: #a3e6ab;
   --green: #37cf38;
   --green-dark: #237f23;
   --green-deep: #155724;
-  --blue-lighter: #cce5ff;
-  --blue-light: #b8daff;
   --blue-bright: #cbeafb;
+  --blue-lighter: #cce5ff;
+  --blue-light: #a8baff;
   --blue: #3366ee;
   --blue-dark: #2356af;
   --blue-deep: #13229f;
@@ -111,7 +111,7 @@
   --color-scrollbar-corner: var(--color-light-scrollbar-corner);
   --color-scrollbar-resizer: var(--color-light-scrollbar-resizer);
 
-   --color-selection-font: var(--black-deep);
+  --color-selection-font: var(--black-deep);
   --color-selection-background: var(--blue-bright);
   --color-comment-info-font: var(--grey-lighter);
   --color-comment-info-link-font: var(--grey-light);
@@ -176,11 +176,8 @@
   --font-code: var(--font-mono), var(--font-sans);
 
   --corner-radius: 0.3em;
+  --card-padding: 1em;
   --search-height: 3em;
-  /* Should equals to --search-height. */
-  --header-padding-bottom: 3em;
-  /* Should equals to negative --search-height. */
-  --main-margin-top: -3em;
   --search-padding-top: 0.5em;
   --container-max-width: 100em;
   --container-small-max-width: 80em;
@@ -188,6 +185,7 @@
   --sidebar-width: 20em;
   --body-min-width: 20em;
   --comment-avatar-width: 5em;
+  --icon-margin: 0.2em;
 }
 
 :root[data-theme="dark"] {
