@@ -58,7 +58,8 @@ body {
 
 /* For user. */
 div.center {
-  text-align: center
+  text-align: center;
+  padding: 0 15%;
 }
 
 ol, ul {
@@ -338,10 +339,10 @@ figure.code-block pre.code code.hljs {
 
 blockquote {
   margin: 1em 0;
-  /* This is relative to text. */
+  /* This is relative to inner text. */
   padding: 0 1em;
   color: var(--color-quote-font);
-  border-left: 0.25em solid;
+  border-left: 0.25em solid var(--color-quote-font);
 }
 
 blockquote p {
@@ -351,12 +352,12 @@ blockquote p {
 }
 
 blockquote.center-quote, blockquote.centerquote {
-  margin: 1em 0;
+  margin: 0.5em calc(-1 * var(--card-padding));
   padding: 0.5em 15%;
   color: var(--color-quote-font);
   border-left: none;
-  border-top: 0.2em solid;
-  border-bottom: 0.2em solid;
+  border-top: 0.2em solid var(--color-quote-font);
+  border-bottom: 0.2em solid var(--color-quote-font);
   text-align: center;
 }
 
@@ -365,6 +366,21 @@ blockquote.center-quote div,
 blockquote.centerquote p,
 blockquote.centerquote div {
   text-align: center;
+}
+
+/* Take the whole line without margin like alert. */
+/* You'd better use img inside div, because it's hard to control img width. */
+div.enlarge, img.enlarge {
+  display: block;
+  text-align: center;
+  margin: 0.5em calc(-1 * var(--card-padding));
+}
+
+img.enlarge {
+  /* Because we have `max-width: 100%;` for img, unset it. */
+  max-width: none;
+  /* Seems no better way. */
+  width: calc(100% + 2 * var(--card-padding));
 }
 
 div.alert-red, div.alert-green, div.alert-blue {
@@ -758,6 +774,8 @@ div.page-title, div.post-title {
 
 a.title-link {
   position: relative;
+  /* Height of `::after` needs inline-block. */
+  display: inline-block;
   text-decoration: none;
   border-bottom: none;
   color: var(--color-font);
