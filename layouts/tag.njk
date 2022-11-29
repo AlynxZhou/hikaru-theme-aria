@@ -7,6 +7,7 @@
   <div class="page-title">
     <a class="title-link" href="{{ getPath(docPath) }}" itemprop="url">{{ name }}</a>
   </div>
+  {%- if posts and posts.length > 0 %}
   {%- for post in posts %}
   <article class="article post card{% if themeConfig.animate %} animate{% endif %}" itemscope itemtype="http://schema.org/Article">
     <header id="post-header" class="post-header">
@@ -29,6 +30,7 @@
     </header>
   </article>
   {%- endfor %}
+  {%- endif %}
   {% include "includes/pagination.njk" %}
 </div>
 {% endblock %}

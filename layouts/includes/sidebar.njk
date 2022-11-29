@@ -21,17 +21,17 @@
       {%- if e.name === "archives" %}
       <div class="archives-count count-block">
         <div class="site-count-title">{{ __("archives") }}</div>
-        <div><a href="{{ getPath(e.link) }}">{{ site.posts.length }}</a></div>
+        <div><a href="{{ getPath(e.link) }}">{% if site.posts %}{{ site.posts.length }}{% else %}0{% endif %}</a></div>
       </div>
       {%- elseif e.name === "categories" %}
       <div class="categories-count count-block">
         <div class="site-count-title">{{ __("categories") }}</div>
-        <div><a href="{{ getPath(e.link) }}">{{ site.categoriesLength }}</a></div>
+        <div><a href="{{ getPath(e.link) }}">{% if site.categories %}{{ site.categoriesLength }}{% else %}0{% endif %}</a></div>
       </div>
       {%- elseif e.name === "tags" %}
       <div class="tags-count count-block">
         <div class="site-count-title">{{ __("tags") }}</div>
-        <div><a href="{{ getPath(e.link) }}">{{ site.tagsLength }}</a></div>
+        <div><a href="{{ getPath(e.link) }}">{% if site.tags %}{{ site.tagsLength }}{% else %}0{% endif %}</a></div>
       </div>
       {%- endif %}
       {%- endfor %}
@@ -43,8 +43,7 @@
     {%- endif %}
   </div>
   <div class="sidebar-sticky">
-    {%- if content %}
-    {%- if toc.length > 0 %}
+    {%- if content and toc and toc.length > 0 %}
     <hr>
     <div class="post-toc sidebar-item">
       <div><i class="bi bi-list-ol"></i>{{ __("toc") }}</div>
@@ -53,7 +52,7 @@
         invisible to prevent blank lines.
       #}
       {%- macro listToc(toc, level = 1) -%}
-      {%- if toc != null and toc.length > 0 %}
+      {%- if toc and toc.length > 0 %}
       <ol{% if level === 1 %} class="toc" id="scrollspy-target"{% endif %}>
       {%- for h in toc %}
         <li>
@@ -67,7 +66,6 @@
       {%- endmacro -%}
       {{ listToc(toc) }}
     </div>
-    {%- endif %}
     {%- endif %}
     {%- if themeConfig.social.enable %}
     <hr>

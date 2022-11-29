@@ -28,14 +28,16 @@
       <div class="page-counter">
         {%- if site.tagsLength > 1 %}
         {{ __("tagCount.more", site.tagsLength) }}
-        {%- elseif tags.length === 1 %}
+        {%- elseif site.tagsLength === 1 %}
         {{ __("tagCount.one", site.tagsLength) }}
         {%- else %}
         {{ __("tagCount.none") }}
         {%- endif %}
       </div>
       <div class="tags-cloud">
-        {% for tag in site.tags %}<a class="post-tag button" href="{{ getPath(tag.docPath) }}" rel="tag"><i class="bi bi-tag"></i>{{ tag.name }} {{ tag.posts.length }}</a>{% endfor %}
+        {%- if site.tags and site.tagsLength > 0 %}
+        {% for tag in site.tags %}<a class="post-tag button" href="{{ getPath(tag.docPath) }}" rel="tag"><i class="bi bi-tag"></i>{{ tag.name }}{% if tag.posts and tag.posts.length > 0 %} {{ tag.posts.length }}{% endif %}</a>{% endfor %}
+        {%- endif %}
       </div>
     </main>
     <footer class="post-footer"></footer>

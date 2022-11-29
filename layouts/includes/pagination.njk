@@ -1,4 +1,4 @@
-{%- if pages != null %}
+{%- if pages and pages.length > 0 %}
 <nav class="pagination">
   {%- for page in pages %}
   {%- if page.index !== index %}

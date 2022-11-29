@@ -11,6 +11,7 @@
 </div>
 {%- endif %}
 <div id="index" class="index page">
+  {%- if posts and posts.length > 0 %}
   {%- for post in posts %}
   <article class="article post card{% if themeConfig.animate %} animate{% endif %}" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
@@ -92,6 +93,7 @@
     </footer>
   </article>
   {%- endfor %}
+  {%- endif %}
   {% include "includes/pagination.njk" %}
 </div>
 {% endblock %}

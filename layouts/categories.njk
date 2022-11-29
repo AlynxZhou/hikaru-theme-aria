@@ -14,7 +14,7 @@
       <div class="page-counter">
         {%- if site.categoriesLength > 1 %}
         {{ __("categoryCount.more", site.categoriesLength) }}
-        {%- elseif site.categories.length === 1 %}
+        {%- elseif site.categoriesLength === 1 %}
         {{ __("categoryCount.one", site.categoriesLength) }}
         {%- else %}
         {{ __("categoryCount.none") }}
@@ -26,11 +26,11 @@
           invisible to prevent blank lines.
         #}
         {%- macro listCategory(cates) -%}
-        {%- if cates != null and cates.length > 0 %}
+        {%- if cates and cates.length > 0 %}
         <ul>
         {%- for cate in cates %}
           <li>
-            <a href="{{ getPath(cate.docPath) }}">{{ cate.name }}</a> <span>{{ cate.posts.length }}</span>
+            <a href="{{ getPath(cate.docPath) }}">{{ cate.name }}</a>{% if cate.posts and cate.posts.length > 0 %} <span>{{ cate.posts.length }}</span>{% endif %}
             {{ listCategory(cate.subs) }}
           </li>
         {%- endfor %}
