@@ -60,7 +60,7 @@
           {% for cat in post.categories %}{% if loop.first %}<i class="bi bi-folder2-open"></i>{% else %}<i class="bi bi-chevron-right"></i>{% endif %}<span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="{{ getPath(cat.docPath) }}" itemprop="url" rel="index"><span itemprop="name">{{ cat.name }}</span></a></span>{% endfor %}
         </div>
         {%- endif %}
-        {%- if post.comment !== false and themeConfig.comment.enable %}
+        {%- if themeConfig.comment.enable and post.comment !== false %}
         {%- if themeConfig.comment.issue.enable %}
         <div class="post-comment-count meta-block">
           <i class="bi bi-chat-dots"></i><span><a href="{{ getPath(post.docPath) }}#comment-results" itemprop="discussionUrl"><span class="post-comment-count comment-count" data-comment-identifier="{{ post.title }}" itemprop="commentCount">{{ __("comment.read") }}</span></a></span>
@@ -95,5 +95,6 @@
   {%- endfor %}
   {%- endif %}
   {% include "includes/pagination.njk" %}
+  {% include "includes/comment.njk" %}
 </div>
 {% endblock %}
