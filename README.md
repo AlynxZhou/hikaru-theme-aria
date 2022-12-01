@@ -24,7 +24,7 @@ IE support has been dropped since many new features cannot be easily polyfilled 
 
 There won't be any stable releases for ARIA, because I am not interested in maintaining different versions except the one I am using. **Without maintaining stable releases are just stable bugs instead of quality.** So keep using the latest version of ARIA and Hikaru.
 
-[Valine](https://valine.js.org/) was dropped because it's not an open source project any more since `v1.4.0` (**it said because of "some reasons" on its homepage but never says what they are**), and it's considered not safe for saving unencrypted user email/IP address in open database. (For more detailed info, Chinese user could read [this blog](https://ttys3.net/post/hugo/please-stop-using-valine-js-comment-system-until-it-fixed-the-privacy-leaking-problem/).)
+[Valine](https://valine.js.org/) was dropped because it's not an open source project any more since `v1.4.0` (**it said because of "some reasons" on its homepage but never says what they are**), and it's considered not safe for saving unencrypted user email/IP address in open database. (For more detailed info, Chinese user could read [this blog](https://ttys3.dev/post/please-stop-using-valine-js-comment-system-until-it-fixed-the-privacy-leaking-problem/).)
 
 # Usage
 
@@ -273,7 +273,7 @@ Markdown will be compiled to HTML, and you can write HTML in a valid Markdown fi
 
 ### Center Quote
 
-Just add `.center-quote` class to your HTML code, you will get a center-aligned quote with top and bottom border. Recommended for `<blockquote></blockquote>` tag:
+Just add `blockquote.center-quote` class to your HTML code, you will get a center-aligned quote with top and bottom border:
 
 ```HTML
 <blockquote class="center-quote">Centerquote Example</blockquote>
@@ -281,12 +281,30 @@ Just add `.center-quote` class to your HTML code, you will get a center-aligned 
 
 ### Colorful Alert
 
-Just add `.alert-red`, `.alert-green` or `.alert-blue` to your HTML code:
+Just add `div.alert-red`, `div.alert-green` or `div.alert-blue` to your HTML code:
 
 ```HTML
 <div class="alert-red">Alert Red Example</div>
 <div class="alert-green">Alert Green Example</div>
 <div class="alert-blue">Alert Blue Example</div>
+```
+
+### Center Text
+
+Just add `div.center` to your HTML code:
+
+```HTML
+<div class="center">Center</div<
+```
+
+### Enlarge Image
+
+Just add `div.enlarge` outside your image, it will expand to cover the padding of card:
+
+```HTML
+<div class="enlarge">
+  <img src="/path/to/image">
+</div>
 ```
 
 ## Custom CSS and JavaScript
