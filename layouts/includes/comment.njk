@@ -28,64 +28,78 @@
   </div>
   <script type="text/javascript">
     documentReady(() => {
-      const p = loadComment({
-        "user": "{{ themeConfig.comment.issue.user }}",
-        "repo": "{{ themeConfig.comment.issue.repo }}",
-        "perPage": "{{ themeConfig.comment.issue.perPage }}",
-        "sendButtonText": "{{ __("comment.send") }}",
-        "noCommentText": "{{ __("comment.none") }}",
-        "failText": "{{ __("comment.fail") }}",
-        "title": "{{ __(title) }}",
-        "queryString": window.location.search,
-        "basePath": "{{ getPath(docPath) }}",
-        "containerID": "comment-results"
+      // See <https://developer.mozilla.org/zh-CN/docs/Web/API/Intersection_Observer_API>.
+      // Load comments is expensive, use this to detect if something is inside
+      // viewport.
+      // It's 2022 now, browsers of my readers should support it.
+      const observer = new window.IntersectionObserver((entries, observer) => {
+        // Just load comment when it's inside viewport.
+        // The reason why using IntersectionObserver here instead of inside
+        // `loadComment` (like what I do for ScrollSpy) is because I use the
+        // returned Promise to do something.
+        if (entries[0].isIntersecting) {
+          const p = loadComment({
+            "user": "{{ themeConfig.comment.issue.user }}",
+            "repo": "{{ themeConfig.comment.issue.repo }}",
+            "perPage": "{{ themeConfig.comment.issue.perPage }}",
+            "sendButtonText": "{{ __("comment.send") }}",
+            "noCommentText": "{{ __("comment.none") }}",
+            "failText": "{{ __("comment.fail") }}",
+            "title": "{{ __(title) }}",
+            "queryString": window.location.search,
+            "basePath": "{{ getPath(docPath) }}",
+            "containerID": "comment-results"
+          });
+          // Something wrong.
+          if (p == null) {
+            return;
+          }
+          p.then(() => {
+            // See <https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat>.
+            // A modern way to show date in user's format. But it shows date
+            // only by default, no time.
+            const formatter = new Intl.DateTimeFormat(
+              "{{ siteConfig.language }}",
+              {
+                "year": "numeric",
+                "month": "2-digit",
+                "day": "2-digit",
+                "weekday": "short",
+                "hour": "2-digit",
+                "minute": "2-digit",
+                "second": "2-digit",
+                "timeZoneName": "short",
+                "hour12": false
+              }
+            );
+            elementsEach(
+              document.querySelectorAll("time.comment-full-datetime"),
+              (e, i) => {
+                const date = new Date(e.getAttribute("datetime"));
+                // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/formatToParts
+                const parts = formatter.formatToParts(date);
+                const obj = {};
+                for (let {type, value} of parts) {
+                  obj[type] = value;
+                }
+                e.textContent = `${obj["year"]}-${obj["month"]}-${obj["day"]} ${obj["weekday"]} ${obj["hour"]}:${obj["minute"]}:${obj["second"]} ${obj["timeZoneName"]}`;
+              }
+            );
+            elementsEach(
+              document.querySelectorAll("div.comment-content img"),
+              (e, i) => {
+                // If an image works as link, stop adding link styles to it.
+                if (e.parentNode.tagName.toLowerCase() === "a") {
+                  e.parentNode.classList.add("img-link");
+                }
+              }
+            );
+          });
+          // We only need this observer once.
+          observer.disconnect();
+        }
       });
-      // Something wrong.
-      if (p == null) {
-        return;
-      }
-      p.then(() => {
-        // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat
-        // A modern way to show date in user's format.
-        // But it shows date only by default, no time.
-        const formatter = new Intl.DateTimeFormat(
-          "{{ siteConfig["language"] }}",
-          {
-            "year": "numeric",
-            "month": "2-digit",
-            "day": "2-digit",
-            "weekday": "short",
-            "hour": "2-digit",
-            "minute": "2-digit",
-            "second": "2-digit",
-            "timeZoneName": "short",
-            "hour12": false
-          }
-        );
-        elementsEach(
-          document.querySelectorAll("time.comment-full-date"),
-          (e, i) => {
-            const date = new Date(e.getAttribute("datetime"));
-            // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/formatToParts
-            const parts = formatter.formatToParts(date);
-            const obj = {};
-            for (let {type, value} of parts) {
-              obj[type] = value;
-            }
-            e.innerHTML = `${obj["year"]}-${obj["month"]}-${obj["day"]} ${obj["weekday"]} ${obj["hour"]}:${obj["minute"]}:${obj["second"]} ${obj["timeZoneName"]}`;
-          }
-        );
-        elementsEach(
-          document.querySelectorAll("div.comment-content img"),
-          (e, i) => {
-            // If an image works as link,
-            // stop adding link styles to it.
-            if (e.parentNode.tagName.toLowerCase() === "a") {
-              e.parentNode.classList.add("img-link");
-            }
-          }
-        );
-      });
+      observer.observe(document.getElementById("comment-results"));
     });
   </script>
   {%- endif %}
@@ -98,13 +112,28 @@
       this.page.url = "{{ getPath(docPath) }}";
       this.page.identifier = "{{ getPath(docPath) }}";
     };
-    (() => {
+    const loadDisqus = () => {
       const d = document;
       const s = d.createElement("script");
       s.src = "https://{{ themeConfig.comment.disqusShortName }}.disqus.com/embed.js";
       s.setAttribute("data-timestamp", +new Date());
       (d.head || d.body).appendChild(s);
-    })();
+    };
+    documentReady(() => {
+      // See <https://developer.mozilla.org/zh-CN/docs/Web/API/Intersection_Observer_API>.
+      // Load comments is expensive, use this to detect if something is inside
+      // viewport.
+      // It's 2022 now, browsers of my readers should support it.
+      const observer = new window.IntersectionObserver((entries, observer) => {
+        // Just load comment when it's inside viewport.
+        if (entries[0].isIntersecting) {
+          loadDisqus();
+          // We only need this observer once.
+          observer.disconnect();
+        }
+      });
+      observer.observe(document.getElementById("disqus_thread"));
+    });
   </script>
   {%- endif %}
   {%- endif %}

@@ -14,14 +14,29 @@ layouts:
   index.njk:
     - includes/layout.njk
     - includes/pagination.njk
+    - includes/comment.njk
+    - includes/clipboard-js.njk
+    - includes/highlight-js.njk
+    - includes/highlight-css.njk
+    - includes/mathjax-js.njk
   page.njk:
     - includes/layout.njk
     - includes/comment.njk
     - includes/reward.njk
+    - includes/scrollspy-js.njk
+    - includes/clipboard-js.njk
+    - includes/highlight-js.njk
+    - includes/highlight-css.njk
+    - includes/mathjax-js.njk
   post.njk:
     - includes/layout.njk
     - includes/comment.njk
     - includes/reward.njk
+    - includes/scrollspy-js.njk
+    - includes/clipboard-js.njk
+    - includes/highlight-js.njk
+    - includes/highlight-css.njk
+    - includes/mathjax-js.njk
   search.njk:
     - includes/layout.njk
   tag.njk:

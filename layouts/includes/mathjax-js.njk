@@ -1,0 +1,23 @@
+{#- MathJax will only be used in index, pages and posts. #}
+{%- if themeConfig.mathjax.cdn and themeConfig.mathjax.enable %}
+{%- if themeConfig.mathjax.global or mathjax %}
+<script defer type="text/javascript" src="{{ themeConfig.mathjax.cdn }}"></script>
+<script type="text/x-mathjax-config">
+  documentReady(() => {
+    MathJax.Hub.Config({
+      "tex2jax": {
+        "inlineMath": [["$", "$"], ["\\(", "\\)"]],
+        "processEscapes": true,
+        "skipTags": ["script", "noscript", "style", "textarea", "pre", "code"]
+      }
+    });
+    MathJax.Hub.Queue(() => {
+      const all = MathJax.Hub.getAllJax();
+      for (const jax of all) {
+        jax.SourceElement().parentNode.classList.add("has-jax");
+      }
+    });
+  });
+</script>
+{%- endif %}
+{%- endif %}

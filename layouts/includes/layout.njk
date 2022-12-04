@@ -105,7 +105,6 @@
     <link rel="stylesheet" type="text/css" href="{{ getPath("css/index.css") }}">
     <link rel="stylesheet" type="text/css" href="{{ getPath("css/custom.css") }}">
     <link rel="stylesheet" type="text/css" href="{% if themeConfig.libCDN.enable and themeConfig.libCDN.bootstrapIcons.css %}{{ themeConfig.libCDN.bootstrapIcons.css }}{% else %}{{ getPath("css/bootstrap-icons.css") }}{% endif %}">
-    <link rel="stylesheet" type="text/css" href="{% if themeConfig.libCDN.enable and themeConfig.libCDN[themeConfig.highlight] %}{{ themeConfig.libCDN[themeConfig.highlight] }}{% else %}{{ getPath("css/" + themeConfig.highlight + ".css") }}{% endif %}">
     <style type="text/css">
       :root {
         --url-sidebar-background: url("{{ getPath("images/background.webp") }}");
@@ -136,87 +135,16 @@
       /* Replace the default Bootstrap Icons fonts path. */
       @font-face {
         font-family: "bootstrap-icons";
+        font-display: fallback;
         src: url("{% if themeConfig.libCDN.enable and themeConfig.libCDN.bootstrapIcons.woff2 %}{{ themeConfig.libCDN.bootstrapIcons.woff2 }}{% else %}{{ getPath("fonts/bootstrap-icons.woff2") }}{% endif %}") format("woff2"), url("{% if themeConfig.libCDN.enable and themeConfig.libCDN.bootstrapIcons.woff %}{{ themeConfig.libCDN.bootstrapIcons.woff }}{% else %}{{ getPath("fonts/bootstrap-icons.woff") }}{% endif %}") format("woff");
       }
     </style>
     {%- block css %}{% endblock %}
     {#- You should not set `defer` to `index.js` because other scripts depends it for `documentReady()`! #}
     <script type="text/javascript" src="{{ getPath("js/index.js") }}"></script>
-    <script defer type="text/javascript" src="{{ getPath("js/scrollspy.js") }}"></script>
     <script defer type="text/javascript" src="{{ getPath("js/custom.js") }}"></script>
-    <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.clipboard %}{{ themeConfig.libCDN.clipboard }}{% else %}{{ getPath("js/clipboard.min.js") }}{% endif %}"></script>
     {%- if themeConfig.busuanzi %}
     <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.busuanzi %}{{ themeConfig.libCDN.busuanzi }}{% else %}{{ getPath("js/busuanzi.pure.mini.js") }}{% endif %}"></script>
-    {%- endif %}
-    {%- if themeConfig.mathjax.cdn and themeConfig.mathjax.enable %}
-    {%- if themeConfig.mathjax.global or mathjax %}
-    <script defer type="text/javascript" src="{{ themeConfig.mathjax.cdn }}"></script>
-    <script type="text/x-mathjax-config">
-      documentReady(() => {
-        MathJax.Hub.Config({
-          "tex2jax": {
-            "inlineMath": [["$", "$"], ["\\(", "\\)"]],
-            "processEscapes": true,
-            "skipTags": ["script", "noscript", "style", "textarea", "pre", "code"]
-          }
-        });
-        MathJax.Hub.Queue(() => {
-          const all = MathJax.Hub.getAllJax();
-          for (const jax of all) {
-            jax.SourceElement().parentNode.classList.add("has-jax");
-          }
-        });
-      });
-    </script>
-    {%- endif %}
-    {%- endif %}
-    {#- If user choose to use Hikaru's builtin highlight, hljs is only used by issue comment. #}
-    {%- if siteConfig.highlight.enable !== true or (themeConfig.comment.issue.enable and comment !== false) %}
-    <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.highlight %}{{ themeConfig.libCDN.highlight }}{% else %}{{ getPath("js/highlight.min.js") }}{% endif %}"></script>
-    <script type="text/javascript">
-      documentReady(() => {
-        elementsEach(
-          document.querySelectorAll("figure.code-block pre.code code"),
-          (e, i) => {
-            // We want to use hljs' background and color for the whole block.
-            e.parentNode.parentNode.classList.add("hljs");
-            hljs.highlightElement(e);
-          }
-        );
-      });
-    </script>
-    {%- endif %}
-    {%- if siteConfig.highlight.gutter !== true %}
-    <script type="text/javascript">
-      documentReady(() => {
-        elementsEach(
-          document.querySelectorAll("figure.code-block pre.code"),
-          (e, i) => {
-            const code = e.parentNode.getAttribute("data-raw");
-            const gutter = [];
-            gutter.push("<pre class=\"gutter\">");
-            // Highlight should not change lines.
-            // But may replace `\n` with `<br>`, so use original code here.
-            const codeLines = code.split(/\r?\n/g);
-            // It seems marked.js starts to keep the last `\n`,
-            // which will leave an empty line after splitting,
-            // and we should not add gutter for the last empty line.
-            // Don't do trim here! We only skip empty line.
-            if (codeLines[codeLines.length - 1].length === 0) {
-              codeLines.pop();
-            }
-            for (let i = 0; i < codeLines.length; ++i) {
-              gutter.push(`<span class="line-number">${i + 1}</span>`);
-              if (i !== codeLines.length - 1) {
-                gutter.push("\n");
-              }
-            }
-            gutter.push("</pre>");
-            elementBefore(e, createElementFromString(gutter.join("")));
-          }
-        );
-      });
-    </script>
     {%- endif %}
     <script type="text/javascript">
       // Set theme before page rendering.
@@ -269,11 +197,11 @@
           });
           window.localStorage.setItem("theme", theme);
         });
-        // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat
-        // A modern way to show date in user's format.
-        // But it shows date only by default, no time.
+        // See <https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat>.
+        // A modern way to show date in user's format. But it shows date
+        // only by default, no time.
         const formatter = new Intl.DateTimeFormat(
-          "{{ siteConfig["language"] }}",
+          "{{ siteConfig.language }}",
           {
             "year": "numeric",
             "month": "2-digit",
@@ -320,26 +248,6 @@
             ].join("")));
           }
         );
-        const cb = new ClipboardJS("button.copy", {
-          "target": (trigger) => {
-              // Get target element by DOM API.
-              // trigger.parentNode.parentNode is code-titlebar.
-              // nextElementSibling is figure.highlight, lastChild is pre.code.
-              return trigger.parentNode.parentNode.nextElementSibling.lastChild;
-          }
-        });
-        cb.on("success", (e) => {
-          e.clearSelection();
-          const trigger = e.trigger;
-          // Change button text as a user tip.
-          trigger.innerHTML = "<i class=\"bi bi-clipboard2-check\"></i>";
-          trigger.classList.add("copied");
-          // Change button text back;
-          window.setTimeout(() => {
-            trigger.innerHTML = "<i class=\"bi bi-clipboard2-plus\"></i>";
-            trigger.classList.remove("copied");
-          }, 1500);
-        });
       });
     </script>
     {% block js %}{% endblock %}

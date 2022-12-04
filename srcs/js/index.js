@@ -222,7 +222,7 @@ documentReady(() => {
   });
 
   elementsEach(document.querySelectorAll("article.post img"), (e, i) => {
-    // If an image works as link, don't attach light gallary to it.
+    // If an image works as link, stop adding link styles to it.
     if (e.parentNode.tagName.toLowerCase() === "a") {
       e.parentNode.classList.add("img-link");
     } else {
@@ -232,12 +232,5 @@ documentReady(() => {
         ));
       }
     }
-  });
-
-  /* eslint-disable-next-line no-undef */
-  loadScrollSpy({
-    "containerID": "scrollspy-container",
-    "targetID": "scrollspy-target",
-    "headerSelector": "h1, h2, h3, h4, h5, h6"
   });
 });

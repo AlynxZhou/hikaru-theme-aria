@@ -1,0 +1,2 @@
+{#- highlight is expensive so only load it on index, pages and posts. #}
+<link rel="stylesheet" type="text/css" href="{% if themeConfig.libCDN.enable and themeConfig.libCDN[themeConfig.highlight] %}{{ themeConfig.libCDN[themeConfig.highlight] }}{% else %}{{ getPath("css/" + themeConfig.highlight + ".css") }}{% endif %}">

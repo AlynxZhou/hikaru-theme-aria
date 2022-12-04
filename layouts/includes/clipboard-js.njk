@@ -1,0 +1,29 @@
+{#-
+  ClipboardJS will only be used with code blocks, which means only index, pages
+  and posts.
+#}
+<script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.clipboard %}{{ themeConfig.libCDN.clipboard }}{% else %}{{ getPath("js/clipboard.min.js") }}{% endif %}"></script>
+<script type="text/javascript">
+  documentReady(() => {
+    const cb = new ClipboardJS("button.copy", {
+      "target": (trigger) => {
+        // Get target element by DOM API.
+        // trigger.parentNode.parentNode is code-titlebar.
+        // nextElementSibling is figure.highlight, lastChild is pre.code.
+        return trigger.parentNode.parentNode.nextElementSibling.lastChild;
+      }
+    });
+    cb.on("success", (e) => {
+      e.clearSelection();
+      const trigger = e.trigger;
+      // Change button text as a user tip.
+      trigger.innerHTML = "<i class=\"bi bi-clipboard2-check\"></i>";
+      trigger.classList.add("copied");
+      // Change button text back;
+      window.setTimeout(() => {
+        trigger.innerHTML = "<i class=\"bi bi-clipboard2-plus\"></i>";
+        trigger.classList.remove("copied");
+      }, 1500);
+    });
+  });
+</script>

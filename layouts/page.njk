@@ -1,5 +1,16 @@
 {% extends "includes/layout.njk" %}
 
+{% block css %}
+{% include "includes/highlight-css.njk" %}
+{% endblock %}
+
+{% block js %}
+{% include "includes/scrollspy-js.njk" %}
+{% include "includes/clipboard-js.njk" %}
+{% include "includes/highlight-js.njk" %}
+{% include "includes/mathjax-js.njk" %}
+{% endblock %}
+
 {% block title %}{{ __(title) }} - {{ siteConfig.title }}{% endblock %}
 
 {% block content %}

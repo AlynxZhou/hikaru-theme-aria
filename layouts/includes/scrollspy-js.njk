@@ -1,0 +1,15 @@
+{#-
+  ScrollSpy is expensive so we only load it on pages and posts that has TOC.
+#}
+{%- if content and toc and toc.length > 0 %}
+<script defer type="text/javascript" src="{{ getPath("js/scrollspy.js") }}"></script>
+<script type="text/javascript">
+  documentReady(() => {
+    loadScrollSpy({
+      "containerID": "scrollspy-container",
+      "targetID": "scrollspy-target",
+      "headerSelector": "h1, h2, h3, h4, h5, h6"
+    });
+  });
+</script>
+{%- endif %}

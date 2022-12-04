@@ -1,5 +1,15 @@
 {% extends "includes/layout.njk" %}
 
+{% block css %}
+{% include "includes/highlight-css.njk" %}
+{% endblock %}
+
+{% block js %}
+{% include "includes/clipboard-js.njk" %}
+{% include "includes/highlight-js.njk" %}
+{% include "includes/mathjax-js.njk" %}
+{% endblock %}
+
 {% block title %}{{ siteConfig.title }}{% if siteConfig.subtitle %} - {{ siteConfig.subtitle }}{% endif %}{% endblock %}
 
 {% block content %}
