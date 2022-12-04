@@ -140,8 +140,8 @@ const renderComment = (comment) => {
       ? ""
       : ("<span class=\"comment-info-association\">" +
          comment["author_association"] + "</span>"),
-    "<span class=\"comment-info-date\">",
-    "<time class=\"comment-full-date\" title=\"comment-date\" ",
+    "<span class=\"comment-info-datetime\">",
+    "<time class=\"comment-full-datetime\" title=\"comment-created\" ",
     "itemprop=\"dateCreated datePublished\" datetime=\"",
     comment["created_at"],
     "\">",

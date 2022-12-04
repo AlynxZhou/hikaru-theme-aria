@@ -184,7 +184,7 @@ article table tbody tr:nth-child(2n) td:nth-child(2n) {
   background: var(--color-table-odd-row-background);
 }
 
-code {
+code, kbd {
   padding: 0 0.25em;
   color: var(--color-code-font);
   background: var(--color-code-background);
@@ -971,7 +971,7 @@ div.comment-info a:active {
 }
 
 div.comment-info a.comment-info-author,
-div.comment-info span.comment-info-date {
+div.comment-info span.comment-info-datetime {
   margin: 0 0.5em;
 }
 
