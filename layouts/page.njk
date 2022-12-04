@@ -26,13 +26,13 @@
       </div>
       <div class="post-meta">
         {%- if created %}
-        <div class="post-date meta-block">
-          <i class="bi bi-calendar-check"></i><span><time class="post-full-date" title="post-date" itemprop="dateCreated datePublished" datetime="{{ created.toISOString() }}">{{ created.toLocaleString() }}</time></span>
+        <div class="post-created meta-block">
+          <i class="bi bi-calendar-check"></i><span><time class="post-full-datetime" title="post-created" itemprop="dateCreated datePublished" datetime="{{ created.toISOString() }}">{{ created.toLocaleString() }}</time></span>
         </div>
         {%- endif %}
         {%- if updated %}
-        <div class="post-date meta-block">
-          <i class="bi bi-calendar-plus"></i><span><time class="post-full-date" title="post-date" itemprop="dateUpdated" datetime="{{ updated.toISOString() }}">{{ updated.toLocaleString() }}</time></span>
+        <div class="post-updated meta-block">
+          <i class="bi bi-calendar-plus"></i><span><time class="post-full-datetime" title="post-updated" itemprop="dateUpdated" datetime="{{ updated.toISOString() }}">{{ updated.toLocaleString() }}</time></span>
         </div>
         {%- endif %}
         {%- if author or email %}
