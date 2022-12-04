@@ -62,7 +62,7 @@ const loadScrollSpy = (opts) => {
     return;
   }
 
-  window.addEventListener("scroll", (event) => {
+  const onScroll = (event) => {
     lastKnownPosition = document.documentElement.scrollTop ||
       document.body.scrollTop;
     if (!ticking) {
@@ -73,5 +73,21 @@ const loadScrollSpy = (opts) => {
       });
       ticking = true;
     }
-  });
+  };
+
+  // See <https://developer.mozilla.org/zh-CN/docs/Web/API/Intersection_Observer_API>.
+  // `scroll` event is expensive, use this to detect if something is inside
+  // viewport.
+  // It's 2022 now, browsers of my readers should support it.
+  const observer = new window.IntersectionObserver((entries, observer) => {
+    if (entries[0].isIntersecting) {
+      // See <https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener>.
+      // It's 2022 now and `options.passive` should be supported on browsers of
+      // my readers.
+      window.addEventListener("scroll", onScroll, {"passive": true});
+    } else {
+      window.removeEventListener("scroll", onScroll);
+    }
+  }, {"threshold": 0});
+  observer.observe(container);
 };
