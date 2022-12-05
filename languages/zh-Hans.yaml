@@ -51,9 +51,7 @@ comment:
   send: 去评论
   read: 阅读评论
   fail: 你可能达到了 API 请求频率上限，请等待一段时间再刷新。
-
-valine:
-  placeholder: 在这里说点什么……
+  body: "<!-- 请在下一行附加您的评论并提交 issue！切勿修改 issue 标题因为需要靠它匹配文章和评论！ -->"
 
 poweredBy: 由 %s 强力驱动
 theme: 主题 %s

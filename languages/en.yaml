@@ -51,9 +51,7 @@ comment:
   send: Go to Comment
   read: Read Comments
   fail: You may reached API rate limit, please wait for some time before refresh.
-
-valine:
-  placeholder: Write your comment here...
+  body: "<!-- Please append your comment after this line and submit the issue! Don't modify the issue title because it is used to match article and comment! -->"
 
 poweredBy: Proudly Powered by %s
 theme: Theme is %s

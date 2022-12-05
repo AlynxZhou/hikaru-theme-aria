@@ -51,9 +51,7 @@ comment:
   send: 去評論
   read: 閱讀評論
   fail: 你可能達到了 API 請求頻率上限，請等待一段時間再刷新。
-
-valine:
-  placeholder: 在這裏說點什麼……
+  body: "<!-- 請在下一行附加您的評論并提交 issue！切勿修改 issue 標題因爲需要靠它匹配文章和評論！ -->"
 
 poweredBy: 由 %s 強力驅動
 theme: 主題 %s

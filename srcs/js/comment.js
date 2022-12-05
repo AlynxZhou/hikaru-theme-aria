@@ -18,19 +18,46 @@ const fetchJSON = (path, opts = {}) => {
       return response.json();
     } else {
       // fetch does not reject on HTTP error, so we do this manually.
-      throw new Error("Unexpected HTTP status code " + response.status);
+      throw new Error(`Unexpected HTTP status code ${response.status}.`);
     }
   });
 };
 
 const buildRepoURL = (user, repo) => {
+  if (user == null || repo == null) {
+    throw new Error("user and repo are required.");
+  }
+
   return `${GITHUB_API_BASE_URL}/repos/${user}/${repo}`;
 };
 
-const buildNewIssueURL = (user, repo, title) => {
-  return `${GITHUB_BASE_URL}/${user}/${repo}/issues/new?title=${
-    window.encodeURIComponent(title)
-  }#issue_body`;
+const buildNewIssueURL = (user, repo, opts = {}) => {
+  if (user == null || repo == null) {
+    throw new Error("user and repo are required.");
+  }
+
+  const searchParams = new window.URLSearchParams();
+  const keys = [
+    "title", "body", "labels", "milestone", "assignees", "projects", "template"
+  ];
+  for (const key of keys) {
+    if (opts[key] != null) {
+      if (key === "labels" || key === "projects") {
+        if (!Array.isArray(opts[key])) {
+          throw new TypeError(`An array is needed for \`${key}\`.`);
+        }
+        searchParams.set(key, opts[key].join(","));
+      } else {
+        searchParams.set(key, opts[key]);
+      }
+    }
+  }
+  const queryString = searchParams.toString();
+  return [
+    `${GITHUB_BASE_URL}/${user}/${repo}/issues/new`,
+    queryString.length !== 0 ? `?${queryString}` : "",
+    "#issue_body"
+  ].join("");
 };
 
 const buildPagePath = (basePath, pageIndex) => {
@@ -53,10 +80,9 @@ const getIssues = (repo) => {
   const pagesLength = calPagesLength(openIssuesCount, ISSUES_PER_PAGE);
   const results = [];
   for (var i = 0; i < pagesLength; ++i) {
+    // We sort issues by created, and only want open issues.
     results.push(fetchJSON(
-      `${
-        repo["url"]
-      }/issues?state=open&per_page=${ISSUES_PER_PAGE}&page=${i + 1}`,
+      `${repo["url"]}/issues?state=open&sort=created&direction=desc&per_page=${ISSUES_PER_PAGE}&page=${i + 1}`,
       {"headers": GITHUB_API_HEADERS}
     ));
   }
@@ -74,6 +100,8 @@ const getIssues = (repo) => {
 const findIssueByTitle = (issues, title) => {
   for (const issue of issues) {
     // GitHub treats PR as issues with code, but we don't.
+    // Because we sort issues by created, this just returns the latest one, if
+    // there are different issues with the same name.
     if (issue["title"] === title && issue["pull_request"] == null) {
       return issue;
     }
@@ -178,7 +206,9 @@ const renderComments = (issue, comments, commentPage, pagesLength, opts) => {
   footer.push("id=\"comments-send\" target=\"_blank\" ");
   footer.push("ref=\"noreferrer noopener\" href=\"");
   if (issue == null) {
-    footer.push(buildNewIssueURL(opts["user"], opts["repo"], opts["title"]));
+    footer.push(buildNewIssueURL(opts["user"], opts["repo"], {
+      "title": opts["title"], "body": opts["body"]
+    }));
   } else {
     footer.push(issue["html_url"] + "#new_comment_field");
   }
@@ -198,14 +228,14 @@ const renderError = (err, opts) => {
 /* eslint-disable-next-line no-unused-vars */
 const loadComment = (opts) => {
   if (opts == null) {
-    return null;
+    throw new Error("Unable to load comment without opts.");
   }
   if (opts["containerID"] == null ||
       opts["user"] == null ||
       opts["repo"] == null ||
       opts["title"] == null ||
       opts["sendButtonText"] == null) {
-    return null;
+    throw new Error("containerID, user, repo, title and sendButtonText are required.");
   }
   opts["perPage"] = opts["perPage"] || 10;
   opts["basePath"] = opts["basePath"] || "./";
@@ -213,7 +243,7 @@ const loadComment = (opts) => {
   opts["noCommentText"] = opts["noCommentText"] || "";
   const container = document.getElementById(opts["containerID"]);
   if (container == null) {
-    return null;
+    throw new Error("Cannot get container.");
   }
   const urlParams = new window.URLSearchParams(opts["queryString"]);
   let commentPage = 1;
@@ -254,14 +284,14 @@ const loadComment = (opts) => {
 /* eslint-disable-next-line no-unused-vars */
 const loadCommentCount = (opts) => {
   if (opts == null) {
-    return null;
+    throw new Error("Unable to load comment without opts.");
   }
   if (opts["containerClass"] == null) {
-    return null;
+    throw new Error("containerClass is required.");
   }
   const containers = document.getElementsByClassName(opts["containerClass"]);
   if (containers.length === 0) {
-    return null;
+    throw new Error("Cannot get containers.");
   }
   return getRepo(buildRepoURL(opts["user"], opts["repo"])).then((repo) => {
     return getIssues(repo);
