@@ -331,7 +331,7 @@ Don't forget to add space after English puctuation.
 
 For decoration's size that related to inner text, or inside other container, use `em`. (e.g. `line-height`, `text-shadow`, `ul`'s `padding-left`, link's `border-bottom` and `top`, inline element's `margin` and `padding`.)
 
-For `font-size` or other non-relative size elements, use `rem`. (e.g. box-shadow, container's `width`, block element's `margin`, `padding` and `border`.)
+For `font-size` or other non-relative size elements, use `rem`. (But mostly I only use rem for font related properties.)
 
 Use 2-spaces indent.
 
