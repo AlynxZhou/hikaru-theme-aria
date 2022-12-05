@@ -153,6 +153,53 @@ const slideToggle = (target, duration) => {
     : slideUp(target, duration);
 };
 
+/* eslint-disable-next-line no-unused-vars */
+const lazyLoadWhenInside = (element, callback) => {
+  // See <https://developer.mozilla.org/zh-CN/docs/Web/API/Intersection_Observer_API>.
+  // Use this to detect if something is inside viewport so we can prevent some
+  // slow operations on webpage loading.
+  // It's 2022 now, browsers of my readers should support it.
+  const observer = new window.IntersectionObserver((entries, observer) => {
+    if (entries[0].isIntersecting) {
+      callback();
+      // We only need this observer once.
+      observer.disconnect();
+    }
+  });
+  observer.observe(element);
+};
+
+const formatDateTime = (elements, locales) => {
+  if (elements == null || elements.length === 0) {
+    return;
+  }
+
+  // See <https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat>.
+  // A modern way to show date in user's format. But it only shows date by
+  // default, no time.
+  const formatter = new Intl.DateTimeFormat(locales, {
+    "year": "numeric",
+    "month": "2-digit",
+    "day": "2-digit",
+    "weekday": "short",
+    "hour": "2-digit",
+    "minute": "2-digit",
+    "second": "2-digit",
+    "timeZoneName": "short",
+    "hour12": false
+  });
+  elementsEach(elements, (e, i) => {
+    const date = new Date(e.getAttribute("datetime"));
+    // See <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/formatToParts>.
+    const parts = formatter.formatToParts(date);
+    const obj = {};
+    for (let {type, value} of parts) {
+      obj[type] = value;
+    }
+    e.textContent = `${obj["year"]}-${obj["month"]}-${obj["day"]} ${obj["weekday"]} ${obj["hour"]}:${obj["minute"]}:${obj["second"]} ${obj["timeZoneName"]}`;
+  });
+};
+
 documentReady(() => {
   // If some init functions are used for library which is always enabled,
   // and does not depend on templating,

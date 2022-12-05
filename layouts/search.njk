@@ -10,12 +10,14 @@
     {%- else %}
     const searchPaths = ["{{ getPath(siteConfig.search.path) }}"];
     {%- endif %}
-    loadSearch({
-      "paths": searchPaths,
-      "queryString": window.location.search,
-      "containerID": "search-result",
-      "noResultText": "{{ __("searchResult.none") }}",
-      "failText": "{{ __("searchResult.fail") }}"
+    lazyLoadWhenInside(document.getElementById("search-result"), () => {
+      loadSearch({
+        "paths": searchPaths,
+        "queryString": window.location.search,
+        "containerID": "search-result",
+        "noResultText": "{{ __("searchResult.none") }}",
+        "failText": "{{ __("searchResult.fail") }}"
+      });
     });
   });
 </script>
