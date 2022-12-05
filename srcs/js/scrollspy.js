@@ -17,13 +17,12 @@ const updateCurrent = (target, headings, position, opts) => {
     position += window.innerHeight * opts["offset"];
   }
   for (let i = 0; i < headings.length; ++i) {
-    const e = headings[i];
-    // e is higher than current position,
-    // and e is last, or e's next is lower than current position.
-    if (e.offsetTop <= position &&
+    // This heading is higher than current position,
+    // and it is the last, or its next is lower than current position.
+    if (headings[i].offsetTop <= position &&
         (i === headings.length - 1 || headings[i + 1].offsetTop > position)) {
       const oldActive = target.querySelector("a.current");
-      const newActive = target.querySelector(`a[href="#${e.id}"]`);
+      const newActive = target.querySelector(`a[href="#${headings[i].id}"]`);
       if (oldActive !== newActive) {
         if (oldActive != null) {
           oldActive.classList.remove("current");
@@ -62,31 +61,56 @@ const loadScrollSpy = (opts) => {
   }
 
   /**
-   * A problem is that IntersectionObserver can tell us which one is going in
-   * and which one is going out, but what I want is to know which one is exactly
-   * above current position while the next is below current position.
-   * This API cannot do this, so I only use it as a event emitter, it tells me
-   * that a heading it passing the top border, so I should update the target.
-   * Shift the bottom of root margin to -100% so the observing area is only the
-   * top border.
-   * Anyway, the problem is not that I need to calculate the current heading, is
-   * that scroll event is expensive because most scroll events do not update
-   * current heading.
+   * Scroll event is too expensive for ScrollSpy, because not all scroll events
+   * trigger section change. IntersectionObserver is good, but it also has a
+   * problem: it has only two states, an element is reported as either "a little
+   * bit inside" or "totally outside" an area. But that is not OK for ScrollSpy,
+   * you should not update when a section is "a little bit inside" the area,
+   * it will behave differently in two scrolling directions. To keep it behave
+   * the same in two directions, when webpage goes up, you should set a section
+   * to current if it is "a little bit outside" the area, and when webpage goes
+   * down, you should set a section to current if it is "a little bit inside"
+   * the area.
+   *
+   * A tricky workaround is setting the root margins so the actually checking
+   * area becomes the top border of it (let the sum be -100% in one direction).
+   * Then if webpage goes up, "a little bit inside" the line is also "a little
+   * bit outside" the line.
+   *
+   * But keep in mind that Markdown does not have sections, we are using
+   * headings, a section is from current heading's top to next heading's top,
+   * and you can only get event about headings. That has no difference when
+   * webpage goes up, because a heading is "a little bit outside" the line also
+   * means its section is "a little bit outside" the line. But when webpages
+   * goes down, a heading is "a little bit inside" the line does not means its
+   * section is "a little bit inside" the line, you are too late. Instead, a
+   * heading is "totally outside" the line means its previous section is "a
+   * little bit inside" the line. But then you need to get the previous heading,
+   * which IntersectionObserver does not tell you.
+   *
+   * So I decide to calculate current section by myself, like what I do for the
+   * scroll event version. Then use IntersectionObserver to detect section
+   * change, so I won't do too much calculating compared with scroll event. Also
+   * it's harmless to update on both events, extra states from
+   * IntersectionObserver does not changes the final result, so I don't need to
+   * check scrolling direction.
    */
-  const headingObserver = new window.IntersectionObserver((entries, observer) => {
-    lastKnownPosition = document.documentElement.scrollTop ||
-      document.body.scrollTop;
-    if (!ticking) {
-      // Kick animations out of main thread.
-      window.requestAnimationFrame(() => {
-        updateCurrent(target, headings, lastKnownPosition, opts);
-        ticking = false;
-      });
-      ticking = true;
+  const headingObserver = new window.IntersectionObserver(
+    (entries, observer) => {
+      lastKnownPosition = document.documentElement.scrollTop ||
+        document.body.scrollTop;
+      if (!ticking) {
+        // Kick animations out of main thread.
+        window.requestAnimationFrame(() => {
+          updateCurrent(target, headings, lastKnownPosition, opts);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, {
+      "rootMargin": `${Math.floor(-100 * opts["offset"])}% 0% ${Math.floor(-100 * (1 - opts["offset"]))}% 0%`
     }
-  }, {
-    "rootMargin": `${Math.floor(-100 * opts["offset"])}% 0% ${Math.floor(-100 * (1 - opts["offset"]))}% 0%`
-  });
+  );
 
   const observer = new window.IntersectionObserver((entries, observer) => {
     if (entries[0].isIntersecting) {
