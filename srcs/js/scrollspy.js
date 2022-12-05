@@ -3,6 +3,7 @@
  * indicate which link is currently active in the viewport.
  * This is an alternative to Bootstrap's Scrollspy. However, it uses `current`
  * as class name instead of `active`.
+ * This version uses IntersectionObserver instead of scroll event.
  * CopyLeft (C) 2022
  * AlynxZhou <alynx.zhou@gmail.com> (https://alynx.one/)
  */
@@ -11,12 +12,13 @@
 let lastKnownPosition = 0;
 let ticking = false;
 
-const doActive = (container, target, headers, position) => {
-  headers.forEach((e, i) => {
+const updateCurrent = (target, headings, position) => {
+  for (let i = 0; i < headings.length; ++i) {
+    const e = headings[i];
     // e is higher than current position,
     // and e is last, or e's next is lower than current position.
     if (e.offsetTop <= position &&
-        (i === headers.length - 1 || headers[i + 1].offsetTop > position)) {
+        (i === headings.length - 1 || headings[i + 1].offsetTop > position)) {
       const oldActive = target.querySelector("a.current");
       const newActive = target.querySelector(`a[href="#${e.id}"]`);
       if (oldActive !== newActive) {
@@ -27,14 +29,7 @@ const doActive = (container, target, headers, position) => {
           newActive.classList.add("current");
         }
       }
-    }
-  });
-  // If we are out of container, none is active.
-  if (container.offsetTop > position ||
-      container.offsetTop + container.offsetHeight < position) {
-    const oldActive = target.querySelector("a.current");
-    if (oldActive != null) {
-      oldActive.classList.remove("current");
+      break;
     }
   }
 };
@@ -43,7 +38,7 @@ const doActive = (container, target, headers, position) => {
 const loadScrollSpy = (opts) => {
   opts = opts || {};
   opts["containerID"] = opts["containerID"] || "scrollspy-container";
-  opts["headerSelector"] = opts["headerSelector"] || "h1, h2, h3, h4, h5, h6";
+  opts["headingSelector"] = opts["headingSelector"] || "h1, h2, h3, h4, h5, h6";
   opts["targetID"] = opts["targetID"] || "scrollspy-target";
 
   const container = document.getElementById(opts["containerID"]);
@@ -52,42 +47,55 @@ const loadScrollSpy = (opts) => {
     return;
   }
 
-  // Assume headers are continous and sort them by position.
-  const headers = Array.prototype.slice.call(
-    container.querySelectorAll(opts["headerSelector"]), 0
+  const headings = Array.prototype.slice.call(
+    container.querySelectorAll(opts["headingSelector"]), 0
   ).sort((a, b) => {
     return a.offsetTop - b.offsetTop;
   });
-  if (headers.length === 0) {
+  if (headings.length === 0) {
     return;
   }
 
-  const onScroll = (event) => {
+  /**
+   * A problem is that IntersectionObserver can tell us which one is going in
+   * and which one is going out, but what I want is to know which one is exactly
+   * above current position while the next is below current position.
+   * This API cannot do this, so I only use it as a event emitter, it tells me
+   * that a heading it passing the top border, so I should update the target.
+   * Shift the bottom of root margin to -100% so the observing area is only the
+   * top border.
+   * Anyway, the problem is not that I need to calculate the current heading, is
+   * that scroll event is expensive because most scroll events do not update
+   * current heading.
+   */
+  const headingObserver = new window.IntersectionObserver((entries, observer) => {
     lastKnownPosition = document.documentElement.scrollTop ||
-      document.body.scrollTop;
+          document.body.scrollTop;
     if (!ticking) {
       // Kick animations out of main thread.
       window.requestAnimationFrame(() => {
-        doActive(container, target, headers, lastKnownPosition);
+        updateCurrent(target, headings, lastKnownPosition);
         ticking = false;
       });
       ticking = true;
     }
-  };
+  }, {"rootMargin": "0% 0% -100% 0%"});
 
-  // See <https://developer.mozilla.org/zh-CN/docs/Web/API/Intersection_Observer_API>.
-  // `scroll` event is expensive, use this to detect if something is inside
-  // viewport.
-  // It's 2022 now, browsers of my readers should support it.
   const observer = new window.IntersectionObserver((entries, observer) => {
     if (entries[0].isIntersecting) {
-      // See <https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener>.
-      // It's 2022 now and `options.passive` should be supported on browsers of
-      // my readers.
-      window.addEventListener("scroll", onScroll, {"passive": true});
+      for (const heading of headings) {
+        headingObserver.observe(heading);
+      }
     } else {
-      window.removeEventListener("scroll", onScroll);
+      for (const heading of headings) {
+        headingObserver.unobserve(heading);
+      }
+      // Clear active item because we are outside container.
+      const oldActive = target.querySelector("a.current");
+      if (oldActive != null) {
+        oldActive.classList.remove("current");
+      }
     }
-  }, {"threshold": 0});
+  });
   observer.observe(container);
 };
