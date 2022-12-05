@@ -16,7 +16,7 @@ const fetchJSON = (path, opts = {}) => {
       return response.json();
     } else {
       // fetch does not reject on HTTP error, so we do this manually.
-      throw new Error("Unexpected HTTP status code " + response.status);
+      throw new Error(`Unexpected HTTP status code ${response.status}.`);
     }
   });
 };
@@ -219,18 +219,18 @@ const renderDataProps = (dataProps) => {
 /* eslint-disable-next-line no-unused-vars */
 const loadSearch = (opts) => {
   if (opts == null) {
-    return null;
+    throw new Error("Unable to load comment without opts.");
   }
   if (opts["paths"] == null ||
       opts["queryString"] == null ||
       opts["containerID"] == null) {
-    return null;
+    throw new Error("paths, queryString and containerID are required.");
   }
   opts["failText"] = opts["failText"] || "";
   opts["noResultText"] = opts["noResultText"] || "";
   const container = document.getElementById(opts["containerID"]);
   if (container == null) {
-    return null;
+    throw new Error("Cannot get container.");
   }
   container.style.display = "block";
   const header = [];
