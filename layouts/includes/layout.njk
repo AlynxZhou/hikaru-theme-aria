@@ -220,7 +220,10 @@
           <div class="content">
             {% block content %}{% endblock %}
           </div>
+          {#- Sidebar can be `left`, `right` or `false`. #}
+          {%- if themeConfig.sidebar !== false %}
           {% include "includes/sidebar.njk" %}
+          {%- endif %}
         </div>
       </div>
     </main>

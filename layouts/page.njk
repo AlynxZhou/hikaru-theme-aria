@@ -5,10 +5,16 @@
 {% endblock %}
 
 {% block js %}
+{%- if content and toc and toc.length > 0 %}
 {% include "includes/scrollspy-js.njk" %}
+{%- endif %}
 {% include "includes/clipboard-js.njk" %}
 {% include "includes/highlight-js.njk" %}
+{%- if themeConfig.mathjax.cdn and themeConfig.mathjax.enable %}
+{%- if themeConfig.mathjax.global or mathjax %}
 {% include "includes/mathjax-js.njk" %}
+{%- endif %}
+{%- endif %}
 {% endblock %}
 
 {% block title %}{{ __(title) }} - {{ siteConfig.title }}{% endblock %}
@@ -76,6 +82,8 @@
     <footer class="post-footer"></footer>
   </article>
   {% include "includes/reward.njk" %}
+  {%- if themeConfig.comment.enable %}
   {% include "includes/comment.njk" %}
+  {%- endif %}
 </div>
 {% endblock %}

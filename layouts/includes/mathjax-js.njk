@@ -1,6 +1,4 @@
 {#- MathJax will only be used in index, pages and posts. #}
-{%- if themeConfig.mathjax.cdn and themeConfig.mathjax.enable %}
-{%- if themeConfig.mathjax.global or mathjax %}
 <script defer type="text/javascript" src="{{ themeConfig.mathjax.cdn }}"></script>
 <script type="text/x-mathjax-config">
   documentReady(() => {
@@ -19,5 +17,3 @@
     });
   });
 </script>
-{%- endif %}
-{%- endif %}

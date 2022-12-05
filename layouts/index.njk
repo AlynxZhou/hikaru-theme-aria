@@ -7,7 +7,11 @@
 {% block js %}
 {% include "includes/clipboard-js.njk" %}
 {% include "includes/highlight-js.njk" %}
+{%- if themeConfig.mathjax.cdn and themeConfig.mathjax.enable %}
+{%- if themeConfig.mathjax.global or mathjax %}
 {% include "includes/mathjax-js.njk" %}
+{%- endif %}
+{%- endif %}
 {% endblock %}
 
 {% block title %}{{ siteConfig.title }}{% if siteConfig.subtitle %} - {{ siteConfig.subtitle }}{% endif %}{% endblock %}
@@ -104,7 +108,11 @@
   </article>
   {%- endfor %}
   {%- endif %}
+  {%- if pages and pages.length > 0 %}
   {% include "includes/pagination.njk" %}
+  {%- endif %}
+  {%- if themeConfig.comment.enable %}
   {% include "includes/comment.njk" %}
+  {%- endif %}
 </div>
 {% endblock %}

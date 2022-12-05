@@ -327,9 +327,7 @@ You don't need to keep 80-chars a line in templates and style files, you should 
 
 Don't forget to add space after English puctuation.
 
-## Stylus
-
-They should look like CSS, don't remove `{`, `}` and `;`.
+## CSS
 
 For decoration's size that related to inner text, or inside other container, use `em`. (e.g. `line-height`, `text-shadow`, `ul`'s `padding-left`, link's `border-bottom` and `top`, inline element's `margin` and `padding`.)
 
@@ -343,7 +341,7 @@ Nunjucks tags should not be indented, which means they should be in the same lev
 
 Use 2-spaces indent.
 
-If you want to check some conditions before include a file, move `if` into included file.
+Check condition outside include statement instead of check condition in the toplevel of included file, this prevents extra file loading because Nunjucks uses runtime including.
 
 If control blocks or comments take a whole line, use `{%- %}` or `{#- #}` to strip those lines, this will remove white spaces used to indent. However, don't do this for `extends`, `include`, `block`, `endblock` or `{{ }}`, because they mean parts from other places, so it's useless to do this for them.
 

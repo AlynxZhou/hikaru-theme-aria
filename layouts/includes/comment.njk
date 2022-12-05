@@ -3,7 +3,6 @@
   some pages like index does not have its own comment results but has counts for
   posts. So page's `comment` is only checked for comment results.
 #}
-{%- if themeConfig.comment.enable %}
 <div class="comment" id="comment">
   {%- if themeConfig.comment.issue.enable %}
   <script defer type="text/javascript" src="{{ getPath("js/comment.js") }}"></script>
@@ -82,4 +81,3 @@
   {%- endif %}
   {%- endif %}
 </div>
-{%- endif %}

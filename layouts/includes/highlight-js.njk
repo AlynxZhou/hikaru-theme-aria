@@ -2,6 +2,8 @@
 {#-
   If user choose to use Hikaru's builtin highlight, we don't do client side
   highlight.
+  Don't move those conditions outside, because we have two parts: if no pre
+  hightlight, add highlight, and if no pre gutter, add gutter.
 #}
 {%- if siteConfig.highlight.enable !== true %}
 <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.highlight %}{{ themeConfig.libCDN.highlight }}{% else %}{{ getPath("js/highlight.min.js") }}{% endif %}"></script>

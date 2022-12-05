@@ -43,6 +43,8 @@
     </header>
   </article>
   {%- endfor %}
+  {%- if pages and pages.length > 0 %}
   {% include "includes/pagination.njk" %}
+  {%- endif %}
 </div>
 {% endblock %}
