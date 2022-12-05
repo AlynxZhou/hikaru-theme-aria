@@ -1,9 +1,9 @@
 {#- highlight is expensive so only load it on index, pages and posts. #}
 {#-
-  If user choose to use Hikaru's builtin highlight, hljs is only used by issue
-  comment.
+  If user choose to use Hikaru's builtin highlight, we don't do client side
+  highlight.
 #}
-{%- if siteConfig.highlight.enable !== true or (themeConfig.comment.issue.enable and comment !== false) %}
+{%- if siteConfig.highlight.enable !== true %}
 <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.highlight %}{{ themeConfig.libCDN.highlight }}{% else %}{{ getPath("js/highlight.min.js") }}{% endif %}"></script>
 <script type="text/javascript">
   documentReady(() => {

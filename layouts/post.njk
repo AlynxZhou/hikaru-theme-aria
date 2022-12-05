@@ -90,12 +90,12 @@
   <nav class="page-nav">
     <div class="page-nav-next page-nav-item">
       {%- if next %}
-      <a href="{{ getPath(next.docPath) }}" rel="next" title="{{ next.title }}"><i class="bi bi-chevron-left"></i><span class="nav-title">{{ next.title }}</span></a>
+      <a class="page-nav-link" href="{{ getPath(next.docPath) }}" rel="next" title="{{ next.title }}"><i class="bi bi-chevron-left"></i><span class="nav-title">{{ next.title }}</span></a>
       {%- endif %}
     </div>
     <div class="page-nav-prev page-nav-item">
       {%- if prev %}
-      <a href="{{ getPath(prev.docPath) }}" rel="prev" title="{{ prev.title }}"><span class="nav-title">{{ prev.title }}</span><i class="bi bi-chevron-right"></i></a>
+      <a class="page-nav-link" href="{{ getPath(prev.docPath) }}" rel="prev" title="{{ prev.title }}"><span class="page-nav-title">{{ prev.title }}</span><i class="bi bi-chevron-right"></i></a>
       {%- endif %}
     </div>
   </nav>

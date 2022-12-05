@@ -103,6 +103,9 @@
     <link rel="stylesheet" type="text/css" href="{% if themeConfig.libCDN.enable and themeConfig.libCDN.normalize %}{{ themeConfig.libCDN.normalize }}{% else %}{{ getPath("css/normalize.css") }}{% endif %}">
     <link rel="stylesheet" type="text/css" href="{{ getPath("css/variables.css") }}">
     <link rel="stylesheet" type="text/css" href="{{ getPath("css/index.css") }}">
+    {%- if themeConfig.comment.enable and themeConfig.comment.issue.enable and comment != false %}
+    <link rel="stylesheet" type="text/css" href="{{ getPath("css/comment.css") }}">
+    {%- endif %}
     <link rel="stylesheet" type="text/css" href="{{ getPath("css/custom.css") }}">
     <link rel="stylesheet" type="text/css" href="{% if themeConfig.libCDN.enable and themeConfig.libCDN.bootstrapIcons.css %}{{ themeConfig.libCDN.bootstrapIcons.css }}{% else %}{{ getPath("css/bootstrap-icons.css") }}{% endif %}">
     <style type="text/css">
@@ -135,12 +138,15 @@
       /* Replace the default Bootstrap Icons fonts path. */
       @font-face {
         font-family: "bootstrap-icons";
-        font-display: fallback;
+        font-display: block;
         src: url("{% if themeConfig.libCDN.enable and themeConfig.libCDN.bootstrapIcons.woff2 %}{{ themeConfig.libCDN.bootstrapIcons.woff2 }}{% else %}{{ getPath("fonts/bootstrap-icons.woff2") }}{% endif %}") format("woff2"), url("{% if themeConfig.libCDN.enable and themeConfig.libCDN.bootstrapIcons.woff %}{{ themeConfig.libCDN.bootstrapIcons.woff }}{% else %}{{ getPath("fonts/bootstrap-icons.woff") }}{% endif %}") format("woff");
       }
     </style>
     {%- block css %}{% endblock %}
-    {#- You should not set `defer` to `index.js` because other scripts depends it for `documentReady()`! #}
+    {#-
+      You should not set `defer` to `index.js` because other scripts depends it
+      for `documentReady()`!
+    #}
     <script type="text/javascript" src="{{ getPath("js/index.js") }}"></script>
     <script defer type="text/javascript" src="{{ getPath("js/custom.js") }}"></script>
     {%- if themeConfig.busuanzi %}
@@ -225,27 +231,6 @@
               obj[type] = value;
             }
             e.textContent = `${obj["year"]}-${obj["month"]}-${obj["day"]} ${obj["weekday"]} ${obj["hour"]}:${obj["minute"]}:${obj["second"]} ${obj["timeZoneName"]}`;
-          }
-        );
-        elementsEach(
-          document.querySelectorAll(".post figure.code-block"),
-          (e, i) => {
-            const lang = e.getAttribute("data-lang");
-            elementBefore(e, createElementFromString([
-              "<div class=\"code-titlebar\">",
-                "<div class=\"titlebar-left\">",
-                  "<button class=\"copy\" aria-label=\"{{ __("clipboard.copy") }}\"><i class=\"bi bi-clipboard2-plus\"></i></button>",
-                "</div>",
-                "<div class=\"titlebar-center\">",
-                  lang != null && lang.length ? lang.toUpperCase() : "{{ __("code") }}",
-                "</div>",
-                "<div class=\"titlebar-right\">",
-                  "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
-                  "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
-                  "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
-                "</div>",
-              "</div>"
-            ].join("")));
           }
         );
       });

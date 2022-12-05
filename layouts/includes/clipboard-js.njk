@@ -5,6 +5,27 @@
 <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.clipboard %}{{ themeConfig.libCDN.clipboard }}{% else %}{{ getPath("js/clipboard.min.js") }}{% endif %}"></script>
 <script type="text/javascript">
   documentReady(() => {
+    elementsEach(
+      document.querySelectorAll(".post figure.code-block"),
+      (e, i) => {
+        const lang = e.getAttribute("data-lang");
+        elementBefore(e, createElementFromString([
+          "<div class=\"code-titlebar\">",
+          "<div class=\"titlebar-left\">",
+          "<button class=\"copy\" aria-label=\"{{ __("clipboard.copy") }}\"><i class=\"bi bi-clipboard2-plus\"></i></button>",
+          "</div>",
+          "<div class=\"titlebar-center\">",
+          lang != null && lang.length ? lang.toUpperCase() : "{{ __("code") }}",
+          "</div>",
+          "<div class=\"titlebar-right\">",
+          "<button class=\"button-dot dot-minimize\" aria-label=\"Decoration\"></button>",
+          "<button class=\"button-dot dot-maximize\" aria-label=\"Decoration\"></button>",
+          "<button class=\"button-dot dot-close\" aria-label=\"Decoration\"></button>",
+          "</div>",
+          "</div>"
+        ].join("")));
+      }
+    );
     const cb = new ClipboardJS("button.copy", {
       "target": (trigger) => {
         // Get target element by DOM API.

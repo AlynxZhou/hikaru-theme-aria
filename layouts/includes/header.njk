@@ -2,14 +2,14 @@
   <div class="container">
     <div class="header-container">
       <div class="header-title">
-        <div class="title"><a href="{{ getPath() }}">{{ siteConfig.title }}</a></div>
+        <div class="title"><a class="root" href="{{ getPath() }}">{{ siteConfig.title }}</a></div>
         {%- if siteConfig.subtitle %}
         <div class="subtitle">{{ siteConfig.subtitle }}</div>
         {%- endif %}
       </div>
       {%- if themeConfig.logo %}
       <div class="logo">
-        <img src="{{ getPath(themeConfig.logo) }}" alt="logo">
+        <img class="logo-image" src="{{ getPath(themeConfig.logo) }}" alt="logo">
       </div>
       {%- endif %}
     </div>
@@ -17,7 +17,7 @@
       <button class="nav-toggle" id="nav-toggle" aria-hidden="true">
         <i class="bi bi-list" aria-label="{{ __("accessibility.navToggle") }}"></i>
       </button>
-      <ul id="menu" role="menubar" aria-hidden="false">
+      <ul class="menu" id="menu" role="menubar" aria-hidden="false">
         {%- for e in themeConfig.menu %}
         {%- if isCurrentHost(e.link) %}
         {%- set external = false %}
@@ -32,7 +32,7 @@
           current links ("Home" and "Archives"), so if a link is site root dir,
           we use strict match for it.
         #}
-        <li role="menuitem"><a href="{% if external %}{{ e.link }}{% else %}{{ getPath(e.link) }}{% endif %}"{% if not external and isCurrentPath(e.link, getPath(e.link) === getPath()) %} class="current"{% endif %}{% if external %} target="_blank" rel="external nofollow noreferrer noopener"{% endif %}>{% if e.icon %}{{ e.icon }}{% endif %}<span class="menu-text">{{ __(e.name) }}</span></a></li>
+        <li class="menu-item" role="menuitem"><a href="{% if external %}{{ e.link }}{% else %}{{ getPath(e.link) }}{% endif %}" class="menu-link{% if not external and isCurrentPath(e.link, getPath(e.link) === getPath()) %} current{% endif %}"{% if external %} target="_blank" rel="external nofollow noreferrer noopener"{% endif %}>{% if e.icon %}{{ e.icon }}{% endif %}<span class="menu-text">{{ __(e.name) }}</span></a></li>
         {%- endfor %}
       </ul>
       <button class="theme-toggle" id="theme-toggle">

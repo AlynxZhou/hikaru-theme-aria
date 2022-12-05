@@ -1,0 +1,140 @@
+div.comment {
+  margin: 1em;
+}
+
+div.comment-results div.sk-wave div.sk-rect {
+  background: var(--color-comment-sk-wave-background);
+}
+
+div.comment-fail {
+  text-align: center;
+  color: var(--color-comment-font);
+}
+
+header.comments-header {
+  padding: 0.5em;
+  text-align: center;
+  color: var(--color-comment-font);
+}
+
+div.comment-result {
+  display: flex;
+  justify-content: stretch;
+  /* Let avatar and body on the same line. */
+  align-items: flex-start;
+  margin: 0.5em 0;
+}
+
+div.comment-avatar-container {
+  /* Don't let avatar too big, don't let avatar too small. */
+  flex: 0 0 var(--comment-avatar-width);
+  margin: 0 0.5em;
+}
+
+img.comment-avatar {
+  max-width: 100%;
+  border: 0.1em solid white;
+  border-radius: 50%;
+  transition: box-shadow 0.3s ease-in-out, transform 1s ease-in-out;
+}
+
+img.comment-avatar:hover {
+  box-shadow: 0 0 1em 0.5em rgba(0, 0, 0, 0.19);
+  transform: rotateY(720deg);
+}
+
+div.comment-body-container {
+  flex: 1 1 auto;
+  overflow: auto;
+  border-radius: var(--corner-radius);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+div.comment-body-container:hover {
+  box-shadow: 0 0 1em 0.5em rgba(0, 0, 0, 0.19);
+}
+
+div.comment-info {
+  padding: 0.5em;
+  color: var(--color-comment-info-font);
+  background: var(--color-comment-info-background);
+  /* Sometimes scrollbar shows because of Chinese word wrap with English. */
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-scrollbar) var(--color-scrollbar-background);
+}
+
+div.comment-info a {
+  position: relative;
+  color: var(--color-comment-info-link-font);
+  text-decoration: none;
+  border-bottom: 0.05em dotted;
+  transition: color 0.3s ease-in-out, border-bottom 0.3s ease-in-out;
+}
+
+div.comment-info a:hover {
+  color: var(--color-comment-info-link-hover-font);
+  border-bottom: 0.05em solid;
+}
+
+div.comment-info a:active {
+  top: 0.1em;
+}
+
+div.comment-info a.comment-info-author,
+div.comment-info span.comment-info-datetime {
+  margin: 0 0.5em;
+}
+
+div.comment-info span.comment-info-association {
+  margin: 0 0.5em;
+  padding: 0 0.5em;
+  color: var(--color-comment-info-font);
+  border: 0.05em solid;
+  border-radius: var(--corner-radius);
+}
+
+div.comment-info a.comment-info-link {
+  margin: 0 0.5em;
+}
+
+div.comment-info a.comment-info-link::before {
+  content: "#";
+}
+
+div.comment-content {
+  padding: 0.5em 1em;
+  background: var(--color-comment-content-background);
+}
+
+div.comment-content pre {
+  overflow: auto;
+  padding: 0.5em;
+  border-radius: var(--corner-radius);
+  color: var(--color-code-block-font);
+  background: var(--color-code-block-background);
+}
+
+div.comment-content pre code {
+  margin: 0;
+  padding: 0;
+  color: var(--color-code-block-font);
+  background: var(--color-code-block-background);
+  word-wrap: normal;
+  border-radius: 0;
+}
+
+footer.comments-footer {
+  padding: 0.5em;
+  text-align: center;
+  color: var(--color-comment-font);
+}
+
+a.comment-send {
+  padding: 0.3em 1em;
+  background: var(--color-button-comment-background);
+  border: 0.1em solid var(--color-button-comment-border);
+}
+
+div.disqus_thread {
+  margin: 1em 2em;
+}

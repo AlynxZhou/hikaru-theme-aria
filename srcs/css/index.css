@@ -56,12 +56,6 @@ body {
   overflow: auto;
 }
 
-/* For user. */
-div.center {
-  text-align: center;
-  padding: 0 15%;
-}
-
 ol, ul {
   padding-left: 2em;
 }
@@ -92,7 +86,7 @@ a.img-link {
   border-bottom: none;
 }
 
-a.img-link img {
+a.img-link > img {
   transition: box-shadow 0.3s ease-in-out;
   border: 0.15em solid var(--color-quote-font);
 }
@@ -101,7 +95,7 @@ a.img-link:hover {
   border-bottom: none;
 }
 
-a.img-link:hover img {
+a.img-link:hover > img {
   box-shadow: 0 0 1em 0.5em rgba(0, 0, 0, 0.19);
 }
 
@@ -154,33 +148,33 @@ article table {
   margin: 0 auto;
 }
 
-article table th {
+article th {
   padding: 0.4em 0.7em;
   border: 0.1em solid var(--color-table-head-border);
 }
 
-article table td {
+article td {
   padding: 0.4em 0.7em;
   border: 0.1em solid var(--color-table-border);
 }
 
-article table thead tr {
+article thead > tr {
   background: var(--color-table-head-background);
 }
 
-article table tbody tr {
+article tbody > tr {
   background: var(--color-table-odd-row-background);
 }
 
-article table tbody tr td:nth-child(2n) {
+article tbody > tr > td:nth-child(2n) {
   background: var(--color-table-even-row-background);
 }
 
-article table tbody tr:nth-child(2n) {
+article tbody > tr:nth-child(2n) {
   background: var(--color-table-even-row-background);
 }
 
-article table tbody tr:nth-child(2n) td:nth-child(2n) {
+article tbody > tr:nth-child(2n) > td:nth-child(2n) {
   background: var(--color-table-odd-row-background);
 }
 
@@ -207,6 +201,7 @@ div.code-titlebar {
   flex-direction: row;
   justify-content: stretch;
   align-items: center;
+  text-align: center;
   /* border-radius: var(--corner-radius) var(--corner-radius) 0 0; */
   color: var(--color-code-block-titlebar-font);
   background: var(--color-code-block-titlebar-background);
@@ -214,23 +209,13 @@ div.code-titlebar {
   margin: 0 calc(-1 * var(--card-padding));
 }
 
-div.titlebar-left {
+div.titlebar-left, div.titlebar-right {
   flex: 0 0 auto;
-  text-align: left;
-  padding: 0 0.25em;
 }
 
 div.titlebar-center {
   flex: 1 1 auto;
   overflow: auto;
-  text-align: center;
-  padding: 0 0.25em;
-}
-
-div.titlebar-right {
-  flex: 0 0 auto;
-  text-align: right;
-  padding: 0 0.25em;
 }
 
 button.copy {
@@ -299,11 +284,11 @@ figure.code-block:not(.hljs) {
   background: var(--color-code-block-background);
 }
 
-figure.code-block pre {
+figure.code-block > pre {
   margin: 0;
 }
 
-figure.code-block pre.gutter {
+figure.code-block > pre.gutter {
   flex: 0 0 auto;
   text-align: right;
   padding: 0.5em;
@@ -314,7 +299,7 @@ figure.code-block pre.gutter {
   border-right: 0.1em dotted;
 }
 
-figure.code-block pre.code {
+figure.code-block > pre.code {
   flex: 1 1 auto;
   overflow: auto;
   padding: 0.5em;
@@ -322,7 +307,7 @@ figure.code-block pre.code {
   scrollbar-color: var(--color-scrollbar) var(--color-scrollbar-background);
 }
 
-figure.code-block pre.code code {
+figure.code-block > pre.code > code {
   margin: 0;
   padding: 0;
   color: inherit;
@@ -332,7 +317,7 @@ figure.code-block pre.code code {
 }
 
 /* hljs don't touch my styles except color. */
-figure.code-block pre.code code.hljs {
+code.hljs {
   display: inline;
   overflow: visible;
 }
@@ -345,7 +330,7 @@ blockquote {
   border-left: 0.25em solid var(--color-quote-font);
 }
 
-blockquote p {
+blockquote > p {
   white-space: pre-wrap;
   padding: 0;
   margin: 0;
@@ -361,11 +346,17 @@ blockquote.center-quote, blockquote.centerquote {
   text-align: center;
 }
 
-blockquote.center-quote p,
-blockquote.center-quote div,
-blockquote.centerquote p,
-blockquote.centerquote div {
+blockquote.center-quote > p,
+blockquote.center-quote > div,
+blockquote.centerquote > p,
+blockquote.centerquote > div {
   text-align: center;
+}
+
+/* For user. */
+div.center {
+  text-align: center;
+  padding: 0 15%;
 }
 
 /* Take the whole line without margin like alert. */
@@ -486,6 +477,7 @@ article.animate {
   transform-origin: 50%;
   transform: rotateX(180deg);
 }
+
 @keyframes flip {
   0% {
     opacity: 0;
@@ -504,7 +496,6 @@ header.header {
   margin-bottom: 0;
   background: var(--color-header-background);
   color: var(--color-header-font);
-  word-wrap: break-word;
   line-height: 2;
 }
 
@@ -518,32 +509,30 @@ div.header-container {
 
 div.header-title {
   text-align: left;
-  word-wrap: break-word;
   flex: 1 1 auto;
   overflow: auto;
   color: var(--color-title-font);
 }
 
-div.header-title a {
+a.root {
   position: static;
   color: var(--color-title-font);
   text-decoration: none;
   border-bottom: none;
 }
 
-div.header-title a:hover {
+a.root:hover {
   color: var(--color-title-font);
   border-bottom: none;
 }
 
 div.title {
   font: bold 2rem var(--font-title);
-  margin: 0 0 0.5em 0;
+  line-height: 2;
 }
 
 div.subtitle {
   font: italic 1.5rem var(--font-subtitle);
-  margin: 0.5em 0 0 0;
 }
 
 div.logo {
@@ -551,7 +540,7 @@ div.logo {
   flex: 0 0 auto;
 }
 
-div.logo img {
+img.logo-image {
   display: inline-block;
   max-height: 5em;
 }
@@ -570,9 +559,11 @@ nav.nav {
   align-items: stretch;
 }
 
-/* Browser always ignore white spaces between blocks but not inline elements. */
-/* Use flex and block for ul and li to ignore white spaces Nunjucks puts here.*/
-nav.nav ul {
+/**
+ * Browser always ignore white spaces between blocks but not inline elements.
+ * Use flex and block for ul and li to ignore white spaces Nunjucks puts here.
+ */
+ul.menu {
   display: flex;
   flex: 1 1 auto;
   flex-direction: row;
@@ -587,7 +578,7 @@ nav.nav ul {
   scrollbar-color: var(--color-scrollbar) var(--color-scrollbar-background);
 }
 
-nav.nav ul li {
+li.menu-item {
   /* Don't stretch. */
   flex: 0 0 auto;
   text-align: center;
@@ -595,7 +586,7 @@ nav.nav ul li {
   margin: 0 0.1em;
 }
 
-nav.nav ul li a {
+a.menu-link {
   position: static;
   display: block;
   font-size: 1.5rem;
@@ -608,13 +599,13 @@ nav.nav ul li a {
   border-bottom: none;
 }
 
-nav.nav ul li a:hover {
+a.menu-link:hover {
   color: var(--color-nav-link-hover-font);
   background: var(--color-nav-hover-background);
   border-bottom: none;
 }
 
-nav.nav ul li a.current {
+a.menu-link.current {
   font-weight: bold;
 }
 
@@ -659,6 +650,8 @@ div.main-container {
   /* 0.5em is the offset for nav shadow. */
   box-shadow: 0 0.5em 1em 0.5em rgba(0, 0, 0, 0.19);
   border-radius: 0 0 var(--corner-radius) var(--corner-radius);
+  /* Fix sidebar corner not rounded. */
+  overflow: auto;
   /* This is flex container for content and sidebar. */
   display: flex;
   flex-direction: row;
@@ -732,7 +725,7 @@ div.page-nav-item {
   font-size: 1.2rem;
 }
 
-div.page-nav-item a {
+a.page-nav-link {
   position: relative;
   display: inline-flex;
   flex-direction: row;
@@ -742,13 +735,13 @@ div.page-nav-item a {
   border-bottom: none;
 }
 
-div.page-nav-item a span {
+span.page-nav-title {
   flex: 1 1 auto;
   overflow: auto;
   margin: 0.3em;
 }
 
-div.page-nav-item a:active {
+a.page-nav-link:active {
   top: 0.1em;
 }
 
@@ -876,161 +869,15 @@ div.qr {
   text-align: center;
 }
 
-div.qr div {
+div.qr-block {
   padding: 0.5em;
   display: inline-block;
-  text-align: center;
 }
 
-div.qr div img {
+img.qr-image {
   width: 10em;
   margin: 0 auto;
   display: block;
-}
-
-div.comment {
-  margin: 1em;
-}
-
-div.comment-results div.sk-wave div.sk-rect {
-  background: var(--color-comment-sk-wave-background);
-}
-
-div.comment-fail {
-  text-align: center;
-  color: var(--color-comment-font);
-}
-
-header.comments-header {
-  padding: 0.5em;
-  text-align: center;
-  color: var(--color-comment-font);
-}
-
-div.comment-result {
-  display: flex;
-  justify-content: stretch;
-  /* Let avatar and body on the same line. */
-  align-items: flex-start;
-  margin: 0.5em 0;
-}
-
-div.comment-avatar-container {
-  /* Don't let avatar too big, don't let avatar too small. */
-  flex: 0 0 var(--comment-avatar-width);
-  margin: 0 0.5em;
-}
-
-img.comment-avatar {
-  max-width: 100%;
-  border: 0.1em solid white;
-  border-radius: 50%;
-  transition: box-shadow 0.3s ease-in-out, transform 1s ease-in-out;
-}
-
-img.comment-avatar:hover {
-  box-shadow: 0 0 1em 0.5em rgba(0, 0, 0, 0.19);
-  transform: rotateY(720deg);
-}
-
-div.comment-body-container {
-  flex: 1 1 auto;
-  overflow: auto;
-  border-radius: var(--corner-radius);
-  transition: box-shadow 0.3s ease-in-out;
-}
-
-div.comment-body-container:hover {
-  box-shadow: 0 0 1em 0.5em rgba(0, 0, 0, 0.19);
-}
-
-div.comment-info {
-  padding: 0.5em;
-  color: var(--color-comment-info-font);
-  background: var(--color-comment-info-background);
-  /* Sometimes scrollbar shows because of Chinese word wrap with English. */
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-scrollbar) var(--color-scrollbar-background);
-}
-
-div.comment-info a {
-  position: relative;
-  color: var(--color-comment-info-link-font);
-  text-decoration: none;
-  border-bottom: 0.05em dotted;
-  transition: color 0.3s ease-in-out, border-bottom 0.3s ease-in-out;
-}
-
-div.comment-info a:hover {
-  color: var(--color-comment-info-link-hover-font);
-  border-bottom: 0.05em solid;
-}
-
-div.comment-info a:active {
-  top: 0.1em;
-}
-
-div.comment-info a.comment-info-author,
-div.comment-info span.comment-info-datetime {
-  margin: 0 0.5em;
-}
-
-div.comment-info span.comment-info-association {
-  margin: 0 0.5em;
-  padding: 0 0.5em;
-  color: var(--color-comment-info-font);
-  border: 0.05em solid;
-  border-radius: var(--corner-radius);
-}
-
-div.comment-info a.comment-info-link {
-  margin: 0 0.5em;
-}
-
-div.comment-info a.comment-info-link::before {
-  content: "#";
-}
-
-div.comment-content {
-  padding: 0.5em 1em;
-  background: var(--color-comment-content-background);
-}
-
-div.comment-content pre {
-  overflow: auto;
-  padding: 0.5em;
-  border-radius: var(--corner-radius);
-  color: var(--color-code-block-font);
-  background: var(--color-code-block-background);
-}
-
-div.comment-content pre code {
-  margin: 0;
-  padding: 0;
-  color: var(--color-code-block-font);
-  background: var(--color-code-block-background);
-  word-wrap: normal;
-  border-radius: 0;
-}
-
-footer.comments-footer {
-  padding: 0.5em;
-  text-align: center;
-  color: var(--color-comment-font);
-}
-
-a.comment-send {
-  padding: 0.3em 1em;
-  background: var(--color-button-comment-background);
-  border: 0.1em solid var(--color-button-comment-border);
-}
-
-div.disqus_thread {
-  margin: 1em 2em;
-}
-
-div.vcomments {
-  margin: 1em 2em;
 }
 
 aside.sidebar {
@@ -1041,7 +888,7 @@ aside.sidebar {
   padding: 0;
 }
 
-/* Replace hr color in index.styl. */
+/* Replace hr color. */
 aside.sidebar hr {
   background: repeating-linear-gradient(-45deg, var(--color-hr-sidebar-background), var(--color-hr-sidebar-background) 0.25em, transparent 0.25em, transparent 0.5em);
 }
@@ -1185,7 +1032,6 @@ footer.footer {
   flex: 0 0 auto;
   color: var(--color-footer-font);
   background: var(--color-footer-background);
-  word-wrap: break-word;
   line-height: 2;
 }
 
@@ -1304,7 +1150,7 @@ div.container {
     text-align: center;
   }
 
-  div.sidebar-item ul {
+  ul.sidebar-list {
     padding: 0;
     display: flex;
     flex-direction: row;
@@ -1313,7 +1159,7 @@ div.container {
     justify-content: center;
   }
 
-  div.sidebar-item ul li {
+  li.sidebar-list-item {
     display: block;
     flex: 0 0 auto;
     margin: 0.5em 1em;
@@ -1347,12 +1193,12 @@ div.container {
     padding: 0;
   }
 
-  nav.nav ul {
+  ul.menu {
     display: none;
     white-space: normal;
   }
 
-  nav.nav ul li {
+  li.menu-item {
     display: block;
     margin: 0.1em 0;
   }
