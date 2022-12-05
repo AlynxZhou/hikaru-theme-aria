@@ -12,7 +12,10 @@
 let lastKnownPosition = 0;
 let ticking = false;
 
-const updateCurrent = (target, headings, position) => {
+const updateCurrent = (target, headings, position, opts) => {
+  if (opts["offset"] !== 0) {
+    position += window.innerHeight * opts["offset"];
+  }
   for (let i = 0; i < headings.length; ++i) {
     const e = headings[i];
     // e is higher than current position,
@@ -40,6 +43,8 @@ const loadScrollSpy = (opts) => {
   opts["containerID"] = opts["containerID"] || "scrollspy-container";
   opts["headingSelector"] = opts["headingSelector"] || "h1, h2, h3, h4, h5, h6";
   opts["targetID"] = opts["targetID"] || "scrollspy-target";
+  // Offset should between 0 and 1.
+  opts["offset"] = opts["offset"] || 0;
 
   const container = document.getElementById(opts["containerID"]);
   const target = document.getElementById(opts["targetID"]);
@@ -70,16 +75,18 @@ const loadScrollSpy = (opts) => {
    */
   const headingObserver = new window.IntersectionObserver((entries, observer) => {
     lastKnownPosition = document.documentElement.scrollTop ||
-          document.body.scrollTop;
+      document.body.scrollTop;
     if (!ticking) {
       // Kick animations out of main thread.
       window.requestAnimationFrame(() => {
-        updateCurrent(target, headings, lastKnownPosition);
+        updateCurrent(target, headings, lastKnownPosition, opts);
         ticking = false;
       });
       ticking = true;
     }
-  }, {"rootMargin": "0% 0% -100% 0%"});
+  }, {
+    "rootMargin": `${Math.floor(-100 * opts["offset"])}% 0% ${Math.floor(-100 * (1 - opts["offset"]))}% 0%`
+  });
 
   const observer = new window.IntersectionObserver((entries, observer) => {
     if (entries[0].isIntersecting) {

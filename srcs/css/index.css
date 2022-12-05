@@ -54,6 +54,7 @@ body {
   /* You phone is too long and too narrow, let the whole page scroll. */
   min-width: var(--body-min-width);
   overflow: auto;
+  scroll-behavior: smooth;
 }
 
 ol, ul {
