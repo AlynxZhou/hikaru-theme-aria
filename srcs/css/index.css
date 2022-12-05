@@ -215,7 +215,6 @@ div.titlebar-left, div.titlebar-right {
 
 div.titlebar-center {
   flex: 1 1 auto;
-  overflow: auto;
 }
 
 button.copy {
@@ -457,7 +456,6 @@ div.card, article.card {
   display: block;
   transition: box-shadow 0.3s ease-in-out;
   background: var(--color-card-background);
-  overflow: hidden;
   border-radius: var(--corner-radius);
   padding: 0.5em var(--card-padding);
   margin: 0.5em;
@@ -510,8 +508,9 @@ div.header-container {
 div.header-title {
   text-align: left;
   flex: 1 1 auto;
-  overflow: auto;
   color: var(--color-title-font);
+  /* To make it shrink. */
+  overflow: auto;
 }
 
 a.root {
@@ -649,9 +648,15 @@ div.main-container {
   background: var(--color-main-background);
   /* 0.5em is the offset for nav shadow. */
   box-shadow: 0 0.5em 1em 0.5em rgba(0, 0, 0, 0.19);
-  border-radius: 0 0 var(--corner-radius) var(--corner-radius);
-  /* Fix sidebar corner not rounded. */
-  overflow: auto;
+  /**
+   * Don't use rounded corner at bottom, because we cannot round sidebar's
+   * corner.
+   * Using `overflow: auto;` can round child elements, but it creates a new
+   * problem that `position: sticky;` won't work.
+   * So the only way to do that is set border-radius for each children, which
+   * is too complex for sidebar.
+   */
+  /* border-radius: 0 0 var(--corner-radius) var(--corner-radius); */
   /* This is flex container for content and sidebar. */
   display: flex;
   flex-direction: row;
