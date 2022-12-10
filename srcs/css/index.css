@@ -183,6 +183,8 @@ code, kbd {
   padding: 0 0.25em;
   color: var(--color-code-font);
   background: var(--color-code-background);
+  /* Don't collapse multiple spaces in code. */
+  white-space: pre-wrap;
   word-wrap: break-word;
   border-radius: var(--corner-radius);
   font-family: var(--font-code);
