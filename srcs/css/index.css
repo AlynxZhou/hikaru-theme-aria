@@ -314,6 +314,12 @@ figure.code-block > pre.code > code {
   padding: 0;
   color: inherit;
   background: transparent;
+  /**
+   * Because we use `white-space: pre-wrap;` to prevent white spaces collaspe,
+   * we have to set `white-space: pre;` here to prevent line break inside code
+   * blocks.
+   */
+  white-space: pre;
   word-wrap: normal;
   border-radius: 0;
 }
