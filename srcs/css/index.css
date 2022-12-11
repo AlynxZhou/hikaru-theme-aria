@@ -49,7 +49,7 @@ body {
    */
   font-family: var(--font-all);
   font-size: var(--font-size);
-  line-height: 1.5;
+  line-height: 2;
   color: var(--color-font);
   background: var(--color-background);
   display: flex;
@@ -127,6 +127,7 @@ a.button, button.button {
   display: inline-block;
   position: relative;
   transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+  line-height: 1.5;
   text-decoration: none;
   border-radius: var(--corner-radius);
   color: var(--color-button-font);
@@ -201,8 +202,6 @@ code, kbd {
 pre {
   font-family: var(--font-code);
   font-size: var(--font-size);
-  /* Keep Chinese and English the same height. */
-  line-height: 1.5;
   font-feature-settings: "liga" 0;
 }
 
@@ -510,7 +509,6 @@ header.header {
   margin-bottom: 0;
   background: var(--color-header-background);
   color: var(--color-header-font);
-  line-height: 2;
 }
 
 div.header-container {
@@ -545,7 +543,6 @@ div.title {
   font-family: var(--font-title);
   font-size: 2rem;
   font-weight: bold;
-  line-height: 2;
 }
 
 div.subtitle {
@@ -570,6 +567,7 @@ nav.nav {
   /* -0.5em is the offset for main shadow. */
   box-shadow: 0 -0.5em 1em 0.5em rgba(0, 0, 0, 0.19);
   border-radius: var(--corner-radius) var(--corner-radius) 0 0;
+  line-height: 1.5;
   /* This is a flex container of menu and buttons. */
   display: flex;
   flex-direction: row;
@@ -609,8 +607,6 @@ a.menu-link {
   position: static;
   display: block;
   font-size: 1.5rem;
-  /* Keep Chinese and English the same height. */
-  line-height: 1.5;
   padding: 0.5em;
   color: var(--color-nav-link-font);
   text-decoration: none;
@@ -629,7 +625,6 @@ a.menu-link.current {
 }
 
 button.nav-toggle, button.theme-toggle {
-  line-height: 1.2;
   /* Buttons don't stretch. */
   flex: 0 0 auto;
   text-align: center;
@@ -787,7 +782,6 @@ div.page-title, div.post-title {
   text-align: center;
   /* Looks like h1. */
   font-size: 2rem;
-  margin: 0.67em 0;
   font-weight: bold;
 }
 
@@ -856,8 +850,6 @@ div.tags-cloud {
 }
 
 a.post-tag {
-  /* Make Chinese and English the same height on mobile devices. */
-  line-height: 1.5;
   margin: 0.1em 0.5em;
   display: inline-block;
   background: var(--color-button-red-background);
@@ -1056,7 +1048,6 @@ footer.footer {
   flex: 0 0 auto;
   color: var(--color-footer-font);
   background: var(--color-footer-background);
-  line-height: 2;
 }
 
 footer.footer a {
@@ -1231,6 +1222,8 @@ div.container {
     /* Take full line for easier click. */
     display: block;
     flex: 1 1 auto;
+    /* Assign different heights for them and menu link. */
+    line-height: 1.2;
   }
 
   nav.page-nav {
