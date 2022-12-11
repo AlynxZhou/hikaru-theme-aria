@@ -78,10 +78,12 @@ const slideUp = (target, duration) => {
     return;
   }
   duration = duration || 400;
+  // Ensure initial size.
+  target.style.height = target.offsetHeight + "px";
   target.style.transitionProperty = "height, margin, padding";
   target.style.transitionDuration = duration + "ms";
   target.style.boxSizing = "border-box";
-  target.style.height = target.offsetHeight + "px";
+  target.style.overflow = "hidden";
   // Don't know why but next line cannot be removed.
   /* eslint-disable-next-line no-unused-expressions */
   target.offsetHeight;
@@ -90,15 +92,15 @@ const slideUp = (target, duration) => {
   target.style.paddingBottom = 0;
   target.style.marginTop = 0;
   target.style.marginBottom = 0;
-  target.style.overflow = "hidden";
   window.setTimeout(() => {
     target.style.display = "none";
     target.style.removeProperty("height");
+    target.style.removeProperty("overflow");
+    target.style.removeProperty("box-sizing");
     target.style.removeProperty("padding-top");
     target.style.removeProperty("padding-bottom");
     target.style.removeProperty("margin-top");
     target.style.removeProperty("margin-bottom");
-    target.style.removeProperty("overflow");
     target.style.removeProperty("transition-duration");
     target.style.removeProperty("transition-property");
   }, duration);
@@ -110,33 +112,31 @@ const slideDown = (target, duration) => {
     return;
   }
   duration = duration || 400;
+  // If there is `display: none` added in JavaScript, remove it.
   target.style.removeProperty("display");
-  let display = window.getComputedStyle(target).display;
-  if (display === "none") {
-    display = "block";
-  }
-  target.style.display = display;
   const height = target.offsetHeight;
+  // Ensure initial size.
   target.style.height = 0;
+  target.style.transitionProperty = "height, margin, padding";
+  target.style.transitionDuration = duration + "ms";
+  target.style.boxSizing = "border-box";
+  target.style.overflow = "hidden";
+  // Don't know why but next line cannot be removed.
+  /* eslint-disable-next-line no-unused-expressions */
+  target.offsetHeight;
+  target.style.height = height + "px";
   target.style.paddingTop = 0;
   target.style.paddingBottom = 0;
   target.style.marginTop = 0;
   target.style.marginBottom = 0;
-  // Don't know why but next line cannot be removed.
-  /* eslint-disable-next-line no-unused-expressions */
-  target.offsetHeight;
-  target.style.overflow = "hidden";
-  target.style.boxSizing = "border-box";
-  target.style.transitionProperty = "height, margin, padding";
-  target.style.transitionDuration = duration + "ms";
-  target.style.height = height + "px";
-  target.style.removeProperty("padding-top");
-  target.style.removeProperty("padding-bottom");
-  target.style.removeProperty("margin-top");
-  target.style.removeProperty("margin-bottom");
   window.setTimeout(() => {
     target.style.removeProperty("height");
     target.style.removeProperty("overflow");
+    target.style.removeProperty("box-sizing");
+    target.style.removeProperty("padding-top");
+    target.style.removeProperty("padding-bottom");
+    target.style.removeProperty("margin-top");
+    target.style.removeProperty("margin-bottom");
     target.style.removeProperty("transition-duration");
     target.style.removeProperty("transition-property");
   }, duration);
@@ -148,7 +148,7 @@ const slideToggle = (target, duration) => {
     return;
   }
   duration = duration || 400;
-  window.getComputedStyle(target).display === "none"
+  target.style.display === "none"
     ? slideDown(target, duration)
     : slideUp(target, duration);
 };
@@ -201,9 +201,8 @@ const formatDateTime = (elements, locales) => {
 };
 
 documentReady(() => {
-  // If some init functions are used for library which is always enabled,
-  // and does not depend on templating,
-  // init function should be written here.
+  // If some init functions are used for libraries that are always enabled and
+  // do not depend on templating, they should be here.
 
   document.getElementById("back-to-top").addEventListener("click", (event) => {
     event.preventDefault();
@@ -212,7 +211,9 @@ documentReady(() => {
 
   const rewardButton = document.getElementById("reward-button");
   const qr = document.getElementById("qr");
-  if (rewardButton != null) {
+  if (rewardButton != null && qr != null) {
+    qr.style.display = "none";
+    qr.setAttribute("aria-hidden", "true");
     rewardButton.addEventListener("click", () => {
       qr.getAttribute("aria-hidden") === "true"
         ? qr.setAttribute("aria-hidden", "false")
@@ -253,7 +254,7 @@ documentReady(() => {
   // Show menu again when window becomes bigger.
   window.addEventListener("resize", (event) => {
     if (window.innerWidth > minWidth) {
-      menu.style.display = "";
+      menu.style.removeProperty("display");
       menu.setAttribute("aria-hidden", "false");
       navToggle.setAttribute("aria-hidden", "true");
     } else {

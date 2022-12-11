@@ -127,12 +127,12 @@ a.button, button.button {
   display: inline-block;
   position: relative;
   transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
-  line-height: 1.5;
   text-decoration: none;
   border-radius: var(--corner-radius);
   color: var(--color-button-font);
   background: var(--color-button-background);
   border: 0.1em solid var(--color-button-border);
+  line-height: inherit;
 }
 
 a.button:hover, button.button:hover {
@@ -345,7 +345,6 @@ blockquote {
 }
 
 blockquote > p {
-  white-space: pre-wrap;
   padding: 0;
   margin: 0;
 }
@@ -590,7 +589,6 @@ ul.menu {
   padding: 0;
   margin: 0;
   overflow: auto;
-  white-space: nowrap;
   scrollbar-width: thin;
   scrollbar-color: var(--color-scrollbar) var(--color-scrollbar-background);
 }
@@ -877,7 +875,7 @@ div.reward {
 button.reward-button {
   cursor: pointer;
   border: none;
-  padding: 0.5em 0.5em;
+  padding: 0.3em 1em;
   margin: 0.5em 0;
   background: var(--color-button-red-background);
   border: 0.1em solid var(--color-button-red-border);
@@ -1027,7 +1025,6 @@ a.rss-link {
   color: var(--color-button-font);
   background: var(--color-button-red-background);
   border: 0.1em solid var(--color-button-red-border);
-  padding: 0.2em;
 }
 
 div.sidebar-item {
@@ -1212,8 +1209,11 @@ div.container {
   }
 
   ul.menu {
-    display: none;
-    white-space: normal;
+    /**
+     * Do not set display to none in CSS here, but set it in JavaScript, so if
+     * users disable JavaScript, they still can see this menu.
+     */
+    flex-direction: column;
   }
 
   li.menu-item {

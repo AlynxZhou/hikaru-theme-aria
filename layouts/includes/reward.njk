@@ -3,7 +3,7 @@
     <span>{{ themeConfig.reward.message }}</span>
   </div>
   <button id="reward-button" class="button reward-button" disable="enable"><i class="bi bi-coin"></i>{{ __("reward.reward") }}</button>
-  <div id="qr" class="qr" style="display: none;" aria-hidden="true">
+  <div id="qr" class="qr">
     {%- if themeConfig.reward.weChatPayQRCode %}
     <div class="qr-block" id="wechatpay">
       <img class="qr-image" id="wechatpay-qr" src="{{ getPath(themeConfig.reward.weChatPayQRCode) }}" alt="{{ __("reward.weChatPay") }}"/>
