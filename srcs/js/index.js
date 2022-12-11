@@ -206,6 +206,7 @@ documentReady(() => {
   // init function should be written here.
 
   document.getElementById("back-to-top").addEventListener("click", (event) => {
+    event.preventDefault();
     scrollToTop();
   });
 

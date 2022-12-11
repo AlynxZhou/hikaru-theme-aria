@@ -1097,22 +1097,25 @@ div.back-to-top {
   text-align: center;
 }
 
-button.back-to-top {
+footer.footer a.back-to-top {
   border: none;
   transition: color 0.3s ease-in-out;
   color: var(--color-link-font);
   background: var(--color-background);
   display: inline-block;
-  margin: 0 auto;
   padding: 0 0.75em;
-  cursor: pointer;
   border-radius: 0 0 var(--corner-radius) var(--corner-radius);
   font-size: 2rem;
+  line-height: 1.2;
 }
 
-button.back-to-top:hover {
+footer.footer a.back-to-top:hover {
   color: var(--color-link-hover-font);
   border: none;
+}
+
+footer.footer a.back-to-top:active {
+  top: 0;
 }
 
 /* For container size, better to use min-width for media query. */
