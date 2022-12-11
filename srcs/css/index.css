@@ -42,7 +42,14 @@ html {
 
 body {
   transition: color 0.3s ease-in-out, background 0.3s ease-in-out;
-  font: var(--font-size) var(--font-all);
+  /**
+   * Use separate font properties because `line-height` is also included in
+   * `font` property, I don't want to reset `line-height` for all elements using
+   * another `font-family` or `font-size`.
+   */
+  font-family: var(--font-all);
+  font-size: var(--font-size);
+  line-height: 1.5;
   color: var(--color-font);
   background: var(--color-background);
   display: flex;
@@ -535,12 +542,16 @@ a.root:hover {
 }
 
 div.title {
-  font: bold 2rem var(--font-title);
+  font-family: var(--font-title);
+  font-size: 2rem;
+  font-weight: bold;
   line-height: 2;
 }
 
 div.subtitle {
-  font: italic 1.5rem var(--font-subtitle);
+  font-family: var(--font-subtitle);
+  font-size: 1.5rem;
+  font-style: italic;
 }
 
 div.logo {
@@ -647,7 +658,8 @@ button.theme-toggle {
 
 main.main {
   flex: 1 1 auto;
-  font: var(--font-size) var(--font-main);
+  font-family: var(--font-main);
+  font-size: var(--font-size);
   /* It's 2022 and calc() should work everywhere, and use -1 to do negative. */
   margin-top: calc(-1 * var(--search-height));
   margin-bottom: 1.5em;
