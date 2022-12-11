@@ -147,7 +147,7 @@ a.button:active, button.button:active {
 hr {
   height: 0.3em;
   border: none;
-  margin: 1.5em 0;
+  margin: 1.5em calc(-1 * var(--card-padding));
   width: 100%;
   background: repeating-linear-gradient(-45deg, var(--color-hr-background), var(--color-hr-background) 0.25em, transparent 0.25em, transparent 0.5em);
 }
@@ -906,6 +906,7 @@ aside.sidebar {
 
 /* Replace hr color. */
 aside.sidebar hr {
+  margin: 1.5em 0;
   background: repeating-linear-gradient(-45deg, var(--color-hr-sidebar-background), var(--color-hr-sidebar-background) 0.25em, transparent 0.25em, transparent 0.5em);
 }
 
