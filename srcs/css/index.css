@@ -350,7 +350,7 @@ blockquote > p {
 
 blockquote.center-quote, blockquote.centerquote {
   margin: 0.5em calc(-1 * var(--card-padding));
-  padding: 0.5em 15%;
+  padding: 0.5em 10%;
   color: var(--color-quote-font);
   border-left: none;
   border-top: 0.2em solid var(--color-quote-font);
@@ -368,7 +368,7 @@ blockquote.centerquote > div {
 /* For user. */
 div.center {
   text-align: center;
-  padding: 0 15%;
+  padding: 0 10%;
 }
 
 /* Take the whole line without margin like alert. */
@@ -390,7 +390,7 @@ div.alert-red, div.alert-green, div.alert-blue {
   text-align: center;
   /* Use this to get a nice break of card. */
   margin: 0.5em calc(-1 * var(--card-padding));
-  padding: 0.5em 15%;
+  padding: 0.5em 10%;
   border-width: 0 0.5em;
   border-style: solid;
   /* border-radius: var(--corner-radius); */
@@ -662,14 +662,13 @@ div.main-container {
   /* 0.5em is the offset for nav shadow. */
   box-shadow: 0 0.5em 1em 0.5em rgba(0, 0, 0, 0.19);
   /**
-   * Don't use rounded corner at bottom, because we cannot round sidebar's
-   * corner.
-   * Using `overflow: auto;` can round child elements, but it creates a new
-   * problem that `position: sticky;` won't work.
-   * So the only way to do that is set border-radius for each children, which
-   * is too complex for sidebar.
+   * Only setting `border-radius` here is not enough, because sidebar has its
+   * own background.
+   * Using `overflow: auto;` can round sidebar, but it creates a new problem
+   * that `position: sticky;` won't work.
+   * So the only way to do that is also setting `border-radius` for sidebar.
    */
-  /* border-radius: 0 0 var(--corner-radius) var(--corner-radius); */
+  border-radius: 0 0 var(--corner-radius) var(--corner-radius);
   /* This is flex container for content and sidebar. */
   display: flex;
   flex-direction: row;
@@ -682,6 +681,8 @@ div.main-container {
 div.content {
   /* Grow and shrink and take all available space. */
   flex: 1 1 auto;
+  /* Content has no background so don't set this. */
+  /* border-radius: 0 0 var(--corner-radius) 0; */
   /**
    * See <https://stackoverflow.com/questions/36247140/why-dont-flex-items-shrink-past-content-size>.
    * Let parent decide child width.
@@ -900,6 +901,7 @@ aside.sidebar {
   background: var(--url-sidebar-background);
   /* Don't grow, don't shrink. */
   flex: 0 0 var(--sidebar-width);
+  border-radius: 0 0 var(--corner-radius) 0;
   padding: 0;
 }
 

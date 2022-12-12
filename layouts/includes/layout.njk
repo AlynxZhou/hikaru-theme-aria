@@ -130,17 +130,26 @@
         {%- endif %}
         {%- endif %}
       }
-      {%- if themeConfig.sidebar === "left" %}
-      div.main-container {
-        flex-direction: row-reverse;
-      }
-      {%- endif %}
       /* Replace the default Bootstrap Icons fonts path. */
       @font-face {
         font-family: "bootstrap-icons";
         font-display: block;
         src: url("{% if themeConfig.libCDN.enable and themeConfig.libCDN.bootstrapIcons.woff2 %}{{ themeConfig.libCDN.bootstrapIcons.woff2 }}{% else %}{{ getPath("fonts/bootstrap-icons.woff2") }}{% endif %}") format("woff2"), url("{% if themeConfig.libCDN.enable and themeConfig.libCDN.bootstrapIcons.woff %}{{ themeConfig.libCDN.bootstrapIcons.woff }}{% else %}{{ getPath("fonts/bootstrap-icons.woff") }}{% endif %}") format("woff");
       }
+      {%- if themeConfig.sidebar === "left" %}
+      div.main-container {
+        flex-direction: row-reverse;
+      }
+      {#- Don't forget to swap rounded corner for sidebar. #}
+      aside.sidebar {
+        border-radius: 0 0 0 var(--corner-radius);
+      }
+      {%- endif %}
+      {%- if themeConfig.color %}
+      header.header, footer.footer {
+        background: {{ themeConfig.color }};
+      }
+      {% endif %}
     </style>
     {%- block css %}{% endblock %}
     {#-

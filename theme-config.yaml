@@ -81,7 +81,7 @@ animate: false
 busuanzi: true
 
 # If you want ARIA generate excerpt, set it to the length you want. If you don't, leave it blank.
-# Recomend to place `<!--more-->` to where you want to stop excerpt in content instead of use this option.
+# Recommend to place `<!--more-->` to where you want to stop excerpt in content instead of use this option.
 # Example: `autoExcerpt: 200`, use first 200 chars in post content as excerpt.
 autoExcerpt:
 
