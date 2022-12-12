@@ -1,0 +1,128 @@
+/* Other elements have special size to fold on mobile devices. */
+/**
+ * So for container the basic idea is don't make content width jump while
+ * shrinking. If we shrinking from a very very wide screen, we have:
+ * 1. If screen width is larger than 100rem, we take 80%, but too wide is hard
+ *    to read, so max width is 100rem, this is in index.css.
+ * 2. When screen width is 100rem, container width is 80rem. From now we shrink
+ *    margin first and only shrink container if no margin, so the max width of
+ *    container is 80rem.
+ * 3. When screen width is 60rem, we have no margin and use single column
+ *    layout, sidebar is always 20rem so make max width 40rem, still shrink
+ *    margin first.
+ */
+/* Small monitor and landscape tablet. */
+@media (max-width: 100rem) {
+  div.container {
+    width: auto;
+    max-width: var(--max-width-container-small);
+  }
+}
+
+/* Portrait tablet. */
+@media (max-width: 60rem) {
+  div.container {
+    width: auto;
+    max-width: var(--max-width-container-single-column);
+  }
+
+  div.main-container {
+    flex-direction: column;
+  }
+
+  div.content, aside.sidebar {
+    flex: 1 1 auto;
+  }
+
+  aside.sidebar {
+    border-radius: 0 0 var(--corner-radius-main) var(--corner-radius-main);
+  }
+
+  div.sidebar-item {
+    text-align: center;
+  }
+
+  ul.sidebar-list {
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+  }
+
+  li.sidebar-list-item {
+    display: block;
+    flex: 0 0 auto;
+    margin: 0.5em 1em;
+  }
+
+  ol.toc {
+    /* It is not supposed to hold the whole line. */
+    display: inline-block;
+    text-align: left;
+  }
+
+  div.sidebar-sticky {
+    position: static;
+  }
+}
+
+/* Smart phone. */
+@media (max-width: 40rem) {
+  div.header-container {
+    flex-direction: column-reverse;
+    /* Stretch logo and title when fold. */
+    align-items: stretch;
+  }
+
+  div.header-title, div.logo {
+    text-align: center;
+    flex: 1 1 auto;
+  }
+
+  nav.nav {
+    flex-direction: column;
+    padding: 0;
+  }
+
+  ul.menu {
+    /**
+     * Do not set display to none in CSS here, but set it in JavaScript, so if
+     * users disable JavaScript, they still can see this menu.
+     */
+    flex-direction: column;
+  }
+
+  li.menu-item {
+    display: block;
+    margin: 0.1em 0;
+  }
+
+  button.nav-toggle, button.theme-toggle {
+    /* Take full line for easier click. */
+    display: block;
+    flex: 1 1 auto;
+    /* Assign different heights for them and menu link. */
+    line-height: 1.2;
+  }
+
+  nav.page-nav {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  div.page-nav-item {
+    flex: 1 1 auto;
+  }
+
+  div.footer-container {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  div.footer-left, div.footer-right {
+    text-align: center;
+    flex: 1 1 auto;
+  }
+}

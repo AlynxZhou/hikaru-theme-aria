@@ -106,8 +106,8 @@
     {%- if themeConfig.comment.enable and themeConfig.comment.issue.enable and comment != false %}
     <link rel="stylesheet" type="text/css" href="{{ getPath("css/comment.css") }}">
     {%- endif %}
-    <link rel="stylesheet" type="text/css" href="{{ getPath("css/custom.css") }}">
     <link rel="stylesheet" type="text/css" href="{% if themeConfig.libCDN.enable and themeConfig.libCDN.bootstrapIcons.css %}{{ themeConfig.libCDN.bootstrapIcons.css }}{% else %}{{ getPath("css/bootstrap-icons.css") }}{% endif %}">
+    {#- Styles that need extra info so put them in template. #}
     <style type="text/css">
       :root {
         --url-sidebar-background: url("{{ getPath("images/background.webp") }}");
@@ -151,13 +151,18 @@
       }
       {% endif %}
     </style>
+    {#-
+      Mobile uses single column layout, it should have higher priority than
+      sideber position.
+    #}
+    <link rel="stylesheet" type="text/css" href="{{ getPath("css/mobile.css") }}">
     {%- block css %}{% endblock %}
+    <link rel="stylesheet" type="text/css" href="{{ getPath("css/custom.css") }}">
     {#-
       You should not set `defer` to `index.js` because other scripts depends it
       for `documentReady()`!
     #}
     <script type="text/javascript" src="{{ getPath("js/index.js") }}"></script>
-    <script defer type="text/javascript" src="{{ getPath("js/custom.js") }}"></script>
     {%- if themeConfig.busuanzi %}
     <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.busuanzi %}{{ themeConfig.libCDN.busuanzi }}{% else %}{{ getPath("js/busuanzi.pure.mini.js") }}{% endif %}"></script>
     {%- endif %}
@@ -219,6 +224,7 @@
       });
     </script>
     {% block js %}{% endblock %}
+    <script defer type="text/javascript" src="{{ getPath("js/custom.js") }}"></script>
     <title>{% block title %}{% endblock %}</title>
   </head>
   <body itemscope itemtype="http://schema.org/WebPage">
