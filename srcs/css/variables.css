@@ -166,6 +166,8 @@
   --color-alert-blue-background: var(--blue-lighter);
   --color-alert-blue-border: var(--blue-light);
 
+  --color-box-shadow: rgba(0, 0, 0, 0.19);
+
   --font-size: 16px;
   --font-sans: Roboto, "Noto Sans", "Noto Sans CJK", Helvetica, Arial, sans-serif;
   --font-mono: Monaco, Menlo, "Roboto Mono", Consolas, monospace;
@@ -175,17 +177,24 @@
   --font-main: var(--font-sans);
   --font-code: var(--font-mono), var(--font-sans);
 
+  /* Sidebar and content should have the same rounded corner so use rem. */
+  --corner-radius-main: 0.3rem;
   --corner-radius: 0.3em;
-  --card-padding: 1em;
-  --search-height: 3em;
-  --search-padding-top: 0.5em;
-  --container-max-width: 100em;
-  --container-small-max-width: 80em;
-  --container-single-column-max-width: 40em;
-  --sidebar-width: 20em;
-  --body-min-width: 20em;
-  --comment-avatar-width: 5em;
-  --icon-margin: 0.2em;
+  --box-shadow: 0 0 1em 0.5em;
+  --padding-card: 1em;
+  --height-search: 3rem;
+  --padding-top-search: 0.5em;
+  --max-width-container: 100rem;
+  --max-width-container-small: 80rem;
+  --max-width-container-single-column: 40rem;
+  --width-sidebar: 20rem;
+  --min-width-body: 20rem;
+  --width-comment-avatar: 5em;
+  --margin-icon: 0.2em;
+  --border-bottom-width-link: 0.05em;
+
+  --transition-duration: 0.3s;
+  --transition-timing-function: ease-in-out;
 }
 
 :root[data-theme="dark"] {

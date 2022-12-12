@@ -27,7 +27,7 @@ div.comment-result {
 
 div.comment-avatar-container {
   /* Don't let avatar too big, don't let avatar too small. */
-  flex: 0 0 var(--comment-avatar-width);
+  flex: 0 0 var(--width-comment-avatar);
   margin: 0 0.5em;
 }
 
@@ -35,21 +35,28 @@ img.comment-avatar {
   max-width: 100%;
   border: 0.1em solid white;
   border-radius: 50%;
-  transition: box-shadow 0.3s ease-in-out, transform 1s ease-in-out;
+  transition: box-shadow var(--transition-duration) var(--transition-timing-function), transform 1s var(--transition-timing-function);
 }
 
 img.comment-avatar:hover {
-  box-shadow: 0 0 1em 0.5em rgba(0, 0, 0, 0.19);
+  box-shadow: var(--box-shadow) var(--color-box-shadow);
   transform: rotateY(720deg);
 }
 
 div.comment-body-container {
   flex: 1 1 auto;
-  transition: box-shadow 0.3s ease-in-out;
+  transition: box-shadow var(--transition-duration) var(--transition-timing-function);
+  /* This is needed for shadow. */
+  border-radius: var(--corner-radius);
+  /**
+   * See <https://stackoverflow.com/questions/36247140/why-dont-flex-items-shrink-past-content-size>.
+   * Let parent decide child width.
+   */
+  overflow: auto;
 }
 
 div.comment-body-container:hover {
-  box-shadow: 0 0 1em 0.5em rgba(0, 0, 0, 0.19);
+  box-shadow: var(--box-shadow) var(--color-box-shadow);
 }
 
 div.comment-info {
@@ -66,13 +73,13 @@ div.comment-info a {
   position: relative;
   color: var(--color-comment-info-link-font);
   text-decoration: none;
-  border-bottom: 0.05em dotted;
-  transition: color 0.3s ease-in-out, border-bottom 0.3s ease-in-out;
+  border-bottom: var(--border-bottom-width-link) dotted;
+  transition: color var(--transition-duration) var(--transition-timing-function), border-bottom var(--transition-duration) var(--transition-timing-function);
 }
 
 div.comment-info a:hover {
   color: var(--color-comment-info-link-hover-font);
-  border-bottom: 0.05em solid;
+  border-bottom: var(--border-bottom-width-link) solid;
 }
 
 div.comment-info a:active {
@@ -104,6 +111,8 @@ div.comment-content {
   padding: 0.5em 1em;
   background: var(--color-comment-content-background);
   border-radius: 0 0 var(--corner-radius) var(--corner-radius);
+  /* If comment too long, add scroll bar here. */
+  overflow: auto;
 }
 
 div.comment-content pre {
