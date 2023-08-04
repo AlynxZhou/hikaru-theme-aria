@@ -11,7 +11,7 @@ layouts:
   category.njk:
     - includes/layout.njk
     - includes/pagination.njk
-  index.njk:
+  home.njk:
     - includes/layout.njk
     - includes/pagination.njk
     - includes/comment.njk

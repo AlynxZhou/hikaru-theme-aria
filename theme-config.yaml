@@ -41,7 +41,7 @@ creativeCommons:
 # Available: atom-one-dark | atom-one-light | tomorrow-night-blue | tomorrow-night-bright | solarized-dark | solarized-light
 highlight: atom-one-dark
 
-# Pinned message in index.
+# Pinned message in home page.
 pinnedMessage: false
 
 # Custom info in footer.
