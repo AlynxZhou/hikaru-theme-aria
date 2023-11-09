@@ -54,12 +54,15 @@ body {
   background: var(--color-background);
   display: flex;
   flex-direction: column;
-  justify-content: stretch;
+  /* Never use `space-between` here, header and main cannot be splitted. */
+  justify-content: flex-start;
   align-items: stretch;
   width: 100%;
   height: 100%;
   /* You phone is too long and too narrow, let the whole page scroll. */
   min-width: var(--width-body-min);
+  /* Take the whole browser window, this is required for Holy Grail. */
+  min-height: 100vh;
   overflow: auto;
   scroll-behavior: smooth;
 }
@@ -211,7 +214,7 @@ pre {
 div.code-titlebar {
   display: flex;
   flex-direction: row;
-  justify-content: stretch;
+  justify-content: space-between;
   align-items: center;
   text-align: center;
   /* border-radius: var(--corner-radius) var(--corner-radius) 0 0; */
@@ -279,7 +282,7 @@ button.dot-minimize {
 figure.code-block {
   display: flex;
   flex-direction: row;
-  justify-content: stretch;
+  justify-content: flex-start;
   align-items: stretch;
   /* border-left: 0.1em solid var(--color-code-block-border); */
   /* border-bottom: 0.1em solid var(--color-code-block-border); */
@@ -514,7 +517,7 @@ header.header {
 
 div.header-container {
   display: flex;
-  justify-content: stretch;
+  justify-content: space-between;
   /* Let title and logo sit on nav bar. */
   align-items: flex-end;
   padding: 1em;
@@ -572,7 +575,7 @@ nav.nav {
   /* This is a flex container of menu and buttons. */
   display: flex;
   flex-direction: row;
-  justify-content: stretch;
+  justify-content: space-between;
   /* Stretch menu to full height for beautiful active style. */
   align-items: stretch;
 }
@@ -674,7 +677,7 @@ div.main-container {
   /* This is flex container for content and sidebar. */
   display: flex;
   flex-direction: row;
-  justify-content: stretch;
+  justify-content: flex-start;
   align-items: stretch;
   padding: 0;
   margin: 0;
@@ -737,7 +740,7 @@ nav.page-nav {
   padding: 0 1em;
   display: flex;
   flex-direction: row;
-  justify-content: stretch;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -750,7 +753,7 @@ a.page-nav-link {
   position: relative;
   display: inline-flex;
   flex-direction: row;
-  justify-content: stretch;
+  justify-content: center;
   align-items: center;
   text-decoration: none;
   border-bottom: none;
@@ -1069,7 +1072,7 @@ footer.footer a:active {
 
 div.footer-container {
   display: flex;
-  justify-content: stretch;
+  justify-content: space-between;
   /* I want footer's text sit on the same line. */
   align-items: flex-end;
   padding: 1em;
