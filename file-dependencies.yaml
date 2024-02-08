@@ -3,26 +3,41 @@ layouts:
     - includes/footer.njk
     - includes/header.njk
     - includes/sidebar.njk
-  archives.njk:
-    - includes/layout.njk
-    - includes/pagination.njk
-  categories.njk:
-    - includes/layout.njk
-  category.njk:
-    - includes/layout.njk
-    - includes/pagination.njk
   home.njk:
     - includes/layout.njk
     - includes/pagination.njk
     - includes/comment.njk
+    - includes/pinned-message.njk
     - includes/clipboard-js.njk
     - includes/highlight-js.njk
     - includes/highlight-css.njk
     - includes/mathjax-js.njk
+  archives.njk:
+    - includes/layout.njk
+    - includes/pagination.njk
+    - includes/pinned-message.njk
+  categories.njk:
+    - includes/layout.njk
+    - includes/pinned-message.njk
+  category.njk:
+    - includes/layout.njk
+    - includes/pagination.njk
+    - includes/pinned-message.njk
+  tags.njk:
+    - includes/layout.njk
+    - includes/pinned-message.njk
+  tag.njk:
+    - includes/layout.njk
+    - includes/pagination.njk
+    - includes/pinned-message.njk
+  search.njk:
+    - includes/layout.njk
+    - includes/pinned-message.njk
   page.njk:
     - includes/layout.njk
     - includes/comment.njk
     - includes/reward.njk
+    - includes/pinned-message.njk
     - includes/scrollspy-js.njk
     - includes/clipboard-js.njk
     - includes/highlight-js.njk
@@ -32,18 +47,12 @@ layouts:
     - includes/layout.njk
     - includes/comment.njk
     - includes/reward.njk
+    - includes/pinned-message.njk
     - includes/scrollspy-js.njk
     - includes/clipboard-js.njk
     - includes/highlight-js.njk
     - includes/highlight-css.njk
     - includes/mathjax-js.njk
-  search.njk:
-    - includes/layout.njk
-  tag.njk:
-    - includes/layout.njk
-    - includes/pagination.njk
-  tags.njk:
-    - includes/layout.njk
 
 # Currently aria does not use CSS preprocessors.
 # srcs:
