@@ -1,3 +1,5 @@
+{% import "includes/utils.njk" as utils with context %}
+
 {% extends "includes/layout.njk" %}
 
 {% block title %}{{ __(title) }} - {{ siteConfig.title }}{% endblock %}
@@ -24,23 +26,7 @@
         {%- endif %}
       </div>
       <div class="categories-list">
-        {#-
-          Strip white spaces before and after macro defination as if it's
-          invisible to prevent blank lines.
-        #}
-        {%- macro listCategory(cates) -%}
-        {%- if cates and cates.length > 0 %}
-        <ul>
-        {%- for cate in cates %}
-          <li>
-            <a href="{{ getPath(cate.docPath) }}">{{ cate.name }}</a>{% if cate.posts and cate.posts.length > 0 %} <span>{{ cate.posts.length }}</span>{% endif %}
-            {{ listCategory(cate.subs) }}
-          </li>
-        {%- endfor %}
-        </ul>
-        {% endif %}
-        {% endmacro %}
-        {{ listCategory(site.categories) }}
+        {{ utils.listCategory(site.categories) }}
       </div>
     </main>
     <footer class="post-footer"></footer>

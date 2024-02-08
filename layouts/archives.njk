@@ -1,3 +1,5 @@
+{% import "includes/utils.njk" as utils with context %}
+
 {% extends "includes/layout.njk" %}
 
 {% block title %}{{ __(title) }} - {{ siteConfig.title }}{% endblock %}
@@ -32,28 +34,7 @@
       </div>
       {%- if post.created %}
       <span class="post-created">
-        {%- set year = post.created.getFullYear() %}
-        {%- set month = post.created.getMonth() + 1 %}
-        {%- if month <= 9 %}
-        {%- set month = ["0", month].join("") %}
-        {%- endif %}
-        {%- set date = post.created.getDate() %}
-        {%- if date <= 9 %}
-        {%- set date = ["0", date].join("") %}
-        {%- endif %}
-        {%- set hour = post.created.getHours() %}
-        {%- if hour <= 9 %}
-        {%- set hour = ["0", hour].join("") %}
-        {%- endif %}
-        {%- set minute = post.created.getMinutes() %}
-        {%- if minute <= 9 %}
-        {%- set minute = ["0", minute].join("") %}
-        {%- endif %}
-        {%- set second = post.created.getSeconds() %}
-        {%- if second <= 9 %}
-        {%- set second = ["0", second].join("") %}
-        {%- endif %}
-        <time title="post-created" itemprop="dateCreated datePublished" datetime="{{ post.created.toISOString() }}">{{ year }}-{{ month }}-{{ date }} {{ hour }}:{{ minute }}:{{ second }}</time>
+        <time title="post-created" itemprop="dateCreated datePublished" datetime="{{ post.created.toISOString() }}">{{ utils.formatDateTime(post.created) }}</time>
       </span>
       {%- endif %}
     </header>

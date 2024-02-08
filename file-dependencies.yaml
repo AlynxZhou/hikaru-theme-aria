@@ -4,6 +4,7 @@ layouts:
     - includes/header.njk
     - includes/sidebar.njk
   home.njk:
+    - includes/utils.njk
     - includes/layout.njk
     - includes/pagination.njk
     - includes/comment.njk
@@ -13,13 +14,16 @@ layouts:
     - includes/highlight-css.njk
     - includes/mathjax-js.njk
   archives.njk:
+    - includes/utils.njk
     - includes/layout.njk
     - includes/pagination.njk
     - includes/pinned-message.njk
   categories.njk:
+    - includes/utils.njk
     - includes/layout.njk
     - includes/pinned-message.njk
   category.njk:
+    - includes/utils.njk
     - includes/layout.njk
     - includes/pagination.njk
     - includes/pinned-message.njk
@@ -27,6 +31,7 @@ layouts:
     - includes/layout.njk
     - includes/pinned-message.njk
   tag.njk:
+    - includes/utils.njk
     - includes/layout.njk
     - includes/pagination.njk
     - includes/pinned-message.njk
@@ -34,6 +39,7 @@ layouts:
     - includes/layout.njk
     - includes/pinned-message.njk
   page.njk:
+    - includes/utils.njk
     - includes/layout.njk
     - includes/comment.njk
     - includes/reward.njk
@@ -44,6 +50,7 @@ layouts:
     - includes/highlight-css.njk
     - includes/mathjax-js.njk
   post.njk:
+    - includes/utils.njk
     - includes/layout.njk
     - includes/comment.njk
     - includes/reward.njk
