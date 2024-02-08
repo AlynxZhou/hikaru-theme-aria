@@ -226,6 +226,10 @@ div.code-titlebar {
 
 div.titlebar-left, div.titlebar-right {
   flex: 0 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 div.titlebar-center {
@@ -824,10 +828,6 @@ div.post-title-simple {
   /* Looks like h1, but without margin. */
   font-size: 2rem;
   font-weight: bold;
-}
-
-div.meta-block {
-  margin: 0.5em;
 }
 
 a.heading-link {
