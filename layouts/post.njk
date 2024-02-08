@@ -20,6 +20,9 @@
 {% block title %}{{ title }} - {{ siteConfig.title }}{% endblock %}
 
 {% block content %}
+{%- if themeConfig.pinnedMessage %}
+{% include "includes/pinned-message.njk" %}
+{%- endif %}
 <div id="page" class="page">
   <article class="article post card{% if themeConfig.animate %} animate{% endif %}" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">

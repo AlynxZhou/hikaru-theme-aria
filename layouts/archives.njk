@@ -3,6 +3,9 @@
 {% block title %}{{ __(title) }} - {{ siteConfig.title }}{% endblock %}
 
 {% block content %}
+{%- if themeConfig.pinnedMessage %}
+{% include "includes/pinned-message.njk" %}
+{%- endif %}
 <div id="archives" class="archives page">
   <div class="page-title">
     <a class="title-link" href="{{ getPath(docPath) }}" itemprop="url">{{ __(title) }}</a>

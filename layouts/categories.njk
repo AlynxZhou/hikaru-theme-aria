@@ -3,6 +3,9 @@
 {% block title %}{{ __(title) }} - {{ siteConfig.title }}{% endblock %}
 
 {% block content %}
+{%- if themeConfig.pinnedMessage %}
+{% include "includes/pinned-message.njk" %}
+{%- endif %}
 <div id="categories" class="categories page">
   <article class="article post card{% if themeConfig.animate %} animate{% endif %}">
     <header class="post-header">

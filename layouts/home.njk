@@ -18,11 +18,7 @@
 
 {% block content %}
 {%- if themeConfig.pinnedMessage %}
-<div id="pinned-message" class="pinned-message">
-  <div class="card{% if themeConfig.animate %} animate{% endif %}">
-    {{ themeConfig.pinnedMessage }}
-  </div>
-</div>
+{% include "includes/pinned-message.njk" %}
 {%- endif %}
 <div id="index" class="index page">
   {%- if posts and posts.length > 0 %}

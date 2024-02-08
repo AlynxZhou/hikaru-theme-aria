@@ -72,7 +72,7 @@ since:
 
 search: true
 
-# `left`, `right`, `false`
+# `left`, `right`, `false`.
 sidebar: left
 
 # Animation in Home, Archive, Category and Tag.
