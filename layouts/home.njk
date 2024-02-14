@@ -22,7 +22,7 @@
 {%- if themeConfig.pinnedMessage %}
 {% include "includes/pinned-message.njk" %}
 {%- endif %}
-<div id="index" class="index page">
+<div id="home" class="home page">
   {%- if posts and posts.length > 0 %}
   {%- for post in posts %}
   <article class="article post card{% if themeConfig.animate %} animate{% endif %}" itemscope itemtype="http://schema.org/Article">

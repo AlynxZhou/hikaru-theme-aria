@@ -16,6 +16,23 @@
 {%- endif %}
 {%- endmacro -%}
 
+{%- macro listTOC(toc, level = 1) -%}
+{%- if toc and toc.length > 0 %}
+<ol{% if level === 1 %} class="toc" id="scrollspy-target"{% endif %}>
+  {%- for h in toc %}
+  <li>
+    {#-
+      Don't set anchor to absolute path, because it's hard to write selector for
+      scrollspy.
+    #}
+    <a class="list-group-item toc-link" href="{{ h.archor }}">{{ h.text }}</a>
+    {{- listTOC(h.subs, level + 1) }}
+  </li>
+  {%- endfor %}
+</ol>
+{%- endif %}
+{%- endmacro -%}
+
 {%- macro formatDateTime(dt) -%}
 {%- set year = dt.getFullYear() %}
 {%- set month = dt.getMonth() + 1 %}
@@ -38,5 +55,6 @@
 {%- if second <= 9 %}
 {%- set second = ["0", second].join("") %}
 {%- endif %}
+{#- This is a inline macro so we strip start to prevent line break. #}
 {{- year }}-{{ month }}-{{ date }} {{ hour }}:{{ minute }}:{{ second }}
 {%- endmacro -%}

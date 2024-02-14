@@ -1,3 +1,5 @@
+{% import "includes/utils.njk" as utils with context %}
+
 <aside class="sidebar" id="sidebar">
   {%- if themeConfig.search %}
   <div class="search" role="search">
@@ -45,24 +47,7 @@
     <hr>
     <div class="post-toc sidebar-item">
       <div><i class="bi bi-list-ol"></i>{{ __("toc") }}</div>
-      {#-
-        Strip white spaces before and after macro defination as if it's
-        invisible to prevent blank lines.
-      #}
-      {%- macro listToc(toc, level = 1) -%}
-      {%- if toc and toc.length > 0 %}
-      <ol{% if level === 1 %} class="toc" id="scrollspy-target"{% endif %}>
-      {%- for h in toc %}
-        <li>
-          {#- Don't set anchor to absolute path, because it's hard to write selector for scrollspy. #}
-          <a class="list-group-item toc-link" href="{{ h.archor }}">{{ h.text }}</a>
-          {{ listToc(h.subs, level + 1) }}
-        </li>
-      {%- endfor %}
-      </ol>
-      {%- endif %}
-      {%- endmacro -%}
-      {{ listToc(toc) }}
+      {{ utils.listTOC(toc) }}
     </div>
     {%- endif %}
     {%- if themeConfig.social.enable %}
