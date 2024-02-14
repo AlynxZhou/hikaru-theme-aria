@@ -3,6 +3,12 @@
   Hikaru in context.
 #}
 
+{#
+  Only use macros when necessary, for example you need to do recursion, or you
+  have the same pieces of code in different places that generates inline
+  elements. Don't use macros to generate large HTML skeletons.
+#}
+
 {%- macro listCategory(cates) -%}
 {%- if cates and cates.length > 0 %}
 <ul>

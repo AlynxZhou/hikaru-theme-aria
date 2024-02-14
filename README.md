@@ -347,6 +347,8 @@ If control blocks or comments take a whole line, use `{%- %}` or `{#- #}` to str
 
 If inner HTML does not take the whole line, control blocks should also be inline, instead of take a whole line.
 
+Try not to use macros too much, escpecially do not use macros to generate large HTML skeletons. Some layouts do looks the same and could be generate via macros with arguments, for example `tag` and `category` are similiar with `archives`, but that will makes new programmers hard to understand the page, and I prefer when you open a template, you can directly read the HTML skeleton. So only use macros when necessary, for example you need to do recursion, or you have the same pieces of code in different places that generates inline elements.
+
 ## JavaScript
 
 JavaScript inside scripts tags shoule have a 2-spaces indent to it's parent `<script>` tag.
