@@ -343,7 +343,15 @@ Use 2-spaces indent.
 
 Check condition outside include statement instead of check condition in the toplevel of included file, this prevents extra file loading because Nunjucks uses runtime including.
 
-If control blocks or comments take a whole line, use `{%- %}` or `{#- #}` to strip the start side of those lines, this will remove white spaces used to indent. However, don't do this for `extends`, `include`, `block`, `endblock` or `{{ }}`, because they mean parts from other places, so it's useless to do this for them. `macro` and `endmacro` should strip both sides, and if output strings of macro should be inline but is in a new line, strip the start side.
+If control blocks or comments take a whole line, use `{%- %}` or `{#- #}` to trim the start side of those lines, this will remove white spaces used to indent the tag and the line break before the tag.
+
+However, don't trim `extends`, `include`, `block` and `endblock`, because they mean parts from other places, so it's useless to do this for them.
+
+If output strings of macro should be inline but is in a new line, trim the start side with `{{- }}`.
+
+If you are putting some tags that generates no output at the beginning of a file, trimming the start side is useless, you need to trim both sides with `{%- -%}`. For example, you should put all `import` tags at the beginning of a file and trim both sides to prevent empty lines in non-extending templates.
+
+**NOTE**: Nunjucks trims before parsing, this is helpful when you try to understand whitespaces. For example, how you trim a macro does not affect the file you call the macro, but how you trim the output tag that calles the macro affect the result.
 
 If inner HTML does not take the whole line, control blocks should also be inline, instead of take a whole line.
 

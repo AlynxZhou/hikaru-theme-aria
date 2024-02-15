@@ -13,7 +13,7 @@
   This is used to generate description used in meta tags, auto excerpt of posts
   in home page is different from this.
 #}
-{%- macro generateMetaDescription(file) -%}
+{%- macro generateMetaDescription(file) %}
 {%- if file.excerpt  %}
 {{- file.excerpt | striptags }}
 {%- elseif file.description %}
@@ -25,9 +25,13 @@
 {%- elseif siteConfig.description %}
 {{- siteConfig.description }}
 {%- endif %}
-{%- endmacro -%}
+{%- endmacro %}
 
-{%- macro listCategory(cates) -%}
+{#
+  This generate blocks so it already has line break on start, so trimming start
+  when calling it.
+#}
+{%- macro listCategory(cates) %}
 {%- if cates and cates.length > 0 %}
 <ul>
   {%- for cate in cates %}
@@ -38,9 +42,13 @@
   {%- endfor %}
 </ul>
 {%- endif %}
-{%- endmacro -%}
+{%- endmacro %}
 
-{%- macro listTOC(toc, level = 1) -%}
+{#
+  This generate blocks so it already has line break on start, so trimming start
+  when calling it.
+#}
+{%- macro listTOC(toc, level = 1) %}
 {%- if toc and toc.length > 0 %}
 <ol{% if level === 1 %} class="toc" id="scrollspy-target"{% endif %}>
   {%- for h in toc %}
@@ -55,9 +63,9 @@
   {%- endfor %}
 </ol>
 {%- endif %}
-{%- endmacro -%}
+{%- endmacro %}
 
-{%- macro formatDateTime(dt) -%}
+{%- macro formatDateTime(dt) %}
 {%- set year = dt.getFullYear() %}
 {%- set month = dt.getMonth() + 1 %}
 {%- if month <= 9 %}
@@ -81,4 +89,4 @@
 {%- endif %}
 {#- This is a inline macro so we strip start to prevent line break. #}
 {{- year }}-{{ month }}-{{ date }} {{ hour }}:{{ minute }}:{{ second }}
-{%- endmacro -%}
+{%- endmacro %}

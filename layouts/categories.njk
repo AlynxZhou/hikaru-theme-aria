@@ -1,5 +1,4 @@
-{%- import "includes/utils.njk" as utils with context %}
-
+{%- import "includes/utils.njk" as utils with context -%}
 {% extends "includes/layout.njk" %}
 
 {% block title %}{{ __(file.title) }} - {{ siteConfig.title }}{% endblock %}
@@ -26,7 +25,7 @@
         {%- endif %}
       </div>
       <div class="categories-list">
-        {{ utils.listCategory(site.categories) }}
+        {{- utils.listCategory(site.categories) }}
       </div>
     </main>
     <footer class="post-footer"></footer>
