@@ -1,8 +1,8 @@
-{% import "includes/utils.njk" as utils with context %}
+{%- import "includes/utils.njk" as utils with context %}
 
 {% extends "includes/layout.njk" %}
 
-{% block title %}{{ __(title) }} {{ name }} - {{ siteConfig.title }}{% endblock %}
+{% block title %}{{ __(file.title) }} {{ file.name }} - {{ siteConfig.title }}{% endblock %}
 
 {% block content %}
 {%- if themeConfig.pinnedMessage %}
@@ -10,10 +10,10 @@
 {%- endif %}
 <div id="tag" class="tag page">
   <div class="page-title">
-    <a class="title-link" href="{{ getPath(docPath) }}" itemprop="url">{{ name }}</a>
+    <a class="title-link" href="{{ getPath(file.docPath) }}" itemprop="url">{{ file.name }}</a>
   </div>
-  {%- if posts and posts.length > 0 %}
-  {%- for post in posts %}
+  {%- if file.posts and file.posts.length > 0 %}
+  {%- for post in file.posts %}
   <article class="article post card{% if themeConfig.animate %} animate{% endif %}" itemscope itemtype="http://schema.org/Article">
     <header id="post-header" class="post-header">
       <div class="post-title-simple" itemprop="name headline">
@@ -28,7 +28,7 @@
   </article>
   {%- endfor %}
   {%- endif %}
-  {%- if pages and pages.length > 0 %}
+  {%- if file.pages and file.pages.length > 0 %}
   {% include "includes/pagination.njk" %}
   {%- endif %}
 </div>

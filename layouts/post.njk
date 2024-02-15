@@ -1,4 +1,4 @@
-{% import "includes/utils.njk" as utils with context %}
+{%- import "includes/utils.njk" as utils with context %}
 
 {% extends "includes/layout.njk" %}
 
@@ -7,19 +7,19 @@
 {% endblock %}
 
 {% block js %}
-{%- if content and toc and toc.length > 0 %}
+{%- if file.content and file.toc and file.toc.length > 0 %}
 {% include "includes/scrollspy-js.njk" %}
 {%- endif %}
 {% include "includes/clipboard-js.njk" %}
 {% include "includes/highlight-js.njk" %}
 {%- if themeConfig.mathjax.cdn and themeConfig.mathjax.enable %}
-{%- if themeConfig.mathjax.global or mathjax %}
+{%- if themeConfig.mathjax.global or file.mathjax %}
 {% include "includes/mathjax-js.njk" %}
 {%- endif %}
 {%- endif %}
 {% endblock %}
 
-{% block title %}{{ title }} - {{ siteConfig.title }}{% endblock %}
+{% block title %}{{ file.title }} - {{ siteConfig.title }}{% endblock %}
 
 {% block content %}
 {%- if themeConfig.pinnedMessage %}
@@ -28,10 +28,10 @@
 <div id="page" class="page">
   <article class="article post card{% if themeConfig.animate %} animate{% endif %}" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
-      <link itemprop="mainEntityOfPage" href="{{ getURL(docPath) }}">
+      <link itemprop="mainEntityOfPage" href="{{ getURL(file.docPath) }}">
       <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-        {%- if author %}
-        <meta itemprop="name" content="{{ author }}">
+        {%- if file.author %}
+        <meta itemprop="name" content="{{ file.author }}">
         {%- else %}
         <meta itemprop="name" content="{{ siteConfig.author }}">
         <meta itemprop="description" content="{{ siteConfig.description }}">
@@ -44,74 +44,74 @@
     </div>
     <header class="post-header">
       <div class="post-title" itemprop="name headline">
-        <a class="title-link" href="{{ getPath(docPath) }}" itemprop="url">{{ title }}</a>
+        <a class="title-link" href="{{ getPath(file.docPath) }}" itemprop="url">{{ file.title }}</a>
       </div>
       <div class="post-meta">
-        {%- if created %}
+        {%- if file.created %}
         <div class="post-created meta-block">
-          <i class="bi bi-calendar-check"></i><span><time class="post-full-datetime" title="post-created" itemprop="dateCreated datePublished" datetime="{{ created.toISOString() }}">{{ utils.formatDateTime(created) }}</time></span>
+          <i class="bi bi-calendar-check"></i><span><time class="post-full-datetime" title="post-created" itemprop="dateCreated datePublished" datetime="{{ file.created.toISOString() }}">{{ utils.formatDateTime(file.created) }}</time></span>
         </div>
         {%- endif %}
-        {%- if updated %}
+        {%- if file.updated %}
         <div class="post-updated meta-block">
-          <i class="bi bi-calendar-plus"></i><span><time class="post-full-datetime" title="post-updated" itemprop="dateUpdated" datetime="{{ updated.toISOString() }}">{{ utils.formatDateTime(updated) }}</time></span>
+          <i class="bi bi-calendar-plus"></i><span><time class="post-full-datetime" title="post-updated" itemprop="dateUpdated" datetime="{{ file.updated.toISOString() }}">{{ utils.formatDateTime(file.updated) }}</time></span>
         </div>
         {%- endif %}
-        {%- if author or email %}
+        {%- if file.author or file.email %}
         <div class="post-author meta-block">
-          {%- if author and email %}
-          <i class="bi bi-pencil-square"></i><a href="mailto:{{ email }}">{{ author }}</a>
-          {%- elseif email %}
-          <i class="bi bi-pencil-square"></i><a href="mailto:{{ email }}">{{ email }}</a>
-          {%- elseif author %}
-          <i class="bi bi-pencil-square"></i><span>{{ author }}</span>
+          {%- if file.author and file.email %}
+          <i class="bi bi-pencil-square"></i><a href="mailto:{{ file.email }}">{{ file.author }}</a>
+          {%- elseif file.email %}
+          <i class="bi bi-pencil-square"></i><a href="mailto:{{ file.email }}">{{ file.email }}</a>
+          {%- elseif file.author %}
+          <i class="bi bi-pencil-square"></i><span>{{ file.author }}</span>
           {%- endif %}
         </div>
         {%- endif %}
-        {%- if categories and categories.length %}
+        {%- if file.categories and file.categories.length %}
         <div class="post-categories meta-block">
-          {% for cat in categories %}{% if loop.first %}<i class="bi bi-folder2-open"></i>{% else %}<i class="bi bi-chevron-right"></i>{% endif %}<span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="{{ getPath(cat.docPath) }}" itemprop="url" rel="index"><span itemprop="name">{{ cat.name }}</span></a></span>{% endfor %}
+          {% for cat in file.categories %}{% if loop.first %}<i class="bi bi-folder2-open"></i>{% else %}<i class="bi bi-chevron-right"></i>{% endif %}<span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="{{ getPath(cat.docPath) }}" itemprop="url" rel="index"><span itemprop="name">{{ cat.name }}</span></a></span>{% endfor %}
         </div>
         {%- endif %}
-        {%- if themeConfig.comment.enable and comment !== false %}
+        {%- if themeConfig.comment.enable and file.comment !== false %}
         {%- if themeConfig.comment.issue.enable %}
         <div class="post-comment-count meta-block">
-          <i class="bi bi-chat-dots"></i><span><a href="{{ getPath(docPath) }}#comment-results" itemprop="discussionUrl"><span class="post-comment-count comment-count" data-comment-identifier="{{ title }}" itemprop="commentCount">{{ __("comment.read") }}</span></a></span>
+          <i class="bi bi-chat-dots"></i><span><a href="{{ getPath(file.docPath) }}#comment-results" itemprop="discussionUrl"><span class="post-comment-count comment-count" data-comment-identifier="{{ file.title }}" itemprop="commentCount">{{ __("comment.read") }}</span></a></span>
         </div>
         {%- elseif themeConfig.comment.disqusShortName %}
         <div class="post-comment-count meta-block">
-          <i class="bi bi-chat-dots"></i><span><a href="{{ getPath(docPath) }}#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="{{ getPath(docPath) }}" itemprop="commentCount"></span></a></span>
+          <i class="bi bi-chat-dots"></i><span><a href="{{ getPath(file.docPath) }}#disqus_thread" itemprop="discussionUrl"><span class="post-comment-count disqus-comment-count" data-disqus-identifier="{{ getPath(file.docPath) }}" itemprop="commentCount"></span></a></span>
         </div>
         {%- endif %}
         {%- endif %}
       </div>
     </header>
     <main class="post-main" id="scrollspy-container" itemprop="articleBody">
-      {{ content }}
+      {{ file.content }}
     </main>
     <footer class="post-footer">
-      {%- if tags and tags.length %}
+      {%- if file.tags and file.tags.length %}
       <div class="post-tags">
-        {% for tag in tags %}<a class="post-tag button" href="{{ getPath(tag.docPath) }}" rel="tag"><i class="bi bi-tag"></i>{{ tag.name }}</a>{% endfor %}
+        {% for tag in file.tags %}<a class="post-tag button" href="{{ getPath(tag.docPath) }}" rel="tag"><i class="bi bi-tag"></i>{{ tag.name }}</a>{% endfor %}
       </div>
       {%- endif %}
     </footer>
   </article>
-  {%- if prev or next %}
+  {%- if file.prev or file.next %}
   <nav class="page-nav">
     <div class="page-nav-next page-nav-item">
-      {%- if next %}
-      <a class="page-nav-link" href="{{ getPath(next.docPath) }}" rel="next" title="{{ next.title }}"><i class="bi bi-chevron-left"></i><span class="nav-title">{{ next.title }}</span></a>
+      {%- if file.next %}
+      <a class="page-nav-link" href="{{ getPath(file.next.docPath) }}" rel="next" title="{{ file.next.title }}"><i class="bi bi-chevron-left"></i><span class="nav-title">{{ file.next.title }}</span></a>
       {%- endif %}
     </div>
     <div class="page-nav-prev page-nav-item">
-      {%- if prev %}
-      <a class="page-nav-link" href="{{ getPath(prev.docPath) }}" rel="prev" title="{{ prev.title }}"><span class="page-nav-title">{{ prev.title }}</span><i class="bi bi-chevron-right"></i></a>
+      {%- if file.prev %}
+      <a class="page-nav-link" href="{{ getPath(file.prev.docPath) }}" rel="prev" title="{{ file.prev.title }}"><span class="page-nav-title">{{ file.prev.title }}</span><i class="bi bi-chevron-right"></i></a>
       {%- endif %}
     </div>
   </nav>
   {%- endif %}
-  {%- if themeConfig.reward.enable and reward !== false %}
+  {%- if themeConfig.reward.enable and file.reward !== false %}
   {% include "includes/reward.njk" %}
   {%- endif %}
   {%- if themeConfig.comment.enable %}

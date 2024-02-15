@@ -1,4 +1,4 @@
-{% import "includes/utils.njk" as utils with context %}
+{%- import "includes/utils.njk" as utils with context %}
 
 <aside class="sidebar" id="sidebar">
   {%- if themeConfig.search %}
@@ -43,11 +43,11 @@
     {%- endif %}
   </div>
   <div class="sidebar-sticky">
-    {%- if content and toc and toc.length > 0 %}
+    {%- if file.content and file.toc and file.toc.length > 0 %}
     <hr>
     <div class="post-toc sidebar-item">
       <div><i class="bi bi-list-ol"></i>{{ __("toc") }}</div>
-      {{ utils.listTOC(toc) }}
+      {{ utils.listTOC(file.toc) }}
     </div>
     {%- endif %}
     {%- if themeConfig.social.enable %}

@@ -24,7 +24,7 @@
 {%- endif %}
 {% endblock %}
 
-{% block title %}{{ __(title) }} - {{ siteConfig.title }}{% endblock %}
+{% block title %}{{ __(file.title) }} - {{ siteConfig.title }}{% endblock %}
 
 {% block content %}
 {%- if themeConfig.pinnedMessage %}
@@ -45,7 +45,7 @@
     </div>
     <header class="post-header">
       <div class="post-title" itemprop="name headline">
-        <a class="title-link" href="{{ getPath(docPath) }}" itemprop="url">{{ __(title) }}</a>
+        <a class="title-link" href="{{ getPath(file.docPath) }}" itemprop="url">{{ __(file.title) }}</a>
       </div>
       <div class="post-meta">
         {#- There should be no time for search result page. #}

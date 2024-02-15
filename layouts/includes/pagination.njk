@@ -1,5 +1,5 @@
 <nav class="pagination">
-  {%- for page in pages %}
-  <a class="page-number{% if page.index === index %} current{% endif %}" href="{{ getPath(page.docPath) }}">{{ page.index + 1 }}</a>
+  {%- for page in file.pages %}
+  <a class="page-number{% if page.index === file.index %} current{% endif %}" href="{{ getPath(page.docPath) }}">{{ page.index + 1 }}</a>
   {%- endfor %}
 </nav>

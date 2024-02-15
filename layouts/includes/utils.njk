@@ -9,6 +9,24 @@
   elements. Don't use macros to generate large HTML skeletons.
 #}
 
+{#
+  This is used to generate description used in meta tags, auto excerpt of posts
+  in home page is different from this.
+#}
+{%- macro generateMetaDescription(file) -%}
+{%- if file.excerpt  %}
+{{- file.excerpt | striptags }}
+{%- elseif file.description %}
+{{- file.description | striptags }}
+{%- elseif file.content and themeConfig.autoExcerpt %}
+{{- (file.content | striptags).substring(0, themeConfig.autoExcerpt) }}…
+{%- elseif siteConfig.subtitle %}
+{{- siteConfig.subtitle }}
+{%- elseif siteConfig.description %}
+{{- siteConfig.description }}
+{%- endif %}
+{%- endmacro -%}
+
 {%- macro listCategory(cates) -%}
 {%- if cates and cates.length > 0 %}
 <ul>

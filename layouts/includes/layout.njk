@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html data-theme="light" lang="{{ lang or language or siteConfig.language }}">
+{%- import "includes/utils.njk" as utils with context %}
+<html data-theme="light" lang="{{ file.lang or file.language or siteConfig.language }}">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,36 +13,24 @@
     <meta name="google-site-verification" content="{{ themeConfig.googleVerification }}">
     {%- endif %}
     {#- See <https://html.spec.whatwg.org/multipage/semantics.html#standard-metadata-names>. #}
-    {%- if author %}
-    <meta name="author" content="{{ author }}">
-    {%- elseif email %}
+    {%- if file.author %}
+    <meta name="author" content="{{ file.author }}">
+    {%- elseif file.email %}
     {#- Maybe email is not OK here... #}
-    <meta name="author" content="{{ email }}">
+    <meta name="author" content="{{ file.email }}">
     {%- elseif siteConfig.author %}
     <meta name="author" content="{{ siteConfig.author }}">
     {%- endif %}
-    {%- if excerpt  %}
-    <meta name="description" content="{{ excerpt | striptags }}">
-    {%- elseif description %}
-    <meta name="description" content="{{ description | striptags }}">
-    {%- elseif content and themeConfig.autoExcerpt %}
-    {#- Not all pages have contents, this only works for posts. #}
-    <meta name="description" content="{{ (content | striptags).substring(0, themeConfig.autoExcerpt) }}…">
-    {%- elseif siteConfig.subtitle %}
-    {#- This should be a page description instead of site description, but #}
-    {#- just put something here if no page description. #}
-    <meta name="description" content="{{ siteConfig.subtitle }}">
-    {%- elseif siteConfig.description %}
-    {#- Subtitle is more like site description and description is more like #}
-    {#- author description. #}
-    <meta name="description" content="{{ siteConfig.description }}">
+    {%- set metaDescription = utils.generateMetaDescription(file) %}
+    {%- if metaDescription.length > 0 %}
+    <meta name="description" content="{{ metaDescription }}">
     {%- endif %}
-    {%- if keywords %}
-    <meta name="keywords" content="{{ keywords.join(", ") }}">
+    {%- if file.keywords %}
+    <meta name="keywords" content="{{ file.keywords.join(", ") }}">
     {%- elseif tags %}
     {#- See <https://mozilla.github.io/nunjucks/templating.html#join>. #}
-    {#- Because Tag is an object and we cannot use `map()` in Nunjucks. #}
-    <meta name="keywords" content="{{ tags | join(", ", "name") }}">
+    {#- Nunjucks does not allow to define functions so we cannot use `map()`. #}
+    <meta name="keywords" content="{{ file.tags | join(", ", "name") }}">
     {%- elseif themeConfig.keywords %}
     <meta name="keywords" content="{{ themeConfig.keywords.join(", ") }}">
     {%- endif %}
@@ -50,26 +39,17 @@
     <meta name="color-scheme" content="light dark">
     {#- See <https://ogp.me/>. #}
     <meta property="og:site_name" content="{{ siteConfig.title }}">
-    <meta property="og:title" content="{{ __(title) }}">
+    <meta property="og:title" content="{{ __(file.title) }}">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ getURL(docPath) }}">
+    <meta property="og:url" content="{{ getURL(file.docPath) }}">
     {#- Though I have a site logo, but author avatar is better here. #}
     {%- if themeConfig.avatar %}
     <meta property="og:image" content="{{ getURL(themeConfig.avatar) }}">
     {%- endif %}
-    {#- Basically the same as description. #}
-    {%- if excerpt  %}
-    <meta property="og:description" content="{{ excerpt | striptags }}">
-    {%- elseif description %}
-    <meta property="og:description" content="{{ description | striptags }}">
-    {%- elseif content and themeConfig.autoExcerpt %}
-    <meta property="og:description" content="{{ (content | striptags).substring(0, themeConfig.autoExcerpt) }}…">
-    {%- elseif siteConfig.subtitle %}
-    <meta property="og:description" content="{{ siteConfig.subtitle }}">
-    {%- elseif siteConfig.description %}
-    <meta property="og:description" content="{{ siteConfig.description }}">
+    {%- if metaDescription > 0  %}
+    <meta property="og:description" content="{{ metaDescription }}">
     {%- endif %}
-    <link rel="canonical" href="{{ getURL(docPath) }}">
+    <link rel="canonical" href="{{ getURL(file.docPath) }}">
     {%- if themeConfig.favicon.appleTouchIcon %}
     <link rel="apple-touch-icon" sizes="180x180" href="{{ getPath(themeConfig.favicon.appleTouchIcon) }}">
     {%- endif %}
@@ -149,7 +129,7 @@
       header.header, footer.footer {
         background: {{ themeConfig.color }};
       }
-      {% endif %}
+      {%- endif %}
     </style>
     {#-
       Mobile uses single column layout, it should have higher priority than

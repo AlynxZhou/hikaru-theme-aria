@@ -1,4 +1,4 @@
-{% import "includes/utils.njk" as utils with context %}
+{%- import "includes/utils.njk" as utils with context %}
 
 {% extends "includes/layout.njk" %}
 
@@ -10,7 +10,7 @@
 {% include "includes/clipboard-js.njk" %}
 {% include "includes/highlight-js.njk" %}
 {%- if themeConfig.mathjax.cdn and themeConfig.mathjax.enable %}
-{%- if themeConfig.mathjax.global or mathjax %}
+{%- if themeConfig.mathjax.global or file.mathjax %}
 {% include "includes/mathjax-js.njk" %}
 {%- endif %}
 {%- endif %}
@@ -23,8 +23,8 @@
 {% include "includes/pinned-message.njk" %}
 {%- endif %}
 <div id="home" class="home page">
-  {%- if posts and posts.length > 0 %}
-  {%- for post in posts %}
+  {%- if file.posts and file.posts.length > 0 %}
+  {%- for post in file.posts %}
   <article class="article post card{% if themeConfig.animate %} animate{% endif %}" itemscope itemtype="http://schema.org/Article">
     <div class="post-block">
       <link itemprop="mainEntityOfPage" href="{{ getURL(post.docPath) }}">
@@ -106,7 +106,7 @@
   </article>
   {%- endfor %}
   {%- endif %}
-  {%- if pages and pages.length > 0 %}
+  {%- if file.pages and file.pages.length > 0 %}
   {% include "includes/pagination.njk" %}
   {%- endif %}
   {%- if themeConfig.comment.enable %}

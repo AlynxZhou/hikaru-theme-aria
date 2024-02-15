@@ -15,7 +15,7 @@
       });
     });
   </script>
-  {%- if comment !== false %}
+  {%- if file.comment !== false %}
   <div class="comment-results" id="comment-results">
     <div class="sk-wave" id="sk-wave">
       <div class="sk-rect sk-rect1"></div>
@@ -35,10 +35,10 @@
           "sendButtonText": "{{ __("comment.send") }}",
           "noCommentText": "{{ __("comment.none") }}",
           "failText": "{{ __("comment.fail") }}",
-          "title": "{{ __(title) }}",
+          "title": "{{ __(file.title) }}",
           "body": "{{ __("comment.body") }}",
           "queryString": window.location.search,
-          "basePath": "{{ getPath(docPath) }}",
+          "basePath": "{{ getPath(file.docPath) }}",
           "containerID": "comment-results"
         }).then(() => {
           formatDateTime(
@@ -61,7 +61,7 @@
   {%- endif %}
   {%- elseif themeConfig.comment.disqusShortName %}
   <script defer id="dsq-count-scr" src="//{{ themeConfig.comment.disqusShortName }}.disqus.com/count.js"></script>
-  {%- if comment !== false %}
+  {%- if file.comment !== false %}
   <div id="disqus_thread" class="disqus_thread"></div>
   <script type="text/javascript">
     const disqus_config = () => {

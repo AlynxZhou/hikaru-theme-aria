@@ -1,8 +1,8 @@
-{% import "includes/utils.njk" as utils with context %}
+{%- import "includes/utils.njk" as utils with context %}
 
 {% extends "includes/layout.njk" %}
 
-{% block title %}{{ __(title) }} - {{ siteConfig.title }}{% endblock %}
+{% block title %}{{ __(file.title) }} - {{ siteConfig.title }}{% endblock %}
 
 {% block content %}
 {%- if themeConfig.pinnedMessage %}
@@ -10,7 +10,7 @@
 {%- endif %}
 <div id="archives" class="archives page">
   <div class="page-title">
-    <a class="title-link" href="{{ getPath(docPath) }}" itemprop="url">{{ __(title) }}</a>
+    <a class="title-link" href="{{ getPath(file.docPath) }}" itemprop="url">{{ __(file.title) }}</a>
   </div>
   <div class="page-counter">
     {%- if site.posts.length > 1 %}
@@ -22,7 +22,7 @@
     {%- endif %}
   </div>
   {%- set year = 1970 %}
-  {%- for post in posts %}
+  {%- for post in file.posts %}
   {%- if post.created.getFullYear() !== year %}
   {%- set year = post.created.getFullYear() %}
   <div class="page-title">{{ year }}</div>
@@ -40,7 +40,7 @@
     </header>
   </article>
   {%- endfor %}
-  {%- if pages and pages.length > 0 %}
+  {%- if file.pages and file.pages.length > 0 %}
   {% include "includes/pagination.njk" %}
   {%- endif %}
 </div>
