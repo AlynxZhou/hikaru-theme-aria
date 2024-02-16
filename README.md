@@ -24,7 +24,7 @@ IE support has been dropped because many new features cannot be easily polyfille
 
 There won't be any stable releases for ARIA, because I am not interested in maintaining different versions except the one I am using. **Without maintaining stable releases are just stable bugs instead of quality.** So keep using the latest version of ARIA and Hikaru.
 
-[Valine](https://valine.js.org/) was dropped because it's not an open source project any more since `v1.4.0` (**it said because of "some reasons" on its homepage but never says what they are**), and it's considered not safe for saving unencrypted user email/IP address in open database. (For more detailed info, Chinese user could read [this blog](https://ttys3.dev/post/please-stop-using-valine-js-comment-system-until-it-fixed-the-privacy-leaking-problem/).)
+[Valine](https://valine.js.org/) was dropped because it's not an open source project any more since `v1.4.0` (**it said because of "some reasons" on its homepage but never says what they are**), and it's considered not safe for saving unencrypted user email/IP address in open database. (For more detailed info, Chinese user could read [this blog](https://ttys3.dev/blog/please-stop-using-valine-js-comment-system-until-it-fixed-the-privacy-leaking-problem/).)
 
 # Usage
 
