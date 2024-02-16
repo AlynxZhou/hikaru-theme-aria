@@ -20,7 +20,7 @@ Live Demo: [喵's StackHarbor](https://sh.alynx.moe/)
 
 Using a static website generator needs some basic knowledge, if you know nothing, Hikaru and ARIA are not your best choice. Please be sure you know Hikaru, YAML, git, Markdown and Web before continuing.
 
-IE support has been dropped since many new features cannot be easily polyfilled for IE, for example WebP, Promise, Fetch API, CacheStorage, some amazing functions in ARIA need those features so it's better to let IE users use modern browsers like [Mozilla Firefox](https://www.mozilla.org/en-US/firefox/) (**HIGHLY RECOMMENDED**) or [Google Chrome](https://www.google.com/chrome/).
+IE support has been dropped because many new features cannot be easily polyfilled for IE, for example WebP, Promise, Fetch API, CacheStorage, some amazing functions in ARIA need those features so it's better to let IE users use modern browsers like [Mozilla Firefox](https://www.mozilla.org/en-US/firefox/) (**HIGHLY RECOMMENDED**) or [Google Chrome](https://www.google.com/chrome/).
 
 There won't be any stable releases for ARIA, because I am not interested in maintaining different versions except the one I am using. **Without maintaining stable releases are just stable bugs instead of quality.** So keep using the latest version of ARIA and Hikaru.
 
@@ -65,7 +65,11 @@ language: zh-Hans
 ```yaml
 search:
   enable: true
-  path: search.json
+  path:
+    - search/1.json
+    - search/2.json
+    - search/3.json
+  page: search/index.html
 ```
 
 ### RSS Settings
@@ -138,7 +142,7 @@ First prepare a image of your favicon then go to  <https://realfavicongenerator.
 
 Set the value of `keywords` to a list of keywords.
 
-### CreativeCommons Licenses
+### Creative Commons Licenses
 
 Set it in `creativeCommons`. To keep it simple ARIA will show a link in footer. You can choose one of `by`, `by-sa`, `by-nd`, `by-nc`, `by-nc-sa`, `by-nc-nd`. Go to <https://creativecommons.org/licenses/> to learn more.
 
