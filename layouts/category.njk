@@ -1,7 +1,7 @@
 {%- import "includes/utils.njk" as utils with context -%}
 {% extends "includes/layout.njk" %}
 
-{% block title %}{{ __(file.title) }} {{ file.name }} - {{ siteConfig.title }}{% endblock %}
+{% block title %}{{ __(file.title) }} {{ file.category.name }} - {{ siteConfig.title }}{% endblock %}
 
 {% block content %}
 {%- if themeConfig.pinnedMessage %}
@@ -9,7 +9,7 @@
 {%- endif %}
 <div id="category" class="category page">
   <div class="page-title">
-    <a class="title-link" href="{{ getPath(file.docPath) }}" itemprop="url">{{ file.name }}</a>
+    <a class="title-link" href="{{ getPath(file.docPath) }}" itemprop="url">{{ file.category.name }}</a>
   </div>
   {%- if file.posts and file.posts.length > 0 %}
   {%- for post in file.posts %}
