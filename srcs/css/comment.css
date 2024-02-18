@@ -35,12 +35,12 @@ img.comment-avatar {
   max-width: 100%;
   border: 0.1em solid white;
   border-radius: 50%;
-  transition: box-shadow var(--transition-duration) var(--transition-timing-function), transform 1s var(--transition-timing-function);
+  transition: box-shadow var(--transition-duration) var(--transition-timing-function), transform var(--transition-duration-avatar) var(--transition-timing-function);
 }
 
 img.comment-avatar:hover {
   box-shadow: var(--box-shadow) var(--color-box-shadow);
-  transform: rotateY(720deg);
+  transform: rotateY(var(--transform-rotate-avatar));
 }
 
 div.comment-body-container {

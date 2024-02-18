@@ -11,6 +11,8 @@
   --black-dim: #252525;
   --black-deep: #222;
   --pink: #f8f8f8;
+  --orange-lighter: #ff9443;
+  --orange-light: #ee802f;
   --orange: #fc6423;
   --red-lighter: #f8d7da;
   --red-light: #f5969b;
@@ -144,6 +146,8 @@
   --color-button-green-border: var(--green-light);
   --color-button-blue-background: var(--blue-dark);
   --color-button-blue-border: var(--blue-light);
+  --color-button-rss-background: var(--red-dark);
+  --color-button-rss-border: var(--red-light);
   --color-button-dot-close-background: var(--red);
   --color-button-dot-maximize-background: var(--green);
   --color-button-dot-minimize-background: var(--yellow);
@@ -194,7 +198,10 @@
   --border-bottom-width-link: 0.05em;
 
   --transition-duration: 0.3s;
+  --transition-duration-avatar: 0.9s;
   --transition-timing-function: ease-in-out;
+
+  --transform-rotate-avatar: 540deg;
 }
 
 :root[data-theme="dark"] {

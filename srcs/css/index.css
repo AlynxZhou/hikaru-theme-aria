@@ -970,12 +970,12 @@ img.author-avatar {
   display: block;
   border: 0.3em solid white;
   border-radius: 50%;
-  transition: box-shadow var(--transition-duration) var(--transition-timing-function), transform 1s var(--transition-timing-function);
+  transition: box-shadow var(--transition-duration) var(--transition-timing-function), transform var(--transition-duration-avatar) var(--transition-timing-function);
 }
 
 img.author-avatar:hover {
   box-shadow: var(--box-shadow) var(--color-box-shadow);
-  transform: rotateY(720deg);
+  transform: rotateY(var(--transform-rotate-avatar));
 }
 
 div.author-name {
@@ -1029,8 +1029,8 @@ a.rss-link {
   display: block;
   font-size: 1.5rem;
   color: var(--color-button-font);
-  background: var(--color-button-red-background);
-  border: 0.1em solid var(--color-button-red-border);
+  background: var(--color-button-rss-background);
+  border: 0.1em solid var(--color-button-rss-border);
 }
 
 div.sidebar-item {
