@@ -1,65 +1,67 @@
-layouts:
-  includes/layout.njk:
-    - includes/footer.njk
-    - includes/header.njk
-    - includes/sidebar.njk
-  home.njk:
-    - includes/utils.njk
-    - includes/layout.njk
-    - includes/pagination.njk
-    - includes/comment.njk
-    - includes/pinned-message.njk
-    - includes/clipboard-js.njk
-    - includes/highlight-js.njk
-    - includes/highlight-css.njk
-    - includes/mathjax-js.njk
-  archives.njk:
-    - includes/utils.njk
-    - includes/layout.njk
-    - includes/pagination.njk
-    - includes/pinned-message.njk
-  categories.njk:
-    - includes/utils.njk
-    - includes/layout.njk
-    - includes/pinned-message.njk
-  category.njk:
-    - includes/utils.njk
-    - includes/layout.njk
-    - includes/pagination.njk
-    - includes/pinned-message.njk
-  tags.njk:
-    - includes/layout.njk
-    - includes/pinned-message.njk
-  tag.njk:
-    - includes/utils.njk
-    - includes/layout.njk
-    - includes/pagination.njk
-    - includes/pinned-message.njk
-  search.njk:
-    - includes/layout.njk
-    - includes/pinned-message.njk
-  page.njk:
-    - includes/utils.njk
-    - includes/layout.njk
-    - includes/comment.njk
-    - includes/reward.njk
-    - includes/pinned-message.njk
-    - includes/scrollspy-js.njk
-    - includes/clipboard-js.njk
-    - includes/highlight-js.njk
-    - includes/highlight-css.njk
-    - includes/mathjax-js.njk
-  post.njk:
-    - includes/utils.njk
-    - includes/layout.njk
-    - includes/comment.njk
-    - includes/reward.njk
-    - includes/pinned-message.njk
-    - includes/scrollspy-js.njk
-    - includes/clipboard-js.njk
-    - includes/highlight-js.njk
-    - includes/highlight-css.njk
-    - includes/mathjax-js.njk
+# Nunjucks uses runtime loading, which means if we watch and reload included
+# files, we don't need to reload files that includes them. So this is useless.
+# layouts:
+#   includes/layout.njk:
+#     - includes/footer.njk
+#     - includes/header.njk
+#     - includes/sidebar.njk
+#   home.njk:
+#     - includes/utils.njk
+#     - includes/layout.njk
+#     - includes/pagination.njk
+#     - includes/comment.njk
+#     - includes/pinned-message.njk
+#     - includes/clipboard-js.njk
+#     - includes/highlight-js.njk
+#     - includes/highlight-css.njk
+#     - includes/mathjax-js.njk
+#   archives.njk:
+#     - includes/utils.njk
+#     - includes/layout.njk
+#     - includes/pagination.njk
+#     - includes/pinned-message.njk
+#   categories.njk:
+#     - includes/utils.njk
+#     - includes/layout.njk
+#     - includes/pinned-message.njk
+#   category.njk:
+#     - includes/utils.njk
+#     - includes/layout.njk
+#     - includes/pagination.njk
+#     - includes/pinned-message.njk
+#   tags.njk:
+#     - includes/layout.njk
+#     - includes/pinned-message.njk
+#   tag.njk:
+#     - includes/utils.njk
+#     - includes/layout.njk
+#     - includes/pagination.njk
+#     - includes/pinned-message.njk
+#   search.njk:
+#     - includes/layout.njk
+#     - includes/pinned-message.njk
+#   page.njk:
+#     - includes/utils.njk
+#     - includes/layout.njk
+#     - includes/comment.njk
+#     - includes/reward.njk
+#     - includes/pinned-message.njk
+#     - includes/scrollspy-js.njk
+#     - includes/clipboard-js.njk
+#     - includes/highlight-js.njk
+#     - includes/highlight-css.njk
+#     - includes/mathjax-js.njk
+#   post.njk:
+#     - includes/utils.njk
+#     - includes/layout.njk
+#     - includes/comment.njk
+#     - includes/reward.njk
+#     - includes/pinned-message.njk
+#     - includes/scrollspy-js.njk
+#     - includes/clipboard-js.njk
+#     - includes/highlight-js.njk
+#     - includes/highlight-css.njk
+#     - includes/mathjax-js.njk
 
 # Currently aria does not use CSS preprocessors.
 # srcs:
