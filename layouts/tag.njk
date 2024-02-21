@@ -1,4 +1,3 @@
-{%- import "includes/utils.njk" as utils with context -%}
 {% extends "includes/layout.njk" %}
 
 {% block title %}{{ __(file.title) }} {{ file.tag.name }} - {{ siteConfig.title }}{% endblock %}
@@ -20,7 +19,7 @@
       </div>
       {%- if post.created %}
       <span class="post-created">
-        <time title="post-created" itemprop="dateCreated datePublished" datetime="{{ post.created.toISOString() }}">{{ utils.formatDateTime(post.created) }}</time>
+        <time title="post-created" itemprop="dateCreated datePublished" datetime="{{ post.created.toISOString() }}">{{ formatDateTime(post.created) }}</time>
       </span>
       {%- endif %}
     </header>

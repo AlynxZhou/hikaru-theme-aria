@@ -41,9 +41,12 @@
           "basePath": "{{ getPath(file.docPath) }}",
           "containerID": "comment-results"
         }).then(() => {
-          formatDateTime(
+          const formatDateTime = formatDateTimeFn("{{ siteConfig.language }}");
+          elementsEach(
             document.querySelectorAll("time.comment-full-datetime"),
-            "{{ siteConfig.language }}"
+            (e, i) => {
+              e.textContent = formatDateTime(e.getAttribute("datetime"));
+            }
           );
           elementsEach(
             document.querySelectorAll("div.comment-content img"),

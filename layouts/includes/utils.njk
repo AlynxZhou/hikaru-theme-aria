@@ -64,29 +64,3 @@
 </ol>
 {%- endif %}
 {%- endmacro %}
-
-{%- macro formatDateTime(dt) %}
-{%- set year = dt.getFullYear() %}
-{%- set month = dt.getMonth() + 1 %}
-{%- if month <= 9 %}
-{%- set month = ["0", month].join("") %}
-{%- endif %}
-{%- set date = dt.getDate() %}
-{%- if date <= 9 %}
-{%- set date = ["0", date].join("") %}
-{%- endif %}
-{%- set hour = dt.getHours() %}
-{%- if hour <= 9 %}
-{%- set hour = ["0", hour].join("") %}
-{%- endif %}
-{%- set minute = dt.getMinutes() %}
-{%- if minute <= 9 %}
-{%- set minute = ["0", minute].join("") %}
-{%- endif %}
-{%- set second = dt.getSeconds() %}
-{%- if second <= 9 %}
-{%- set second = ["0", second].join("") %}
-{%- endif %}
-{#- This is a inline macro so we strip start to prevent line break. #}
-{{- year }}-{{ month }}-{{ date }} {{ hour }}:{{ minute }}:{{ second }}
-{%- endmacro %}

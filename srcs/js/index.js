@@ -169,14 +169,25 @@ const lazyLoadWhenInside = (element, callback) => {
   observer.observe(element);
 };
 
-const formatDateTime = (elements, locales) => {
-  if (elements == null || elements.length === 0) {
-    return;
+/* eslint-disable-next-line no-unused-vars */
+const formatDateTimeSimple = (dt = new Date()) => {
+  if (!(dt instanceof Date)) {
+    dt = new Date(dt);
   }
+  const year = dt.getFullYear().toString();
+  const month = (dt.getMonth() + 1).toString().padStart(2, "0");
+  const date = dt.getDate().toString().padStart(2, "0");
+  const hour = dt.getHours().toString().padStart(2, "0");
+  const minute = dt.getMinutes().toString().padStart(2, "0");
+  const second = dt.getSeconds().toString().padStart(2, "0");
+  return `${year}-${month}-${date} ${hour}:${minute}:${second}`;
+};
 
-  // See <https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat>.
-  // A modern way to show date in user's format. But it only shows date by
-  // default, no time.
+/* eslint-disable-next-line no-unused-vars */
+const formatDateTimeFn = (locales) => {
+  if (Intl == null) {
+    return formatDateTimeSimple;
+  }
   const formatter = new Intl.DateTimeFormat(locales, {
     "year": "numeric",
     "month": "2-digit",
@@ -188,16 +199,17 @@ const formatDateTime = (elements, locales) => {
     "timeZoneName": "short",
     "hour12": false
   });
-  elementsEach(elements, (e, i) => {
-    const date = new Date(e.getAttribute("datetime"));
-    // See <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/formatToParts>.
-    const parts = formatter.formatToParts(date);
+  return (dt = new Date()) => {
+    if (!(dt instanceof Date)) {
+      dt = new Date(dt);
+    }
+    const parts = formatter.formatToParts(dt);
     const obj = {};
-    for (let {type, value} of parts) {
+    for (const {type, value} of parts) {
       obj[type] = value;
     }
-    e.textContent = `${obj["year"]}-${obj["month"]}-${obj["day"]} ${obj["weekday"]} ${obj["hour"]}:${obj["minute"]}:${obj["second"]} ${obj["timeZoneName"]}`;
-  });
+    return `${obj["year"]}-${obj["month"]}-${obj["day"]} ${obj["weekday"]} ${obj["hour"]}:${obj["minute"]}:${obj["second"]} ${obj["timeZoneName"]}`;
+  };
 };
 
 documentReady(() => {

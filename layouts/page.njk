@@ -1,4 +1,3 @@
-{%- import "includes/utils.njk" as utils with context -%}
 {% extends "includes/layout.njk" %}
 
 {% block css %}
@@ -48,12 +47,12 @@
       <div class="post-meta">
         {%- if created %}
         <div class="post-created meta-block">
-          <i class="bi bi-calendar-check"></i><span><time class="post-full-datetime" title="post-created" itemprop="dateCreated datePublished" datetime="{{ file.created.toISOString() }}">{{ utils.formatDateTime(file.created) }}</time></span>
+          <i class="bi bi-calendar-check"></i><span><time class="post-full-datetime" title="post-created" itemprop="dateCreated datePublished" datetime="{{ file.created.toISOString() }}">{{ formatDateTime(file.created) }}</time></span>
         </div>
         {%- endif %}
         {%- if file.updated %}
         <div class="post-updated meta-block">
-          <i class="bi bi-calendar-plus"></i><span><time class="post-full-datetime" title="post-updated" itemprop="dateUpdated" datetime="{{ file.updated.toISOString() }}">{{ utils.formatDateTime(file.updated) }}</time></span>
+          <i class="bi bi-calendar-plus"></i><span><time class="post-full-datetime" title="post-updated" itemprop="dateUpdated" datetime="{{ file.updated.toISOString() }}">{{ formatDateTime(file.updated) }}</time></span>
         </div>
         {%- endif %}
         {%- if file.author or file.email %}
