@@ -1,25 +1,25 @@
 {#
   Put macros here. This file should be imported with context to use helpers from
   Hikaru in context.
-#}
+  #}
 
 {#
   Only use macros when necessary, for example you need to do recursion, or you
   have the same pieces of code in different places that generates inline
   elements. Don't use macros to generate large HTML skeletons.
-#}
+  #}
 
 {#
   This is used to generate description used in meta tags, auto excerpt of posts
   in home page is different from this.
-#}
+  #}
 {%- macro generateMetaDescription(file) %}
 {%- if file.excerpt  %}
 {{- file.excerpt | striptags }}
 {%- elseif file.description %}
 {{- file.description | striptags }}
 {%- elseif file.content and themeConfig.autoExcerpt %}
-{{- (file.content | striptags).substring(0, themeConfig.autoExcerpt) }}…
+{{- (file.content | striptags).substring(0, themeConfig.autoExcerpt) }}{{ __("ellipsis") }}
 {%- elseif siteConfig.subtitle %}
 {{- siteConfig.subtitle }}
 {%- elseif siteConfig.description %}

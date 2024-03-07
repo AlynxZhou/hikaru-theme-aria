@@ -89,7 +89,7 @@
       {%- elseif post.description %}
       {{ post.description }}
       {%- elseif themeConfig.autoExcerpt %}
-      <p>{{ (post.content | striptags).substring(0, themeConfig.autoExcerpt) }}…</p>
+      <p>{{ (post.content | striptags).substring(0, themeConfig.autoExcerpt) }}{{ __("ellipsis") }}</p>
       {%- else %}
       {{ post.content }}
       {%- endif %}
