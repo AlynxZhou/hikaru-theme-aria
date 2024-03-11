@@ -45,14 +45,11 @@ img.comment-avatar:hover {
 
 div.comment-body-container {
   flex: 1 1 auto;
+  /* This also means always round the corners and cover children. */
+  overflow: auto;
   transition: box-shadow var(--transition-duration) var(--transition-timing-function);
   /* This is needed for shadow. */
   border-radius: var(--corner-radius);
-  /**
-   * See <https://stackoverflow.com/questions/36247140/why-dont-flex-items-shrink-past-content-size>.
-   * Let parent decide child width.
-   */
-  overflow: auto;
 }
 
 div.comment-body-container:hover {
@@ -63,7 +60,6 @@ div.comment-info {
   padding: 0.5em;
   color: var(--color-comment-info-font);
   background: var(--color-comment-info-background);
-  border-radius: var(--corner-radius) var(--corner-radius) 0 0;
   /* Sometimes scrollbar shows because of Chinese word wrap with English. */
   scrollbar-width: thin;
   scrollbar-color: var(--color-scrollbar) var(--color-scrollbar-background);
@@ -110,8 +106,7 @@ div.comment-info a.comment-info-link::before {
 div.comment-content {
   padding: 0.5em 1em;
   background: var(--color-comment-content-background);
-  border-radius: 0 0 var(--corner-radius) var(--corner-radius);
-  /* If comment too long, add scroll bar here. */
+  /* If comment is too long, add scroll bar here. */
   overflow: auto;
 }
 

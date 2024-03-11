@@ -217,7 +217,6 @@ div.code-titlebar {
   justify-content: space-between;
   align-items: center;
   text-align: center;
-  /* border-radius: var(--corner-radius) var(--corner-radius) 0 0; */
   color: var(--color-code-block-titlebar-font);
   background: var(--color-code-block-titlebar-background);
   padding: 0 0.25em;
@@ -288,9 +287,6 @@ figure.code-block {
   flex-direction: row;
   justify-content: flex-start;
   align-items: stretch;
-  /* border-left: 0.1em solid var(--color-code-block-border); */
-  /* border-bottom: 0.1em solid var(--color-code-block-border); */
-  /* border-right: 0.1em solid var(--color-code-block-border); */
   padding: 0 0.5em;
   margin: 0 calc(-1 * var(--padding-card));
 }
@@ -310,8 +306,8 @@ figure.code-block > pre.gutter {
   text-align: right;
   padding: 0.5em;
   /**
-   * Only show border of gutter, so when user choose no gutter in config,
-   * there is no border for code.
+   * Only show border of gutter, so when user choose no gutter in config, there
+   * is no border for code.
    */
   border-right: 0.1em dotted;
 }
@@ -403,10 +399,8 @@ div.alert-red, div.alert-green, div.alert-blue {
   padding: 0.5em 10%;
   border-width: 0 0.5em;
   border-style: solid;
-  /* border-radius: var(--corner-radius); */
 }
 
-/* alert has no dark theme. */
 div.alert-red a, div.alert-green a, div.alert-blue a {
   color: var(--color-light-link-font);
 }
@@ -480,6 +474,8 @@ div.card, article.card {
   transition: box-shadow var(--transition-duration) var(--transition-timing-function);
   background: var(--color-card-background);
   border-radius: var(--corner-radius);
+  /* Always round the corners and cover children. */
+  overflow: hidden;
   padding: 0.5em var(--padding-card);
   margin: 0.5em;
 }
@@ -530,9 +526,8 @@ div.header-container {
 div.header-title {
   text-align: left;
   flex: 1 1 auto;
-  color: var(--color-title-font);
-  /* To make it shrink. */
   overflow: auto;
+  color: var(--color-title-font);
 }
 
 a.root {
@@ -575,6 +570,8 @@ nav.nav {
   /* Use rem because main should have the same shadow. */
   box-shadow: 0 -0.5rem 1rem 0.5rem var(--color-box-shadow);
   border-radius: var(--corner-radius-main) var(--corner-radius-main) 0 0;
+  /* Always round the corners and cover children. */
+  overflow: hidden;
   line-height: 1.5;
   /* This is a flex container of menu and buttons. */
   display: flex;
@@ -589,15 +586,15 @@ nav.nav {
  * Use flex and block for ul and li to ignore white spaces Nunjucks puts here.
  */
 ul.menu {
-  display: flex;
   flex: 1 1 auto;
+  overflow: auto;
+  display: flex;
   flex-direction: row;
   align-items: stretch;
   justify-content: flex-start;
   list-style: none;
   padding: 0;
   margin: 0;
-  overflow: auto;
   scrollbar-width: thin;
   scrollbar-color: var(--color-scrollbar) var(--color-scrollbar-background);
 }
@@ -673,8 +670,10 @@ div.main-container {
   /**
    * Only setting `border-radius` here is not enough, because sidebar has its
    * own background.
-   * Using `overflow: auto;` can round sidebar, but it creates a new problem
+   *
+   * Using `overflow: hidden;` can round sidebar, but it creates a new problem
    * that `position: sticky;` won't work.
+   *
    * So the only way to do that is also setting `border-radius` for sidebar.
    */
   border-radius: 0 0 var(--corner-radius-main) var(--corner-radius-main);
@@ -687,16 +686,18 @@ div.main-container {
   margin: 0;
 }
 
+/**
+ * See <https://stackoverflow.com/questions/36247140/why-dont-flex-items-shrink-past-content-size>.
+ *
+ * If you have two elements in a flex container, one is fixed size, and you want
+ * the other grows and shrinks, you need to set `flex: 1 1 auto;` and
+ * `overflow: auto;` for the other element.
+ */
 div.content {
-  /* Grow and shrink and take all available space. */
   flex: 1 1 auto;
-  /* Content has no background so don't set this. */
-  /* border-radius: 0 0 var(--corner-radius-main) 0; */
-  /**
-   * See <https://stackoverflow.com/questions/36247140/why-dont-flex-items-shrink-past-content-size>.
-   * Let parent decide child width.
-   */
   overflow: auto;
+  /* Content has no background so there is no need to set this. */
+  /* border-radius: 0 0 var(--corner-radius-main) 0; */
 }
 
 div.page-counter {
@@ -811,8 +812,6 @@ a.title-link::after {
   transition: transform var(--transition-duration) var(--transition-timing-function);
   transform: scaleX(0);
   background: var(--color-font);
-  /* Not sure why but this prevents the disappear animation. */
-  /* visibility: hidden; */
 }
 
 a.title-link:hover::after {
@@ -1079,7 +1078,6 @@ div.footer-container {
 }
 
 div.footer-left, div.footer-right {
-  /* Let them share space. */
   flex: 1 1 50%;
 }
 

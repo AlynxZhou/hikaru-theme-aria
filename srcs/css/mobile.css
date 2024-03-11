@@ -2,6 +2,7 @@
 /**
  * So for container the basic idea is don't make content width jump while
  * shrinking. If we shrinking from a very very wide screen, we have:
+ *
  * 1. If screen width is larger than 100rem, we take 80%, but too wide is hard
  *    to read, so max width is 100rem, this is in index.css.
  * 2. When screen width is 100rem, container width is 80rem. From now we shrink
@@ -88,8 +89,8 @@
 
   ul.menu {
     /**
-     * Do not set display to none in CSS here, but set it in JavaScript, so if
-     * users disable JavaScript, they still can see this menu.
+     * Do not set display to none in CSS here, instead setting it in JavaScript,
+     * so if users disable JavaScript, they can still see this menu.
      */
     flex-direction: column;
   }
