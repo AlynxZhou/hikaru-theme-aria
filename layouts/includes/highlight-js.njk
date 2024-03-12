@@ -1,11 +1,4 @@
 {#- highlight is expensive so only load it on home, pages and posts. #}
-{#-
-  If user choose to use Hikaru's builtin highlight, we don't do client side
-  highlight.
-  Don't move those conditions outside, because we have two parts: if no pre
-  hightlight, add highlight, and if no pre gutter, add gutter.
-#}
-{%- if siteConfig.highlight.enable !== true %}
 <script defer type="text/javascript" src="{% if themeConfig.libCDN.enable and themeConfig.libCDN.highlight %}{{ themeConfig.libCDN.highlight }}{% else %}{{ getPath("js/highlight.min.js") }}{% endif %}"></script>
 <script type="text/javascript">
   documentReady(() => {
@@ -19,34 +12,34 @@
     );
   });
 </script>
-{%- endif %}
-{%- if siteConfig.highlight.gutter !== true %}
+{#- If Hikaru generates line numbers, we don't do this again. #}
+{%- if siteConfig.contentsResolving.codeBlocks.lineNumbers !== true %}
 <script type="text/javascript">
   documentReady(() => {
     elementsEach(
       document.querySelectorAll("figure.code-block pre.code"),
       (e, i) => {
         const code = e.parentNode.getAttribute("data-raw");
-        const gutter = [];
-        gutter.push("<pre class=\"gutter\">");
+        const lineNumbers = [];
+        lineNumbers.push("<pre class=\"line-numbers gutter\">");
         // Highlight should not change lines.
         // But may replace `\n` with `<br>`, so use original code here.
         const codeLines = code.split(/\r?\n/g);
         // It seems marked.js starts to keep the last `\n`,
         // which will leave an empty line after splitting,
-        // and we should not add gutter for the last empty line.
+        // and we should not add line number for the last empty line.
         // Don't do trim here! We only skip empty line.
         if (codeLines[codeLines.length - 1].length === 0) {
           codeLines.pop();
         }
         for (let i = 0; i < codeLines.length; ++i) {
-          gutter.push(`<span class="line-number">${i + 1}</span>`);
+          lineNumbers.push(`<span class="line-number">${i + 1}</span>`);
           if (i !== codeLines.length - 1) {
-            gutter.push("\n");
+            lineNumbers.push("\n");
           }
         }
-        gutter.push("</pre>");
-        elementBefore(e, createElementFromString(gutter.join("")));
+        lineNumbers.push("</pre>");
+        elementBefore(e, createElementFromString(lineNumbers.join("")));
       }
     );
   });

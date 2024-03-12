@@ -301,7 +301,7 @@ figure.code-block > pre {
   margin: 0;
 }
 
-figure.code-block > pre.gutter {
+figure.code-block > pre.line-numbers, figure.code-block > pre.gutter {
   flex: 0 0 auto;
   text-align: right;
   padding: 0.5em;
