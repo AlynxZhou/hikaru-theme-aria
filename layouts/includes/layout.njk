@@ -212,8 +212,8 @@
           <div class="content">
             {% block content %}{% endblock %}
           </div>
-          {#- Sidebar can be `left`, `right` or `false`. #}
-          {%- if themeConfig.sidebar !== false %}
+          {#- Sidebar can be `left`, `right` or empty. #}
+          {%- if themeConfig.sidebar %}
           {% include "includes/sidebar.njk" %}
           {%- endif %}
         </div>
