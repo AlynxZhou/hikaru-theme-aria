@@ -428,6 +428,76 @@ div.alert-blue {
   background-color: var(--color-alert-blue-background);
 }
 
+/* If you want to hide some words, don't do too much. */
+/* Don't forget inline elements used for writing that have extra styles. */
+span.faded {
+  color: var(--color-card-background);
+  transition: color var(--transition-duration) var(--transition-timing-function);
+}
+
+span.faded:hover {
+  color: var(--color-font);
+}
+
+span.faded a {
+  color: var(--color-card-background);
+}
+
+span.faded:hover a {
+  color: var(--color-link-font);
+}
+
+span.faded a:hover {
+  color: var(--color-link-hover-font);
+}
+
+span.faded code, span.faded kbd {
+  color: var(--color-card-background);
+  background: var(--color-card-background);
+  transition: color var(--transition-duration) var(--transition-timing-function), background var(--transition-duration) var(--transition-timing-function);
+}
+
+span.faded:hover code, span.faded:hover kbd {
+  color: var(--color-code-font);
+  background: var(--color-code-background);
+}
+
+span.covered {
+  background: var(--color-font);
+  transition: background var(--transition-duration) var(--transition-timing-function);
+}
+
+span.covered:hover {
+  background: var(--color-card-background);
+}
+
+span.covered a {
+  color: var(--color-font);
+  border-bottom: none;
+  transition: color var(--transition-duration) var(--transition-timing-function), border-bottom var(--transition-duration) var(--transition-timing-function);
+}
+
+span.covered:hover a {
+  color: var(--color-link-font);
+  border-bottom: var(--border-bottom-width-link) dotted;
+}
+
+span.covered a:hover {
+  color: var(--color-link-hover-font);
+  border-bottom: var(--border-bottom-width-link) solid;
+}
+
+span.covered code, span.covered kbd {
+  color: var(--color-font);
+  background: var(--color-font);
+  transition: color var(--transition-duration) var(--transition-timing-function), background var(--transition-duration) var(--transition-timing-function);
+}
+
+span.covered:hover code, span.covered:hover kbd {
+  color: var(--color-code-font);
+  background: var(--color-code-background);
+}
+
 div.sk-wave {
   font-size: 1rem;
   margin: 2em auto;

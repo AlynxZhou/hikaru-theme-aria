@@ -319,6 +319,20 @@ Just add `div.enlarge` outside your image, it will expand to cover the padding o
 </div>
 ```
 
+### Faded Texts
+
+Texts are hidden by using the background color as text color if they are not hovered. Use this to hide short texts.
+
+```HTML
+<span class="faded">Some Secrets</span>
+
+### Covered Texts
+
+Texts are hidden by using the text color as background color if they are not hovered. Use this to hide short texts.
+
+```HTML
+<span class="covered">Some Secrets</span>
+
 ## Custom CSS and JavaScript
 
 If you need to cover some CSS style of ARIA, just edit `themes/aria/srcs/css/custom.styl` which will be added last.
