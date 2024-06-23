@@ -41,7 +41,6 @@ html {
 }
 
 body {
-  transition: color var(--transition-duration) var(--transition-timing-function), background var(--transition-duration) var(--transition-timing-function);
   /**
    * Use separate font properties because `line-height` is also included in
    * `font` property, I don't want to reset `line-height` for all elements using
@@ -51,7 +50,13 @@ body {
   font-size: var(--font-size);
   line-height: 2;
   color: var(--color-font);
-  background: var(--color-background);
+  /**
+   * Don't set body background as main background, because on browsers that
+   * support inertial scrolling, it will show body background if we scroll
+   * beyond header or footer, to keep consistent we set body background as theme
+   * color, and set background for main indiviually.
+   */
+  /* background: var(--color-background); */
   display: flex;
   flex-direction: column;
   /* Never use `space-between` here, header and main cannot be splitted. */
@@ -65,6 +70,7 @@ body {
   min-height: 100vh;
   overflow: auto;
   scroll-behavior: smooth;
+  transition: color var(--transition-duration) var(--transition-timing-function);
 }
 
 ol, ul {
@@ -731,7 +737,10 @@ main.main {
   font-size: var(--font-size);
   /* It's 2022 and calc() should work everywhere, and use -1 to do negative. */
   margin-top: calc(-1 * var(--height-search));
-  margin-bottom: 1.5em;
+  /* Use padding to control the background color between main and footer. */
+  padding-bottom: 1.5em;
+  background: var(--color-background);
+  transition: background var(--transition-duration) var(--transition-timing-function);
 }
 
 div.main-container {
