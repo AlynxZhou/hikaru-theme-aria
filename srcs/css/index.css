@@ -1170,7 +1170,6 @@ div.back-to-top {
 
 footer.footer a.back-to-top {
   border: none;
-  transition: color var(--transition-duration) var(--transition-timing-function);
   color: var(--color-link-font);
   background: var(--color-background);
   display: inline-block;
@@ -1178,6 +1177,7 @@ footer.footer a.back-to-top {
   border-radius: 0 0 var(--corner-radius) var(--corner-radius);
   font-size: 2rem;
   line-height: 1.2;
+  transition: color var(--transition-duration) var(--transition-timing-function), background var(--transition-duration) var(--transition-timing-function);
 }
 
 footer.footer a.back-to-top:hover {
