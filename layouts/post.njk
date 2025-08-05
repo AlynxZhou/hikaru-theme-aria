@@ -5,9 +5,6 @@
 {% endblock %}
 
 {% block js %}
-{%- if file.content and file.toc and file.toc.length > 0 %}
-{% include "includes/scrollspy-js.njk" %}
-{%- endif %}
 {% include "includes/clipboard-js.njk" %}
 {% include "includes/highlight-js.njk" %}
 {%- if themeConfig.mathjax.cdn and themeConfig.mathjax.enable %}
@@ -84,7 +81,7 @@
         {%- endif %}
       </div>
     </header>
-    <main class="post-main" id="scrollspy-container" itemprop="articleBody">
+    <main class="post-main" itemprop="articleBody">
       {{ file.content }}
     </main>
     <footer class="post-footer">

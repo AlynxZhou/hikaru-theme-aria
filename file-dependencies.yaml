@@ -46,7 +46,6 @@
 #     - includes/comment.njk
 #     - includes/reward.njk
 #     - includes/pinned-message.njk
-#     - includes/scrollspy-js.njk
 #     - includes/clipboard-js.njk
 #     - includes/highlight-js.njk
 #     - includes/highlight-css.njk
@@ -57,7 +56,6 @@
 #     - includes/comment.njk
 #     - includes/reward.njk
 #     - includes/pinned-message.njk
-#     - includes/scrollspy-js.njk
 #     - includes/clipboard-js.njk
 #     - includes/highlight-js.njk
 #     - includes/highlight-css.njk
