@@ -1,10 +1,14 @@
 /**
  * A script that update list group components based on scroll position to
  * indicate which link is currently active in the viewport.
+ *
  * This is an alternative to Bootstrap's Scrollspy. However, it uses `current`
  * as class name instead of `active`.
+ *
  * This version uses IntersectionObserver instead of scroll event.
- * CopyLeft (C) 2022
+ *
+ * CopyLeft (C) 2022 - 2025
+ *
  * AlynxZhou <alynx.zhou@gmail.com> (https://alynx.one/)
  */
 "use strict";
@@ -16,13 +20,13 @@ const updateCurrent = (target, headings, position, opts) => {
   if (opts["offset"] !== 0) {
     position += window.innerHeight * opts["offset"];
   }
-  for (let i = 0; i < headings.length; ++i) {
-    // This heading is higher than current position,
-    // and it is the last, or its next is lower than current position.
-    if (headings[i].offsetTop <= position &&
-        (i === headings.length - 1 || headings[i + 1].offsetTop > position)) {
+  for (let i = 0; i <= headings.length; ++i) {
+    // Find the first heading that under position and its previous heading is
+    // the current one.
+    if (i === headings.length || headings[i].offsetTop > position) {
       const oldActive = target.querySelector("a.current");
-      const newActive = target.querySelector(`a[href="#${headings[i].id}"]`);
+      const newActive = i === 0 ?
+            null : target.querySelector(`a[href="#${headings[i - 1].id}"]`);
       if (oldActive !== newActive) {
         if (oldActive != null) {
           oldActive.classList.remove("current");
@@ -121,11 +125,14 @@ const loadScrollSpy = (opts) => {
       for (const heading of headings) {
         headingObserver.unobserve(heading);
       }
-      // Clear active item because we are outside container.
-      const oldActive = target.querySelector("a.current");
-      if (oldActive != null) {
-        oldActive.classList.remove("current");
-      }
+      // Kick animations out of main thread.
+      window.requestAnimationFrame(() => {
+        // Clear active item because we are outside container.
+        const oldActive = target.querySelector("a.current");
+        if (oldActive != null) {
+          oldActive.classList.remove("current");
+        }
+      });
     }
   });
   observer.observe(container);
